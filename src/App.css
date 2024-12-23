@@ -1,0 +1,83 @@
+body { 
+  margin: 0; 
+  padding: 0; 
+  height: 100%; 
+  width: 100%; 
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.container { 
+  display: flex; 
+  flex-direction: column; /* Stack logo and intro vertically */
+  align-items: center; /* Center horizontally */
+  height: 100vh; /* Full viewport height */
+  position: relative; /* Ensures child elements are positioned relative to the container */
+}
+
+.logo {
+  position: absolute; 
+  top: 5%; 
+
+  display: flex; 
+  flex-direction: row; 
+  justify-content: center;
+  gap: 15px; 
+}
+
+.intro { 
+  align-items: center; /* horizontal */ 
+  height: 100vh; 
+  width: 100%; 
+  padding-right: 20px; 
+
+  font-family: 'Rubik'; 
+  font-size: 60px; 
+  font-weight: bold;  
+}
+
+.top-section { 
+  margin: 0; 
+  position: relative; 
+  top: 40%; 
+}
+
+
+.bottom-section {
+  position: relative; 
+  top: 39%; 
+  margin: 0; 
+}
+
+h1 { 
+  font-size: 25px;  
+  padding-bottom: 0; 
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
