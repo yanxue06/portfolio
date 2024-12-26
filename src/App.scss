@@ -1,8 +1,8 @@
 @use "sass:math"; 
 
 /* Config */
-$color-bg: #1e1e1e;
-$color-particle: #fff;
+$color-bg: #23212f;
+$color-particle: #dbd6b0;
 $spacing: 2560px;
 $time-1: 60s;
 $time-2: 120s;
@@ -23,25 +23,14 @@ $time-4: 200s;
   border-radius: 50%;
 }
 
-/* Styles */
-html, body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 4rem;
-  overflow: hidden;
-}
-
 .page-bg, .animation-wrapper {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 80; 
+  pointer-events: none; 
 }
 
 .page-bg {
