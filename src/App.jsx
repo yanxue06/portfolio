@@ -1,6 +1,7 @@
 import React from 'react'; 
 import './App.css'; 
-import './App.scss'; 
+import './particle.scss'; 
+import './timeline.css';
 import Typewriter from './components/typewriter'
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
@@ -59,35 +60,85 @@ export default function Gallery() {
         <p> hey... as you've already seen, my name is Yan. I am a first year computer engineering student at The University of Waterloo. My primary interest at the moment is AI, specifically NLP. My values include family, friends, and Christianity. Some of my hobbies include guitar, ultimate frisbee, and brawl stars </p>  
       </div>  
 
+
       <div className="title"> 
-        <h1> Experience </h1> 
+         <h1> Experiences </h1> 
       </div>
-      <div className="text"> 
-        <p> Automation Developer - HongMall </p>
-        <div className="experience-images"> 
-          <img src={HongMall} alt="HongMall"/>
-        </div> 
-        <p> Firmware Member - Midnight Sun </p>
-        <div className="experience-images"> 
-          <img src={MidnightSun} alt="MidnightSun"/>
-        </div> 
-        <p> Software Developer - Skynet Security System </p>  
-        
+      <div className="experiences"> 
+          {/* EXPERIENCE LIST */}
+          <div className="experience-list">
+
+            {/* ITEM 1 */}
+            <div className="experience-item">
+              <div className="experience-logo">
+                <img src={HongMall} alt="HongMall" />
+              </div>
+              <div className="experience-text">
+                <h3>Automation Developer</h3>
+                <h4> HongMall Canada</h4> 
+                <ul>
+                  <li>Automated shipping label generation and order flows.</li>
+                  <li>Reduced manual intervention by ~40% via workflow automation.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* ITEM 2 */}
+            <div className="experience-item">
+              <div className="experience-logo">
+                <img src={MidnightSun} alt="MidnightSun" />
+              </div>
+              <div className="experience-text">
+                <h3>Firmware Member</h3>
+                <h4> Midnight Sun </h4>
+                <ul>
+                  <li>Implemented an ADC driver for the ADS1115 with low-level C firmware and I2C communication.</li>
+                  <li>Created a backup driver using STM32’s Backup registers for secure data storage and access control.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* ITEM 3 */}
+            <div className="experience-item">
+              <div className="experience-logo">
+                {/* You can use a placeholder or another image here */}
+              </div>
+              <div className="experience-text">
+                <h3>Software Developer</h3>
+                <h4> Skynet Security System </h4> 
+                <ul>
+                  <li>
+                    Developed a multiprocessing Python script that performed CSV data normalization for 500+ company files.
+                  </li>
+                  <li>
+                    Improved file processing speed by over 200% and enhanced operational workflows.
+                  </li>
+                  <li>
+                    Performed network troubleshooting and Ethernet installation for 35+ clients.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div> 
+        </div>
+      
+      <div className="p3"> 
+        <div className="title"> 
+          <h1> Projects </h1> 
+        </div>
+
+        <div className="text"> 
+          <p> Trackify </p> 
+          <p> CSV Data Normalizer </p> 
+          <p> LinkCom - STM32...</p>
+        </div>
+
+        <div className="title"> 
+          <h1> Tech Stack </h1> 
+        </div>
       </div> 
 
-      <div className="title"> 
-        <h1> Projects </h1> 
-      </div>
-
-      <div className="text"> 
-        <p> Trackify </p> 
-        <p> CSV Data Normalizer </p> 
-        <p> LinkCom - STM32...</p>
-      </div>
-
-      <div className="title"> 
-        <h1> Tech Stack </h1> 
-      </div>
       
     </section>
 

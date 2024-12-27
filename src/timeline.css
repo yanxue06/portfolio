@@ -1,0 +1,71 @@
+.experiences { 
+    margin-left: 10%; 
+}
+
+.experience-list {
+    /* Add a colored line on the left for that vertical bar look */
+    border-left: 3px solid #31BEB5; /* teal or any color you like */
+    padding-left: 1rem;            /* space between the line and content */
+    max-width: 700px;              /* optional: keep it narrower if you like */
+  }
+  
+  /***** INDIVIDUAL EXPERIENCE ITEM *****/
+  .experience-item {
+    display: flex;           /* place logo on the left, text on the right */
+    align-items: flex-start; /* top-align them */
+    margin-bottom: 2rem;     /* spacing between items */
+    position: relative;
+  }
+  
+  /* The logo or image container */
+  .experience-logo img {
+    width: 80px;       /* fixed width for consistent sizing */
+    height: auto;      /* keep aspect ratio */
+    margin-right: 1rem; /* spacing between image & text */
+    border-radius: 8px; /* slight rounding if desired */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* optional drop shadow */
+  }
+  
+  /* The text to the right of the logo */
+  .experience-text {
+    /* No special display; it just flows in a column */
+  }
+  
+  /* Title (role name) styling */
+  .experience-text h3 {
+    margin: 0 0 0.5rem;
+    color: #31BEB5;  /* match the left line color */
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  /* Bullets for responsibilities or achievements */
+  .experience-text ul {
+    margin: 0;
+    padding-left: 1.25rem; /* standard bullet indent */
+    list-style-type: disc; /* default disc bullets */
+  }
+  .experience-text ul li {
+    margin-bottom: 0.5rem;
+    color: #ddd; /* if your background is dark, use a lighter text color */
+  }
+  
+  /***** (Optional) RESPONSIVE RULES *****/
+  @media (max-width: 600px) {
+    .experience-list {
+      margin-left: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid #31BEB5; /* thinner line on mobile if you like */
+    }
+  
+    .experience-item {
+      flex-direction: column; /* stack image above the text */
+      margin-bottom: 1.5rem;
+    }
+  
+    .experience-logo img {
+      margin-bottom: 1rem; /* spacing under the image */
+      margin-right: 0;     /* no horizontal spacing needed */
+      width: 60px;         /* smaller images for mobile */
+    }
+  }

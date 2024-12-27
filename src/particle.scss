@@ -112,22 +112,7 @@ $time-4: 200s;
   z-index: 2;
 }
 
-h4 {
-  color: #fff;
-  font-family: Monoton;
-  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
-  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
-  animation: neon1 1.5s ease-in-out infinite alternate;
-}
 
-h4:hover {
-  color: #FF1177;
-  -webkit-animation: none;
-  -moz-animation: none;
-  animation: none;
-}
-
-/*glow for webkit*/
 
 @-webkit-keyframes neon1 {
   from {
@@ -201,3 +186,5 @@ h4:hover {
       0 0 75px #FF1177;
   }
 }
+
+
