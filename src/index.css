@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: DejaVu Sans Mono;
   line-height: 1.5;
   font-weight: 400;
 
@@ -17,6 +17,7 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
 
 button {
   border-radius: 8px;

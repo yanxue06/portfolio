@@ -1,0 +1,60 @@
+/* Navbar Container */
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1200;
+    padding: 20px; 
+    background-color: transparent;
+    color: white;
+    box-shadow: none;
+    transition: background-color 0.8s ease, box-shadow 0.8s ease;
+  }
+  
+  /* Navbar when scrolled */
+  .navbar-scrolled {
+    background-color: rgba(6, 6, 20); /* a semi-transparent dark background */
+    box-shadow: 0 4px 6px rgba(225, 224, 221, 0.4);
+  }
+  
+  /* Navbar Inner Container */
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1170px;
+    margin: 0 auto;
+  }
+  
+  /* Logo */
+  .navbar-logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+  }
+  
+  /* Links for Desktop */
+  .navbar-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar-link {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Hide links (for mobile toggle, if needed) */
+  .hidden {
+    display: none;
+  }
+  

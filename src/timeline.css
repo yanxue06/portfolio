@@ -62,6 +62,10 @@
       flex-direction: column; /* stack image above the text */
       margin-bottom: 1.5rem;
     }
+
+    .last-experience-item { 
+      flex-direction: column; /* stack image above the text */
+    }
   
     .experience-logo img {
       margin-bottom: 1rem; /* spacing under the image */
