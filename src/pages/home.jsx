@@ -1,5 +1,5 @@
 import React from 'react'; 
-import '../App.css'; 
+import '../Home.css'; 
 import '../particle.scss'; 
 import '../timeline.css';
 import Typewriter from '../components/typewriter'
@@ -8,6 +8,7 @@ import { FaGithub } from "react-icons/fa";
 import HongMall from '../images/HongMall.png'; 
 import MidnightSun from '../images/MidnightSun.jpeg'; 
 import Navbar from '../components/navbar';
+import Yan from '../images/Yan.jpeg'
 import '../navbar.css';
 
 
@@ -24,10 +25,10 @@ export default function App() {
 
       <div className="intro"> 
         <div className="top-section"> 
-          <Typewriter text="Hi, I'm Yan" speed={200} />
+          <Typewriter text="Hi, I'm Yan" speed={200} highlightWord='Yan'/>
         </div>
         <div className="bottom-section"> 
-          <h1> ECE Student at the University of Waterloo </h1>
+          <h1> ECE Student at The University of Waterloo </h1>
         </div> 
         <div className="logo">
         <div className="linkedin"> 
@@ -51,38 +52,48 @@ export default function App() {
         </div>
       </div>
       </div>     
-
-      <div className="title"> 
-        <h1> About Me </h1> 
-      </div> 
-      <div className="text"> 
-        <p> hey... as you've already seen, my name is Yan.
-           I am a first year computer engineering student at The University of Waterloo. 
-           My primary interest at the moment is AI, specifically NLP. 
-           <br /> <br />
-
-           Outside of school... I love: 
-
-           <br /> <br />
-
-           1. Guitar
-           <br /> <br />
-           2. Frisbee 
-           <br /> <br />
-           3. Brawl Stars  
-           <br /> <br />
-           4. Family & Friends 
-           </p>  
-      </div>  
-
       </section>
+      <div className="gradientBridge"> </div> 
 
-
-      {/* <div className="title"> 
-         <h1> Experiences </h1> 
+      <section className="p2"> 
+        
+        <div className="about"> 
+          <div className="col"> 
+            <div className="Yan"> 
+              <img src={Yan} alt="Yan"/> 
+            </div> 
+          </div> 
+          <div className="col"> 
+            <div className="title"> 
+              <h1> About me </h1> 
+            </div>
+            <div className="text"> 
+                <p> Hey! I'm Yan Xue, a passionate software developer and AI enthusiast 
+                    studying Computer Engineering at The Univerisity of Waterloo. I'm originally 
+                    from Vancouver, BC, while I study abroad at Waterloo, ON. I'm excited to improve 
+                    my skills through new experience and oppurtunities, and I am welcome to discuss any 
+                    oppurtunities! 
+                <br /> <br />
+                Outside of school... I love: 
+                <br /> <br />
+                1. Guitar
+                <br /> <br />
+                2. Frisbee 
+                <br /> <br />
+                3. Brawl Stars  
+                <br /> <br />
+                4. Family & Friends 
+                </p>  
+            </div> 
+          </div>  
+        </div> 
+          
+      </section> 
+      {/* <div className="experiences_title"> 
+          <h1> Experiences </h1> 
       </div>
       <div className="experiences"> 
-
+      
           <div className="experience-list">
 
             <div className="experience-item">
@@ -133,7 +144,13 @@ export default function App() {
               </div>
             </div>
           </div>  
-        </div>  */}
+        </div> 
+
+      
+
+
+
+      
       
       {/* <div className="title"> 
           <h1> Projects </h1> 

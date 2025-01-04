@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import '../typewriter.css'; 
 
-function TypeWriter({ text, speed = 100, highlightWord = '', highlightClass = '' }) {
+function TypeWriter({ text, speed = 100, highlightWord = ''}) {
   const [showedText, setShowedText] = useState(''); // The text that has been typed so far
   const [index, setIndex] = useState(0); // Current index of the text being displayed
 
@@ -27,7 +28,7 @@ function TypeWriter({ text, speed = 100, highlightWord = '', highlightClass = ''
       <React.Fragment key={i}>
         {part}
         {i < parts.length - 1 && (
-          <span className={highlightClass}>{highlightWord}</span> // Add the styled highlight
+          <span className='highlightclass'>{highlightWord}</span> // Add the styled highlight
         )}
       </React.Fragment>
     ));

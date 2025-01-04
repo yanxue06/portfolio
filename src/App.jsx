@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import './App.css'; 
+import './Home.css'; 
 import Navbar from './components/navbar';
 import './navbar.css';
 
@@ -14,8 +14,8 @@ import Gallery from "./pages/gallery";
 export default function App() {
   return (
     <>  
+      <Navbar />
       <Router> 
-        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />             {/* / goes to Home */}
           <Route path="/about" element={<About />} />       {/* /about goes to About */}

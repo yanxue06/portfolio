@@ -7,6 +7,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
+      console.log(window.scrollY); 
       setScrollY(window.scrollY);
     };
     window.addEventListener("scroll", handleScroll);
@@ -22,7 +23,7 @@ export default function Navbar() {
       <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">
-          <a href="/">Yan</a>
+          <a className="navbar-link" href='/'> Yan </a>
         </div>
 
         {/* Links */}

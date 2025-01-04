@@ -1,7 +1,12 @@
 .experiences { 
-    margin-left: 10%; 
+  width: 100vw; 
+  justify-items: center; 
 }
 
+.experiences-title { 
+  text-decoration: bold; 
+  width: 100vw; 
+}
 .experience-list {
     /* Add a colored line on the left for that vertical bar look */
     border-left: 3px solid #31BEB5; /* teal or any color you like */

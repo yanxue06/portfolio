@@ -2,7 +2,7 @@
 
 /* Config */
 $color-bg: #23212f;
-$color-particle: #dbd6b0;
+$color-particle: #ebe9db;
 $spacing: 2560px;
 $time-1: 60s;
 $time-2: 120s;
@@ -29,7 +29,7 @@ $time-4: 200s;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 80; 
+  z-index: 1; 
   pointer-events: none; 
 }
 
