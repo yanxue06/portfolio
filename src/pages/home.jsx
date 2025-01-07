@@ -10,162 +10,273 @@ import MidnightSun from '../images/MidnightSun.jpeg';
 import Navbar from '../components/navbar';
 import Yan from '../images/Yan.jpeg'
 import '../navbar.css';
+import Grid2 from '@mui/material/Grid2';
+import { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
 
 
 export default function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1200, // Animation duration (ms)
+    });
+  }, []);
   return (
     <>  
     <section className="p1" >
       <div className="animation-wrapper">
           <div className="particle particle-1"></div>
-          <div className="particle particle-2"></div>
-          <div className="particle particle-3"></div>
-          <div className="particle particle-4"></div>
       </div>
 
       <div className="intro"> 
-        <div className="top-section"> 
-          <Typewriter text="Hi, I'm Yan" speed={200} highlightWord='Yan'/>
-        </div>
-        <div className="bottom-section"> 
-          <h1> ECE Student at The University of Waterloo </h1>
-        </div> 
-        <div className="logo">
-        <div className="linkedin"> 
-          <a
-            href="https://linkedin.com/in/yanxue-ce/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaLinkedin size={50}/>
-          </a>
-        </div> 
+        <div className="box"> 
+          <div className="top-section"> 
+            <Typewriter text="Hi, I'm Yan" speed={200} highlightWord='Yan'/>
+          </div>
+        
+          <div className="bottom-section"> 
+            <div data-aos="zoom-in"> 
+              ECE Student at The University of Waterloo  
+            </div>
+          </div> 
+          
+          <div data-aos="zoom-in"> 
+            <div className="logo">
+              <div className="linkedin"> 
+                <a
+                  href="https://linkedin.com/in/yanxue-ce/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaLinkedin size={50}/>
+                </a>
+              </div> 
 
-        <div className="github"> 
-          <a
-            href="https://github.com/yanxue06"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaGithub size={50}/>
-          </a>
-        </div>
+              <div className="github"> 
+                <a
+                  href="https://github.com/yanxue06"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaGithub size={50}/>
+                </a>
+              </div>
+
+            </div> 
+           </div>
+
+
       </div>
       </div>     
       </section>
-      <div className="gradientBridge"> </div> 
+      
+      {/* <div className="gradientBridge"> </div>  */}
 
-      <section className="p2"> 
-        
-        <div className="about"> 
-          <div className="col"> 
-            <div className="Yan"> 
-              <img src={Yan} alt="Yan"/> 
-            </div> 
+      <section className="p2">         
+        <Grid2
+          container
+          spacing={{
+            xs: 3, // Small gaps for phones
+            sm: 4, // Medium gaps for tablets
+            md: 7, // Larger gaps for laptops
+            lg: 13, // Even larger gaps for desktops
+          }}
+        >
+          <Grid2 size="grow">
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'right',
+                marginTop: '5%', 
+              }}
+            >
+              <div data-aos="zoom-in"> 
+                <div className="Yan"> 
+                  <img src={Yan} alt="Yan"/> 
+                </div>
+              </div> 
+            </div>
+          </Grid2>
+
+          <Grid2 size="grow">
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column', 
+                alignItems: 'left',
+                marginTop: '5%', 
+              }}
+            >
+              <div data-aos="zoom-in"> 
+                
+              <div className="title" style={{marginBottom: '2%'}}> 
+                <h1> About me </h1> 
+              </div>
+                <div className="text"> 
+                    <p> Hey! I'm Yan Xue, a passionate software developer and AI enthusiast 
+                        studying Computer Engineering at The Univerisity of Waterloo. I'm originally 
+                        from Vancouver, BC, while I study abroad at Waterloo, ON. I'm excited to improve 
+                        my skills through new experience and oppurtunities, and I am welcome to discuss any 
+                        oppurtunities! 
+                    </p>  
+                </div>
+              </div> 
+            </div>
+          </Grid2>
+        </Grid2> 
+
+        <br/> 
+          <div data-aos="zoom-in"> 
+            <hr width="70%" color="#f1f1e4" size="5px"/>
+          </div>  
+        <br/> 
+
+        <div className="heading"> Experience </div> 
+
+        <Timeline lineColor={'#ddd'}>
+          <div data-aos="zoom-in"> 
+            <TimelineItem
+              key="002"
+              dateText="Jan 2025 - Apr 2025"
+              dateInnerStyle={{ background: 'rgb(151, 176, 207)', color: '#000' }}
+              bodyContainerStyle={{
+                background: '#ddd',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0.5rem 0.5rem 2rem 0 rgba(0, 0, 0, 0.2)',
+              }}
+            >
+              <h3 style={{ color: 'black' }}>Automation Developer</h3>
+              <h5>HongMall</h5> 
+              <ul>
+                <li> blah blah blah </li> 
+              </ul> 
+            </TimelineItem>
           </div> 
-          <div className="col"> 
-            <div className="title"> 
-              <h1> About me </h1> 
-            </div>
-            <div className="text"> 
-                <p> Hey! I'm Yan Xue, a passionate software developer and AI enthusiast 
-                    studying Computer Engineering at The Univerisity of Waterloo. I'm originally 
-                    from Vancouver, BC, while I study abroad at Waterloo, ON. I'm excited to improve 
-                    my skills through new experience and oppurtunities, and I am welcome to discuss any 
-                    oppurtunities! 
-                <br /> <br />
-                Outside of school... I love: 
-                <br /> <br />
-                1. Guitar
-                <br /> <br />
-                2. Frisbee 
-                <br /> <br />
-                3. Brawl Stars  
-                <br /> <br />
-                4. Family & Friends 
-                </p>  
-            </div> 
-          </div>  
-        </div> 
-          
-      </section> 
-      {/* <div className="experiences_title"> 
-          <h1> Experiences </h1> 
-      </div>
-      <div className="experiences"> 
-      
-          <div className="experience-list">
+          <div data-aos="zoom-in"> 
+            <TimelineItem
+              key="002"
+              dateText="Nov 2024 - Dec 2024"
+              dateInnerStyle={{ background: 'rgb(151, 176, 207)', color: '#000' }}
+              bodyContainerStyle={{
+                background: '#ddd',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0.5rem 0.5rem 2rem 0 rgba(0, 0, 0, 0.2)',
+              }}
+            >
+              <h3 style={{ color: 'black' }}>Firmware Member</h3>
+              <h5>Midnight Sun Solar Rayce Car Team</h5>
+              <ul>
+                <li> Implemented an ADC driver for the ADS1115 with low-level C firmware and I2C communication </li> 
+                <li> Configured the ADS1115 Multi-Channel ADC by adjusting bit fields according to the ADS datasheet </li> 
+                <li> Created a backup driver using STM32’s Backup registers, ensuring secure data storage and access control during power loss </li>
+              </ul> 
+            </TimelineItem>
+          </div> 
+          <div data-aos="zoom-in"> 
+            <TimelineItem
+              key="002"
+              dateText="Feb 2023 - Aug 2024"
+              dateInnerStyle={{ background: 'rgb(151, 176, 207)', color: '#000' }}
+              bodyContainerStyle={{
+                background: '#ddd',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0.5rem 0.5rem 2rem 0 rgba(0, 0, 0, 0.2)',
+              }}
+            >
+              <h3 style={{ color: 'black' }}>Software Engineer</h3>
+              <h5> Skynet Security System </h5> 
+                <ul> 
+                  <li> Interned at Skynet Security System, a local technology company, to perform network troubleshooting, structured cabling services, and ethernet installation for over 35+ households and businesses across greater Vancouver </li> 
+                  <li> Developed a multiprocessing Python script that performed CSV data normalization for 500+ company files, improving file processing speed by over 200% and enhancing operational workflows </li> 
+                </ul> 
+            </TimelineItem>
+          </div>
+          <div data-aos="zoom-in"> 
+            <TimelineItem
+              key="002"
+              dateText="Jun 2024 - Aug 2024"
+              dateInnerStyle={{ background: 'rgb(151, 176, 207)', color: '#000' }}
+              bodyContainerStyle={{
+                background: '#ddd',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0.5rem 0.5rem 2rem 0 rgba(0, 0, 0, 0.2)',
+              }}
+            >
+              <h3 style={{ color: 'black' }}>Engineering Intructor</h3> 
+              <h5> SFU Camps </h5> 
+              <ul> 
+                <li> Collaborated with staff to oversee STEM lessons and icebreakers for 60+ youth aged 6-14 </li>
+                <li> Practiced communication, organization, and mentorship skills through instructing a curriculum on
+                    aerodynamics for 20+ youth, resulting in 100% completion of hands-on rocket ship projects </li> 
+              </ul> 
+            </TimelineItem>
+          </div>
+      </Timeline>
 
-            <div className="experience-item">
-              <div className="experience-logo">
-                <img src={HongMall} alt="HongMall" />
-              </div>
-              <div className="experience-text">
-                <h3>Automation Developer</h3>
-                <h4> HongMall Canada</h4> 
-                <ul>
-                  <li>Automated shipping label generation and order flows.</li>
-                  <li>Reduced manual intervention by ~40% via workflow automation.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="experience-item">
-              <div className="experience-logo">
-                <img src={MidnightSun} alt="MidnightSun" />
-              </div>
-              <div className="experience-text">
-                <h3>Firmware Member</h3>
-                <h4> Midnight Sun </h4>
-                <ul>
-                  <li>Implemented an ADC driver for the ADS1115 with low-level C firmware and I2C communication.</li>
-                  <li>Created a backup driver using STM32’s Backup registers for secure data storage and access control.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="last-experience-item">
-              <div className="experience-logo">
-              </div>
-              <div className="experience-text">
-                <h3>Software Developer</h3>
-                <h4> Skynet Security System </h4> 
-                <ul>
-                  <li>
-                    Developed a multiprocessing Python script that performed CSV data normalization for 500+ company files.
-                  </li>
-                  <li>
-                    Improved file processing speed by over 200% and enhanced operational workflows.
-                  </li>
-                  <li>
-                    Performed network troubleshooting and Ethernet installation for 35+ clients.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>  
-        </div> 
-
-      
-
-
-
-      
-      
-      {/* <div className="title"> 
-          <h1> Projects </h1> 
+        {/* <div className="experiences_title"> 
+            <h1> Experiences </h1> 
         </div>
+        <div className="experiences"> 
+            <div className="experience-list">
 
-        <div className="text"> 
-          <p> Trackify </p> 
-          <p> CSV Data Normalizer </p> 
-          <p> LinkCom - STM32...</p>
-        </div>
+              <div className="experience-item">
+                <div className="experience-logo">
+                  <img src={HongMall} alt="HongMall" />
+                </div>
+                <div className="experience-text">
+                  <h3>Automation Developer</h3>
+                  <h4> HongMall Canada</h4> 
+                  <ul>
+                    <li>Automated shipping label generation and order flows.</li>
+                    <li>Reduced manual intervention by ~40% via workflow automation.</li>
+                  </ul>
+                </div>
+              </div>
 
-        <div className="title"> 
-          <h1> Tech Stack </h1> 
-      </div> */}
+              <div className="experience-item">
+                <div className="experience-logo">
+                  <img src={MidnightSun} alt="MidnightSun" />
+                </div>
+                <div className="experience-text">
+                  <h3>Firmware Member</h3>
+                  <h4> Midnight Sun </h4>
+                  <ul>
+                    <li>Implemented an ADC driver for the ADS1115 with low-level C firmware and I2C communication.</li>
+                    <li>Created a backup driver using STM32’s Backup registers for secure data storage and access control.</li>
+                  </ul>
+                </div>
+              </div>
 
+              <div className="last-experience-item">
+                <div className="experience-logo">
+                </div>
+                <div className="experience-text">
+                  <h3>Software Developer</h3>
+                  <h4> Skynet Security System </h4> 
+                  <ul>
+                    <li>
+                      Developed a multiprocessing Python script that performed CSV data normalization for 500+ company files.
+                    </li>
+                    <li>
+                      Improved file processing speed by over 200% and enhanced operational workflows.
+                    </li>
+                    <li>
+                      Performed network troubleshooting and Ethernet installation for 35+ clients.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>  
+          </div> */}
+      </section>    
+      
+     
       
 
     </>

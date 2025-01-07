@@ -2,7 +2,7 @@
 
 /* Config */
 $color-bg: #23212f;
-$color-particle: #ebe9db;
+$color-particle: #cfacc7;
 $spacing: 2560px;
 $time-1: 60s;
 $time-2: 120s;
@@ -38,7 +38,6 @@ $time-4: 200s;
   background-blend-mode: screen;
   background-size: cover;
   filter: grayscale(100%);
-  z-index: -1;
 }
 
 .particle, .particle:after {
@@ -53,9 +52,9 @@ $time-4: 200s;
 
 .particle-1 {
   animation: animParticle $time-1 linear infinite;
-  @include particles(1000);
-  height: 2px;
-  width: 2px;
+  @include particles(500);
+  height: 4px;
+  width: 4px;
 }
 
 .particle-1:after {
