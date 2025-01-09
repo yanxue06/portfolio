@@ -12,7 +12,9 @@ body {
   margin: 0; 
   padding: 0; 
   height: 100%; 
+  overflow: hidden; 
 }
+
 
 
 .logo {
@@ -33,6 +35,8 @@ body {
   height: 100vh; /* take up the full viewport */ 
   width: 100vw;
   font-weight: bold;
+  text-align: left; 
+
 }
 
 /* .box { 
@@ -50,14 +54,13 @@ body {
 
 .bottom-section { 
   font-size: 30px; 
-  text-align: center; 
   margin-bottom: 1%; 
   position: relative; 
   z-index: 999; 
 }
 
 h1 { 
-  font-size: 70px;  
+  font-size: 50px;  
   text-decoration: bold; 
   padding: 0; 
   margin: 0; 
@@ -81,28 +84,33 @@ h4 {
     background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
     position: relative;
     z-index: 1;
-    display: flex; /* Center content */
-    align-items: center;
-    justify-content: center;
+    
   }
   
-  
-  /* Section 2 (p2) - Parallax Transition */
-  
   .p2 {
-    height: 350vh; /* Make p2 taller for a noticeable scroll effect */
+    min-height: 100vh; /* Make p2 taller for a noticeable scroll effect */
     width: 100%;
     background-color: rgb(253, 249, 238); /* Light beige for p2 */
     position: relative;
     z-index: 2;
-    transition: transform 0.6s ease-in-out; /* Smooth transition */
+    transition: transform 0.5s ease-in-out; /* Smooth transition */
+    margin-bottom: -70vh; /* adjust this for the gap */ 
   }
-  
     
   body.scrolled .p2 {
     transform: translateY(-70vh); /* Move p2 upward to cover p1 */
   } 
 
+
+  .p3 { 
+    min-height: 200vh; 
+    height: 100%; 
+    width: 100%;
+    background-color: #596f61; /* Background color for p1 */
+    background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+    position: relative;
+    z-index: 1;
+  }
 
 p { 
   width: 70%; 
@@ -120,7 +128,7 @@ p {
 }
 
 .text { 
-  color: black; 
+  color: rgb(37, 37, 37); 
   width: 87%; 
   background-color: rgb(253, 249, 238);
 }
@@ -140,10 +148,11 @@ p {
   font-size: 40px; 
   font-weight: bold; 
   padding-left: 26%; 
+  color: #2c2b2c;
 }
 
-.gradientBridge { 
-  height: 30vh; /* or whatever size you need for the fade */
+/* .gradientBridge { 
+  height: 30vh; 
   background: linear-gradient(
     to bottom,
     #000000 0%,
@@ -151,7 +160,7 @@ p {
   );
   width: 100%;
   padding-bottom: 0; 
-}
+}  */
 
 
 @media only screen and (max-width: 940px) { 
@@ -276,3 +285,5 @@ p {
     font-size: 1px; 
   }
 }
+
+

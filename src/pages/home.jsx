@@ -28,6 +28,7 @@ export default function App() {
     <section className="p1" >
       <div className="animation-wrapper">
           <div className="particle particle-1"></div>
+          <div className="particle particle-2"></div>
       </div>
 
       <div className="intro"> 
@@ -71,7 +72,7 @@ export default function App() {
       </div>
       </div>     
       </section>
-      
+
       {/* <div className="gradientBridge"> </div>  */}
 
       <section className="p2">         
@@ -117,9 +118,9 @@ export default function App() {
                 <div className="text"> 
                     <p> Hey! I'm Yan Xue, a passionate software developer and AI enthusiast 
                         studying Computer Engineering at The Univerisity of Waterloo. I'm originally 
-                        from Vancouver, BC, while I study abroad at Waterloo, ON. I'm excited to improve 
-                        my skills through new experience and oppurtunities, and I am welcome to discuss any 
-                        oppurtunities! 
+                        from Vancouver, BC, but I'll be studying abroad at Waterloo, ON for the next 5 years. I'm 
+                        always excited to improve my skills and explore new experiences. Having said that,
+                        I am welcome to discuss any new oppurtunities! 
                     </p>  
                 </div>
               </div> 
@@ -129,7 +130,7 @@ export default function App() {
 
         <br/> 
           <div data-aos="zoom-in"> 
-            <hr width="70%" color="#f1f1e4" size="5px"/>
+            <hr width="70%" color="#2c2b2c" size="5px"/>
           </div>  
         <br/> 
 
@@ -219,64 +220,19 @@ export default function App() {
           </div>
       </Timeline>
 
-        {/* <div className="experiences_title"> 
-            <h1> Experiences </h1> 
-        </div>
-        <div className="experiences"> 
-            <div className="experience-list">
-
-              <div className="experience-item">
-                <div className="experience-logo">
-                  <img src={HongMall} alt="HongMall" />
-                </div>
-                <div className="experience-text">
-                  <h3>Automation Developer</h3>
-                  <h4> HongMall Canada</h4> 
-                  <ul>
-                    <li>Automated shipping label generation and order flows.</li>
-                    <li>Reduced manual intervention by ~40% via workflow automation.</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="experience-item">
-                <div className="experience-logo">
-                  <img src={MidnightSun} alt="MidnightSun" />
-                </div>
-                <div className="experience-text">
-                  <h3>Firmware Member</h3>
-                  <h4> Midnight Sun </h4>
-                  <ul>
-                    <li>Implemented an ADC driver for the ADS1115 with low-level C firmware and I2C communication.</li>
-                    <li>Created a backup driver using STM32’s Backup registers for secure data storage and access control.</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="last-experience-item">
-                <div className="experience-logo">
-                </div>
-                <div className="experience-text">
-                  <h3>Software Developer</h3>
-                  <h4> Skynet Security System </h4> 
-                  <ul>
-                    <li>
-                      Developed a multiprocessing Python script that performed CSV data normalization for 500+ company files.
-                    </li>
-                    <li>
-                      Improved file processing speed by over 200% and enhanced operational workflows.
-                    </li>
-                    <li>
-                      Performed network troubleshooting and Ethernet installation for 35+ clients.
-                    </li>
-                  </ul>
-                </div>
-              </div>
+        <br/> 
+            <div data-aos="zoom-in"> 
+              <hr width="70%" color="#2c2b2c" size="5px"/>
             </div>  
-          </div> */}
+        <br/> 
+
       </section>    
-      
-     
+
+      <section className="p3"> 
+          <div className="projects"> 
+            <h1> Projects </h1> 
+          </div> 
+      </section> 
       
 
     </>

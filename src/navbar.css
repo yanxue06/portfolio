@@ -4,14 +4,14 @@
     width: 100vw; 
     z-index: 1200;
     background-color: transparent;
-    color: white;
+    color: rgb(224, 185, 185);
     box-shadow: none;
     transition: background-color 0.8s ease, box-shadow 0.8s ease;    
   }
   
   /* Navbar when scrolled */
   .navbar-scrolled {
-    background-color: #363435; /* a semi-transparent dark background */
+    background-color: #2c2b2c; /* a semi-transparent dark background */
     box-shadow: 0 4px 6px rgba(225, 224, 221, 0.4);
   }
   
