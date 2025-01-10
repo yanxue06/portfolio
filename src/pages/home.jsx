@@ -17,6 +17,7 @@ import 'aos/dist/aos.css';
 import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
 
 
+
 export default function App() {
   useEffect(() => {
     AOS.init({
@@ -25,7 +26,7 @@ export default function App() {
   }, []);
   return (
     <>  
-    <section className="p1" >
+    <section id="home" className="p1" >
       <div className="animation-wrapper">
           <div className="particle particle-1"></div>
           <div className="particle particle-2"></div>
@@ -75,58 +76,61 @@ export default function App() {
 
       {/* <div className="gradientBridge"> </div>  */}
 
-      <section className="p2">         
-        <Grid2
-          container
-          spacing={{
-            xs: 3, // Small gaps for phones
-            sm: 4, // Medium gaps for tablets
-            md: 7, // Larger gaps for laptops
-            lg: 13, // Even larger gaps for desktops
-          }}
-        >
-          <Grid2 size="grow">
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'right',
-                marginTop: '5%', 
-              }}
-            >
-              <div data-aos="zoom-in"> 
-                <div className="Yan"> 
-                  <img src={Yan} alt="Yan"/> 
-                </div>
-              </div> 
-            </div>
-          </Grid2>
-
-          <Grid2 size="grow">
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column', 
-                alignItems: 'left',
-                marginTop: '5%', 
-              }}
-            >
-              <div data-aos="zoom-in"> 
-                
-              <div className="title" style={{marginBottom: '2%'}}> 
-                <h1> About me </h1> 
+      <section className="p2">     
+        <section id="about">     
+          <Grid2
+            container
+            spacing={{
+              xs: 3, // Small gaps for phones
+              sm: 4, // Medium gaps for tablets
+              md: 7, // Larger gaps for laptops
+              lg: 13, // Even larger gaps for desktops
+            }}
+          >
+            <Grid2 size="grow">
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'right',
+                  marginTop: '5%', 
+                }}
+              >
+                <div data-aos="zoom-in"> 
+                  <div className="Yan"> 
+                    <img src={Yan} alt="Yan"/> 
+                  </div>
+                </div> 
               </div>
-                <div className="text"> 
-                    <p> Hey! I'm Yan Xue, a passionate software developer and AI enthusiast 
-                        studying Computer Engineering at The Univerisity of Waterloo. I'm originally 
-                        from Vancouver, BC, but I'll be studying abroad at Waterloo, ON for the next 5 years. I'm 
-                        always excited to improve my skills and explore new experiences. Having said that,
-                        I am welcome to discuss any new oppurtunities! 
-                    </p>  
+            </Grid2>
+
+            <Grid2 size="grow">
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column', 
+                  alignItems: 'left',
+                  marginTop: '5%', 
+                }}
+              >
+                <div data-aos="zoom-in"> 
+                  
+                <div className="title" style={{marginBottom: '2%'}}> 
+                  <h1> About me </h1> 
                 </div>
-              </div> 
-            </div>
-          </Grid2>
+                  <div className="text"> 
+                      <p> Hey! I'm Yan Xue, a passionate software developer and AI enthusiast 
+                          studying Computer Engineering at The Univerisity of Waterloo. I'm originally 
+                          from Vancouver, BC, but I'll be studying abroad at Waterloo, ON for the next 5 years. I'm 
+                          always excited to improve my skills and explore new experiences. Having said that,
+                          I am welcome to discuss any new oppurtunities! 
+                      </p>  
+                  </div>
+                </div> 
+              </div>
+            </Grid2>
         </Grid2> 
+        </section> 
+
 
         <br/> 
           <div data-aos="zoom-in"> 
@@ -134,7 +138,7 @@ export default function App() {
           </div>  
         <br/> 
 
-        <div className="heading"> Experience </div> 
+        <div id="experience" className="exp_heading"> Experience </div> 
 
         <Timeline lineColor={'#ddd'}>
           <div data-aos="zoom-in"> 
@@ -152,7 +156,9 @@ export default function App() {
               <h3 style={{ color: 'black' }}>Automation Developer</h3>
               <h5>HongMall</h5> 
               <ul>
-                <li> blah blah blah </li> 
+                <li> implemented an autonomous robot </li>
+                <li> made the grid for the robot map.. </li> 
+ 
               </ul> 
             </TimelineItem>
           </div> 
@@ -228,13 +234,29 @@ export default function App() {
 
       </section>    
 
-      <section className="p3"> 
+      <section id="projects" className="p3"> 
           <div className="projects"> 
-            <h1> Projects </h1> 
+            <div className="project_heading"> Projects </div>; 
           </div> 
       </section> 
       
 
+      <section id="contact" className="p4">
+        <div className="socials"> 
+          <div className="contact_heading"> Contact Me! </div>
+            <div className="contact_description"> Open to any and all oppurtunities :) </div> 
+            <div className="contact_list"> 
+            <ul> 
+              <li> Email: <a href="mailto:y9xue@uwaterloo.ca"> y9xue@uwaterloo.ca</a>  </li> 
+              <li> LinkedIn: <a href="https://linkedin.com/in/yanxue-ce"> linkedin.com/in/yanxue-ce</a> </li>
+              <li> GitHub: <a href="https://github.com/yanxue06"> github.com/yanxue06 </a></li>
+              <li> Resume: </li>
+            </ul>
+          </div>
+        </div>  
+        
+      </section> 
+      
     </>
   );
 }

@@ -5,21 +5,19 @@ import Navbar from './components/navbar';
 import './navbar.css';
 
 import Home from './pages/home'; 
-import About from "./pages/about";
-import Projects from "./pages/projects";
 import Gallery from "./pages/gallery";
 
 
 export default function App() {
   return (
     <>  
-      <Navbar />
       <Router> 
+        <Navbar />
+
         <Routes>
-          <Route path="/" element={<Home />} />             {/* / goes to Home */}
-          <Route path="/about" element={<About />} />       {/* /about goes to About */}
-          <Route path="/projects" element={<Projects />} /> {/* /projects goes to Projects */}
-          <Route path="/gallery" element={<Gallery />} />   {/* /gallery goes to Gallery */}
+          <Route path="/" element={<Home />} />     
+          <Route path="/gallery" element={<Gallery />} />         
+    
         </Routes>
       </Router>
     </>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom"; // Use Link for navigation to routes
 import "../navbar.css";
 
 export default function Navbar() {
@@ -37,15 +38,19 @@ export default function Navbar() {
 
         {/* Links */}
         <div className="navbar-links">
-          {["ABOUT", "PROJECTS", "GALLERY", "CONTACT"].map((link) => (
+          {["ABOUT", "PROJECTS", "CONTACT"].map((link) => (
             <a
               key={link}
               className="navbar-link"
-              href={`/${link.toLowerCase()}`}
+              href={`#${link.toLowerCase()}`}
             >
               {link}
             </a>
           ))}
+          {/* Special case for Gallery */}
+          <Link to="/gallery" className="navbar-link">
+            GALLERY
+          </Link>
         </div>
       </div>
     </motion.nav>

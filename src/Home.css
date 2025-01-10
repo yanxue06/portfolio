@@ -19,7 +19,7 @@ body {
 
 .logo {
   display: flex; 
-  justify-content: left;
+  justify-content: center;
   margin-top: 10px; 
   gap: 20px; 
   width: 100%; 
@@ -35,7 +35,7 @@ body {
   height: 100vh; /* take up the full viewport */ 
   width: 100vw;
   font-weight: bold;
-  text-align: left; 
+  text-align: center; 
 
 }
 
@@ -112,6 +112,16 @@ h4 {
     z-index: 1;
   }
 
+  .p4 { 
+    min-height: 30vh; 
+    height: 100%;
+    width: 100%; 
+    background-color: rgb(253, 249, 238);
+    position: relative; 
+    z-index: 2; 
+  } 
+
+  
 p { 
   width: 70%; 
   height: 100%; 
@@ -144,11 +154,12 @@ p {
   width: 100%; 
 }
 
-.heading { 
+.exp_heading { 
+  width: 100%; 
   font-size: 40px; 
   font-weight: bold; 
-  padding-left: 26%; 
   color: #2c2b2c;
+  padding-left: 18%;
 }
 
 /* .gradientBridge { 
@@ -162,7 +173,32 @@ p {
   padding-bottom: 0; 
 }  */
 
+.project_heading { 
+  font-size: 40px; 
+  height: 100%; 
+  width: 100%; 
+  text-align: center; 
+  font-weight: bold; 
+}
 
+
+
+.contact_heading {
+  font-size: 40px;
+  padding-left: 15px;  
+  color: black; 
+  font-weight: bold; 
+}
+
+.contact_description { 
+  color: black; 
+  padding-left: 15px;  
+
+}
+.contact_list { 
+  color: black; 
+
+}
 @media only screen and (max-width: 940px) { 
   .Yan img{ 
     max-width: 300px; 

@@ -11,17 +11,15 @@
     padding-left: 10px; 
 }
 
-.gallery {
-    display: grid; /* Enable CSS Grid */
-    grid-template-columns: repeat(3, 1fr); /* Create 4 equal columns */
-    grid-template-rows: repeat(3, auto); /* Create rows as needed */
-    gap: 10px; /* Space between grid items */
-    padding: 10px; /* Optional: Add padding around the grid */
+  .gallery {
+    display: grid; 
+    grid-template-columns: auto auto auto; 
+    padding: 20px; 
   }
   
   .gallery img {
-    width: 100%; /* Make images fit their grid cells */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%;/* Make images fit their grid cells */
+    height: 100%; /* Maintain aspect ratio */
     object-fit: cover; /* Ensures images fill their cells neatly */
     transition: transform 0.3s ease; /* Optional: Add a resizing animation */
   }
