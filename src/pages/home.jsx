@@ -12,18 +12,15 @@ import Yan from '../images/Yan.jpeg'
 import '../navbar.css';
 import Grid2 from '@mui/material/Grid2';
 import { useEffect } from "react";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { motion } from "framer-motion";
+
+
 import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
 
 
 
 export default function App() {
-  useEffect(() => {
-    AOS.init({
-      duration: 1200, // Animation duration (ms)
-    });
-  }, []);
+
   return (
     <>  
     <section id="home" className="p1" >
@@ -32,46 +29,50 @@ export default function App() {
           <div className="particle particle-2"></div>
       </div>
 
-      <div className="intro"> 
-        <div className="box"> 
-          <div className="top-section"> 
-            <Typewriter text="Hi, I'm Yan" speed={200} highlightWord='Yan'/>
-          </div>
-        
-          <div className="bottom-section"> 
-            <div data-aos="zoom-in"> 
-              ECE Student at The University of Waterloo  
+      <motion.div
+              className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
+              initial={{ x: 0, opacity: 0 }}
+              whileInView={{ x: -10, opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true, amount: 0.8 }}
+      >
+        <div className="intro"> 
+          <div className="box"> 
+            <div className="top-section"> 
+              <Typewriter text="Hi, I'm Yan" speed={200} highlightWord='Yan'/>
             </div>
-          </div> 
-          
-          <div data-aos="zoom-in"> 
-            <div className="logo">
-              <div className="linkedin"> 
-                <a
-                  href="https://linkedin.com/in/yanxue-ce/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaLinkedin size={50}/>
-                </a>
-              </div> 
-
-              <div className="github"> 
-                <a
-                  href="https://github.com/yanxue06"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaGithub size={50}/>
-                </a>
-              </div>
-
+            
+            
+            <div className="bottom-section"> 
+            
+                ECE Student at The University of Waterloo  
             </div> 
-           </div>
+            
+              <div className="logo">
+                <div className="linkedin"> 
+                  <a
+                    href="https://linkedin.com/in/yanxue-ce/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaLinkedin size={50}/>
+                  </a>
+                </div> 
 
+                <div className="github"> 
+                  <a
+                    href="https://github.com/yanxue06"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaGithub size={50}/>
+                  </a>
+                </div>
 
-      </div>
-      </div>     
+              </div> 
+            </div>
+          </div>
+        </motion.div>     
       </section>
 
       {/* <div className="gradientBridge"> </div>  */}
@@ -95,11 +96,17 @@ export default function App() {
                   marginTop: '5%', 
                 }}
               >
-                <div data-aos="zoom-in"> 
+                <motion.div
+                  className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
+                  initial={{ x: 0, opacity: 0 }}
+                  whileInView={{ x: -10, opacity: 1 }}
+                  transition={{ duration: 1 }}
+                  viewport={{ once: true, amount: 0.8 }}
+                > 
                   <div className="Yan"> 
                     <img src={Yan} alt="Yan"/> 
                   </div>
-                </div> 
+                </motion.div>
               </div>
             </Grid2>
 
@@ -112,11 +119,17 @@ export default function App() {
                   marginTop: '5%', 
                 }}
               >
-                <div data-aos="zoom-in"> 
+                <motion.div
+                  className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
+                  initial={{ x: 0, opacity: 0 }}
+                  whileInView={{ x: -10, opacity: 1 }}
+                  transition={{ duration: 1 }}
+                  viewport={{ once: true, amount: 0.8 }}
+                >
                   
-                <div className="title" style={{marginBottom: '2%'}}> 
-                  <h1> About me </h1> 
-                </div>
+                  <div className="title" style={{marginBottom: '2%'}}> 
+                    <h1> About me </h1> 
+                  </div>
                   <div className="text"> 
                       <p> Hey! I'm Yan Xue, a passionate software developer and AI enthusiast 
                           studying Computer Engineering at The Univerisity of Waterloo. I'm originally 
@@ -125,7 +138,7 @@ export default function App() {
                           I am welcome to discuss any new oppurtunities! 
                       </p>  
                   </div>
-                </div> 
+                </motion.div> 
               </div>
             </Grid2>
         </Grid2> 
@@ -133,15 +146,29 @@ export default function App() {
 
 
         <br/> 
-          <div data-aos="zoom-in"> 
+          <motion.div
+            className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
+            initial={{ x: 0, opacity: 0 }}
+            whileInView={{ x: -10, opacity: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true, amount: 0.8 }}
+          >
             <hr width="70%" color="#2c2b2c" size="5px"/>
-          </div>  
+          </motion.div>
         <br/> 
 
         <div id="experience" className="exp_heading"> Experience </div> 
 
+
+          
         <Timeline lineColor={'#ddd'}>
-          <div data-aos="zoom-in"> 
+            <motion.div
+              className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
+              initial={{ x: 0, opacity: 0 }}
+              whileInView={{ x: -10, opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true, amount: 0.8 }}
+            >  
             <TimelineItem
               key="002"
               dateText="Jan 2025 - Apr 2025"
@@ -161,8 +188,14 @@ export default function App() {
  
               </ul> 
             </TimelineItem>
-          </div> 
-          <div data-aos="zoom-in"> 
+            </motion.div>
+            <motion.div
+              className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
+              initial={{ x: 0, opacity: 0 }}
+              whileInView={{ x: -10, opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true, amount: 0.8 }}
+            >
             <TimelineItem
               key="002"
               dateText="Nov 2024 - Dec 2024"
@@ -182,8 +215,14 @@ export default function App() {
                 <li> Created a backup driver using STM32’s Backup registers, ensuring secure data storage and access control during power loss </li>
               </ul> 
             </TimelineItem>
-          </div> 
-          <div data-aos="zoom-in"> 
+            </motion.div>
+            <motion.div
+              className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
+              initial={{ x: 0, opacity: 0 }}
+              whileInView={{ x: -10, opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true, amount: 0.8 }}
+            >
             <TimelineItem
               key="002"
               dateText="Feb 2023 - Aug 2024"
@@ -202,8 +241,14 @@ export default function App() {
                   <li> Developed a multiprocessing Python script that performed CSV data normalization for 500+ company files, improving file processing speed by over 200% and enhancing operational workflows </li> 
                 </ul> 
             </TimelineItem>
-          </div>
-          <div data-aos="zoom-in"> 
+            </motion.div>
+            <motion.div
+              className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
+              initial={{ x: 0, opacity: 0 }}
+              whileInView={{ x: -10, opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true, amount: 0.8 }}
+            >
             <TimelineItem
               key="002"
               dateText="Jun 2024 - Aug 2024"
@@ -223,14 +268,20 @@ export default function App() {
                     aerodynamics for 20+ youth, resulting in 100% completion of hands-on rocket ship projects </li> 
               </ul> 
             </TimelineItem>
-          </div>
+             </motion.div>
       </Timeline>
 
-        <br/> 
-            <div data-aos="zoom-in"> 
-              <hr width="70%" color="#2c2b2c" size="5px"/>
-            </div>  
-        <br/> 
+        <motion.div
+          className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
+          initial={{ x: 0, opacity: 0 }}
+          whileInView={{ x: -10, opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true, amount: 0.8 }}
+        >
+          <br/> 
+            <hr width="70%" color="#2c2b2c" size="5px"/>
+          <br/> 
+        </motion.div> 
 
       </section>    
 
