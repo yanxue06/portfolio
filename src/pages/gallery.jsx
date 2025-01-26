@@ -15,8 +15,7 @@ import g10 from '../images/g10.png'
 import g11 from '../images/g11.png'
 import g12 from '../images/g12.png'
 
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+
 
 export default function About() {
   return (
