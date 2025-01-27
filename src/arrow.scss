@@ -1,0 +1,60 @@
+$total-arrows: 3;
+$arrow-line-length: 50px;
+$arrow-line-width: 4px;
+
+// arrow animtion + choose direction
+@mixin arrow-transitions($rot: 0deg) {
+  transform: translate(-50%, -50%) rotateZ($rot);
+}
+
+// arrows
+.arrow-container {
+  display: block;
+  width: 100px;
+  height: 100px;  
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  @include arrow-transitions(0deg);
+  &:hover {
+    cursor: pointer;
+    .arrow {
+      top: 50%;
+      &:before {
+        @include arrow-transitions(-30deg);
+      }
+      &:after {
+        @include arrow-transitions(30deg);
+      }      
+    }
+  }
+}
+
+.arrow {
+  position: absolute;
+  left: 50%;
+  transition: all .4s ease;
+  &:before,
+  &:after {
+    transition: all .4s ease;
+    content: '';
+    display: block;
+    position: absolute;
+    transform-origin: bottom right;
+    background: #fff;
+    width: $arrow-line-width;
+    height: $arrow-line-length;
+    border-radius: 10px;
+    transform: translate(-50%, -50%) rotateZ(-45deg);
+  }
+  &:after {
+    transform-origin: bottom left;
+    transform: translate(-50%, -50%) rotateZ(45deg);
+  }
+  @for $i from 1 through $total-arrows {
+    &:nth-child(#{$i}) {
+      opacity: 0.3 * $i;
+      top: 15 + (100% * $i/5);
+    }
+  }
+}

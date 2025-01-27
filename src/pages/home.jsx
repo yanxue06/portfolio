@@ -2,6 +2,8 @@ import * as React from 'react';
 import '../Home.css'; 
 import '../particle.scss'; 
 import '../timeline.css';
+import '../arrow.scss'
+
 import Typewriter from '../components/typewriter'
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
@@ -104,7 +106,44 @@ export default function App() {
             </div> 
             
               <div className="logo">
-                <div className="linkedin"> 
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: "#aacdf8", 
+                  color: "white",
+                }}
+                onClick={() => window.open("https://linkedin.com/in/yanxue-ce/", "_blank")}
+                sx = {{ 
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
+                  ':hover': {
+                    transform: 'scale(1.05)', // Slight zoom-in on hover
+                    boxShadow: '0 0 2px 4px rgba(147, 143, 143, 0.5)', // Enhanced shadow on hover
+                  },
+                }} 
+              >
+                LinkedIn
+              </Button>
+
+              {/* Resume Button */}
+              <Button
+                variant="outlined"
+                style={{
+                  borderColor: "#aacdf8",
+                  backgroundColor: "black", 
+                  color: "white",
+                }}
+                sx = {{ 
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
+                  ':hover': {
+                    transform: 'scale(1.05)', // Slight zoom-in on hover
+                    boxShadow: '0 0 2px 4px rgba(147, 143, 143, 0.5)', // Enhanced shadow on hover
+                  },
+                }} 
+                onClick={() => window.open("https://your-resume-link.com", "_blank")} // Replace with your resume link
+              >
+                Resume
+              </Button> 
+                {/* <div className="linkedin"> 
                   <a
                     href="https://linkedin.com/in/yanxue-ce/"
                     target="_blank"
@@ -122,12 +161,17 @@ export default function App() {
                   >
                     <FaGithub size={50}/>
                   </a>
-                </div>
+                </div> */}
 
               </div> 
             </div>
           </div>
-        </motion.div>     
+        </motion.div>  
+        <a href="#" class="arrow-container">
+          <div class="arrow"></div>
+          <div class="arrow"></div>
+          <div class="arrow"></div>  
+        </a>   
       </section>
 
       {/* <div className="gradientBridge"> </div>  */}
