@@ -5,16 +5,26 @@ import '../timeline.css';
 import Typewriter from '../components/typewriter'
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+
 import HongMall from '../images/HongMall.png'; 
 import MidnightSun from '../images/MidnightSun.jpeg'; 
 import Navbar from '../components/navbar';
+
+import p4 from '../Images/p3.png'
 import Yan from '../images/Yan.jpeg'
 import '../navbar.css';
 import Grid2 from '@mui/material/Grid2';
 import { motion } from "framer-motion";
 
-import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
-import { Badge, Box, Button, Card, HStack, Image } from "@chakra-ui/react"
+
+// import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 
 
 export default function App() {
@@ -28,18 +38,17 @@ export default function App() {
       </div>
 
       <motion.div
-              className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
-              initial={{ x: 0, opacity: 0 }}
-              whileInView={{ x: -10, opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true, amount: 0.8 }}
+        className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
+        initial={{ x: 0, opacity: 0 }}
+        whileInView={{ x: -10, opacity: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true, amount: 0.8 }}
       >
         <div className="intro"> 
           <div className="box"> 
             <div className="top-section"> 
               <Typewriter text="Hi, I'm Yan" speed={200} highlightWord='Yan'/>
             </div>
-            
             
             <div className="bottom-section"> 
                 ECE Student at The University of Waterloo  
@@ -156,7 +165,7 @@ export default function App() {
         <div id="experience" className="exp_heading"> Experience </div> 
 
 
-          
+{/*           
         <Timeline lineColor={'#ddd'}>
             <motion.div
               className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
@@ -265,7 +274,7 @@ export default function App() {
               </ul> 
             </TimelineItem>
              </motion.div>
-      </Timeline>
+      </Timeline> */}
 
         <motion.div
           className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
@@ -282,11 +291,194 @@ export default function App() {
       </section>    
 
       <section id="projects" className="p3"> 
-          <div className="project_heading"> Projects </div>
-            
-          <div className="projects"> 
+        <div className = "projects"> 
+          <div className="projectsCol"> 
+            <div className="project_heading"> Projects </div>
+              <div className="projectsRow"> 
+                <Card sx={{ 
+                  maxWidth: 500, 
+                  backgroundColor: '#1e1e1e', // Dark background for the card
+                  color: 'white', 
+                  boxShadow: '0 0 8px 8px rgba(235, 235, 235, 0.4)', // Subtle shadow
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
+                  ':hover': {
+                    transform: 'scale(1.05)', // Slight zoom-in on hover
+                    boxShadow: '0 0 6px 15px rgba(147, 143, 143, 0.5)', // Enhanced shadow on hover
+                  },
+                }}>
+                  <CardMedia
+                    component="img"
+                    alt="green iguana"
+                    height="250"
+                    image={p4}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Trackify
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'white' }}>
+                      Custom built expense tracker! 
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small"> See the Code </Button>
+                  </CardActions>
+                </Card>
+                <Card sx={{ 
+                  maxWidth: 500, 
+                  backgroundColor: '#1e1e1e', // Dark background for the card
+                  color: 'white', 
+                  boxShadow: '0 0 8px 8px rgba(235, 235, 235, 0.4)', // Subtle shadow
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
+                  ':hover': {
+                    transform: 'scale(1.05)', // Slight zoom-in on hover
+                    boxShadow: '0 0 6px 15px rgba(147, 143, 143, 0.5)', // Enhanced shadow on hover
+                  },
+                }}>
+                  <CardMedia
+                    component="img"
+                    alt="green iguana"
+                    height="250"
+                    image={p4}
 
-          </div> 
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Trackify
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'white' }}>
+                      Custom built expense tracker! 
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small"> See the Code </Button>
+                  </CardActions>
+                </Card>
+            </div> 
+            <div className="projectsRow"> 
+                <Card sx={{ 
+                  maxWidth: 500, 
+                  backgroundColor: '#1e1e1e', // Dark background for the card
+                  color: 'white', 
+                  boxShadow: '0 0 8px 8px rgba(235, 235, 235, 0.4)', // Subtle shadow
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
+                  ':hover': {
+                    transform: 'scale(1.05)', // Slight zoom-in on hover
+                    boxShadow: '0 0 6px 15px rgba(147, 143, 143, 0.5)', // Enhanced shadow on hover
+                  }, 
+                }}>
+                  <CardMedia
+                    component="img"
+                    alt="green iguana"
+                    height="250"
+                    image={p4}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Trackify
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'white' }}>
+                      Custom built expense tracker! 
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small"> See the Code </Button>
+                  </CardActions>
+                </Card>
+                <Card sx={{ 
+                  maxWidth: 500, 
+                  backgroundColor: '#1e1e1e', // Dark background for the card
+                  color: 'white', 
+                  boxShadow: '0 0 8px 8px rgba(235, 235, 235, 0.4)', // Subtle shadow
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
+                  ':hover': {
+                    transform: 'scale(1.05)', // Slight zoom-in on hover
+                    boxShadow: '0 0 6px 15px rgba(147, 143, 143, 0.5)', // Enhanced shadow on hover
+                  },
+                }}>
+                  <CardMedia
+                    component="img"
+                    alt="green iguana"
+                    height="250"
+                    image={p4}
+
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Trackify
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'white' }}>
+                      Custom built expense tracker! 
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small"> See the Code </Button>
+                  </CardActions>
+                </Card>
+            </div> 
+            <div className="projectsRow"> 
+                <Card sx={{ 
+                  maxWidth: 500, 
+                  backgroundColor: '#1e1e1e', // Dark background for the card
+                  color: 'white', 
+                  boxShadow: '0 0 8px 8px rgba(235, 235, 235, 0.4)', // Subtle shadow
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
+                  ':hover': {
+                    transform: 'scale(1.05)', // Slight zoom-in on hover
+                    boxShadow: '0 0 6px 15px rgba(147, 143, 143, 0.5)', // Enhanced shadow on hover
+                  },
+                }}>
+                  <CardMedia
+                    component="img"
+                    alt="green iguana"
+                    height="250"
+                    image={p4}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Trackify
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'white' }}>
+                      Custom built expense tracker! 
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small"> See the Code </Button>
+                  </CardActions>
+                </Card>
+                <Card sx={{ 
+                  maxWidth: 500, 
+                  backgroundColor: '#1e1e1e', // Dark background for the card
+                  color: 'white', 
+                  boxShadow: '0 0 8px 8px rgba(235, 235, 235, 0.4)', // Subtle shadow
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
+                  ':hover': {
+                    transform: 'scale(1.05)', // Slight zoom-in on hover
+                    boxShadow: '0 0 6px 15px rgba(147, 143, 143, 0.5)', // Enhanced shadow on hover
+                  }, 
+                }}>
+                  <CardMedia
+                    component="img"
+                    alt="green iguana"
+                    height="250"
+                    image={p4}
+
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Trackify
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'white' }}>
+                      Custom built expense tracker! 
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small"> See the Code </Button>
+                  </CardActions>
+                </Card>
+            </div> 
+            </div>
+          </div>  
       </section> 
       
 

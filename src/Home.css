@@ -100,12 +100,11 @@ h4 {
     transform: translateY(-70vh); /* Move p2 upward to cover p1 */
   } 
 
-
   .p3 { 
-    min-height: 200vh; 
+    min-height: 170vh; 
     height: 100%; 
     width: 100%;
-    background-color: #414144; /* Background color for p1 */
+    background-color: #030309; /* Background color for p1 */
     position: relative;
     z-index: 1;
   }
@@ -171,15 +170,33 @@ p {
   padding-bottom: 0; 
 }  */
 
-.project_heading { 
+.project_heading {
+  display: flex;  
+  justify-content: center; 
+  margin-top: 30px; 
   font-size: 40px; 
   height: 100%; 
   width: 100%; 
-  text-align: center; 
   font-weight: bold; 
 }
 
+.projects { 
+  display: flex; 
+  justify-content: center; 
+  transition: transform 0.3s ease;
+}
 
+.projectsCol { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 60px; 
+}
+
+.projectsRow { 
+  display: flex;
+  flex-direction: row; 
+  gap: 100px; 
+}
 
 .contact_heading {
   font-size: 40px;
@@ -197,6 +214,8 @@ p {
   color: black; 
 
 }
+
+
 @media only screen and (max-width: 940px) { 
   .Yan img{ 
     max-width: 300px; 
