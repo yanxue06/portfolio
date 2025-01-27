@@ -1,4 +1,4 @@
-import React from 'react'; 
+import * as React from 'react'; 
 import '../Home.css'; 
 import '../particle.scss'; 
 import '../timeline.css';
@@ -16,8 +16,6 @@ import '../navbar.css';
 import Grid2 from '@mui/material/Grid2';
 import { motion } from "framer-motion";
 
-
-// import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -25,10 +23,61 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
+import TimelineDot from '@mui/lab/TimelineDot';
+import FastfoodIcon from '@mui/icons-material/Fastfood';
+import LaptopMacIcon from '@mui/icons-material/LaptopMac';
+import HotelIcon from '@mui/icons-material/Hotel';
+import RepeatIcon from '@mui/icons-material/Repeat';
+
+import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+
+
+
 
 
 export default function App() {
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
+  const DemoPaper = styled(Paper)(({ theme }) => ({
+    backgroundColor: 'black', // Darker background color
+    color: '#E2D9FF', // Soft text color
+    padding: theme.spacing(2), // Spacing for inner content
+    borderRadius: theme.spacing(1.5), // Rounded corners
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)', // Subtle shadow
+    maxWidth: '700px', // Optional: Limit the max width for better layout
+    maxHeight: '300px', 
+    position: 'relative', // To position the arrow
+    wordWrap: 'break-word', 
+    overflowWrap: 'break-word', 
+    '&:before': { /* for the arrow coming out of the component */ 
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '-10px',
+      transform: 'translateY(-50%)',
+      width: '0',
+      height: '0',
+      borderStyle: 'solid',
+      borderWidth: '10px 10px 10px 0',
+      borderColor: `transparent #3A3B5A transparent transparent`, // Match the background
+    },
+  }));
+  
+  
   return (
     <>  
     <section id="home" className="p1" >
@@ -163,7 +212,93 @@ export default function App() {
         <br/> 
 
         <div id="experience" className="exp_heading"> Experience </div> 
-
+        
+        <Timeline position="alternate">
+          <TimelineItem>
+            <TimelineOppositeContent
+              sx={{ m: 'auto 0' }}
+              align="right"
+              variant="body2"
+              color="black"
+            >
+              9:30 am
+            </TimelineOppositeContent>
+            <TimelineSeparator>
+              <TimelineConnector />
+              <TimelineDot>
+                <FastfoodIcon />
+              </TimelineDot>
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent sx={{ py: '12px', px: 2, color: "black"}}>
+              <Stack direction="row" spacing={2}>
+                <DemoPaper square={false}>
+                  <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
+                    Software Engineer Intern | HongMall 
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ fontStyle: 'italic', color: '#C4B4FF' }}>
+                    New York, NY
+                  </Typography>
+                  <Typography variant="body2" sx={{ marginTop: '8px' }}>
+                    - Developing an interface to communicate with auonomous warehouse transpot robots
+                  </Typography>
+                </DemoPaper>
+              </Stack>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineOppositeContent
+              sx={{ m: 'auto 0' }}
+              variant="body2"
+              color="black"
+            >
+              10:00 am
+            </TimelineOppositeContent>
+            <TimelineSeparator>
+              <TimelineConnector />
+              <TimelineDot color="primary">
+                <LaptopMacIcon />
+              </TimelineDot>
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent sx={{ py: '12px', px: 2, color: "black"}}>
+              <Typography variant="h6" component="span">
+                Code
+              </Typography>
+              <Typography>Because it&apos;s awesome!</Typography>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineConnector />
+              <TimelineDot color="primary" variant="outlined">
+                <HotelIcon />
+              </TimelineDot>
+              <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
+            </TimelineSeparator>
+            <TimelineContent sx={{ py: '12px', px: 2, color: 'black'}}>
+              <Typography variant="h6" component="span">
+                Sleep
+              </Typography>
+              <Typography>Because you need rest</Typography>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
+              <TimelineDot color="secondary">
+                <RepeatIcon />
+              </TimelineDot>
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent sx={{ py: '12px', px: 2, color: "black"}}>
+              <Typography variant="h6" component="span">
+                Repeat
+              </Typography>
+              <Typography>Because this is the life you love!</Typography>
+            </TimelineContent>
+          </TimelineItem>
+        </Timeline>
 
 {/*           
         <Timeline lineColor={'#ddd'}>
@@ -320,6 +455,7 @@ export default function App() {
                       Custom built expense tracker! 
                     </Typography>
                   </CardContent>
+                  
                   <CardActions>
                     <Button size="small"> See the Code </Button>
                   </CardActions>
@@ -350,6 +486,15 @@ export default function App() {
                       Custom built expense tracker! 
                     </Typography>
                   </CardContent>
+                  <Stack
+                    direction={{ xs: 'column', sm: 'row' }}
+                    spacing={{ md: 1 }}
+                  >
+                    <Item>Python</Item>
+                    <Item>Django</Item>
+                    <Item>PostgreSQL</Item>
+                    <Item>CRUD</Item>
+                  </Stack>
                   <CardActions>
                     <Button size="small"> See the Code </Button>
                   </CardActions>
