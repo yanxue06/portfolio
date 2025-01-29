@@ -38,6 +38,13 @@ body {
 
 }
 
+.about { 
+  width: 100%; 
+  display: flex; 
+  justify-content: center; /* Horizontal alignment */
+  padding-top: 80px;
+}
+
 /* .box { 
   background-color: #f8f3dc; 
 } */
@@ -76,31 +83,34 @@ h4 {
 }
 
 .p1 {
-    height: 100vh;
     height: 100%; 
     width: 100%;
     background-color: #1d1d20; /* Background color for p1 */
     position: relative;
     z-index: 1;
-
+    margin-bottom: 0; 
   }
   
   .p2 {
-    min-height: 100vh; /* Make p2 taller for a noticeable scroll effect */
+    min-height: 140vh; /* Make p2 taller for a noticeable scroll effect */
     width: 100%;
-    background-color: rgb(253, 249, 238); /* Light beige for p2 */
     position: relative;
+    background-color: #1a1a1a;
     z-index: 2;
     transition: transform 0.5s ease-in-out; /* Smooth transition */
-    margin-bottom: -70vh; /* adjust this for the gap */ 
+    margin-bottom: -75vh; /* adjust this for the gap */ 
   }
-    
+  
+  .timeline { 
+    margin-top: 0; 
+  }
+
   body.scrolled .p2 {
-    transform: translateY(-70vh); /* Move p2 upward to cover p1 */
+    transform: translateY(-75vh); /* Move p2 upward to cover p1 */
   } 
 
   .p3 { 
-    min-height: 170vh; 
+    min-height: 140vh; 
     height: 100%; 
     width: 100%;
     background-color: #030309; /* Background color for p1 */
@@ -142,7 +152,13 @@ p {
 .Yan { 
   max-width: 450px; 
   height: auto; 
-  overflow: hidden; 
+  overflow: hidden;  <div id="experience" className="exp_heading">
+  <Card.Root size="sm">
+      <Card.Header>
+      <Heading size="md"> Experience </Heading>
+      </Card.Header>
+  </Card.Root>
+</div> 
 }
 
 .Yan img {  /* fits inside parent container completely */
@@ -150,12 +166,16 @@ p {
   width: 100%; 
 }
 
-.exp_heading { 
+.exp_heading {
+  display: flex;
   width: 100%; 
-  font-size: 40px; 
-  font-weight: bold; 
-  color: #2c2b2c;
-  padding-left: 18%;
+  justify-content: center;
+  font-size: 48px; /* Large text size for prominence */
+  font-weight: bold; /* Make the text bold */
+  color: white; /* White text color for contrast */
+  letter-spacing: 3px; /* Add spacing between letters */
+  margin-top: 100px; 
+  margin-bottom: 25px; 
 }
 
 /* .gradientBridge { 
@@ -213,6 +233,9 @@ p {
   color: black; 
 
 }
+
+
+
 
 
 @media only screen and (max-width: 940px) { 

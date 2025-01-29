@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom"; // Use Link for navigation to routes
 import "../navbar.css";
 
+
 export default function Navbar() {
   const [scrollY, setScrollY] = useState(0);
 
