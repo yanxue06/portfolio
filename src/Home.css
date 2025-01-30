@@ -10,6 +10,7 @@ html {
 
 body {
   margin: 0; 
+  padding: 0;
   padding: 0; 
   height: 100%; 
   overflow: hidden; 
@@ -17,9 +18,8 @@ body {
 
 
 .logo {
-  display: flex; 
-  justify-content: center;
   margin-top: 10px; 
+  display: flex; 
   gap: 20px; 
   width: 100%; 
   z-index: 999; 
@@ -29,25 +29,23 @@ body {
   /* Use flex (vertical) just to nicely center them in the viewport */
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  justify-content: center;  /* center everything vertically in the page */
+  justify-content: center; 
   height: 100vh; /* take up the full viewport */ 
   width: 100vw;
   font-weight: bold;
-  text-align: center; 
+  text-align: left; 
+}
 
+.box { 
+  margin-left: 20%; 
 }
 
 .about { 
   width: 100%; 
   display: flex; 
   justify-content: center; /* Horizontal alignment */
-  padding-top: 80px;
+  padding-top: 120px; 
 }
-
-/* .box { 
-  background-color: #f8f3dc; 
-} */
 
 .top-section { /* item 
   /* The key: reserve enough height so that when the typewriter text 
@@ -83,51 +81,52 @@ h4 {
 }
 
 .p1 {
-    height: 100%; 
-    width: 100%;
-    background-color: #1d1d20; /* Background color for p1 */
-    position: relative;
-    z-index: 1;
-    margin-bottom: 0; 
-  }
+  height: 100%; 
+  width: 100%;
+  background-image: url('./images/backgrounds/b4.svg');
+  background-size: cover; 
+  position: relative;
+  z-index: 0;
+  margin-bottom: 0; 
+}
   
-  .p2 {
-    min-height: 140vh; /* Make p2 taller for a noticeable scroll effect */
-    width: 100%;
-    position: relative;
-    background-color: #1a1a1a;
-    z-index: 2;
-    transition: transform 0.5s ease-in-out; /* Smooth transition */
-    margin-bottom: -75vh; /* adjust this for the gap */ 
-  }
-  
-  .timeline { 
-    margin-top: 0; 
-  }
+.p2 {
+  min-height: 180vh; /* Make p2 taller for a noticeable scroll effect */
+  width: 100%;
+  position: relative;
+  background-color: rgba(54, 81, 114, 255); 
+  z-index: 1;
+  transition: transform 0.5s ease-in-out; /* Smooth transition */
+  margin-bottom: -75vh; /* adjust this for the gap */ 
+}
 
-  body.scrolled .p2 {
-    transform: translateY(-75vh); /* Move p2 upward to cover p1 */
-  } 
+.timeline { 
+  margin-top: 0; 
+}
 
-  .p3 { 
-    min-height: 140vh; 
-    height: 100%; 
-    width: 100%;
-    background-color: #030309; /* Background color for p1 */
-    position: relative;
-    z-index: 1;
-  }
+body.scrolled .p2 {
+  transform: translateY(-75vh); /* Move p2 upward to cover p1 */
+} 
 
-  .p4 { 
-    min-height: 30vh; 
-    height: 100%;
-    width: 100%; 
-    background-color: rgb(253, 249, 238);
-    position: relative; 
-    z-index: 2; 
-  } 
+.p3 { 
+  min-height: 140vh; 
+  height: 100%; 
+  width: 100%;
+  background-color: #030309; /* Background color for p1 */
+  position: relative;
+  z-index: 1;
+}
 
-  
+.p4 { 
+  min-height: 30vh; 
+  height: 100%;
+  width: 100%; 
+  background-color: rgb(253, 249, 238);
+  position: relative; 
+  z-index: 2; 
+} 
+
+
 p { 
   width: 70%; 
   height: 100%; 
@@ -152,13 +151,7 @@ p {
 .Yan { 
   max-width: 450px; 
   height: auto; 
-  overflow: hidden;  <div id="experience" className="exp_heading">
-  <Card.Root size="sm">
-      <Card.Header>
-      <Heading size="md"> Experience </Heading>
-      </Card.Header>
-  </Card.Root>
-</div> 
+  overflow: hidden;  
 }
 
 .Yan img {  /* fits inside parent container completely */
@@ -166,27 +159,24 @@ p {
   width: 100%; 
 }
 
-.exp_heading {
+.heading {
   display: flex;
   width: 100%; 
   justify-content: center;
-  font-size: 48px; /* Large text size for prominence */
-  font-weight: bold; /* Make the text bold */
-  color: white; /* White text color for contrast */
-  letter-spacing: 3px; /* Add spacing between letters */
+  font-size: 60px; /* Large text size for prominence */
   margin-top: 100px; 
   margin-bottom: 25px; 
 }
 
 /* .gradientBridge { 
-  height: 30vh; 
-  background: linear-gradient(
-    to bottom,
-    #000000 0%,
-    rgb(4, 15, 34) 100%  
-  );
-  width: 100%;
-  padding-bottom: 0; 
+height: 30vh; 
+background: linear-gradient(
+to bottom,
+#000000 0%,
+rgb(4, 15, 34) 100%  
+);
+width: 100%;
+padding-bottom: 0; 
 }  */
 
 .project_heading {
@@ -236,8 +226,6 @@ p {
 
 
 
-
-
 @media only screen and (max-width: 940px) { 
   .Yan img{ 
     max-width: 300px; 
@@ -263,9 +251,23 @@ p {
   }
 }
 
+@media only screen and (max-width: 800px) {
+  .Yan img{ 
+    max-width: 235px; 
+    height: auto; 
+    border-radius: 10px;
+  }
+
+  p { 
+    width: 90%; 
+    font-size: 20px; 
+  }
+}
+
+
 @media only screen and (max-width: 725px) {
   .Yan img{ 
-    max-width: 300px; 
+    max-width: 180px; 
     height: auto; 
     border-radius: 10px;
   }
@@ -329,7 +331,7 @@ p {
 
 @media only screen and (max-width: 478px) {
   .Yan img{ 
-    max-width: 190px; 
+    max-width: 100px; 
     height: auto; 
     border-radius: 10px;
   }

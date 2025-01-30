@@ -1,40 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import '../typewriter.css'; 
+import React from "react";
+import TypeIt from "typeit-react";
 
-function TypeWriter({ text, speed = 100, highlightWord = ''}) {
-  const [showedText, setShowedText] = useState(''); // The text that has been typed so far
-  const [index, setIndex] = useState(0); // Current index of the text being displayed
+const Typewriter = () => {
+  return (
+    <TypeIt
+      options={{
+        speed: 50,
+        deleteSpeed: 50,
+        loop: true,
+        waitUntilVisible: true,
+      }}
+      getBeforeInit={(instance) => {
+        instance
+          .type("Hello! ")
+          .pause(1500)
+          .delete(20) // Deletes "Hello, I'm"
+          .type("Bonjour! ")
+          .pause(1500)
+          .delete(20) // Deletes "Bonjour, I'm"
+          .type("你好! ")
+          .pause(1500)
+          .delete(20) // Deletes "你好, I'm"
+          .type("Hola! ")
+          .pause(1500)
+          .delete(20) // Deletes "Hola, I'm"
+          .type("안녕하세요! ")
+          .pause(1500)
+          .delete(20); // Deletes "안녕하세요, I'm"
 
-  useEffect(() => {
-    // Stop when all characters have been typed
-    if (!text || index >= text.length) {
-      return;
-    }
+        return instance;
+      }}
+    >
+      
+    </TypeIt>
+  );
+};
 
-    const timer = setTimeout(() => {
-      setShowedText((prev) => prev + text[index]); // Append the next character
-      setIndex((prev) => prev + 1); // Move to the next character
-    }, speed);
-
-    return () => clearTimeout(timer); // Clear timeout to prevent memory leaks
-  }, [index, text, speed]);
-
-  // Function to render styled text
-  const renderTextWithStyle = () => {
-    if (!highlightWord) return showedText; // No word to highlight, return plain text
-
-    const parts = showedText.split(highlightWord); // Split the text around the highlight word
-    return parts.map((part, i) => (
-      <React.Fragment key={i}>
-        {part}
-        {i < parts.length - 1 && (
-          <span className='highlightclass'>{highlightWord}</span> // Add the styled highlight
-        )}
-      </React.Fragment>
-    ));
-  };
-
-  return <div>{renderTextWithStyle()}</div>;
-}
-
-export default TypeWriter;
+export default Typewriter;

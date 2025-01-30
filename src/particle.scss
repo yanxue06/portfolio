@@ -52,15 +52,15 @@ $time-4: 200s;
 
 .particle-1 {
   animation: animParticle $time-1 linear infinite;
-  @include particles(500);
-  height: 4px;
-  width: 4px;
+  @include particles(600);
+  height: 3px;
+  width: 3px;
 }
 
 .particle-1:after {
   @include particles(900);
-  height: 2px;
-  width: 2px;
+  height: 2.5px;
+  width: 2.5px;
 }
 
 .particle-2 {
@@ -70,17 +70,23 @@ $time-4: 200s;
   width: 2px;
 }
 
+
 .particle-2:after {
   @include particles(500);
-  height: 3px;
-  width: 3px;
+  height: 1.5px;
+  width: 1.5px;
+}
+
+.particle-3 {
+  @include particles(500);
+  height: 2px;
+  width: 2px;
 }
 
 .particle-3:after {
-  @include particles(1100);
+  @include particles(1000);
   height: 3px;
   width: 3px;
-  border-radius: 50%;
 }
 
 .particle-4 {

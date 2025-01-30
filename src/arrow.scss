@@ -6,29 +6,37 @@ $arrow-line-width: 4px;
 @mixin arrow-transitions($rot: 0deg) {
   transform: translate(-50%, -50%) rotateZ($rot);
 }
-
+ 
 // arrows
 .arrow-container {
-  display: block;
-  width: 100px;
-  height: 100px;  
-  position: absolute;
-  top: 85%;
+  position: fixed;       /* or absolute if you only want it inside a parent */
   left: 50%;
+  bottom: 10%;          /* or 0, or whatever gap from the bottom you prefer */
+  transform: translateX(-50%);
+  z-index: 999;          /* make sure it’s above other elements */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
   @include arrow-transitions(0deg);
+
   &:hover {
     cursor: pointer;
+
     .arrow {
       top: 50%;
+
       &:before {
         @include arrow-transitions(-30deg);
       }
+
       &:after {
         @include arrow-transitions(30deg);
-      }      
+      }
     }
   }
 }
+
 
 .arrow {
   position: absolute;
@@ -54,7 +62,7 @@ $arrow-line-width: 4px;
   @for $i from 1 through $total-arrows {
     &:nth-child(#{$i}) {
       opacity: 0.3 * $i;
-      top: 15 + (100% * $i/5);
+      top: 15 + calc(100% * $i/5);
     }
   }
 }
