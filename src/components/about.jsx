@@ -6,7 +6,6 @@ import "../arrow.scss";
 
 import Yan from "../images/Yan.jpeg";
 import "../navbar.css";
-import Grid2 from "@mui/material/Grid2";
 import { motion } from "framer-motion";
 import { Badge, Box, Button, Card, Image } from "@chakra-ui/react";
 
