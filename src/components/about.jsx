@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../jome.css";
+import "../home.css";
 import "../particle.scss";
 import "../timeline.css";
 import "../arrow.scss";
