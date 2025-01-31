@@ -9,7 +9,7 @@ import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import "../home.css";
-import p4 from "../Images/p3.png";
+import p4 from "../images/p3.png";
 
 export default function Projects() {
     const Item = styled(Paper)(({ theme }) => ({
