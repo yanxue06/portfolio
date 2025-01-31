@@ -1,5 +1,5 @@
 import * as React from 'react'; 
-import '../Home.css'; 
+import '../home.css'; 
 import '../particle.scss'; 
 import '../timeline.css';
 import TimeLine from '../components/timeline'
