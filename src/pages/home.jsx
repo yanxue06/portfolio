@@ -40,7 +40,19 @@ export default function App() {
             </ul>
           </div>
         </div>  
-        
+        <footer
+          style={{
+            marginLeft: '3%', 
+            marginBottom: '1%', 
+            textAlign: "left",
+            padding: "10px 0",
+            color: "grey",
+            fontSize: "14px",
+          }}
+        >
+          © 2025 Yan Xue. All rights reserved.
+        </footer>
+            
       </section> 
       
     </>

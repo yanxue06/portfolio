@@ -13,6 +13,8 @@ import LaptopMacIcon from "@mui/icons-material/LaptopMac";
 import WorkIcon from "@mui/icons-material/Work";
 import BuildIcon from "@mui/icons-material/Build";
 import {Card, For} from "@chakra-ui/react"
+import { motion } from "framer-motion";
+
 
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
@@ -49,11 +51,17 @@ const TimeLine = () => {
   return (
     <section className = "timeline"> 
         <Timeline position="alternate">
+            <motion.div
+                initial={{ x: 0, opacity: 0 }}
+                whileInView={{ x: -10, opacity: 1 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true, amount: 0.8 }}
+            >
             <div id="experience" className="heading">
                 <For each={["subtle"]}>
                     {(variant) => (
                         <Card.Root
-                            width="80%"
+                            width="50%"
                             variant={variant}
                             key={variant}
                             css={{
@@ -89,10 +97,12 @@ const TimeLine = () => {
                     )}
                 </For>
             </div>
+            </motion.div>
     
-
+            
             {/* Item 1 */}
             <TimelineItem>
+                
                 <TimelineOppositeContent sx={{ m: "auto 0", color: "rgba(255, 255, 255, 0.94)"}}>
                 Jan 2025 - present
                 </TimelineOppositeContent>
@@ -103,6 +113,13 @@ const TimeLine = () => {
                 <TimelineConnector />
                 </TimelineSeparator>
                 <TimelineContent sx={{ py: "12px", px: 2 }}>
+                <motion.div
+                    className="flex justify-center w-full py-8 md:mt-0 mt-32 overflow-hidden dark:text-[#ececec]"
+                    initial={{ x: 0, opacity: 0 }}
+                    whileInView={{ x: -10, opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                > 
                 <CustomPaper 
                     sx = {{ 
                         transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
@@ -122,22 +139,78 @@ const TimeLine = () => {
                     - developign web applications to server over 1,000,000 people 
                     </Typography>
                 </CustomPaper>
+                </motion.div>
+
                 </TimelineContent>
+
             </TimelineItem>
 
             {/* Item 2 */}
             <TimelineItem>
-                <TimelineOppositeContent sx={{ m: "auto 0" }} color="white">
-                    Sep 2024 - December 2024
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot sx={{ backgroundColor: 'rgb(120, 134, 167)' }}>
-                    <BuildIcon />
+                    <TimelineOppositeContent sx={{ m: "auto 0" }} color="white">
+                        Sep 2024 - December 2024
+                    </TimelineOppositeContent>
+                    <TimelineSeparator>
+                        <TimelineDot sx={{ backgroundColor: 'rgb(120, 134, 167)' }}>
+                        <BuildIcon />
+                        </TimelineDot>
+                        <TimelineConnector />
+                    </TimelineSeparator>
+                    
+                    <TimelineContent sx={{ py: "12px", px: 2 }}>
+                    <motion.div
+                    className="flex justify-center w-full py-8 md:mt-0 mt-32 overflow-hidden dark:text-[#ececec]"
+                    initial={{ x: 0, opacity: 0 }}
+                    whileInView={{ x: -10, opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                    >
+                        <RightArrowPaper
+                            sx = {{ 
+                                transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
+                                ':hover': {
+                                transform: 'scale(1.01)', // Slight zoom-in on hover
+                                boxShadow: '0 0 6px 10px rgba(147, 143, 143, 0.5)', // Enhanced shadow on hover
+                                }
+                            }} 
+                        >
+                        <Typography variant="h6" component="span" sx={{ fontWeight: "bold" }}>
+                            Firmware Member | Midnight Sun
+                        </Typography>
+                        <Typography variant="subtitle2" sx={{ fontStyle: "italic", color: "rgba(200, 210, 230, 255)" }}>
+                            Waterloo, ON
+                        </Typography>
+                        <Typography variant="body2" sx={{ marginTop: "8px" }}>
+                            - Created a backup driver to ensure data handling during power loss.
+                        </Typography>
+                        </RightArrowPaper>
+                        </motion.div>
+
+                    </TimelineContent>
+
+            </TimelineItem>
+
+            
+                {/* Item 3 */}
+                <TimelineItem>
+                    <TimelineOppositeContent sx={{ m: "auto 0" }} color = "white">
+                    Feb 2023 - Aug 2024
+                    </TimelineOppositeContent>
+                    <TimelineSeparator>
+                    <TimelineDot sx={{ backgroundColor: 'rgb(120, 134, 167)'}}>
+                        <WorkIcon />
                     </TimelineDot>
                     <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent sx={{ py: "12px", px: 2 }}>
-                    <RightArrowPaper
+                    </TimelineSeparator>
+                    <TimelineContent sx={{ py: "12px", px: 2 }}>
+                    <motion.div
+                        className="flex justify-center w-full py-8 md:mt-0 mt-32 overflow-hidden dark:text-[#ececec]"
+                        initial={{ x: 0, opacity: 0 }}
+                        whileInView={{ x: -10, opacity: 1 }}
+                        transition={{ duration: 1 }}
+                        viewport={{ once: true, amount: 0.8 }}
+                    >
+                    <CustomPaper 
                         sx = {{ 
                             transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
                             ':hover': {
@@ -146,53 +219,21 @@ const TimeLine = () => {
                             }
                         }} 
                     >
-                    <Typography variant="h6" component="span" sx={{ fontWeight: "bold" }}>
-                        Firmware Member | Midnight Sun
-                    </Typography>
-                    <Typography variant="subtitle2" sx={{ fontStyle: "italic", color: "rgba(200, 210, 230, 255)" }}>
-                        Waterloo, ON
-                    </Typography>
-                    <Typography variant="body2" sx={{ marginTop: "8px" }}>
-                        - Created a backup driver to ensure data handling during power loss.
-                    </Typography>
-                    </RightArrowPaper>
-                </TimelineContent>
-            </TimelineItem>
+                        <Typography variant="h6" component="span" sx={{ fontWeight: "bold" }}>
+                        Automation Developer | Skynet Security System
+                        </Typography>
+                        <Typography variant="subtitle2" sx={{ fontStyle: "italic", color: "rgba(200, 210, 230, 255)" }}>
+                        Vancouver, BC
+                        </Typography>
+                        <Typography variant="body2" sx={{ marginTop: "8px" }}>
+                        - automating workflows with Python scripts.
+                        </Typography>
+                    </CustomPaper>
+                    </motion.div>
 
-            {/* Item 3 */}
-            <TimelineItem>
-                <TimelineOppositeContent sx={{ m: "auto 0" }} color = "white">
-                Feb 2023 - Aug 2024
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                <TimelineDot sx={{ backgroundColor: 'rgb(120, 134, 167)'}}>
-                    <WorkIcon />
-                </TimelineDot>
-                <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent sx={{ py: "12px", px: 2 }}>
-                <CustomPaper 
-                    sx = {{ 
-                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
-                        ':hover': {
-                        transform: 'scale(1.01)', // Slight zoom-in on hover
-                        boxShadow: '0 0 6px 10px rgba(147, 143, 143, 0.5)', // Enhanced shadow on hover
-                        }
-                    }} 
-                >
-                    <Typography variant="h6" component="span" sx={{ fontWeight: "bold" }}>
-                    Automation Developer | Skynet Security System
-                    </Typography>
-                    <Typography variant="subtitle2" sx={{ fontStyle: "italic", color: "rgba(200, 210, 230, 255)" }}>
-                    Vancouver, BC
-                    </Typography>
-                    <Typography variant="body2" sx={{ marginTop: "8px" }}>
-                    - automating workflows with Python scripts.
-                    </Typography>
-                </CustomPaper>
-                </TimelineContent>
-            </TimelineItem>
-
+                    </TimelineContent>
+                </TimelineItem>
+            
             <TimelineItem>
                 <TimelineOppositeContent sx={{ m: "auto 0" }} color="white">
                     Sep 2024 - December 2024
@@ -204,6 +245,13 @@ const TimeLine = () => {
                     <TimelineConnector />
                 </TimelineSeparator>
                 <TimelineContent sx={{ py: "12px", px: 2 }}>
+                    <motion.div
+                        className="flex justify-center w-full py-8 md:mt-0 mt-32 overflow-hidden dark:text-[#ececec]"
+                        initial={{ x: 0, opacity: 0 }}
+                        whileInView={{ x: -10, opacity: 1 }}
+                        transition={{ duration: 1 }}
+                        viewport={{ once: true, amount: 0.8 }}
+                    >
                     <RightArrowPaper
                         sx = {{ 
                             transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth animation
@@ -223,9 +271,11 @@ const TimeLine = () => {
                         - taught children aerodynamics and a bunch of leadership stuffs...
                     </Typography>
                     </RightArrowPaper>
+                    </motion.div>
                 </TimelineContent>
             </TimelineItem>
         </Timeline>
+        
         
         
 

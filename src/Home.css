@@ -110,9 +110,7 @@ body.scrolled .p2 {
 
 .p3 { 
   min-height: 140vh; 
-  height: 100%; 
-  width: 100%;
-  background-color: #030309; /* Background color for p1 */
+  background-color: rgb(90, 108, 146); 
   position: relative;
   z-index: 1;
 }
@@ -190,14 +188,17 @@ padding-bottom: 0;
 }
 
 .projects { 
+  
   display: flex; 
-  justify-content: center; 
+  height: 100%; 
+  justify-content: center;
+  align-content: center; 
   transition: transform 0.3s ease;
 }
 
 .projectsCol { 
   display: flex; 
-  flex-direction: column; 
+  flex-direction: column;
   gap: 60px; 
 }
 
@@ -238,16 +239,24 @@ padding-bottom: 0;
   }
 }
 
-@media only screen and (max-width: 940px) {
-  .Yan img{ 
-    max-width: 330px; 
-    height: auto; 
-    border-radius: 10px;
+@media only screen and (max-width: 881px) {
+  .timeline {
+    display: flex;
+    flex-direction: column; /* Stack items vertically on small screens */
+    align-items: flex-start; /* Center the timeline */
   }
 
-  p { 
-    font-size: 20px; 
-    width: 100%; 
+  .timeline .MuiTimelineOppositeContent-root {
+    display: none; /* Hide the opposite content on smaller screens */
+  }
+
+  .timeline .MuiTimelineContent-root {
+    margin: 0 auto; /* Center-align content */
+    text-align: left; /* Align text left for better readability */
+  }
+
+  .MuiTimelineOppositeContent-root {
+    display: none; /* Hide opposite content on smaller screens */
   }
 }
 
