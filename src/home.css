@@ -99,10 +99,23 @@ h4 {
   transition: transform 0.5s ease-in-out; /* Smooth transition */
   margin-bottom: -75vh; /* adjust this for the gap */ 
 }
+ 
+/* timeline stuff */
+
 
 .timeline { 
-  margin-top: 0; 
+  display: flex;
+  justify-content: center; /* Centers the entire timeline */
+  align-items: center;
+  width: 100%; /* Ensures it takes full width */
 }
+
+.timeline .MuiTimelineContent-root {
+  text-align: left; /* Align text left for better readability */
+}
+
+
+
 
 body.scrolled .p2 {
   transform: translateY(-75vh); /* Move p2 upward to cover p1 */
@@ -187,8 +200,7 @@ padding-bottom: 0;
   font-weight: bold; 
 }
 
-.projects { 
-  
+/* .projects { 
   display: flex; 
   height: 100%; 
   justify-content: center;
@@ -200,13 +212,15 @@ padding-bottom: 0;
   display: flex; 
   flex-direction: column;
   gap: 60px; 
-}
+} */
 
-.projectsRow { 
+/* .projectsRow { 
   display: flex;
   flex-direction: row; 
+
+  justify-content: center; 
   gap: 100px; 
-}
+} */
 
 .contact_heading {
   font-size: 40px;
@@ -228,39 +242,34 @@ padding-bottom: 0;
 
 
 @media only screen and (max-width: 940px) { 
-  .Yan img{ 
+  /* .Yan img{ 
     max-width: 300px; 
     height: auto; 
     border-radius: 10px;
-  }
+  } */
 
-  p { 
+  /* p { 
     font-size: 20px; 
-  }
+  } */
 }
 
-@media only screen and (max-width: 881px) {
-  .timeline {
-    display: flex;
-    flex-direction: column; /* Stack items vertically on small screens */
-    align-items: flex-start; /* Center the timeline */
-  }
+/* @media only screen and (max-width: 881px) {
+  
 
   .timeline .MuiTimelineOppositeContent-root {
-    display: none; /* Hide the opposite content on smaller screens */
-  }
+    display: none;
+  } 
 
   .timeline .MuiTimelineContent-root {
-    margin: 0 auto; /* Center-align content */
-    text-align: left; /* Align text left for better readability */
-  }
+    margin: 0 auto; 
+    text-align: left; 
 
   .MuiTimelineOppositeContent-root {
-    display: none; /* Hide opposite content on smaller screens */
+    display: none; 
   }
-}
+} */
 
-@media only screen and (max-width: 800px) {
+/* @media only screen and (max-width: 800px) {
   .Yan img{ 
     max-width: 235px; 
     height: auto; 
@@ -319,9 +328,9 @@ padding-bottom: 0;
   h1 { 
     font-size: 17px; 
   }
-}
+} */
 
-@media only screen and (max-width: 520px) {
+/* @media only screen and (max-width: 520px) {
   .Yan img{ 
     max-width: 220px; 
     height: auto; 
@@ -353,9 +362,9 @@ padding-bottom: 0;
   h1 { 
     font-size: 17px; 
   }
-}
+} */
 
-@media only screen and (max-width: 428px) {
+/* @media only screen and (max-width: 428px) {
   .Yan img{ 
     max-width: 170px; 
     height: auto; 
@@ -370,6 +379,6 @@ padding-bottom: 0;
   h1 { 
     font-size: 1px; 
   }
-}
+} */
 
 
