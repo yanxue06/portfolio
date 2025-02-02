@@ -41,7 +41,6 @@ body {
 }
 
 .about { 
-  width: 100%; 
   display: flex; 
   justify-content: center; /* Horizontal alignment */
   padding-top: 120px; 
@@ -200,6 +199,12 @@ padding-bottom: 0;
   font-weight: bold; 
 }
 
+.projectsCol { 
+  display: flex; 
+  flex-direction: column;
+  gap: 60px; 
+} 
+
 /* .projects { 
   display: flex; 
   height: 100%; 
@@ -207,12 +212,6 @@ padding-bottom: 0;
   align-content: center; 
   transition: transform 0.3s ease;
 }
-
-.projectsCol { 
-  display: flex; 
-  flex-direction: column;
-  gap: 60px; 
-} */
 
 /* .projectsRow { 
   display: flex;
@@ -380,5 +379,4 @@ padding-bottom: 0;
     font-size: 1px; 
   }
 } */
-
 

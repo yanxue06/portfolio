@@ -24,60 +24,49 @@ export default function Projects() {
         <section id="projects" className="p3">
             <div className="projects">
                 <div className="projectsCol">
-                    <div className="projectsRow">
+                    {/* <div className="projectsRow"> */}
+                
                 
                     <Card.Root
                         display="flex"
-                        alignItems="stretch" // Make children fill the card’s height
-                        flexDirection={{ base: "column", md: "row" }} // Stacked on small screens, side-by-side on larger
+                        flexDirection="column"   // Stack image on top of text
                         maxW="900px"
                         mx="auto"
                         overflow="hidden"
                         borderRadius="xl"
                         boxShadow="lg"
                         bg="black"
-                        h="400px" // Fixed card height
+                        h="auto"  
+                        width="80%"              // Let the card grow to fit content
                         >
                         {/* Image Section */}
                         <Box
-                            flexShrink={0}
-                            w={{ base: "100%", md: "50%" }}
-                            h="100%"
+                            w="100%"
+                            h="300px"                // Image takes up a fixed height (adjustable)
+                            bg="black"               // Matches the card background
                             display="flex"
-                            alignItems="center"
                             justifyContent="center"
-                            bg="black" // Matches the card’s background
+                            alignItems="center"
                         >
-                            {/* "Monitor" Frame */}
-                            <Box
-                            w="95%"
-                            h="95%"
-                            border="6px solid #444"   // This acts as the bezel around the image
-                            borderRadius="md"
-                            overflow="hidden"
-                            boxShadow="0 4px 6px rgba(0, 0, 0, 0.6)"
-                            bg="black"  // Ensures the bezel is uniformly black
-                            >
+                            {/* Image */}
                             <Image
-                                src={p4}
-                                alt="Trackify"
-                                objectFit="contain"          // Display the full image without cropping
-                                objectPosition="center"        // Center the image inside the frame
-                                w="100%"
-                                h="100%"
-                                display="block"                // Remove any inline spacing issues
+                            src={p4}
+                            alt="Trackify"
+                            objectFit="cover"        // Ensure image covers the entire area
+                            objectPosition="center"  // Center the image
+                            w="100%"
+                            h="100%"                 // Image takes full height
+                            display="block"          // Remove any inline spacing
                             />
-                            </Box>
                         </Box>
 
                         {/* Text Section */}
                         <Box
-                            flex="1"
                             p={6}
                             display="flex"
                             flexDirection="column"
                             justifyContent="space-between"
-                            h="100%"
+                            w="100%"                  // Full width of the card
                         >
                             <Box>
                             <Card.Title mb={2} fontSize="2xl" fontWeight="bold" color="white">
@@ -86,6 +75,7 @@ export default function Projects() {
                             <Card.Description fontSize="lg" lineHeight="tall" color="gray.300">
                                 Trackify is designed for users to manage, visualize, and improve their spending habits. It includes login, registration, and full CRUD functionality for expense tracking.
                             </Card.Description>
+
                             <HStack mt={4} spacing={3}>
                                 <Badge colorScheme="teal" fontSize="sm">Python</Badge>
                                 <Badge colorScheme="purple" fontSize="sm">PostgreSQL</Badge>
@@ -94,96 +84,173 @@ export default function Projects() {
                                 <Badge colorScheme="red" fontSize="sm">HTML</Badge>
                             </HStack>
                             </Box>
-                            <Card.Footer>
+
+                            
                             <Button 
                                 variant="solid" 
                                 bg="white" 
                                 color="black" 
                                 fontSize="sm"
+                                width="20%"
+                                marginTop="20px"
                                 _hover={{ bg: "gray.300" }}
                             >
                                 See The Code
                             </Button>
-                            </Card.Footer>
+
                         </Box>
-                    </Card.Root>
+                        </Card.Root>
 
-                    <Card.Root
-  display="flex"
-  flexDirection="column"   // Stack image on top of text
-  maxW="900px"
-  mx="auto"
-  overflow="hidden"
-  borderRadius="xl"
-  boxShadow="lg"
-  bg="black"
-  h="auto"                // Let the card grow to fit content
->
-  {/* Image Section */}
-  <Box
-    w="100%"
-    h="300px"                // Image takes up a fixed height (adjustable)
-    bg="black"               // Matches the card background
-    display="flex"
-    justifyContent="center"
-    alignItems="center"
-  >
-    {/* Image */}
-    <Image
-      src={p4}
-      alt="Trackify"
-      objectFit="cover"        // Ensure image covers the entire area
-      objectPosition="center"  // Center the image
-      w="100%"
-      h="100%"                 // Image takes full height
-      display="block"          // Remove any inline spacing
-    />
-  </Box>
+                        <Card.Root
+                        display="flex"
+                        flexDirection="column"   // Stack image on top of text
+                        maxW="900px"
+                        mx="auto"
+                        overflow="hidden"
+                        borderRadius="xl"
+                        boxShadow="lg"
+                        bg="black"
+                        h="auto"  
+                        width="80%"              // Let the card grow to fit content
+                        >
+                        {/* Image Section */}
+                        <Box
+                            w="100%"
+                            h="300px"                // Image takes up a fixed height (adjustable)
+                            bg="black"               // Matches the card background
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            {/* Image */}
+                            <Image
+                            src={p4}
+                            alt="Trackify"
+                            objectFit="cover"        // Ensure image covers the entire area
+                            objectPosition="center"  // Center the image
+                            w="100%"
+                            h="100%"                 // Image takes full height
+                            display="block"          // Remove any inline spacing
+                            />
+                        </Box>
 
-  {/* Text Section */}
-  <Box
-    p={6}
-    display="flex"
-    flexDirection="column"
-    justifyContent="space-between"
-    w="100%"                  // Full width of the card
-  >
-    <Box>
-      <Card.Title mb={2} fontSize="2xl" fontWeight="bold" color="white">
-        Trackify
-      </Card.Title>
-      <Card.Description fontSize="lg" lineHeight="tall" color="gray.300">
-        Trackify is designed for users to manage, visualize, and improve their spending habits. It includes login, registration, and full CRUD functionality for expense tracking.
-      </Card.Description>
+                        {/* Text Section */}
+                        <Box
+                            p={6}
+                            display="flex"
+                            flexDirection="column"
+                            justifyContent="space-between"
+                            w="100%"                  // Full width of the card
+                        >
+                            <Box>
+                            <Card.Title mb={2} fontSize="2xl" fontWeight="bold" color="white">
+                                JobBot
+                            </Card.Title>
+                            <Card.Description fontSize="lg" lineHeight="tall" color="gray.300">
+                                Job Scraper with AI integration for tailored job matching, resume suggesions, and cover letter generation. 
+                            </Card.Description>
 
-      <HStack mt={4} spacing={3}>
-        <Badge colorScheme="teal" fontSize="sm">Python</Badge>
-        <Badge colorScheme="purple" fontSize="sm">PostgreSQL</Badge>
-        <Badge colorScheme="blue" fontSize="sm">React</Badge>
-        <Badge colorScheme="orange" fontSize="sm">JavaScript</Badge>
-        <Badge colorScheme="red" fontSize="sm">HTML</Badge>
-      </HStack>
-    </Box>
+                            <HStack mt={4} spacing={3}>
+                                <Badge colorScheme="teal" fontSize="sm">Python</Badge>
+                                <Badge colorScheme="purple" fontSize="sm">Selenium</Badge>
+                                <Badge colorScheme="blue" fontSize="sm">Pandas</Badge>
+                                <Badge colorScheme="orange" fontSize="sm">OpenAI</Badge>
+                                <Badge colorScheme="red" fontSize="sm">React</Badge>
+                            </HStack>
+                            </Box>
 
-    <Card.Footer>
-      <Button 
-        variant="solid" 
-        bg="white" 
-        color="black" 
-        fontSize="sm"
-        _hover={{ bg: "gray.300" }}
-      >
-        See The Code
-      </Button>
-    </Card.Footer>
-  </Box>
-</Card.Root>
+                            
+                            <Button 
+                                variant="solid" 
+                                bg="white" 
+                                color="black" 
+                                fontSize="sm"
+                                width="20%"
+                                marginTop="20px"
+                                _hover={{ bg: "gray.300" }}
+                            >
+                                See The Code
+                            </Button>
+
+                        </Box>
+                        </Card.Root>
+
+                        <Card.Root
+                        display="flex"
+                        flexDirection="column"   // Stack image on top of text
+                        maxW="900px"
+                        mx="auto"
+                        overflow="hidden"
+                        borderRadius="xl"
+                        boxShadow="lg"
+                        bg="black"
+                        h="auto"  
+                        width="80%"              // Let the card grow to fit content
+                        >
+                        {/* Image Section */}
+                        <Box
+                            w="100%"
+                            h="300px"                // Image takes up a fixed height (adjustable)
+                            bg="black"               // Matches the card background
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            {/* Image */}
+                            <Image
+                            src={p4}
+                            alt="Trackify"
+                            objectFit="cover"        // Ensure image covers the entire area
+                            objectPosition="center"  // Center the image
+                            w="100%"
+                            h="100%"                 // Image takes full height
+                            display="block"          // Remove any inline spacing
+                            />
+                        </Box>
+
+                        {/* Text Section */}
+                        <Box
+                            p={6}
+                            display="flex"
+                            flexDirection="column"
+                            justifyContent="space-between"
+                            w="100%"                  // Full width of the card
+                        >
+                            <Box>
+                            <Card.Title mb={2} fontSize="2xl" fontWeight="bold" color="white">
+                                Virtual Guitar
+                            </Card.Title>
+                            <Card.Description fontSize="lg" lineHeight="tall" color="gray.300">
+                                Guitar, but virtual! Integrates OpenCV and MediaPipe ...
+                            </Card.Description>
+
+                            <HStack mt={4} spacing={3}>
+                                <Badge colorScheme="teal" fontSize="sm">OpenCV</Badge>
+                                <Badge colorScheme="purple" fontSize="sm">MediaPipe</Badge>
+                                <Badge colorScheme="blue" fontSize="sm">Pandas</Badge>
+                                <Badge colorScheme="orange" fontSize="sm"></Badge>
+                                <Badge colorScheme="red" fontSize="sm"></Badge>
+                            </HStack>
+                            </Box>
 
 
+                            <Button 
+                                variant="solid" 
+                                bg="white" 
+                                color="black" 
+                                fontSize="sm"
+                                width="20%"
+                                marginTop="20px"
+                                _hover={{ bg: "gray.300" }}
+                            >
+                                See The Code
+                            </Button>
 
-                        
+                        </Box>
+                        </Card.Root>
 
-                    </div>
+        
+                    {/* </div> */}
                 </div>
             </div>
         </section>
@@ -451,3 +518,88 @@ export default function Projects() {
         <Button size="small"> See the Code </Button>
     </CardActions>
 </Card> */}
+
+
+
+
+<Card.Root
+                        display="flex"
+                        alignItems="stretch" // Make children fill the card’s height
+                        flexDirection={{ base: "column", md: "row" }} // Stacked on small screens, side-by-side on larger
+                        maxW="900px"
+                        mx="auto"
+                        overflow="hidden"
+                        borderRadius="xl"
+                        boxShadow="lg"
+                        bg="black"
+                        h="400px" // Fixed card height
+                        >
+                        {/* Image Section */}
+                        <Box
+                            flexShrink={0}
+                            w={{ base: "100%", md: "50%" }}
+                            h="100%"
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            bg="black" // Matches the card’s background
+                        >
+                            {/* "Monitor" Frame */}
+                            <Box
+                            w="95%"
+                            h="95%"
+                            border="6px solid #444"   // This acts as the bezel around the image
+                            borderRadius="md"
+                            overflow="hidden"
+                            boxShadow="0 4px 6px rgba(0, 0, 0, 0.6)"
+                            bg="black"  // Ensures the bezel is uniformly black
+                            >
+                            <Image
+                                src={p4}
+                                alt="Trackify"
+                                objectFit="contain"          // Display the full image without cropping
+                                objectPosition="center"        // Center the image inside the frame
+                                w="100%"
+                                h="100%"
+                                display="block"                // Remove any inline spacing issues
+                            />
+                            </Box>
+                        </Box>
+
+                        {/* Text Section */}
+                        <Box
+                            flex="1"
+                            p={6}
+                            display="flex"
+                            flexDirection="column"
+                            justifyContent="space-between"
+                            h="100%"
+                        >
+                            <Box>
+                            <Card.Title mb={2} fontSize="2xl" fontWeight="bold" color="white">
+                                Trackify
+                            </Card.Title>
+                            <Card.Description fontSize="lg" lineHeight="tall" color="gray.300">
+                                Trackify is designed for users to manage, visualize, and improve their spending habits. It includes login, registration, and full CRUD functionality for expense tracking.
+                            </Card.Description>
+                            <HStack mt={4} spacing={3}>
+                                <Badge colorScheme="teal" fontSize="sm">Python</Badge>
+                                <Badge colorScheme="purple" fontSize="sm">PostgreSQL</Badge>
+                                <Badge colorScheme="blue" fontSize="sm">React</Badge>
+                                <Badge colorScheme="orange" fontSize="sm">JavaScript</Badge>
+                                <Badge colorScheme="red" fontSize="sm">HTML</Badge>
+                            </HStack>
+                            </Box>
+                            <Card.Footer>
+                            <Button 
+                                variant="solid" 
+                                bg="white" 
+                                color="black" 
+                                fontSize="sm"
+                                _hover={{ bg: "gray.300" }}
+                            >
+                                See The Code
+                            </Button>
+                            </Card.Footer>
+                        </Box>
+                    </Card.Root>
