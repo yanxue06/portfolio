@@ -41,19 +41,19 @@ export default function App() {
                 <li> Resume: </li>
               </ul>
             </div>
-          </div>  
-          <footer
+
+            <footer
             style={{
-              marginLeft: '3%', 
-              marginBottom: '1%', 
-              textAlign: "left",
-              padding: "10px 0",
+              marginTop: "20px",
               color: "grey",
               fontSize: "14px",
             }}
-          >
-            © 2025 Yan Xue. All rights reserved.
-          </footer>
+            >
+              © 2025 Yan Xue. All rights reserved.
+            </footer>
+          </div>  
+          
+          
               
         </section> 
       </div>

@@ -15,284 +15,369 @@ import BuildIcon from "@mui/icons-material/Build";
 import { Card, For } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
-
-
 const TimeLine = () => {
-  // Styling for the card content with text wrapping
-  const CustomPaper = styled(Paper)(({ theme }) => ({
-    backgroundColor: "rgba(30, 47, 62, 255)",
-    color: "rgb(231, 232, 229)", // Soft white text
-    padding: theme.spacing(2),
-    borderRadius: theme.spacing(1.5), // Rounded corners
-    boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)", // Subtle shadow
-    position: "relative", // To add arrow
-    width: "100%", // Allow the card to take up full width
-    whiteSpace: "normal", // Allow text to wrap within the card
-    wordWrap: "break-word", // Ensure long words break and wrap
-    "&:before": {
-      content: '""',
-      position: "absolute",
-      top: "10%",
-      left: "-10px",
-      width: "0",
-      height: "0",
-      borderStyle: "solid",
-      borderWidth: "10px 10px 10px 0",
-      borderColor: "transparent #3a3b5a transparent transparent", // Matches the background
-    },
-    transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
-    ":hover": {
-      transform: "scale(1.01)", // Slight zoom-in on hover
-      boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
-    },
-    width: "100%",
-    textAlign: "left",
-  }));
+    // Styling for the card content with text wrapping
+    const CustomPaper = styled(Paper)(({ theme }) => ({
+        backgroundColor: "rgba(30, 47, 62, 255)",
+        color: "rgb(231, 232, 229)", // Soft white text
+        padding: theme.spacing(2),
+        borderRadius: theme.spacing(1.5), // Rounded corners
+        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)", // Subtle shadow
+        position: "relative", // To add arrow
+        width: "100%", // Allow the card to take up full width
+        whiteSpace: "normal", // Allow text to wrap within the card
+        wordWrap: "break-word", // Ensure long words break and wrap
+        "&:before": {
+            content: '""',
+            position: "absolute",
+            top: "10%",
+            left: "-10px",
+            width: "0",
+            height: "0",
+            borderStyle: "solid",
+            borderWidth: "10px 10px 10px 0",
+            borderColor: "transparent #3a3b5a transparent transparent", // Matches the background
+        },
+        transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
+        ":hover": {
+            transform: "scale(1.01)", // Slight zoom-in on hover
+            boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
+        },
+        width: "100%",
+        textAlign: "left",
+    }));
 
-  const RightArrowPaper = styled(CustomPaper)({
-    "&:before": {
-      left: "auto",
-      right: "-10px", // Arrow points to the right
-      borderWidth: "10px 0 10px 10px",
-      borderColor: "transparent transparent transparent #3a3b5a",
-    },
-    transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
-    ":hover": {
-      transform: "scale(1.01)", // Slight zoom-in on hover
-      boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
-    },
-    width: "100%",
-    textAlign: "left",
-  });
+    const RightArrowPaper = styled(CustomPaper)({
+        "&:before": {
+            left: "auto",
+            right: "-10px", // Arrow points to the right
+            borderWidth: "10px 0 10px 10px",
+            borderColor: "transparent transparent transparent #3a3b5a",
+        },
+        transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
+        ":hover": {
+            transform: "scale(1.01)", // Slight zoom-in on hover
+            boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
+        },
+        width: "100%",
+        textAlign: "left",
+    });
 
-  return (
-    <> 
-      <motion.div
-        initial={{ x: 0, opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true, amount: 0.8 }}
-      >
-        <div id="experience" className="heading">
-          <For each={["subtle"]}>
-            {(variant) => (
-              <Card.Root
-                width="60%"
-                variant={variant}
-                key={variant}
-                css={{
-                  border: "2px solid rgba(235, 235, 235, 0.6)", // Outline
-                  backgroundColor: "rgb(22, 29, 37, 255)",
-                  borderRadius: "8px", // Rounded corners
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth hover effect
-                  "&:hover": {
-                    transform: "scale(1.02)", // Slight zoom on hover
-                    boxShadow: "0 0 10px rgba(255, 255, 255, 0.2)", // Shadow on hover
-                  },
-                }}
-              >
-                <Card.Body gap="2" css={{ textAlign: "center" }}>
-                  <Card.Title
-                    mb="2"
-                    css={{
-                      fontSize: "35px",
-                      fontWeight: "bold", /* Make the text bold */
-                      color: "white", /* White text color for contrast */
-                      letterSpacing: "3px", /* Add spacing between letters */
-                    }}
-                  >
-                    Experience
-                  </Card.Title>
-                </Card.Body>
-              </Card.Root>
-            )}
-          </For>
-        </div>
-      </motion.div>
-        
-      <section className="timeline">
-        {/* Item 1 */}
-        <Timeline position="alternate"> 
-        <TimelineItem 
-          sx ={{
-            width: "100%", 
-            margin: "0", // Ensures even spacing on both sides
-            padding: "0px", // Remove any unintended padding
-          }}
-        >
-          <TimelineOppositeContent 
-            sx={{ 
-              m: "auto 0", 
-              color: "rgba(255, 255, 255, 0.94)" 
-            }}
-          >
-            Jan 2025 - present
-          </TimelineOppositeContent>
-          <TimelineSeparator>
-            <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-              <LaptopMacIcon />
-            </TimelineDot>
-            <TimelineConnector />
-          </TimelineSeparator>
-          <TimelineContent> 
+    return (
+        <>
             <motion.div
-                initial={{ x: 50, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
+                initial={{ x: 0, opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 transition={{ duration: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.8 }}
             >
-              <CustomPaper
-                sx={{
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
-                  ":hover": {
-                    transform: "scale(1.01)", // Slight zoom-in on hover
-                    boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
-                  }, 
-                }}
-              >
-                <Typography variant="h6" component="span" sx={{ fontWeight: "bold" }}>
-                  Software Engineering Intern | HongMall
-                </Typography>
-                <Typography variant="subtitle2" sx={{ fontStyle: "italic", color: "rgba(200, 210, 230, 255)" }}>
-                  Markham, ON
-                </Typography>
-                <Typography variant="body2" sx={{ marginTop: "8px" }}>
-                  - Developing web applications to serve over 1,000,000 people
-                </Typography>
-              </CustomPaper>
+                <div id="experience" className="heading">
+                    <For each={["subtle"]}>
+                        {(variant) => (
+                            <Card.Root
+                                width="60%"
+                                variant={variant}
+                                key={variant}
+                                css={{
+                                    border: "2px solid rgba(235, 235, 235, 0.6)", // Outline
+                                    backgroundColor: "rgb(22, 29, 37, 255)",
+                                    borderRadius: "8px", // Rounded corners
+                                    transition:
+                                        "transform 0.3s ease, box-shadow 0.3s ease", // Smooth hover effect
+                                    "&:hover": {
+                                        transform: "scale(1.02)", // Slight zoom on hover
+                                        boxShadow:
+                                            "0 0 10px rgba(255, 255, 255, 0.2)", // Shadow on hover
+                                    },
+                                }}
+                            >
+                                <Card.Body
+                                    gap="2"
+                                    css={{ textAlign: "center" }}
+                                >
+                                    <Card.Title
+                                        mb="2"
+                                        css={{
+                                            fontSize: "35px",
+                                            fontWeight:
+                                                "bold" /* Make the text bold */,
+                                            color: "white" /* White text color for contrast */,
+                                            letterSpacing:
+                                                "3px" /* Add spacing between letters */,
+                                        }}
+                                    >
+                                        Experience
+                                    </Card.Title>
+                                </Card.Body>
+                            </Card.Root>
+                        )}
+                    </For>
+                </div>
             </motion.div>
-          </TimelineContent>
-        </TimelineItem>
 
-        {/* Item 2 */}
-        
-        <TimelineItem>
-          <TimelineOppositeContent sx={{ m: "auto 0" }} color="white">
-            Sep 2024 - Dec 2024
-          </TimelineOppositeContent>
-          <TimelineSeparator>
-            <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-              <BuildIcon />
-            </TimelineDot>
-            <TimelineConnector />
-          </TimelineSeparator>
+            <section className="timeline">
+                {/* Item 1 */}
+                <Timeline position="alternate">
+                    <TimelineItem
+                        sx={{
+                            width: "100%",
+                            margin: "0", // Ensures even spacing on both sides
+                            padding: "0px", // Remove any unintended padding
+                        }}
+                    >
+                        <TimelineOppositeContent
+                            sx={{
+                                m: "auto 0",
+                                color: "rgba(255, 255, 255, 0.94)",
+                            }}
+                        >
+                            Jan 2025 - present
+                        </TimelineOppositeContent>
+                        <TimelineSeparator>
+                            <TimelineDot
+                                sx={{ backgroundColor: "rgb(120, 134, 167)" }}
+                            >
+                                <LaptopMacIcon />
+                            </TimelineDot>
+                            <TimelineConnector />
+                        </TimelineSeparator>
+                        <TimelineContent>
+                            <motion.div
+                                initial={{ x: 50, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 1 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                            >
+                                <CustomPaper
+                                    sx={{
+                                        transition:
+                                            "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
+                                        ":hover": {
+                                            transform: "scale(1.01)", // Slight zoom-in on hover
+                                            boxShadow:
+                                                "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
+                                        },
+                                    }}
+                                >
+                                    <Typography
+                                        variant="h6"
+                                        component="span"
+                                        sx={{ fontWeight: "bold" }}
+                                    >
+                                        Software Engineering Intern | HongMall
+                                    </Typography>
+                                    <Typography
+                                        variant="subtitle2"
+                                        sx={{
+                                            fontStyle: "italic",
+                                            color: "rgba(200, 210, 230, 255)",
+                                        }}
+                                    >
+                                        Markham, ON
+                                    </Typography>
+                                    <Typography
+                                        variant="body2"
+                                        sx={{ marginTop: "8px" }}
+                                    >
+                                        - Developing web applications to serve
+                                        over 1,000,000 people
+                                    </Typography>
+                                </CustomPaper>
+                            </motion.div>
+                        </TimelineContent>
+                    </TimelineItem>
 
-          <TimelineContent  
-            sx={{ 
-              py: "12px", 
-              px: 2,
-            }} 
-          > 
-            <motion.div
-                initial={{ x: -50, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
-            >
-              <RightArrowPaper /* block level component, upper level text aligns will not affect */
-                
-              > 
-                <Typography variant="h6" component="span" sx={{ fontWeight: "bold" }}>
-                  Firmware Member | Midnight Sun
-                </Typography>
-                <Typography variant="subtitle2" sx={{ fontStyle: "italic", color: "rgba(200, 210, 230, 255)" }}>
-                  Waterloo, ON
-                </Typography>
-                <Typography variant="body2" sx={{ marginTop: "8px"}}>
-                  - Created a backup driver to ensure data handling during power loss.
-                </Typography>
-               </RightArrowPaper>
-            </motion.div>
-          </TimelineContent>
-        </TimelineItem>
+                    {/* Item 2 */}
 
-        {/* Item 3 */}
-        <TimelineItem>
-          <TimelineOppositeContent sx={{ m: "auto 0" }} color="white">
-            Feb 2023 - Aug 2024
-          </TimelineOppositeContent>
-          <TimelineSeparator>
-            <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-              <WorkIcon />
-            </TimelineDot>
-            <TimelineConnector />
-          </TimelineSeparator>
-          <TimelineContent>
-            <motion.div
-                initial={{ x: 50, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
-            >
-              <CustomPaper
-                sx={{
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
-                  ":hover": {
-                    transform: "scale(1.01)", // Slight zoom-in on hover
-                    boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
-                  },
-                  width: "100%", 
-                }}
-              >
-                <Typography variant="h6" component="span" sx={{ fontWeight: "bold" }}>
-                  Automation Developer | Skynet Security System
-                </Typography>
-                <Typography variant="subtitle2" sx={{ fontStyle: "italic", color: "rgba(200, 210, 230, 255)" }}>
-                  Vancouver, BC
-                </Typography>
-                <Typography variant="body2" sx={{ marginTop: "8px" }}>
-                  - Automating workflows with Python scripts.
-                </Typography>
-              </CustomPaper>
-            </motion.div>
-          </TimelineContent>
-        </TimelineItem>
+                    <TimelineItem>
+                        <TimelineOppositeContent
+                            sx={{ m: "auto 0" }}
+                            color="white"
+                        >
+                            Sep 2024 - Dec 2024
+                        </TimelineOppositeContent>
+                        <TimelineSeparator>
+                            <TimelineDot
+                                sx={{ backgroundColor: "rgb(120, 134, 167)" }}
+                            >
+                                <BuildIcon />
+                            </TimelineDot>
+                            <TimelineConnector />
+                        </TimelineSeparator>
 
-        {/* Item 4 */}
-        <TimelineItem>
-          <TimelineOppositeContent sx={{ m: "auto 0" }} color="white">
-            Sep 2024 - Dec 2024
-          </TimelineOppositeContent>
-          <TimelineSeparator>
-            <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-              <BuildIcon />
-            </TimelineDot>
-            <TimelineConnector />
-          </TimelineSeparator>
-          <TimelineContent>
-            <motion.div
-                initial={{ x: -50, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
-            > 
-              <RightArrowPaper
-                sx={{
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
-                  ":hover": {
-                    transform: "scale(1.01)", // Slight zoom-in on hover
-                    boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
-                  },
-                  width: "100%", 
-                }}
-              > 
-                <Typography variant="h6" component="span" sx={{ fontWeight: "bold" }}>
-                  Engineering Instructor | Simon Fraser University (SFU) Camps
-                </Typography>
-                <Typography variant="subtitle2" sx={{ fontStyle: "italic", color: "rgba(200, 210, 230, 255)" }}>
-                  Vancouver, BC
-                </Typography>
-                <Typography variant="body2" sx={{ marginTop: "8px" }}>
-                  - Taught children aerodynamics and leadership skills.
-                </Typography>
-              </RightArrowPaper>
-            </motion.div>
-          </TimelineContent>
-        </TimelineItem>
-        </Timeline>
-    </section>
-    </>
-  );
+                        <TimelineContent
+                            sx={{
+                                py: "12px",
+                                px: 2,
+                            }}
+                        >
+                            <motion.div
+                                initial={{ x: -50, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 1 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                            >
+                                <RightArrowPaper /* block level component, upper level text aligns will not affect */
+                                >
+                                    <Typography
+                                        variant="h6"
+                                        component="span"
+                                        sx={{ fontWeight: "bold" }}
+                                    >
+                                        Firmware Member | Midnight Sun
+                                    </Typography>
+                                    <Typography
+                                        variant="subtitle2"
+                                        sx={{
+                                            fontStyle: "italic",
+                                            color: "rgba(200, 210, 230, 255)",
+                                        }}
+                                    >
+                                        Waterloo, ON
+                                    </Typography>
+                                    <Typography
+                                        variant="body2"
+                                        sx={{ marginTop: "8px" }}
+                                    >
+                                        - Created a backup driver to ensure data
+                                        handling during power loss.
+                                    </Typography>
+                                </RightArrowPaper>
+                            </motion.div>
+                        </TimelineContent>
+                    </TimelineItem>
+
+                    {/* Item 3 */}
+                    <TimelineItem>
+                        <TimelineOppositeContent
+                            sx={{ m: "auto 0" }}
+                            color="white"
+                        >
+                            Feb 2023 - Aug 2024
+                        </TimelineOppositeContent>
+                        <TimelineSeparator>
+                            <TimelineDot
+                                sx={{ backgroundColor: "rgb(120, 134, 167)" }}
+                            >
+                                <WorkIcon />
+                            </TimelineDot>
+                            <TimelineConnector />
+                        </TimelineSeparator>
+                        <TimelineContent>
+                            <motion.div
+                                initial={{ x: 50, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 1 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                            >
+                                <CustomPaper
+                                    sx={{
+                                        transition:
+                                            "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
+                                        ":hover": {
+                                            transform: "scale(1.01)", // Slight zoom-in on hover
+                                            boxShadow:
+                                                "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
+                                        },
+                                        width: "100%",
+                                    }}
+                                >
+                                    <Typography
+                                        variant="h6"
+                                        component="span"
+                                        sx={{ fontWeight: "bold" }}
+                                    >
+                                        Automation Developer | Skynet Security
+                                        System
+                                    </Typography>
+                                    <Typography
+                                        variant="subtitle2"
+                                        sx={{
+                                            fontStyle: "italic",
+                                            color: "rgba(200, 210, 230, 255)",
+                                        }}
+                                    >
+                                        Vancouver, BC
+                                    </Typography>
+                                    <Typography
+                                        variant="body2"
+                                        sx={{ marginTop: "8px" }}
+                                    >
+                                        - Automating workflows with Python
+                                        scripts.
+                                    </Typography>
+                                </CustomPaper>
+                            </motion.div>
+                        </TimelineContent>
+                    </TimelineItem>
+
+                    {/* Item 4 */}
+                    <TimelineItem>
+                        <TimelineOppositeContent
+                            sx={{ m: "auto 0" }}
+                            color="white"
+                        >
+                            Sep 2024 - Dec 2024
+                        </TimelineOppositeContent>
+                        <TimelineSeparator>
+                            <TimelineDot
+                                sx={{ backgroundColor: "rgb(120, 134, 167)" }}
+                            >
+                                <BuildIcon />
+                            </TimelineDot>
+                            <TimelineConnector />
+                        </TimelineSeparator>
+                        <TimelineContent>
+                            <motion.div
+                                initial={{ x: 50, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 1 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                            >
+                                <RightArrowPaper
+                                    sx={{
+                                        transition:
+                                            "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
+                                        ":hover": {
+                                            transform: "scale(1.01)", // Slight zoom-in on hover
+                                            boxShadow:
+                                                "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
+                                        },
+                                        width: "100%",
+                                    }}
+                                >
+                                    <Typography
+                                        variant="h6"
+                                        component="span"
+                                        sx={{ fontWeight: "bold" }}
+                                    >
+                                        Engineering Instructor | Simon Fraser
+                                        University (SFU) Camps
+                                    </Typography>
+                                    <Typography
+                                        variant="subtitle2"
+                                        sx={{
+                                            fontStyle: "italic",
+                                            color: "rgba(200, 210, 230, 255)",
+                                        }}
+                                    >
+                                        Vancouver, BC
+                                    </Typography>
+                                    <Typography
+                                        variant="body2"
+                                        sx={{ marginTop: "8px" }}
+                                    >
+                                        - Taught children aerodynamics and
+                                        leadership skills.
+                                    </Typography>
+                                </RightArrowPaper>
+                            </motion.div>
+                        </TimelineContent>
+                    </TimelineItem>
+                </Timeline>
+            </section>
+        </>
+    );
 };
 
 export default TimeLine;

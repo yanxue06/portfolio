@@ -7,7 +7,7 @@ import "../arrow.scss";
 import Yan from "../images/Yan.jpeg";
 import "../navbar.css";
 import { motion } from "framer-motion";
-import { Badge, Box, Button, Card, Image } from "@chakra-ui/react";
+import { Box, Button, Card, Image } from "@chakra-ui/react";
 
 export default function About() {
     return (
@@ -71,7 +71,7 @@ export default function About() {
                             <Card.Title
                                 mb="2"
                                 css={{
-                                    fontSize: "clamp(20px, 2vw, 28px)",
+                                    fontSize: "clamp(24px, 3vw, 28px)",
                                     fontWeight: "bold",
                                 }}
                             >
@@ -79,11 +79,12 @@ export default function About() {
                             </Card.Title>
                             <Card.Description
                                 css={{
+                                    width: "90%", 
                                     fontSize: "clamp(18px, 2vw, 25px)",
                                     lineHeight: "1.4",
                                     maxWidth: "100%",
                                     "@media (max-width: 780px)": {
-                                        fontSize: "16px" // Slightly smaller text on mobile
+                                        fontSize: "20px" // Slightly smaller text on mobile
                                     }
                                 }}
                             >
