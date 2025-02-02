@@ -136,11 +136,10 @@ const TimeLine = () => {
           </TimelineSeparator>
           <TimelineContent> 
             <motion.div
-              className="w-full py-8 md:mt-0 mt-32 overflow-hidden dark:text-[#ececec]"
-              initial={{ x: 0, opacity: 0 }}
-              whileInView={{opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true, amount: 0.8 }}
+                initial={{ x: 50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
             >
               <CustomPaper
                 sx={{
@@ -185,11 +184,10 @@ const TimeLine = () => {
             }} 
           > 
             <motion.div
-              className="flex justify-center w-full py-8 md:mt-0 mt-32 overflow-hidden dark:text-[#ececec]"
-              initial={{ x: 0, opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true, amount: 0.8 }}
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
             >
               <RightArrowPaper /* block level component, upper level text aligns will not affect */
                 
@@ -221,11 +219,10 @@ const TimeLine = () => {
           </TimelineSeparator>
           <TimelineContent>
             <motion.div
-              className="flex justify-center w-full py-8 md:mt-0 mt-32 overflow-hidden dark:text-[#ececec]"
-              initial={{ x: 0, opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true, amount: 0.8 }}
+                initial={{ x: 50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
             >
               <CustomPaper
                 sx={{
@@ -264,12 +261,11 @@ const TimeLine = () => {
           </TimelineSeparator>
           <TimelineContent>
             <motion.div
-              className="flex justify-center w-full py-8 md:mt-0 mt-32 overflow-hidden dark:text-[#ececec]"
-              initial={{ x: 0, opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true, amount: 0.8 }}
-            >
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+            > 
               <RightArrowPaper
                 sx={{
                   transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation

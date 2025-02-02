@@ -13,10 +13,10 @@ export default function About() {
     return (
         <section id="about" className="about">
             <motion.div
-                initial={{ x: 0, opacity: 0 }}
+                initial={{ x: -40, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1 }}
-                viewport={{ once: true, amount: 0.8 }}
+                viewport={{ once: true, amount: 0.2 }}
             >
                 <Card.Root
                     overflow="hidden"
