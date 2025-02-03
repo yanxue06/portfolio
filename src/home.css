@@ -257,6 +257,10 @@ a {
   .contactsCol {
     width: 70%; 
   }
+
+  .p4 {
+    height: 50vh; 
+  }
 }
 
 /* Responsive adjustments */
