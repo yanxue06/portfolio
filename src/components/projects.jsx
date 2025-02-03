@@ -32,7 +32,7 @@ export default function Projects() {
                             initial={{ x: 0, opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 1 }}
-                            viewport={{ once: true, amount: 0.8 }}
+                            viewport={{ once: true, amount: 0.2 }}
                         >
                             <div id="projects" className="heading">
                                 <For each={["subtle"]}>
@@ -84,7 +84,7 @@ export default function Projects() {
                             initial={{ x: 0, opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 1 }}
-                            viewport={{ once: true, amount: 0.8 }}
+                            viewport={{ once: true, amount: 0.2 }}
                         > 
                         <Card.Root
                             display="flex"
@@ -195,7 +195,7 @@ export default function Projects() {
                         initial={{ x: 0, opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 1 }}
-                        viewport={{ once: true, amount: 0.8 }}
+                        viewport={{ once: true, amount: 0.2 }}
                     > 
                     <Card.Root
                         display="flex"
@@ -307,7 +307,7 @@ export default function Projects() {
                             initial={{ x: 0, opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 1 }}
-                            viewport={{ once: true, amount: 0.8 }}
+                            viewport={{ once: true, amount: 0.2 }}
                         > 
                         <Card.Root
                             display="flex"
@@ -409,7 +409,7 @@ export default function Projects() {
                         initial={{ x: 0, opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 1 }}
-                        viewport={{ once: true, amount: 0.8 }}
+                        viewport={{ once: true, amount: 0.2 }}
                         > 
                         <Card.Root
                             display="flex"
