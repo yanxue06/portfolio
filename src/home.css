@@ -246,6 +246,19 @@ a {
   z-index: 10;
 }
 
+/* Contacts !! */ 
+@media (max-width: 800px) {
+  .contactsRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .contactsCol {
+    width: 70%; 
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 1000px) {
   .projectsRow {
