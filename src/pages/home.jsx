@@ -51,16 +51,36 @@ export default function App() {
                                 Thanks for checking out my website! 
                                 Feel free to contact me, I'm open to 
                                 any and all oppurtunities. 
+                                
+                            
+
                             </div>
                             <footer
-                            style={{
-                                marginTop: "20px",
-                                color: "grey",
-                                fontSize: "14px",
-                            }}
+                                style={{
+                                    marginTop: "20px",
+                                    color: "grey",
+                                    textAlign: "center", // Center-align the text
+                                    lineHeight: "1.6",   // Adjust line height for readability
+                                }}
                             >
-                                © 2025 Yan Xue. All rights reserved.
+                                <p style={{ 
+                                    fontSize: "14px", 
+                                    marginBottom: "10px" 
+                                }}>
+                                    Designed in <span style={{ color: "#F24E1E", fontWeight: "bold" }}>Figma</span>, 
+                                    built using <span style={{ color: "#61DAFB", fontWeight: "bold" }}>React</span> + 
+                                    <span style={{ color: "#646CFF", fontWeight: "bold" }}>Vite</span>, 
+                                    deployed with <span style={{ color: "white", fontWeight: "bold" }}>Vercel</span> by 
+                                    <span style={{ color: "#FFD700", fontWeight: "bold" }}>Yan Xue</span>.
+                                </p>
+                                <p style={{ 
+                                    fontSize: "14px", 
+                                    marginTop: "20px" 
+                                }}>
+                                    © 2025 <span style={{ color: "#FFD700", fontWeight: "bold" }}>Yan Xue</span>. All rights reserved.
+                                </p>
                             </footer>
+
                         </div>
 
                         <div className="contactsCol">

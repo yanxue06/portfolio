@@ -86,7 +86,10 @@ const TimeLine = () => {
                     <For each={["subtle"]}>
                         {(variant) => (
                             <Card.Root
-                                width="60%"
+                                style={{
+                                    width: window.innerWidth < 500 ? "80%" : "100%", // Adjust the width dynamically
+                                    margin: "0 auto" // Optional: Center the element for smaller screens
+                                }}
                                 variant={variant}
                                 key={variant}
                                 css={{

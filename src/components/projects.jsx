@@ -38,7 +38,10 @@ export default function Projects() {
                                 <For each={["subtle"]}>
                                     {(variant) => (
                                         <Card.Root
-                                            width="60%"
+                                            style={{
+                                                width: window.innerWidth < 500 ? "80%" : "100%", // Adjust the width dynamically
+                                                margin: "0 auto" // Optional: Center the element for smaller screens
+                                            }}
                                             variant={variant}
                                             key={variant}
                                             css={{
@@ -319,6 +322,7 @@ export default function Projects() {
                             boxShadow="lg"
                             bg="black"
                             h="auto"
+                            
                             width="80%" // Let the card grow to fit content
                             transition="transform 0.3s ease, box-shadow 0.3s ease" // Transition for smooth effect
                             css={{
