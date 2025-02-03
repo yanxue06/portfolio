@@ -14,6 +14,7 @@ import WorkIcon from "@mui/icons-material/Work";
 import BuildIcon from "@mui/icons-material/Build";
 import { Card, For } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import {useMediaQuery } from "@mui/material";
 
 const TimeLine = () => {
     // Styling for the card content with text wrapping
@@ -63,7 +64,17 @@ const TimeLine = () => {
         textAlign: "left",
     });
 
+    // This hook returns true when the viewport width is at least 1000px.
+    const isLargeScreen = useMediaQuery("(min-width:1000px)");
+
+    // Conditionally set the timeline position:
+    // 'alternate' on large screens and 'right' on smaller screens.
+    const timelinePosition = isLargeScreen ? "alternate" : "right";
+
+    const PaperComponent = isLargeScreen ? RightArrowPaper : CustomPaper;
+
     return (
+
         <>
             <motion.div
                 initial={{ x: 0, opacity: 0 }}
@@ -117,18 +128,33 @@ const TimeLine = () => {
 
             <section className="timeline">
                 {/* Item 1 */}
-                <Timeline position="alternate">
+                <Timeline
+                    position={timelinePosition}
+                    sx={{
+                        "@media (max-width: 1000px)": {
+                            left: "0",
+                            width: "100%",
+                        },
+                    }}
+                >
                     <TimelineItem
                         sx={{
                             width: "100%",
                             margin: "0", // Ensures even spacing on both sides
                             padding: "0px", // Remove any unintended padding
+                            "@media (max-width: 1000px)": {
+                                flexDirection: "row",
+                                alignItems: "flex-start",
+                            },
                         }}
                     >
                         <TimelineOppositeContent
                             sx={{
                                 m: "auto 0",
                                 color: "rgba(255, 255, 255, 0.94)",
+                                "@media (max-width: 1000px)": {
+                                    display: "none",
+                                },
                             }}
                         >
                             Jan 2025 - present
@@ -141,7 +167,14 @@ const TimeLine = () => {
                             </TimelineDot>
                             <TimelineConnector />
                         </TimelineSeparator>
-                        <TimelineContent>
+                        <TimelineContent
+                            sx={{
+                                "@media (max-width: 1000px)": {
+                                    flex: 1,
+                                    marginLeft: "16px",
+                                },
+                            }}
+                        >
                             <motion.div
                                 initial={{ x: 50, opacity: 0 }}
                                 whileInView={{ x: 0, opacity: 1 }}
@@ -177,7 +210,10 @@ const TimeLine = () => {
                                     </Typography>
                                     <Typography
                                         variant="body2"
-                                        sx={{ marginTop: "8px" }}
+                                        sx={{
+                                            marginTop: "8px",
+                                            width: "100%",
+                                        }}
                                     >
                                         - Developing web applications to serve
                                         over 1,000,000 people
@@ -189,9 +225,21 @@ const TimeLine = () => {
 
                     {/* Item 2 */}
 
-                    <TimelineItem>
+                    <TimelineItem
+                        sx={{
+                            "@media (max-width: 1000px)": {
+                                flexDirection: "row",
+                                alignItems: "flex-start",
+                            },
+                        }}
+                    >
                         <TimelineOppositeContent
-                            sx={{ m: "auto 0" }}
+                            sx={{
+                                m: "auto 0",
+                                "@media (max-width: 1000px)": {
+                                    display: "none",
+                                },
+                            }}
                             color="white"
                         >
                             Sep 2024 - Dec 2024
@@ -209,6 +257,10 @@ const TimeLine = () => {
                             sx={{
                                 py: "12px",
                                 px: 2,
+                                "@media (max-width: 1000px)": {
+                                    flex: 1,
+                                    marginLeft: "16px",
+                                },
                             }}
                         >
                             <motion.div
@@ -217,7 +269,7 @@ const TimeLine = () => {
                                 transition={{ duration: 1 }}
                                 viewport={{ once: true, amount: 0.2 }}
                             >
-                                <RightArrowPaper /* block level component, upper level text aligns will not affect */
+                                <PaperComponent /* block level component, upper level text aligns will not affect */
                                 >
                                     <Typography
                                         variant="h6"
@@ -237,20 +289,32 @@ const TimeLine = () => {
                                     </Typography>
                                     <Typography
                                         variant="body2"
-                                        sx={{ marginTop: "8px" }}
+                                        sx={{ marginTop: "8px", width: "100%" }}
                                     >
                                         - Created a backup driver to ensure data
                                         handling during power loss.
                                     </Typography>
-                                </RightArrowPaper>
+                                </PaperComponent>
                             </motion.div>
                         </TimelineContent>
                     </TimelineItem>
 
                     {/* Item 3 */}
-                    <TimelineItem>
+                    <TimelineItem
+                        sx={{
+                            "@media (max-width: 1000px)": {
+                                flexDirection: "row",
+                                alignItems: "flex-start",
+                            },
+                        }}
+                    >
                         <TimelineOppositeContent
-                            sx={{ m: "auto 0" }}
+                            sx={{
+                                m: "auto 0",
+                                "@media (max-width: 1000px)": {
+                                    display: "none",
+                                },
+                            }}
                             color="white"
                         >
                             Feb 2023 - Aug 2024
@@ -263,7 +327,14 @@ const TimeLine = () => {
                             </TimelineDot>
                             <TimelineConnector />
                         </TimelineSeparator>
-                        <TimelineContent>
+                        <TimelineContent
+                            sx={{
+                                "@media (max-width: 1000px)": {
+                                    flex: 1,
+                                    marginLeft: "16px",
+                                },
+                            }}
+                        >
                             <motion.div
                                 initial={{ x: 50, opacity: 0 }}
                                 whileInView={{ x: 0, opacity: 1 }}
@@ -301,7 +372,7 @@ const TimeLine = () => {
                                     </Typography>
                                     <Typography
                                         variant="body2"
-                                        sx={{ marginTop: "8px" }}
+                                        sx={{ marginTop: "8px", width: "100%" }}
                                     >
                                         - Automating workflows with Python
                                         scripts.
@@ -312,9 +383,21 @@ const TimeLine = () => {
                     </TimelineItem>
 
                     {/* Item 4 */}
-                    <TimelineItem>
+                    <TimelineItem
+                        sx={{
+                            "@media (max-width: 1000px)": {
+                                flexDirection: "row",
+                                alignItems: "flex-start",
+                            },
+                        }}
+                    >
                         <TimelineOppositeContent
-                            sx={{ m: "auto 0" }}
+                            sx={{
+                                m: "auto 0",
+                                "@media (max-width: 1000px)": {
+                                    display: "none",
+                                },
+                            }}
                             color="white"
                         >
                             Sep 2024 - Dec 2024
@@ -327,14 +410,21 @@ const TimeLine = () => {
                             </TimelineDot>
                             <TimelineConnector />
                         </TimelineSeparator>
-                        <TimelineContent>
+                        <TimelineContent
+                            sx={{
+                                "@media (max-width: 1000px)": {
+                                    flex: 1,
+                                    marginLeft: "16px",
+                                },
+                            }}
+                        >
                             <motion.div
                                 initial={{ x: 50, opacity: 0 }}
                                 whileInView={{ x: 0, opacity: 1 }}
                                 transition={{ duration: 1 }}
                                 viewport={{ once: true, amount: 0.2 }}
                             >
-                                <RightArrowPaper
+                                <PaperComponent
                                     sx={{
                                         transition:
                                             "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
@@ -349,7 +439,10 @@ const TimeLine = () => {
                                     <Typography
                                         variant="h6"
                                         component="span"
-                                        sx={{ fontWeight: "bold" }}
+                                        sx={{
+                                            fontWeight: "bold",
+                                            width: "100%",
+                                        }}
                                     >
                                         Engineering Instructor | Simon Fraser
                                         University (SFU) Camps
@@ -370,7 +463,7 @@ const TimeLine = () => {
                                         - Taught children aerodynamics and
                                         leadership skills.
                                     </Typography>
-                                </RightArrowPaper>
+                                </PaperComponent>
                             </motion.div>
                         </TimelineContent>
                     </TimelineItem>

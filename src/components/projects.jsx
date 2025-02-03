@@ -119,7 +119,7 @@ export default function Projects() {
                                 <Image
                                     src={p4}
                                     alt="Trackify"
-                                    objectFit="cover" // Ensure image covers the entire area
+                                    objectFit="contain" // Ensure image covers the entire area
                                     objectPosition="center" // Center the image
                                     w="100%"
                                     h="100%" // Image takes full height
@@ -230,7 +230,7 @@ export default function Projects() {
                             <Image
                                 src={p2}
                                 alt="JobBot"
-                                objectFit="cover" // Ensure image covers the entire area
+                                objectFit="contain" // Ensure image covers the entire area
                                 w="100%"
                                 h="100%" 
                                 display="block" // Remove any inline spacing
@@ -342,7 +342,7 @@ export default function Projects() {
                                 <Image
                                     src={p4}
                                     alt="Trackify"
-                                    objectFit="cover" // Ensure image covers the entire area
+                                    objectFit="contain" // Ensure image covers the entire area
                                     objectPosition="center" // Center the image
                                     w="100%"
                                     h="100%" // Image takes full height
@@ -387,14 +387,7 @@ export default function Projects() {
                                         <Badge colorScheme="blue" fontSize="sm">
                                             Pandas
                                         </Badge>
-                                        <Badge
-                                            colorScheme="orange"
-                                            fontSize="sm"
-                                        ></Badge>
-                                        <Badge
-                                            colorScheme="red"
-                                            fontSize="sm"
-                                        ></Badge>
+                                        
                                     </HStack>
                                 </Box>
 
@@ -451,7 +444,7 @@ export default function Projects() {
                                 <Image
                                     src={p4}
                                     alt="Trackify"
-                                    objectFit="cover" // Ensure image covers the entire area
+                                    objectFit="contain" // Ensure image covers the entire area
                                     objectPosition="center" // Center the image
                                     w="100%"
                                     h="100%" // Image takes full height
@@ -496,14 +489,7 @@ export default function Projects() {
                                         <Badge colorScheme="blue" fontSize="sm">
                                             Pandas
                                         </Badge>
-                                        <Badge
-                                            colorScheme="orange"
-                                            fontSize="sm"
-                                        ></Badge>
-                                        <Badge
-                                            colorScheme="red"
-                                            fontSize="sm"
-                                        ></Badge>
+                                        
                                     </HStack>
                                 </Box>
 
