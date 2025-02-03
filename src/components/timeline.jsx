@@ -165,7 +165,16 @@ const TimeLine = () => {
                             >
                                 <LaptopMacIcon />
                             </TimelineDot>
-                            <TimelineConnector />
+                            <TimelineConnector 
+                              sx={{
+                                "@media (max-width: 1000px)": {
+                                  display: "block",
+                                  height: "80px", // adjust this value as needed
+                                  backgroundColor: "rgb(120, 134, 167)",
+                                  margin: "0 auto", // centers the connector
+                                },
+                              }}
+                            />
                         </TimelineSeparator>
                         <TimelineContent
                             sx={{
@@ -245,13 +254,24 @@ const TimeLine = () => {
                             Sep 2024 - Dec 2024
                         </TimelineOppositeContent>
                         <TimelineSeparator>
-                            <TimelineDot
-                                sx={{ backgroundColor: "rgb(120, 134, 167)" }}
-                            >
-                                <BuildIcon />
+                            <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
+                                <LaptopMacIcon />
                             </TimelineDot>
-                            <TimelineConnector />
+                            <TimelineConnector
+                                sx={{
+                                "@media (max-width: 1000px)": {
+                                    // Let it grow if needed, but always have at least 50px height
+                                    minHeight: "100px",
+                                    flexGrow: 1,
+                                    backgroundColor: "rgb(120, 134, 167)",
+                                    // Ensure it stretches vertically
+                                    alignSelf: "stretch",
+                                    margin: "0 auto",
+                                },
+                                }}
+                            />
                         </TimelineSeparator>
+
 
                         <TimelineContent
                             sx={{
@@ -325,7 +345,16 @@ const TimeLine = () => {
                             >
                                 <WorkIcon />
                             </TimelineDot>
-                            <TimelineConnector />
+                            <TimelineConnector
+                             sx={{
+                                "@media (max-width: 1000px)": {
+                                  display: "block",
+                                  height: "80px", // adjust this value as needed
+                                  backgroundColor: "rgb(120, 134, 167)",
+                                  margin: "0 auto", // centers the connector
+                                },
+                              }}
+                            />
                         </TimelineSeparator>
                         <TimelineContent
                             sx={{
@@ -408,7 +437,8 @@ const TimeLine = () => {
                             >
                                 <BuildIcon />
                             </TimelineDot>
-                            <TimelineConnector />
+                            <TimelineConnector 
+                            />
                         </TimelineSeparator>
                         <TimelineContent
                             sx={{

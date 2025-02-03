@@ -191,7 +191,6 @@ padding-bottom: 0;
   font-weight: bold; 
 }
 
-
 .projectsRow {
   width: 100%;
   display: flex;
@@ -200,7 +199,6 @@ padding-bottom: 0;
   gap: 100px;
 }
 
-
 /* Existing projectsCol - add mobile spacing */
 .projectsCol { 
   display: flex; 
@@ -208,6 +206,25 @@ padding-bottom: 0;
   gap: 60px;
   padding: 20px 0;
 } 
+
+.p4 { 
+  height: 30vh;
+}
+
+.contactsRow {
+  display: flex;
+  flex-direction: row; 
+  gap: 40px; 
+  height: 100%; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.contactsCol {
+  display: flex;
+  flex-direction: column; 
+  width: 30%; 
+}
 
 .contact_heading {
   font-size: 40px;
