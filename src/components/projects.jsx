@@ -27,8 +27,7 @@ export default function Projects() {
             <div className="projects">
                 <div className="projectsCol">
                     {/* <div className="projectsRow"> */}
-                    
-
+                
                         <motion.div
                             initial={{ x: 0, opacity: 0 }}
                             whileInView={{ opacity: 1 }}

@@ -8,6 +8,10 @@ import About from "../components/about";
 import Projects from "../components/projects";
 import Arrows from "../components/arrow";
 import "../navbar.css";
+import gram from '../images/icons/gram.png'
+import email from '../images/icons/email.png'
+import linkedIn from '../images/icons/linkedIn.png'
+import github from '../images/icons/github.png'
 
 export default function App() {
     return (
@@ -74,31 +78,42 @@ export default function App() {
                                 <div 
                                   style = {{
                                     width: "100%",
-                                    fontSize: "15px",
-                                    color: "grey"
+                                    display: "flex",
+                                    gap: "20px",
+                                    marginTop: "10px"
                                   }}
                                 > 
-                                  <ul>
-                                      <li>
-                                          Email:
-                                          <a href="mailto:y9xue@uwaterloo.ca">
-                                              y9xue@uwaterloo.ca
-                                          </a>
-                                      </li>
-                                      <li>
-                                          LinkedIn:
-                                          <a href="https://linkedin.com/in/yanxue-ce">
-                                              linkedin.com/in/yanxue-ce
-                                          </a>
-                                      </li>
-                                      <li>
-                                          GitHub:
-                                          <a href="https://github.com/yanxue06">
-                                              github.com/yanxue06
-                                          </a>
-                                      </li>
-                                      <li> Resume: </li>
-                                  </ul>
+                                
+                                <a href="https://www.instagram.com/yan._.xue_/" target="_blank" rel="noopener noreferrer">
+                                    <img src={gram} alt="instagram" style={{ width: "50px", height: "50px"}}/>
+                                </a> 
+
+                                <a href="mailto:y9xue@uwaterloo.ca" target="_blank" rel="noopener noreferrer">
+                                    <img src={email} alt="email" style={{ width: "50px", height: "50px"}}/>
+                                </a>
+
+                                <a href="https://linkedin.com/in/yanxue-ce" target="_blank" rel="noopener noreferrer">
+                                    <img src={linkedIn} alt="linkedIn" style={{ width: "50px", height: "50px"}}/>
+                                </a>
+
+                                <a href="https://github.com/yanxue06" target="_blank" rel="noopener noreferrer">
+                                    <img src={github} alt="github" style={{ width: "50px", height: "50px"}}/>
+                                </a>
+
+                                {/* <a href="mailto:y9xue@uwaterloo.ca" target="_blank" rel="noopener noreferrer">
+                                    y9xue@uwaterloo.ca
+                                </a>
+
+                                LinkedIn:
+                                <a href="https://linkedin.com/in/yanxue-ce" target="_blank" rel="noopener noreferrer">
+                                    linkedin.com/in/yanxue-ce
+                                </a>
+
+                                GitHub:
+                                <a href="https://github.com/yanxue06" target="_blank" rel="noopener noreferrer">
+                                    github.com/yanxue06
+                                </a> */}
+                                
                                 </div>
                             </div>
                         </div>
