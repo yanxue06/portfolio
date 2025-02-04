@@ -12,6 +12,7 @@ import gram from '../images/icons/gram.png'
 import email from '../images/icons/email.png'
 import linkedIn from '../images/icons/linkedIn.png'
 import github from '../images/icons/github.png'
+import TechStack from '../components/techstack';
 
 export default function App() {
     return (
@@ -27,6 +28,8 @@ export default function App() {
                     <TimeLine />
                 </section>
 
+                <TechStack/> 
+                
                 <Projects />
 
                 
@@ -52,8 +55,7 @@ export default function App() {
                                 Feel free to contact me, I'm open to 
                                 any and all oppurtunities. 
                                 
-                            
-
+                        
                             </div>
                             <footer
                                 style={{
@@ -72,12 +74,6 @@ export default function App() {
                                     <span style={{ color: "#646CFF", fontWeight: "bold" }}>Vite</span>, 
                                     deployed with <span style={{ color: "white", fontWeight: "bold" }}>Vercel</span> by 
                                     <span style={{ color: "#FFD700", fontWeight: "bold" }}>Yan Xue</span>.
-                                </p>
-                                <p style={{ 
-                                    fontSize: "14px", 
-                                    marginTop: "20px" 
-                                }}>
-                                    © 2025 <span style={{ color: "#FFD700", fontWeight: "bold" }}>Yan Xue</span>. All rights reserved.
                                 </p>
                             </footer>
 
@@ -119,7 +115,8 @@ export default function App() {
                                 <a href="https://github.com/yanxue06" target="_blank" rel="noopener noreferrer">
                                     <img src={github} alt="github" style={{ width: "50px", height: "50px"}}/>
                                 </a>
-
+                                
+                                
                                 {/* <a href="mailto:y9xue@uwaterloo.ca" target="_blank" rel="noopener noreferrer">
                                     y9xue@uwaterloo.ca
                                 </a>
@@ -135,6 +132,9 @@ export default function App() {
                                 </a> */}
                                 
                                 </div>
+                            </div>
+                            <div className="copyRight">
+                                © 2025 <span style={{ color: "#FFD700", fontWeight: "bold" }}>Yan Xue</span>. All rights reserved.
                             </div>
                         </div>
                     </div>

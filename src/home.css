@@ -93,8 +93,8 @@ h4 {
   min-height: 180vh; /* Make p2 taller for a noticeable scroll effect */
   width: 100%;
   position: relative;
-  background-color: rgba(54, 81, 114, 255); 
-  z-index: 1;
+  background-color: RGB(25, 27, 30); 
+  z-index: 0;
   transition: transform 0.5s ease-in-out; /* Smooth transition */
   margin-bottom: -75vh; /* adjust this for the gap */ 
 }
@@ -246,12 +246,19 @@ a {
   z-index: 10;
 }
 
+.copyRight { 
+  font-size: 14px; 
+  color: grey;  
+  text-align: left; 
+  margin-top: 10px; 
+}
+
 /* Contacts !! */ 
 @media (max-width: 800px) {
   .contactsRow {
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
   }
   
   .contactsCol {
@@ -259,8 +266,9 @@ a {
   }
 
   .p4 {
-    height: 50vh; 
+    height: 40vh; 
   }
+
 }
 
 

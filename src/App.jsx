@@ -8,6 +8,7 @@ import Home from './pages/home';
 import Gallery from "./pages/gallery";
 
 
+
 export default function App() {
   return (
     <>  
