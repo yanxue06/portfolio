@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom"; // Use Link for navigation to routes
-import "../navbar.css";
+import "../styles/navbar.css";
 
 export default function Navbar() {
     const [scrollY, setScrollY] = useState(0);
@@ -9,7 +9,8 @@ export default function Navbar() {
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY);
-
+            console.log(window.scrollY);
+            
             // Toggle the 'scrolled' class on the body
             if (window.scrollY > 50) {
                 document.body.classList.add("scrolled");

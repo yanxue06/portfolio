@@ -23,16 +23,24 @@
   display: flex;
   flex-wrap: wrap;
   background-color: #281a1a; /* Dark warm brown */
-  border-radius: 16px;
   overflow: hidden;
 }
 
 .projects-image {
+  min-width: 300px; 
   flex: 1;
-  min-width: 300px;
-  min-height: 250px;
   background-color: #9b4444; /* Deep rust red to match the final screen */
-  border-radius: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Prevents image overflow */
+}
+
+.projects-image img {
+  width: 100%; /* Makes the image fill the width */
+  height: 100%; /* Ensures it fills the height */
+  object-fit: cover; /* Ensures the image maintains aspect ratio */
 }
 
 /* Right side text container */

@@ -1,13 +1,13 @@
 import * as React from "react";
-import "../home.css";
-import "../particle.scss";
-import "../timeline.css";
+import "../styles/home.css";
+import "../styles/particle.scss";
+import "../styles/timeline.css";
 import TimeLine from "../components/timeline";
 import Intro from "../components/intro";
 import About from "../components/about";
 import Projects from "../components/projects";
 import Arrows from "../components/arrow";
-import "../navbar.css";
+import "../styles/navbar.css";
 
 import TechStack from '../components/techstack';
 import Contacts from '../components/contacts';

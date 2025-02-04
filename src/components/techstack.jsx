@@ -1,5 +1,5 @@
 import React from 'react';
-import '../techstack.css';
+import '../styles/techstack.css';
 
 const data = {
   Languages: [

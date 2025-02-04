@@ -55,7 +55,6 @@
     color: #ddd; /* if your background is dark, use a lighter text color */
   }
   
-  /***** (Optional) RESPONSIVE RULES *****/
   @media (max-width: 600px) {
     .experience-list {
       margin-left: 1rem;

@@ -19,3 +19,10 @@
     color: rgb(239, 239, 239); 
     font-weight: bold; 
   }
+  
+  .copyRight { 
+    font-size: 14px; 
+    color: grey;  
+    text-align: left; 
+    margin-top: 10px; 
+  }

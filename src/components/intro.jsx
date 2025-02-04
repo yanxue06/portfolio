@@ -1,13 +1,12 @@
 import * as React from "react";
-import "../home.css";
-import "../particle.scss";
-import "../timeline.css";
-import "../arrow.scss";
-import Typewriter from "../components/typewriter";
+import "../styles/home.css";
+import "../styles/particle.scss";
+import "../styles/timeline.css";
+import "../styles/arrow.scss";
 import { motion } from "framer-motion";
 import Button from "@mui/material/Button";
 import TypeWriter from "./typewriter";
-import "../stars.scss";
+import "../styles/stars.scss";
 
 export default function intro() {
     return (

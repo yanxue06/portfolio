@@ -1,7 +1,7 @@
 // about.jsx
 import React from "react";
 import Typewriter from '../components/typewriter'
-import '../gallery.css'
+import '../styles/gallery.css'
 
 // import g1 from '../images/g1.png'
 // import g2 from '../images/g2.png'

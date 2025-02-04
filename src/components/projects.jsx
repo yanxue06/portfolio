@@ -8,9 +8,9 @@ import * as React from "react";
 // import Stack from "@mui/material/Stack";
 // import Paper from "@mui/material/Paper";
 // import { styled } from "@mui/material/styles";
-import "../home.css";
-import p3 from "../images/Projects/p3.svg";
-import p2 from "../images/Projects/p2.svg";
+import "../styles/home.css";
+import p3 from "../images/projects/p3.svg";
+import p2 from "../images/projects/p2.svg";
 import { Badge, Box, Button, Card, HStack, Image, For } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 

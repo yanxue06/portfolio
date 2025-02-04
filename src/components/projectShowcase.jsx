@@ -1,6 +1,9 @@
 import React from 'react';
-import '../projectShowcase.css';
+import '../styles/projectShowcase.css';
 import { motion } from "framer-motion";
+import projectPic from "../images/projects/p3.svg"
+import { Link } from "react-router-dom";
+
 
 function ProjectShowcase() {
   return (
@@ -18,8 +21,9 @@ function ProjectShowcase() {
         <div className="projects-card">
             {/* Left column: pink “image” placeholder */}
             <div className="projects-image">
-            {/* In real usage, you’d have an <img> tag or background-image here */}
+                <img src={projectPic} alt="Project" />
             </div>
+
 
             {/* Right column: title, description, button */}
             <div className="projects-content">
@@ -28,7 +32,7 @@ function ProjectShowcase() {
                 ... a project to summarize reviews and mitigate bias...  
             </p>
             <button className="project-button">
-                See more ›
+                <Link to="/projects" className="project-link">See more ›</Link>
             </button>
             </div>
         </div>

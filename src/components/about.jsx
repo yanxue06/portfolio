@@ -1,11 +1,11 @@
 import * as React from "react";
-import "../home.css";
-import "../particle.scss";
-import "../timeline.css";
-import "../arrow.scss";
+import "../styles/home.css";
+import "../styles/particle.scss";
+import "../styles/timeline.css";
+import "../styles/arrow.scss";
 
 import Yan from "../images/Yan.jpeg";
-import "../navbar.css";
+import "../styles/navbar.css";
 import { motion } from "framer-motion";
 import { Box, Button, Card, Image } from "@chakra-ui/react";
 
