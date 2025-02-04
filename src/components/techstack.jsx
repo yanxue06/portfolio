@@ -13,6 +13,17 @@ const data = {
     { name: 'CSS', color: '#ff9800' },
     { name: 'SQL', color: '#00b2a9' },
   ],
+  "Developer Tools": [
+    { name: 'TypeScript', color: '#3178c6' },
+    { name: 'JavaScript', color: '#f7df1e' },
+    { name: 'Python', color: '#4B8BBE' },
+    { name: 'C++', color: '#f34b7d' },
+    { name: 'Go', color: '#29beb0' },
+    { name: 'Bash', color: '#4d4d4d' },
+    { name: 'HTML', color: '#e34f26' },
+    { name: 'CSS', color: '#ff9800' },
+    { name: 'SQL', color: '#00b2a9' },
+  ],
   Frameworks: [
     { name: 'React', color: '#61dafb' },
     { name: 'Angular', color: '#dd0031' },
@@ -33,11 +44,7 @@ const data = {
     { name: 'Autodesk Inventor', color: '#ff9a00' },
     { name: 'MS PowerPoint', color: '#d24726' },
   ],
-  'Dev Tools': [
-    { name: 'Git', color: '#a0302b' },
-    { name: 'VSCode', color: '#0066b8' },
-    { name: 'Postman', color: '#ff6c37' },
-  ],
+
 };
 
 function TechStack() {

@@ -11,7 +11,7 @@ import "../navbar.css";
 
 import TechStack from '../components/techstack';
 import Contacts from '../components/contacts';
-
+import ProjectShowcase from "../components/projectShowcase";
 export default function App() {
     return (
         <>
@@ -21,12 +21,17 @@ export default function App() {
                 <Intro />
 
                 <section className="p2">
-                    <About />
+                    <div className="col"> 
+                        <About />
 
-                    <TimeLine />
+                        <TimeLine />
+
+                        <ProjectShowcase/>
+                        
+                        <TechStack/> 
+                    </div> 
                 </section>
 
-                <TechStack/> 
                 
                 <Projects />
 

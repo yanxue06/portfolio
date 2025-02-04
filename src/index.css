@@ -1,5 +1,5 @@
 :root {
-  font-family: DejaVu Sans Mono;
+  --global-font: 'YourFontName', 'Verdana';
   line-height: 1.5;
   font-weight: 400;
 

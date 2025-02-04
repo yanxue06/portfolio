@@ -11,7 +11,7 @@
   }
   
   .category-block {
-    background: #182c66;
+    background: rgba(30, 47, 62, 255); 
     border-radius: 8px;
     padding: 1rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -22,7 +22,7 @@
     margin-bottom: 1rem;
     font-size: 1.25rem;
     font-weight: 600;
-    color: #333;
+    color: #fbfbfb;
   }
   
   .chip-container {

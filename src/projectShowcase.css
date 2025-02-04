@@ -1,0 +1,79 @@
+.projects-section {
+  
+  position: relative; 
+  max-width: 800px;
+
+  margin: 0 auto;
+  padding: 1rem; /* Equal padding on all sides */
+
+  background-color: rgb(44, 23, 28); 
+  
+  border-radius: 12px;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.projects-title {
+  color: #f4a261; /* Muted orange */
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.projects-card {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #281a1a; /* Dark warm brown */
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.projects-image {
+  flex: 1;
+  min-width: 300px;
+  min-height: 250px;
+  background-color: #9b4444; /* Deep rust red to match the final screen */
+  border-radius: 0;
+}
+
+/* Right side text container */
+.projects-content {
+  flex: 1.2;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Project name/title in burnt orange */
+.project-name {
+  color: #e76f51;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Description text */
+.project-description {
+  color: #f4e3d7; /* Warm light beige */
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* “See more” button */
+.project-button {
+  align-self: flex-start;
+  background-color: #9b4444; /* Darker orange-red */
+  color: #f4e3d7;
+  border: 1px solid #f4a261;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.project-button:hover {
+  background-color: #e76f51; /* Lighter burnt orange */
+  color: #281a1a;
+  transform: scale(1.05);
+}

@@ -92,11 +92,9 @@ export default function About() {
                                 studying Computer Engineering at The University of Waterloo. 
                                 I'm originally from Vancouver, BC, but I'll be studying abroad 
                                 at Waterloo, ON for the next few years. I'm always excited to 
-                                improve my skills and explore new experiences. Feel free to 
-                                reach out. I am open to any and all opportunities!
+                                improve my skills and explore new experiences.
                                 <br /><br />
-                                In my spare time, I love to play guitar, chess, table tennis, 
-                                soccer, frisbee, and walking my absolutely EPIC dog: Rocky! 
+                                My hobbies are guitar, chess, table tennis, soccer, frisbee, and literally anything with my dog, Rocky.  
                                 Below is my gallery, which are some of my photos taken throughout 
                                 my life, as well as my blog, where I write about random things.
                             </Card.Description>

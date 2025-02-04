@@ -11,9 +11,16 @@
   
   /* Navbar when scrolled */
   .navbar-scrolled {
-    background-color: rgba(8, 10, 13, 255);  /* a semi-transparent dark background */
+    position: fixed;
+    width: 100%;
+    
+    background-color: rgba(8, 10, 13, 0.8);
+    
+    -webkit-backdrop-filter: blur(10px); /* for Safari support */
+    backdrop-filter: blur(10px);
+    
     box-shadow: 0 4px 6px rgba(225, 224, 221, 0.4);
-    z-index: 1000; 
+    z-index: 1000;
   }
   
   /* Navbar Inner Container */

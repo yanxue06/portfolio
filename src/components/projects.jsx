@@ -9,8 +9,8 @@ import * as React from "react";
 // import Paper from "@mui/material/Paper";
 // import { styled } from "@mui/material/styles";
 import "../home.css";
-import p4 from "../images/p3.png";
-import p2 from "../images/p2.png";
+import p3 from "../images/Projects/p3.svg";
+import p2 from "../images/Projects/p2.svg";
 import { Badge, Box, Button, Card, HStack, Image, For } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
@@ -119,7 +119,7 @@ export default function Projects() {
                             >
                                 {/* Image */}
                                 <Image
-                                    src={p4}
+                                    src={p3}
                                     alt="Trackify"
                                     objectFit="contain" // Ensure image covers the entire area
                                     objectPosition="center" // Center the image
@@ -343,7 +343,7 @@ export default function Projects() {
                             >
                                 {/* Image */}
                                 <Image
-                                    src={p4}
+                                    src={p3}
                                     alt="Trackify"
                                     objectFit="contain" // Ensure image covers the entire area
                                     objectPosition="center" // Center the image
@@ -445,7 +445,7 @@ export default function Projects() {
                             >
                                 {/* Image */}
                                 <Image
-                                    src={p4}
+                                    src={p3}
                                     alt="Trackify"
                                     objectFit="contain" // Ensure image covers the entire area
                                     objectPosition="center" // Center the image
@@ -813,7 +813,7 @@ export default function Projects() {
             bg="black" // Ensures the bezel is uniformly black
         >
             <Image
-                src={p4}
+                src={p3}
                 alt="Trackify"
                 objectFit="contain" // Display the full image without cropping
                 objectPosition="center" // Center the image inside the frame

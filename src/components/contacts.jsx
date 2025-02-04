@@ -1,5 +1,5 @@
 import React from "react";
-import '../home.css'
+import '../contacts.css'
 import gram from '../images/icons/gram.png'
 import email from '../images/icons/email.png'
 import linkedIn from '../images/icons/linkedIn.png'
