@@ -38,20 +38,23 @@ export default function Navbar() {
 
                 {/* Links */}
                 <div className="navbar-links">
-                    {["ABOUT", "PROJECTS", "CONTACT"].map((link) => (
-                        <a
-                            key={link}
-                            className="navbar-link"
-                            href={`#${link.toLowerCase()}`}
-                        >
-                            {link}
-                        </a>
-                    ))}
-                    {/* Special case for Gallery */}
+                    <a className="navbar-link" href="#home">
+                        HOME
+                    </a>
+
+                    <Link to="/projects" className="navbar-link">
+                        PROJECTS
+                    </Link>
+
                     <Link to="/gallery" className="navbar-link">
                         GALLERY
                     </Link>
+
+                    <a className="navbar-link" href="#contact">
+                        CONTACT
+                    </a>
                 </div>
+
             </div>
         </motion.nav>
     );

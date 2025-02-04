@@ -6,7 +6,7 @@ import './navbar.css';
 
 import Home from './pages/home'; 
 import Gallery from "./pages/gallery";
-
+import Projects from "./pages/projects"
 
 
 export default function App() {
@@ -16,7 +16,8 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />     
-          <Route path="/gallery" element={<Gallery />} />         
+          <Route path="/gallery" element={<Gallery />} />    
+          <Route path="/projects" element={<Projects />} /> 
         </Routes>
       </Router>
     </>

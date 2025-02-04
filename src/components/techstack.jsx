@@ -13,7 +13,7 @@ const data = {
     { name: 'CSS', color: '#ff9800' },
     { name: 'SQL', color: '#00b2a9' },
   ],
-  Technologies: [
+  Frameworks: [
     { name: 'React', color: '#61dafb' },
     { name: 'Angular', color: '#dd0031' },
     { name: 'LitElement', color: '#9b59b6' },
@@ -24,7 +24,7 @@ const data = {
     { name: 'Unity', color: '#4B0082' },
     { name: 'Qt', color: '#32f05f' },
   ],
-  Creative: [
+  Libraries: [
     { name: 'Figma', color: '#ff3366' },
     { name: 'Illustrator', color: '#ff9a00' },
     { name: 'Procreate', color: '#6746c3' },

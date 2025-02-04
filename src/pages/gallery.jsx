@@ -18,7 +18,7 @@ import '../gallery.css'
 
 
 
-export default function About() {
+export default function Gallery() {
   return (
     <div className="p3">
       <div className="photos">

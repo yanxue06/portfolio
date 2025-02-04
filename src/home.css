@@ -46,7 +46,7 @@ body {
   padding-top: 120px; 
 }
 
-.top-section { /* item 
+.top-section { 
   /* The key: reserve enough height so that when the typewriter text 
      starts typing, it doesn’t push the top heading. */
   min-height: 1.5em; 
