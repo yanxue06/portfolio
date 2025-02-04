@@ -1,5 +1,5 @@
 import React from 'react';
-import '../ProjectShowcase.css';
+import '../projectShowcase.css';
 import { motion } from "framer-motion";
 
 function ProjectShowcase() {
