@@ -28,8 +28,6 @@ export default function Projects() {
             <div className="projects">
                 <div className="projectsCol">
                 
-                      
-                        
                     <div className="projectsRow">
                         <motion.div
                             initial={{ x: 0, opacity: 0 }}
@@ -41,11 +39,11 @@ export default function Projects() {
                             display="flex"
                             flexDirection="column" // Stack image on top of text
                             maxW="900px"
+                            boxShadow="lg"
+                            bg="black"
                             mx="auto"
                             overflow="hidden"
                             borderRadius="xl"
-                            boxShadow="lg"
-                            bg="black"
                             h="auto"
                             width="80%" // Let the card grow to fit content
                             transition="transform 0.3s ease, box-shadow 0.3s ease" // Transition for smooth effect
@@ -58,7 +56,6 @@ export default function Projects() {
                         >
                             <Box
                                 w="100%"
-                                h="500px" // Image takes up a fixed height (adjustable)
                                 bg="black" // Matches the card background
                                 display="flex"
                                 justifyContent="center"
@@ -166,7 +163,6 @@ export default function Projects() {
                     >
                         <Box
                             w="100%"
-                            h="500px" // Image takes up a fixed height (adjustable)
                             bg="black" // Matches the card background
                             display="flex"
                             justifyContent="center"
@@ -278,7 +274,6 @@ export default function Projects() {
                         >
                             <Box
                                 w="100%"
-                                h="500px" // Image takes up a fixed height (adjustable)
                                 bg="black" // Matches the card background
                                 display="flex"
                                 justifyContent="center"
@@ -377,7 +372,6 @@ export default function Projects() {
                         >
                             <Box
                                 w="100%"
-                                h="500px" // Image takes up a fixed height (adjustable)
                                 bg="black" // Matches the card background
                                 display="flex"
                                 justifyContent="center"

@@ -4,7 +4,7 @@
   top: 60vh; /* Adjust to where you want to start covering the reflection */
   left: 0;
   right: 0;
-  height: 230vh; /* Enough to cover from 'top' down to the bottom */
+  height: 260vh; /* Enough to cover from 'top' down to the bottom */
   background: #2d112b; /* Same background color you want below the images */
   z-index: 2; /* Ensure it’s on top of the images */
 }
@@ -33,11 +33,10 @@
   padding: 20px 0;
 } 
 
-.p3 { 
-  /* background-color: rgb(90, 108, 146);  */
+/* .p3 { 
   position: relative;
   z-index: 1;
-}
+} */
 
 @media (max-width: 1000px) {
   .projectsRow {
@@ -49,6 +48,11 @@
   .projectsRow button {
     width: 40% !important;
   }
+
+  .parallax__mask {
+    height: 440vh; 
+  }
+  
 }
 
 /* Contacts !! */ 
