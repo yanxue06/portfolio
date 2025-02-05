@@ -30,6 +30,7 @@ export default function Navbar() {
             transition={{ duration: 0.5 }}
         >
             <div className="navbar-container">
+                
                 {/* Logo */}
                 <div className="navbar-logo">
                     <a className="navbar-link" href="/">

@@ -37,35 +37,16 @@
 /* Mask element to cover anything below the parallax */
 .parallax__mask {
   position: absolute;
-  top: 55vh; /* Adjust to where you want to start covering the reflection */
+  top: 60vh; /* Adjust to where you want to start covering the reflection */
   left: 0;
   right: 0;
-  height: 45vh; /* Enough to cover from 'top' down to the bottom */
+  height: 140vh; /* Enough to cover from 'top' down to the bottom */
   background: #2d112b; /* Same background color you want below the images */
   z-index: 2; /* Ensure it’s on top of the images */
 }
 
-/* Cover element */
-.parallax__cover {
-  background: #2d112b; /* Change to your desired background color */
-  position: absolute;
-  top: 100vh; /* Start right after the parallax viewport */
-  left: 0;
-  right: 0;
-  height: 3000px; /* Adjust the height as needed */
-  z-index: 3;
-}
 
-/* Generate layer transforms based on scroll using SCSS loop */
-$parallax__layers: 6;
 
-@for $i from 0 through $parallax__layers {
-  // Calculate a factor: higher layers (i=0) appear further back.
-  $factor: ($parallax__layers - $i) / 2;
-  .parallax__layer__#{$i} {
-    transform: translateZ(-#{$factor * 100}px) scale(#{ $factor + 1});
-  }
-}
 
 /* Adding some transitions to make the parallax smoother */
 .parallax__layer {

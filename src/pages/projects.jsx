@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../styles/parallax.scss"; // Ensure your build system compiles SCSS
-import "../styles/projects.css";
+import "../styles/projectsV2.css";
+import ProjectsV2 from "../components/projectsV2";
 
 export default function Parallax() {
+  useEffect(() => {
+    window.scrollTo(0,0); 
+  }, []); 
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -98,10 +102,10 @@ export default function Parallax() {
       </div>
 
       {/* Mask element to cover reflection */}
-      <div className="parallax__mask"> wdawa </div>
+      <div className="parallax__mask">  
+        <ProjectsV2/> 
+      </div>
 
-      {/* The cover is still there for the remainder of the page */}
-      <div className="parallax__cover"> dawdawd aw </div>
     </div>
   );
 }

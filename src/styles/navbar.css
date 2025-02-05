@@ -6,7 +6,7 @@
     background-color: transparent;
     color: rgb(224, 185, 185);
     box-shadow: none;
-    transition: background-color 0.8s ease, box-shadow 0.8s ease;    
+    transition: background-color 0.8s ease, box-shadow 0.8s ease;   
   }
   
   /* Navbar when scrolled */
@@ -46,6 +46,8 @@
   /* Links for Desktop */
   .navbar-links {
     display: flex;
+    height: 100%; 
+    align-items: center; 
     gap: 20px;
   }
   
