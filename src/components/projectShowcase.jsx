@@ -14,8 +14,6 @@ function ProjectShowcase() {
         viewport={{ once: true, amount: 0.2 }}
     >
         <section className="projects-section">
-        {/* Large pink heading */}
-        <h2 className="projects-title">Projects</h2>
 
         {/* Project card container */}
         <div className="projects-card">
@@ -27,9 +25,10 @@ function ProjectShowcase() {
 
             {/* Right column: title, description, button */}
             <div className="projects-content">
-            <h3 className="project-name">Amazon Compare</h3>
+            <h3 className="project-name"> Projects </h3>
             <p className="project-description">
-                ... a project to summarize reviews and mitigate bias...  
+                I've made over 12 projects in the past 6 months, each serving
+                their own distinct purpose!
             </p>
             <button className="project-button">
                 <Link to="/projects" className="project-link">See more ›</Link>

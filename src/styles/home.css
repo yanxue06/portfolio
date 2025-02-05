@@ -89,30 +89,6 @@ h4 {
   z-index: 0;
   margin-bottom: 0; 
 }
-  
-.p2 {
-  min-height: 180vh; /* Make p2 taller for a noticeable scroll effect */
-  width: 100%;
-  position: relative;
-  background-color: rgb(11, 11, 11); 
-  z-index: 0;
-  transition: transform 0.5s ease-in-out; /* Smooth transition */
-  margin-bottom: -75vh; /* adjust this for the gap */ 
-}
- 
-/* timeline stuff */
-
-
-.timeline { 
-  display: flex;
-  justify-content: center; /* Centers the entire timeline */
-  align-items: center;
-  width: 100%; /* Ensures it takes full width */
-}
-
-.timeline .MuiTimelineContent-root {
-  text-align: left; /* Align text left for better readability */
-}
 
 
 body.scrolled .p2 {

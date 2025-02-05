@@ -27,61 +27,8 @@ export default function Projects() {
         <section id="projects" className="p3">
             <div className="projects">
                 <div className="projectsCol">
-                    {/* <div className="projectsRow"> */}
                 
-                        <motion.div
-                            initial={{ x: 0, opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ duration: 1 }}
-                            viewport={{ once: true, amount: 0.2 }}
-                        >
-                            <div id="projects" className="heading">
-                                <For each={["subtle"]}>
-                                    {(variant) => (
-                                        <Card.Root
-                                            style={{
-                                                width: window.innerWidth < 660 ? "80%" : "40%", // Adjust the width dynamically
-                                                margin: "0 auto" // Optional: Center the element for smaller screens
-                                            }}
-                                            variant={variant}
-                                            key={variant}
-                                            css={{
-                                                border: "2px solid rgba(235, 235, 235, 0.6)", // Outline
-                                                backgroundColor:
-                                                    "rgb(22, 29, 37, 255)",
-                                                borderRadius: "8px", // Rounded corners
-                                                transition:
-                                                    "transform 0.3s ease, box-shadow 0.3s ease", // Smooth hover effect
-                                                "&:hover": {
-                                                    transform: "scale(1.02)", // Slight zoom on hover
-                                                    boxShadow:
-                                                        "0 0 10px rgba(255, 255, 255, 0.2)", // Shadow on hover
-                                                },
-                                            }}
-                                        >
-                                            <Card.Body
-                                                gap="2"
-                                                css={{ textAlign: "center" }}
-                                            >
-                                                <Card.Title
-                                                    mb="2"
-                                                    css={{
-                                                        fontSize: "35px",
-                                                        fontWeight:
-                                                            "bold" /* Make the text bold */,
-                                                        color: "white" /* White text color for contrast */,
-                                                        letterSpacing:
-                                                            "3px" /* Add spacing between letters */,
-                                                    }}
-                                                >
-                                                    Projects
-                                                </Card.Title>
-                                            </Card.Body>
-                                        </Card.Root>
-                                    )}
-                                </For>
-                            </div>
-                        </motion.div>
+                      
                         
                     <div className="projectsRow">
                         <motion.div
@@ -109,7 +56,6 @@ export default function Projects() {
                                 }
                             }}
                         >
-                            {/* Image Section */}
                             <Box
                                 w="100%"
                                 h="500px" // Image takes up a fixed height (adjustable)
@@ -118,7 +64,6 @@ export default function Projects() {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                {/* Image */}
                                 <Image
                                     src={p3}
                                     alt="Trackify"
@@ -130,7 +75,6 @@ export default function Projects() {
                                 />
                             </Box>
 
-                            {/* Text Section */}
                             <Box
                                 p={6}
                                 display="flex"
@@ -220,7 +164,6 @@ export default function Projects() {
                             }
                         }}
                     >
-                        {/* Image Section */}
                         <Box
                             w="100%"
                             h="500px" // Image takes up a fixed height (adjustable)
@@ -333,7 +276,6 @@ export default function Projects() {
                                 }
                             }}
                         >
-                            {/* Image Section */}
                             <Box
                                 w="100%"
                                 h="500px" // Image takes up a fixed height (adjustable)
@@ -342,7 +284,6 @@ export default function Projects() {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                {/* Image */}
                                 <Image
                                     src={p3}
                                     alt="Trackify"
@@ -354,7 +295,6 @@ export default function Projects() {
                                 />
                             </Box>
 
-                            {/* Text Section */}
                             <Box
                                 p={6}
                                 display="flex"
@@ -435,7 +375,6 @@ export default function Projects() {
                                 }
                             }}
                         >
-                            {/* Image Section */}
                             <Box
                                 w="100%"
                                 h="500px" // Image takes up a fixed height (adjustable)
@@ -444,7 +383,6 @@ export default function Projects() {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                {/* Image */}
                                 <Image
                                     src={p3}
                                     alt="Trackify"
@@ -456,7 +394,6 @@ export default function Projects() {
                                 />
                             </Box>
 
-                            {/* Text Section */}
                             <Box
                                 p={6}
                                 display="flex"

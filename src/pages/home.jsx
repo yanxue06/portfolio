@@ -1,18 +1,21 @@
-import * as React from "react";
+import React, {useEffect} from "react";
 import "../styles/home.css";
 import "../styles/particle.scss";
 import "../styles/timeline.css";
 import TimeLine from "../components/timeline";
 import Intro from "../components/intro";
 import About from "../components/about";
-import Projects from "../components/projects";
 import Arrows from "../components/arrow";
 import "../styles/navbar.css";
 
 import TechStack from '../components/techstack';
 import Contacts from '../components/contacts';
 import ProjectShowcase from "../components/projectShowcase";
+
 export default function App() {
+    useEffect(() => {
+          window.scrollTo(0, 0);
+    }, []);
     return (
         <>
             <div className="max-w-[1000px] mx-auto px-4">
@@ -28,12 +31,12 @@ export default function App() {
 
                         <ProjectShowcase/>
                         
-                        <TechStack/> 
+                        {/* <TechStack/>  */}
                     </div> 
                 </section>
 
                 
-                <Projects />
+                {/* <Projects /> */}
 
                 <Contacts/> 
                 

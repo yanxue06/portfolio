@@ -111,7 +111,7 @@ export default function intro() {
                                 }}
                                 onClick={() =>
                                     window.open(
-                                        "https://your-resume-link.com",
+                                        "https://drive.google.com/file/d/1sIRAkgYDKeerLE165GTgi71MYjT5p19t/view?usp=sharing",
                                         "_blank"
                                     )
                                 } // Replace with your resume link

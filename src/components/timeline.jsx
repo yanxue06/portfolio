@@ -82,7 +82,7 @@ const TimeLine = () => {
                 transition={{ duration: 1 }}
                 viewport={{ once: true, amount: 0.8 }}
             >
-                <div id="experience" className="heading">
+                <div id="experience">
                     <For each={["subtle"]}>
                         {(variant) => (
                             <Card.Root
@@ -128,8 +128,8 @@ const TimeLine = () => {
                     </For>
                 </div>
             </motion.div>
-
             <section className="timeline">
+                
                 {/* Item 1 */}
                 <Timeline
                     position={timelinePosition}

@@ -6,17 +6,11 @@
   margin: 0 auto;
   padding: 1rem; /* Equal padding on all sides */
 
-  background-color: rgb(44, 23, 28); 
+  background-color: rgb(231, 231, 223); 
   
   border-radius: 12px;
 
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-}
-
-.projects-title {
-  color: #f4a261; /* Muted orange */
-  font-size: 3rem;
-  font-weight: bold;
 }
 
 .projects-card {
@@ -62,6 +56,7 @@
 /* Description text */
 .project-description {
   color: #f4e3d7; /* Warm light beige */
+  width: 100%; 
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;

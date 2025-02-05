@@ -1,5 +1,5 @@
 // about.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import Typewriter from '../components/typewriter'
 import '../styles/gallery.css'
 
@@ -19,6 +19,9 @@ import '../styles/gallery.css'
 
 
 export default function Gallery() {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   return (
     <div className="p3">
       <div className="photos">

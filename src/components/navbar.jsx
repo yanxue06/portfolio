@@ -40,9 +40,9 @@ export default function Navbar() {
 
                 {/* Links */}
                 <div className="navbar-links">
-                    <a className="navbar-link" href="#home">
+                    <Link to="/home" className="navbar-link">
                         HOME
-                    </a>
+                    </Link>
 
                     <Link to="/projects" className="navbar-link">
                         PROJECTS

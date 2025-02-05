@@ -8,7 +8,7 @@
   background-color: #FEDCC8;
   perspective: 500px; /* Adjust to control the depth effect */
   transform-style: preserve-3d;
-  height: 200vh; /* Keep it to the full viewport height */
+  height: 300vh; /* Keep it to the full viewport height */
   width: 100vw; /* Full viewport width */
   position: relative;
   overflow: hidden; /* Hide overflow outside the container */
@@ -33,20 +33,6 @@
   max-height: 100%;
   object-fit: cover; /* Make sure the images cover the layer without stretching */
 }
-
-/* Mask element to cover anything below the parallax */
-.parallax__mask {
-  position: absolute;
-  top: 60vh; /* Adjust to where you want to start covering the reflection */
-  left: 0;
-  right: 0;
-  height: 140vh; /* Enough to cover from 'top' down to the bottom */
-  background: #2d112b; /* Same background color you want below the images */
-  z-index: 2; /* Ensure it’s on top of the images */
-}
-
-
-
 
 /* Adding some transitions to make the parallax smoother */
 .parallax__layer {
