@@ -1,8 +1,11 @@
 .p2 {
-  width: 100%;
+  width: 100vw;
   position: relative;
-  background-color: #1E2F3E;  
+  /* background-color: #1E2F3E;  
+  background-color: #080A0D; */
+  background-color: #161D25;
   z-index: 0;
   transition: transform 0.5s ease-in-out; /* Smooth transition */
   margin-bottom: -75vh; /* adjust this for the gap */ 
 }
+

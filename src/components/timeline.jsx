@@ -20,50 +20,54 @@ const TimeLine = () => {
     // Styling for the card content with text wrapping
     const CustomPaper = styled(Paper)(({ theme }) => ({
         backgroundColor: "#66789F",
-        color: "rgb(231, 232, 229)", // Soft white text
+        color: "rgb(231, 232, 229)",
         padding: theme.spacing(2),
-        borderRadius: theme.spacing(1.5), // Rounded corners
-        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)", // Subtle shadow
-        position: "relative", // To add arrow
-        whiteSpace: "normal", // Allow text to wrap within the card
-        wordWrap: "break-word", // Ensure long words break and wrap
+        borderRadius: theme.spacing(1.5),
+        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
+        position: "relative",
+        whiteSpace: "normal",
+        wordWrap: "break-word",
         "&:before": {
-            content: '""',
-            position: "absolute",
-            top: "10%",
-            left: "-10px",
-            width: "0",
-            height: "0",
-            borderStyle: "solid",
-            borderWidth: "10px 10px 10px 0",
-            borderColor: "transparent #3a3b5a transparent transparent", // Matches the background
+          content: '""',
+          position: "absolute",
+          top: "10%",
+          left: "-10px",
+          width: "0",
+          height: "0",
+          borderStyle: "solid",
+          borderWidth: "10px 10px 10px 0",
+          borderColor: "transparent #3a3b5a transparent transparent",
         },
-        transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
+        transition: "transform 0.3s ease, box-shadow 0.3s ease",
         ":hover": {
-            transform: "scale(1.01)", // Slight zoom-in on hover
-            boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
+          transform: "scale(1.01)",
+          boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
         },
+      
+        /* Default width: 60% */
         width: "60%",
         textAlign: "left",
-    }));
+      
+        /* Media query: At 1600px and up => set width to 600px */
+        "@media (min-width:1600px)": {
+            width: "600px",
+        },
+        "@media (max-width: 1599px)": { 
+            width: "80%"
+        }
 
-    const RightArrowPaper = styled(CustomPaper)({
+
+      }));
+      
+      const RightArrowPaper = styled(CustomPaper)({
         "&:before": {
-            left: "auto",
-            right: "-10px", // Arrow points to the right
-            borderWidth: "10px 0 10px 10px",
-            borderColor: "transparent transparent transparent #3a3b5a",
+          left: "auto",
+          right: "-10px", // Arrow points to the right
+          borderWidth: "10px 0 10px 10px",
+          borderColor: "transparent transparent transparent #3a3b5a",
         },
-        transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
-        ":hover": {
-            transform: "scale(1.01)", // Slight zoom-in on hover
-            boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
-        },
-        width: "60%",
-        textAlign: "left",
         marginLeft: "auto",
-
-    });
+      });
 
     // This hook returns true when the viewport width is at least 1000px.
     const isLargeScreen = useMediaQuery("(min-width:1000px)");
@@ -77,60 +81,60 @@ const TimeLine = () => {
     return (
 
         <>
-            <motion.div
-                initial={{ x: 0, opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true, amount: 0.8 }}
-            >
-                <div id="experience">
-                    <For each={["subtle"]}>
-                        {(variant) => (
-                            <Card.Root
-                                style={{
-                                    width: window.innerWidth < 660 ? "80%" : "40%", // Adjust the width dynamically
-                                    margin: "0 auto" // Optional: Center the element for smaller screens
-                                }}
-                                variant={variant}
-                                key={variant}
-                                css={{
-                                    border: "2px solid rgba(235, 235, 235, 0.6)", // Outline
-                                    backgroundColor: "#2B3F57",
-                                    borderRadius: "8px", // Rounded corners
-                                    transition:
-                                        "transform 0.3s ease, box-shadow 0.3s ease", // Smooth hover effect
-                                    "&:hover": {
-                                        transform: "scale(1.02)", // Slight zoom on hover
-                                        boxShadow:
-                                            "0 0 10px rgba(255, 255, 255, 0.2)", // Shadow on hover
-                                    },
-                                }}
-                            >
-                                <Card.Body
-                                    gap="2"
-                                    css={{ textAlign: "center" }}
-                                >
-                                    <Card.Title
-                                        mb="2"
-                                        css={{
-                                            fontSize: "35px",
-                                            fontWeight:
-                                                "bold" /* Make the text bold */,
-                                            color: "white" /* White text color for contrast */,
-                                            letterSpacing:
-                                                "3px" /* Add spacing between letters */,
-                                        }}
-                                    >
-                                        Experience
-                                    </Card.Title>
-                                </Card.Body>
-                            </Card.Root>
-                        )}
-                    </For>
-                </div>
-            </motion.div>
+            
             <section className="timeline">
-                
+                <motion.div
+                    initial={{ x: 0, opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                >
+                    <div id="experience" style={{ marginBottom: "20px" }}>
+                        <For each={["subtle"]}>
+                            {(variant) => (
+                                <Card.Root
+                                    style={{
+                                        width: window.innerWidth < 660 ? "80%" : "40%", // Adjust the width dynamically
+                                        margin: "0 auto" // Optional: Center the element for smaller screens
+                                    }}
+                                    variant={variant}
+                                    key={variant}
+                                    css={{
+                                        border: "2px solid rgba(235, 235, 235, 0.6)", // Outline
+                                        backgroundColor: "#2B3F57",
+                                        borderRadius: "8px", // Rounded corners
+                                        transition:
+                                            "transform 0.3s ease, box-shadow 0.3s ease", // Smooth hover effect
+                                        "&:hover": {
+                                            transform: "scale(1.02)", // Slight zoom on hover
+                                            boxShadow:
+                                                "0 0 10px rgba(255, 255, 255, 0.2)", // Shadow on hover
+                                        },
+                                    }}
+                                >
+                                    <Card.Body
+                                        gap="2"
+                                        css={{ textAlign: "center" }}
+                                    >
+                                        <Card.Title
+                                            mb="2"
+                                            css={{
+                                                fontSize: "35px",
+                                                fontWeight:
+                                                    "bold" /* Make the text bold */,
+                                                color: "white" /* White text color for contrast */,
+                                                letterSpacing:
+                                                    "3px" /* Add spacing between letters */,
+                                            }}
+                                        >
+                                            Experience
+                                        </Card.Title>
+                                    </Card.Body>
+                                </Card.Root>
+                            )}
+                        </For>
+                    </div>
+                </motion.div>
                 {/* Item 1 */}
                 <Timeline
                     position={timelinePosition}
@@ -149,6 +153,7 @@ const TimeLine = () => {
                             "@media (max-width: 1000px)": {
                                 flexDirection: "row",
                                 alignItems: "flex-start",
+                                width: "100%",
                             },
                         }}
                     >
@@ -202,6 +207,9 @@ const TimeLine = () => {
                                             transform: "scale(1.01)", // Slight zoom-in on hover
                                             boxShadow:
                                                 "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
+                                        },
+                                        "@media (max-width: 1000px)": {
+                                            width: "100%"
                                         },
                                     }}
                                 >
@@ -294,6 +302,11 @@ const TimeLine = () => {
                                 viewport={{ once: true, amount: 0.2 }}
                             >
                                 <PaperComponent /* block level component, upper level text aligns will not affect */
+                                    sx ={{ 
+                                        "@media (max-width: 1000px)": {
+                                            width: "100%"
+                                        },
+                                    }}
                                 >
                                     <Typography
                                         variant="h6"
@@ -383,6 +396,9 @@ const TimeLine = () => {
                                             boxShadow:
                                                 "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
                                         },
+                                        "@media (max-width: 1000px)": {
+                                            width: "100%"
+                                        },
                                     }}
                                 >
                                     <Typography
@@ -420,6 +436,7 @@ const TimeLine = () => {
                             "@media (max-width: 1000px)": {
                                 flexDirection: "row",
                                 alignItems: "flex-start",
+                                width: "100%", 
                             },
                         }}
                     >
@@ -466,6 +483,10 @@ const TimeLine = () => {
                                             boxShadow:
                                                 "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
                                         },
+                                        "@media (max-width: 1000px)": {
+                                            width: "100%"
+                                        },
+                                        
                                     }}
                                 >
                                     <Typography

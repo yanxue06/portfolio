@@ -1,6 +1,6 @@
 .projects-section {
   position: relative; 
-  max-width: 800px;
+  width: 70%; 
 
   margin: 0 auto;
   padding: 1rem; /* Equal padding on all sides */
@@ -13,27 +13,25 @@
 }
 
 .projects-card {
+  min-width: 50%; 
   display: flex;
   flex-wrap: wrap;
   /* background-color: rgb(57, 67, 85);  */
-  overflow: hidden;
-  border-radius: 20px; /* Or a percentage like 30% for a pill-like effect */
 }
 
 .projects-image {
-  min-width: 300px; 
+  
   flex: 1;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Prevents image overflow */
 }
 
 .projects-image img {
   width: 100%; /* Makes the image fill the width */
   height: 100%; /* Ensures it fills the height */
-  object-fit: cover; /* Ensures the image maintains aspect ratio */
+  object-fit: contain; /* Ensures the image maintains aspect ratio */
 }
 
 /* Right side text container */

@@ -9,7 +9,6 @@ export default function Navbar() {
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY);
-            console.log(window.scrollY);
             
             // Toggle the 'scrolled' class on the body
             if (window.scrollY > 50) {

@@ -85,6 +85,7 @@ h4 {
   width: 100%;
   background-image: url('../images/backgrounds/b4.svg');
   background-size: cover; 
+  background-position: center;
   position: relative;
   z-index: 0;
   margin-bottom: 0; 
@@ -165,7 +166,7 @@ a {
 .col {
   display: flex; 
   flex-direction: column; 
-  gap: 50px; 
+  gap: 80px; 
 }
 
 /* Contacts !! */ 
