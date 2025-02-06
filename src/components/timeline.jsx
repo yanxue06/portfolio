@@ -19,13 +19,12 @@ import {useMediaQuery } from "@mui/material";
 const TimeLine = () => {
     // Styling for the card content with text wrapping
     const CustomPaper = styled(Paper)(({ theme }) => ({
-        backgroundColor: "rgba(30, 47, 62, 255)",
+        backgroundColor: "#66789F",
         color: "rgb(231, 232, 229)", // Soft white text
         padding: theme.spacing(2),
         borderRadius: theme.spacing(1.5), // Rounded corners
         boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)", // Subtle shadow
         position: "relative", // To add arrow
-        width: "100%", // Allow the card to take up full width
         whiteSpace: "normal", // Allow text to wrap within the card
         wordWrap: "break-word", // Ensure long words break and wrap
         "&:before": {
@@ -44,7 +43,7 @@ const TimeLine = () => {
             transform: "scale(1.01)", // Slight zoom-in on hover
             boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
         },
-        width: "100%",
+        width: "60%",
         textAlign: "left",
     }));
 
@@ -60,8 +59,10 @@ const TimeLine = () => {
             transform: "scale(1.01)", // Slight zoom-in on hover
             boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
         },
-        width: "100%",
+        width: "60%",
         textAlign: "left",
+        marginLeft: "auto",
+
     });
 
     // This hook returns true when the viewport width is at least 1000px.
@@ -94,7 +95,7 @@ const TimeLine = () => {
                                 key={variant}
                                 css={{
                                     border: "2px solid rgba(235, 235, 235, 0.6)", // Outline
-                                    backgroundColor: "rgb(22, 29, 37, 255)",
+                                    backgroundColor: "#2B3F57",
                                     borderRadius: "8px", // Rounded corners
                                     transition:
                                         "transform 0.3s ease, box-shadow 0.3s ease", // Smooth hover effect
@@ -382,7 +383,6 @@ const TimeLine = () => {
                                             boxShadow:
                                                 "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
                                         },
-                                        width: "100%",
                                     }}
                                 >
                                     <Typography
@@ -466,7 +466,6 @@ const TimeLine = () => {
                                             boxShadow:
                                                 "0 0 6px 10px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
                                         },
-                                        width: "100%",
                                     }}
                                 >
                                     <Typography

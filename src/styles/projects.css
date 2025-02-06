@@ -4,9 +4,9 @@
   top: 60vh; /* Adjust to where you want to start covering the reflection */
   left: 0;
   right: 0;
-  height: 260vh; /* Enough to cover from 'top' down to the bottom */
+  height: 280vh; /* Enough to cover from 'top' down to the bottom */
   background: #2d112b; /* Same background color you want below the images */
-  z-index: 2; /* Ensure it’s on top of the images */
+  z-index: 1; /* Ensure it’s on top of the images */
 }
 
 .heading {
@@ -16,6 +16,11 @@
   justify-content: center; 
   color: rgb(24, 24, 24); 
   z-index: 999; 
+}
+
+.projects { 
+  padding-top: 10%; 
+  padding-bottom: 10%; 
 }
 
 .projectsRow {

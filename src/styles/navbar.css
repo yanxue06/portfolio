@@ -28,7 +28,7 @@
     display: flex;
     justify-content: space-between; 
     align-items: center;
-    padding: 2% 4%; 
+    padding: 1% 4%; 
     width: 100%;
     box-sizing: border-box; /* Ensure padding is included in width calculation */
   }
@@ -65,33 +65,19 @@
     background-color: rgba(255, 255, 255, 0.2);
   }
 
-@media only screen and (max-width: 1213px) {
-  .navbar-logo a {
-    font-size: 1.3rem; 
-  }
-  .navbar-link {
-    font-size: 1rem; 
-    padding: 5px 8px;
-  }
-}
 
-@media only screen and (max-width: 1024px) {
-  .navbar-link {
-    padding: 5px 3px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 2000px) {
   .navbar-logo a {
     font-size: 1rem; 
   }
+
   .navbar-link {
-    font-size: 0.9rem; 
-    padding: 5px 4px;
+    font-size: 0.8rem; 
   }
 }
 
-@media only screen and (max-width: 576px) {
+
+@media only screen and (max-width: 750px) {
   .navbar-link { 
     font-size: 0.65rem; 
   }
@@ -104,19 +90,7 @@
   }
 }
 
-@media only screen and (max-width: 576px) {
-  .navbar-links {
-    gap: 8px;
-    font-size: 0.8rem;
-  }
-  .navbar-container {
-    justify-content: space-between;
-    padding: 5px;
-  }
-  .navbar-logo a {
-    font-size: 1rem;
-  }
-}
+
 
 @media only screen and (max-width: 400px) {
   .navbar-links {

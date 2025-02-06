@@ -11,10 +11,7 @@ import "../styles/stars.scss";
 export default function intro() {
     return (
         <section id="home" className="p1">
-            {/* <div className="animation-wrapper">
-                <div className="particle particle-1"></div>
-                <div className="particle particle-2"></div>
-            </div> */}
+   
             <div class="stars">
                 <div class="star"></div>
                 <div class="star"></div>

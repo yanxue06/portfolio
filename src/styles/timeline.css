@@ -1,8 +1,7 @@
 .p2 {
-  min-height: 260vh; /* Make p2 taller for a noticeable scroll effect */
   width: 100%;
   position: relative;
-  background-color: rgb(3, 12, 28); 
+  background-color: #1E2F3E;  
   z-index: 0;
   transition: transform 0.5s ease-in-out; /* Smooth transition */
   margin-bottom: -75vh; /* adjust this for the gap */ 

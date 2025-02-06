@@ -22,7 +22,7 @@ export default function About() {
                     overflow="hidden"
                     css={{
                         width: "85%", // Adjusted to 85% of the screen width
-                        backgroundColor: "rgb(22, 29, 37, 255)",
+                        backgroundColor: "#2B3F57", 
                         maxWidth: "1200px",
                         boxShadow: "0 0 2px 1px rgba(235, 235, 235, 0.4)",
                         transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -79,6 +79,7 @@ export default function About() {
                             </Card.Title>
                             <Card.Description
                                 css={{
+                                    color: "rgb(220, 229, 251)", 
                                     width: "90%", 
                                     fontSize: "clamp(18px, 2vw, 25px)",
                                     lineHeight: "1.4",
@@ -113,14 +114,14 @@ export default function About() {
                         >
                             <Button
                                 color="white"
-                                backgroundColor="rgba(54, 81, 114, 255)"
+                                backgroundColor="66789F"
                                 _hover={{ bg: "rgba(141, 140, 178, 0.79)" }}
                             >
                                 Gallery
                             </Button>
                             <Button
                                 color="white"
-                                backgroundColor="rgba(54, 81, 114, 255)"
+                                backgroundColor="66789F"
                                 _hover={{ bg: "rgba(141, 140, 178, 0.79)" }}
                             >
                                 Blog

@@ -1,29 +1,28 @@
 .projects-section {
-  
   position: relative; 
   max-width: 800px;
 
   margin: 0 auto;
   padding: 1rem; /* Equal padding on all sides */
 
-  background-color: rgb(231, 231, 223); 
+  background-color: #2B3F57; 
   
   border-radius: 12px;
-
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 90px; 
 }
 
 .projects-card {
   display: flex;
   flex-wrap: wrap;
-  background-color: #281a1a; /* Dark warm brown */
+  /* background-color: rgb(57, 67, 85);  */
   overflow: hidden;
+  border-radius: 20px; /* Or a percentage like 30% for a pill-like effect */
 }
 
 .projects-image {
   min-width: 300px; 
   flex: 1;
-  background-color: #9b4444; /* Deep rust red to match the final screen */
 
   display: flex;
   align-items: center;
@@ -48,14 +47,14 @@
 
 /* Project name/title in burnt orange */
 .project-name {
-  color: #e76f51;
+  color: white;  
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
 /* Description text */
 .project-description {
-  color: #f4e3d7; /* Warm light beige */
+  color: rgb(220, 229, 251); 
   width: 100%; 
   font-size: 1rem;
   line-height: 1.6;
@@ -65,9 +64,9 @@
 /* “See more” button */
 .project-button {
   align-self: flex-start;
-  background-color: #9b4444; /* Darker orange-red */
-  color: #f4e3d7;
-  border: 1px solid #f4a261;
+  background-color: rgb(95, 112, 140); 
+  color: rgb(220, 229, 251); 
+  border: 1px solid #598bcd;
   border-radius: 4px;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
@@ -76,7 +75,7 @@
 }
 
 .project-button:hover {
-  background-color: #e76f51; /* Lighter burnt orange */
-  color: #281a1a;
+  background-color: #a2dafbda; /* Lighter burnt orange */
   transform: scale(1.05);
+  color: rgb(220, 229, 251); 
 }
