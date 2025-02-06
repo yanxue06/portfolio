@@ -98,7 +98,9 @@ export default function Projects() {
                                         visualize, and improve their spending
                                         habits. It includes login, registration, and
                                         full CRUD functionality for expense
-                                        tracking.
+                                        tracking. I created this app appealing to its ability 
+                                        for visually spending through more than just numbers, 
+                                        but also extending to graphs. 
                                     </Card.Description>
 
                                     <HStack mt={4} spacing={3} flexWrap="wrap" >
@@ -204,8 +206,13 @@ export default function Projects() {
                                 >
                                     Job Scraper with AI integration for tailored
                                     job matching, resume suggesions, and cover
-                                    letter generation. Saves all scraped key scraped info
-                                    into an Excel file, so you can keep tabs on your applications. 
+                                    letter generation. The application saves all scraped
+                                    key scraped info into an Excel file, so you can keep 
+                                    tabs on your applications. As a Waterloo Student, I've 
+                                    always dreaded the process of reading over hundreds of 
+                                    job posting in hopes of a seeking a co-op every 4 
+                                    months - this app has allowed me to save both time and keep
+                                    track of the applications I've saved! 
                                 </Card.Description>
 
                                 <HStack mt={4} spacing={3} flexWrap="wrap">
@@ -312,8 +319,11 @@ export default function Projects() {
                                         color="gray.300"
                                         width="100%"
                                     >
-                                        Guitar, but virtual! Integrates OpenCV and
-                                        MediaPipe ...
+                                        This virtual guitar maps you finger movemnet to guitar 
+                                        sounds such that guitarists or new learners can practice
+                                        anytime, anywhere, at no cost at all! Along with my school program, 
+                                        I have to move every 4 months, and bringing my guitar around is not 
+                                        always convenient, so the virtual guitar serves a great purpose to me. 
                                     </Card.Description>
 
                                     <HStack mt={4} spacing={3} flexWrap="wrap" >
@@ -402,7 +412,7 @@ export default function Projects() {
                                         fontWeight="bold"
                                         color="white"
                                     >
-                                        Virtual Guitar
+                                        CSV Data Normalizer 
                                     </Card.Title>
                                     <Card.Description
                                         fontSize="lg"
@@ -410,8 +420,7 @@ export default function Projects() {
                                         color="gray.300"
                                         width="100%"
                                     >
-                                        Guitar, but virtual! Integrates OpenCV and
-                                        MediaPipe ...
+                                        Normalizing columns of data... 
                                     </Card.Description>
 
                                     <HStack mt={4} spacing={3} flexWrap="wrap" >
