@@ -109,6 +109,7 @@ export default function Parallax() {
         <div className="parallax__mask">
           <Projects />
         </div>
+        
       </div>
 
       <Contacts/> 

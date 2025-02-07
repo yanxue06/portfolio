@@ -236,8 +236,9 @@ const TimeLine = () => {
                                             width: "100%",
                                         }}
                                     >
-                                        - Developing web applications to serve
-                                        over 1,000,000 people
+                                        - Developed a prototype autonomous robot control system using <b>React</b>, <b>Flask</b>, and <b>Python</b>, integrating <b>15+ </b>
+                                        Robot endpoints to support real-time navigation, object avoidance, and stock retrieval for over <b>50,000+ </b>
+                                        warehouse items.
                                     </Typography>
                                 </CustomPaper>
                             </motion.div>
@@ -328,8 +329,10 @@ const TimeLine = () => {
                                         variant="body2"
                                         sx={{ marginTop: "8px", width: "100%" }}
                                     >
-                                        - Created a backup driver to ensure data
-                                        handling during power loss.
+                                        - Created a backup driver to ensure data handling during power loss.   
+                                        <br />
+                                        - Implemented an ADC driver with C firmware and I2C communication to read and convert temperature
+                                        readings from raw voltage values.
                                     </Typography>
                                 </PaperComponent>
                             </motion.div>
@@ -422,8 +425,7 @@ const TimeLine = () => {
                                         variant="body2"
                                         sx={{ marginTop: "8px", width: "100%" }}
                                     >
-                                        - Automating workflows with Python
-                                        scripts.
+                                        - Developed Python Scripts to automate company workflows, including ping testing and data cleaning.
                                     </Typography>
                                 </CustomPaper>
                             </motion.div>
@@ -511,10 +513,14 @@ const TimeLine = () => {
                                     </Typography>
                                     <Typography
                                         variant="body2"
-                                        sx={{ marginTop: "8px" }}
+                                        sx={{ 
+                                            marginTop: "8px", 
+                                            width: "100%"
+                                        }}
                                     >
-                                        - Taught children aerodynamics and
-                                        leadership skills.
+                                        - Collaborated with staff to oversee STEM lessons and icebreakers
+                                        <br/> 
+                                        - Constructed a curriculum on Aerodynamics for 20+ youth aerodynamics 
                                     </Typography>
                                 </PaperComponent>
                             </motion.div>

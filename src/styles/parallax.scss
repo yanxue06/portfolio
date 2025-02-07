@@ -10,7 +10,8 @@
   transform-style: preserve-3d;
   width: 100vw; /* Full viewport width */
   position: relative;
-  overflow: hidden; /* Hide overflow outside the container */
+  overflow: hidden;
+  height: auto; 
 }
 
 /* Parallax layers */
