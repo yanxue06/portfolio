@@ -25,9 +25,7 @@ export default function Projects() {
     // }));
     return (
         <section id="projects" className="p3">
-            <div className="projects">
                 <div className="projectsCol">
-                
                     <div className="projectsRow">
                         <motion.div
                             initial={{ x: 0, opacity: 0 }}
@@ -453,7 +451,6 @@ export default function Projects() {
                         </motion.div>
                     </div>
                 </div>
-            </div>
         </section>
     );
 }
