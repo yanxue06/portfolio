@@ -28,7 +28,7 @@ export default function Gallery() {
       <div className="photos">
         under construction... 
       </div>
-      <div className="gallery"> 
+      {/* <div className="gallery"> 
         <img src={g1} alt="1"/> 
         <img src={g2} alt="2"/> 
         <img src={g3} alt="3"/> 
@@ -41,7 +41,7 @@ export default function Gallery() {
         <img src={g10} alt="10"/> 
         <img src={g11} alt="11"/> 
         <img src={g12} alt="12"/> 
-      </div> 
+      </div>  */}
       <Contacts/> 
     </div>
     
