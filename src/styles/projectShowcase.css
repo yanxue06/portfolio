@@ -1,106 +1,24 @@
-.projects-section {
-  position: relative; 
-  width: 70%; /* Increased from 70% to give more room on smaller screens */
-  margin: 0 auto;
-  background-color: #2B3F57; 
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+.projects-showcase {
+  display: flex; 
+  justify-content: center;
   margin-bottom: 90px; 
 }
 
-.projects-card {
-  min-width: 50%; 
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  /* background-color: rgb(57, 67, 85);  */
+/* Override Chakra UI button styles */
+.project-showcase-button {
+  background-color: rgb(102, 120, 159) !important;
+  color: rgb(220, 229, 251) !important;
+  text-decoration: none !important;
+  font-size: clamp(0.9rem, 1.5vw, 1rem) !important;
+  padding: 0.75rem 1.5rem !important;
 }
 
-.projects-image {
-  flex: 1;
-  min-width: 300px; /* Minimum width before wrapping */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.project-showcase-button:hover {
+  background-color: rgba(141, 140, 178, 0.79) !important;
 }
 
-.projects-image img {
-  width: 100%;
-  height: auto; /* Changed from 100% to auto */
-  max-height: 400px;
-  object-fit: contain; /* Ensures the image maintains aspect ratio */
-}
-
-/* Right side text container */
-.projects-content {
-  flex: 1;
-  min-width: 300px; /* Minimum width before wrapping */
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Project name/title in burnt orange */
-.project-name {
-  color: white;  
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-/* Description text */
-.project-description {
-  color: rgb(220, 229, 251); 
-  width: 100%; 
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
-/* “See more” button */
-.project-button {
-  align-self: flex-start;
-  background-color: rgb(95, 112, 140); 
-  color: rgb(220, 229, 251); 
-  border: 1px solid #598bcd;
-  border-radius: 4px;
-  padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.project-button:hover {
-  background-color: #a2dafbda; /* Lighter burnt orange */
-  transform: scale(1.05);
-  color: rgb(220, 229, 251); 
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .projects-section {
-    width: 95%;
-    padding: 0.5rem;
-  }
-
-  .projects-card {
-    flex-direction: column;
-  }
-
-  .projects-content {
-    padding: 1rem;
-  }
-
-  .project-name {
-    font-size: 1.5rem;
-  }
-
-  .project-description {
-    font-size: 0.9rem;
-  }
-
-  .project-button {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+@media (max-width: 780px) {
+  .projects-showcase {
+    padding-top: 60px;
   }
 }

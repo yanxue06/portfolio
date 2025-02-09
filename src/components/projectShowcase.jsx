@@ -1,42 +1,118 @@
 import React from 'react';
-import '../styles/projectShowcase.css';
 import { motion } from "framer-motion";
-import projectPic from "../images/projects/p3.svg"
+import projectPic from "../images/projects/p3.svg";
+import { Box, Button, Card, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-
+import '../styles/projectShowcase.css';
 
 function ProjectShowcase() {
   return (
-    <motion.div
+    <section className="projects-showcase">
+      <motion.div
         initial={{ x: -40, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true, amount: 0.2 }}
-    >
-        <section className="projects-section">
-
-        {/* Project card container */}
-        <div className="projects-card">
-            {/* Left column: pink “image” placeholder */}
-            <div className="projects-image">
-                <img src={projectPic} alt="Project" />
-            </div>
-
-
-            {/* Right column: title, description, button */}
-            <div className="projects-content">
-            <h3 className="project-name"> Projects </h3>
-            <p className="project-description">
-                I've made over 12 projects in the past 6 months, each serving
-                their own distinct purpose!
-            </p>
-            <button className="project-button">
-                <Link to="/projects" className="project-link">See more ›</Link>
-            </button>
-            </div>
-        </div>
-        </section>
-    </motion.div>
+      >
+        <Card.Root
+          overflow="hidden"
+          css={{
+            width: "85%",
+            backgroundColor: "#2B3F57",
+            maxWidth: "1200px",
+            boxShadow: "0 0 2px 1px rgba(235, 235, 235, 0.4)",
+            transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "row",
+            "&:hover": {
+              transform: "scale(1.02)",
+              boxShadow: "0 0 5px 5px rgba(147, 143, 143, 0.5)",
+            },
+            "@media (max-width: 780px)": {
+              flexDirection: "column",
+              width: "90%",
+            },
+          }}
+        >
+          <Image
+            objectFit="cover"
+            css={{
+              width: "40%",
+              height: "auto",
+              borderRadius: "8px",
+              marginRight: "16px",
+              "@media (max-width: 780px)": {
+                width: "100%",
+                marginRight: 0,
+                marginBottom: "20px",
+                objectFit: "cover",
+                objectPosition: "center",
+              },
+            }}
+            src={projectPic}
+            alt="Project Preview"
+          />
+          <Box css={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            "@media (max-width: 780px)": {
+              padding: "0 12px"
+            }
+          }}>
+            <Card.Body>
+              <Card.Title
+                mb="2"
+                css={{
+                  fontSize: "clamp(24px, 3vw, 28px)",
+                  fontWeight: "bold",
+                }}
+              >
+                Projects
+              </Card.Title>
+              <Card.Description
+                css={{
+                  color: "rgb(220, 229, 251)",
+                  width: "90%",
+                  fontSize: "clamp(18px, 2vw, 25px)",
+                  lineHeight: "1.4",
+                  maxWidth: "100%",
+                  "@media (max-width: 780px)": {
+                    fontSize: "20px"
+                  }
+                }}
+              >
+                I've made over 12 projects in the past 6 months. Throughout my first few projects, my goal was just to learn. But, with my  
+                recent projects, I've been able to create tools that solve real-world problems, primarily focusing on productivity.
+              </Card.Description>
+            </Card.Body>
+            <Card.Footer
+              css={{
+                marginTop: "16px",
+                display: "flex",
+                gap: "8px",
+                "@media (max-width: 780px)": {
+                  flexWrap: "wrap",
+                  justifyContent: "flex-start",
+                  marginBottom: "16px"
+                }
+              }}
+            >
+              <Button
+                as={Link}
+                to="/projects"
+                className="project-showcase-button"
+                _hover={{ bg: "rgba(141, 140, 178, 0.79)" }}
+              >
+                <span style={{ color: "rgb(220, 229, 251)" }}>See more ›</span>
+              </Button>
+            </Card.Footer>
+          </Box>
+        </Card.Root>
+      </motion.div>
+    </section>
   );
 }
 
