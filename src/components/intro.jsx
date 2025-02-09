@@ -32,6 +32,10 @@ export default function intro() {
                 <div class="star"></div>
                 <div class="star"></div>
                 <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
             </div>
 
             <motion.div

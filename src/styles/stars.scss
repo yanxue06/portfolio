@@ -38,7 +38,7 @@
     background: linear-gradient(45deg, currentColor, transparent);
     border-radius: 50%;
     filter: drop-shadow(0 0 6px currentColor);
-    transform: translate3d(115em, 0, 0);
+    transform: translate3d(140vw, 0, 0);
     animation: fall var(--fall-duration) var(--fall-delay) linear infinite, tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
     
     @include sp-layout {
