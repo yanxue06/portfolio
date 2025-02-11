@@ -176,12 +176,14 @@ const TimeLine = () => {
                             </TimelineDot>
                             <TimelineConnector 
                               sx={{
+                                backgroundColor: "rgb(120, 134, 167)",
                                 "@media (max-width: 1000px)": {
-                                  display: "block",
-                                  height: "80px", // adjust this value as needed
-                                  backgroundColor: "rgb(120, 134, 167)",
-                                  margin: "0 auto", // centers the connector
+                                  minHeight: "120px",
                                 },
+                                
+                                "@media (max-width: 775px)": {
+                                  minHeight: "140px",
+                                }
                               }}
                             />
                         </TimelineSeparator>
@@ -272,15 +274,24 @@ const TimeLine = () => {
                             </TimelineDot>
                             <TimelineConnector
                                 sx={{
-                                "@media (max-width: 1000px)": {
+                                    "@media (max-width: 1000px)": {
+                                        // Let it grow if needed, but always have at least 50px height
+                                        minHeight: "130px",
+                                        flexGrow: 1,
+                                        backgroundColor: "rgb(120, 134, 167)",
+                                        // Ensure it stretches vertically
+                                        alignSelf: "stretch",
+                                        margin: "0 auto",
+                                    },
+                                    "@media (max-width: 800px)": {
                                     // Let it grow if needed, but always have at least 50px height
-                                    minHeight: "100px",
+                                    minHeight: "150px",
                                     flexGrow: 1,
                                     backgroundColor: "rgb(120, 134, 167)",
                                     // Ensure it stretches vertically
                                     alignSelf: "stretch",
                                     margin: "0 auto",
-                                },
+                                    },
                                 }}
                             />
                         </TimelineSeparator>
@@ -368,10 +379,8 @@ const TimeLine = () => {
                             <TimelineConnector
                              sx={{
                                 "@media (max-width: 1000px)": {
-                                  display: "block",
-                                  height: "80px", // adjust this value as needed
+                                  height: "100px", // adjust this value as needed
                                   backgroundColor: "rgb(120, 134, 167)",
-                                  margin: "0 auto", // centers the connector
                                 },
                               }}
                             />
