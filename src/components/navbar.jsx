@@ -5,6 +5,7 @@ import "../styles/navbar.css";
 
 export default function Navbar() {
     const [scrollY, setScrollY] = useState(0);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,6 +23,15 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
+    // Add this function to handle link clicks
+    const handleLinkClick = () => {
+        setIsMobileMenuOpen(false);
+    };
+
     return (
         <motion.nav
             className={`navbar ${scrollY > 0 ? "navbar-scrolled" : ""}`}
@@ -32,12 +42,12 @@ export default function Navbar() {
                 
                 {/* Logo */}
                 <div className="navbar-logo">
-                    <a className="navbar-link" href="/">
+                    <Link to="/" className="navbar-link" onClick={handleLinkClick}>
                         Yan
-                    </a>
+                    </Link>
                 </div>
 
-                {/* Links */}
+                {/* Desktop Links */}
                 <div className="navbar-links">
                     <Link to="/home" className="navbar-link">
                         HOME
@@ -51,7 +61,32 @@ export default function Navbar() {
                         GALLERY
                     </Link>
 
-                    <a className="navbar-link" href="#contact">
+                    <a href="#contact" className="navbar-link">
+                        CONTACT
+                    </a>
+                </div>
+
+                {/* Hamburger Menu Button */}
+                <button 
+                    className="hamburger-menu" 
+                    onClick={toggleMobileMenu}
+                    aria-label="Toggle menu"
+                >
+                    ☰
+                </button>
+
+                {/* Mobile Menu */}
+                <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+                    <Link to="/home" className="navbar-link" onClick={handleLinkClick}>
+                        HOME
+                    </Link>
+                    <Link to="/projects" className="navbar-link" onClick={handleLinkClick}>
+                        PROJECTS
+                    </Link>
+                    <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
+                        GALLERY
+                    </Link>
+                    <a href="#contact" className="navbar-link" onClick={handleLinkClick}>
                         CONTACT
                     </a>
                 </div>
