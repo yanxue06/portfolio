@@ -26,7 +26,7 @@
     --star-tail-length: 6em;
     --star-tail-height: 2px;
     --star-width: calc(var(--star-tail-length) / 6);
-    --fall-duration: 9s;
+    --fall-duration: 11s;
     --tail-fade-duration: var(--fall-duration);
   
     position: absolute;
@@ -38,8 +38,8 @@
     background: linear-gradient(45deg, currentColor, transparent);
     border-radius: 50%;
     filter: drop-shadow(0 0 6px currentColor);
-    transform: translate3d(140vw, 0, 0);
-    animation: fall var(--fall-duration) var(--fall-delay) linear infinite, tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
+    transform: translate3d(200vw, 0, 0);
+    animation: fall var(--fall-duration) var(--fall-delay) linear infinite;
     
     @include sp-layout {
       // For mobile performance, tail-fade animation will be removed QAQ
@@ -50,7 +50,7 @@
       &:nth-child(#{$i}) {
         --star-tail-length: #{random_range(500em, 750em) / 100};
         --top-offset: #{random_range(0vh, 10000vh) / 100};
-        --fall-duration: #{random_range(6000, 12000s) / 1000};
+        --fall-duration: #{random_range(10000, 20000s) / 1000};
         --fall-delay: #{random_range(0, 10000s) / 1000};
       }
     }
@@ -77,8 +77,11 @@
   }
   
   @keyframes fall {
+    from {
+      transform: translate3d(200vw, 0, 0);
+    }
     to {
-      transform: translate3d(-30em, 0, 0);
+      transform: translate3d(-100vw, 0, 0);
     }
   }
   
