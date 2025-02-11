@@ -57,9 +57,9 @@ export default function Navbar() {
                         PROJECTS
                     </Link>
 
-                    <Link to="/gallery" className="navbar-link">
+                    {/* <Link to="/gallery" className="navbar-link">
                         GALLERY
-                    </Link>
+                    </Link> */}
 
                     <a href="#contact" className="navbar-link">
                         CONTACT
@@ -83,9 +83,9 @@ export default function Navbar() {
                     <Link to="/projects" className="navbar-link" onClick={handleLinkClick}>
                         PROJECTS
                     </Link>
-                    <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
+                    {/* <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
                         GALLERY
-                    </Link>
+                    </Link> */}
                     <a href="#contact" className="navbar-link" onClick={handleLinkClick}>
                         CONTACT
                     </a>
