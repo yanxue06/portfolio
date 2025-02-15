@@ -3,6 +3,7 @@ import "../styles/parallax.scss"; // Ensure your build system compiles SCSS
 import "../styles/projects.css";
 import Projects from "../components/projects";
 import Contacts from '../components/contacts';
+import "../styles/stars.scss";
 
 export default function Parallax() {
   useEffect(() => {
@@ -22,10 +23,36 @@ export default function Parallax() {
 
   return (
     <div className="p3"> 
-      <div className="heading">PROJECTS</div>
-     <div className="parallax">
-        
+      {/* Multiple black star sections above parallax */}
+      {[0, 1, 2].map((index) => (
+        <div key={`top-stars-${index}`} className="stars" style={{ 
+          position: 'absolute',
+          top: `${index * 60}vh`,
+          left: 0,
+          width: '100%',
+          height: '60vh',
+          zIndex: 1,
+          pointerEvents: 'none'
+        }}>
+          <div className="star"></div>
+          <div className="star"></div>
+          <div className="star"></div>
+          <div className="star"></div>
+          <div className="star"></div>
+          <div className="star"></div>
+          <div className="star"></div>
+          <div className="star"></div>
+          <div className="star"></div>
+          <div className="star"></div>
+          <div className="star"></div>
+          
+        </div>
+      ))}
 
+      <div className="heading">PROJECTS</div>
+
+      <div className="parallax">
+    
         {/* Parallax layers with images */}
         <div
           className="parallax__layer parallax__layer__0"
@@ -105,11 +132,35 @@ export default function Parallax() {
           />
         </div>
 
-        {/* Mask element to cover reflection */}
         <div className="parallax__mask">
+          {/* Multiple white star sections below mask */}
+          {[0, 1, 2, 3].map((index) => (
+            <div key={`bottom-stars-${index}`} className="stars" style={{ 
+              position: 'absolute',
+              top: `${index * 100}vh`,
+              left: 0,
+              width: '100%',
+              height: '5000vh',
+              zIndex: -1,
+              pointerEvents: 'none',
+              '--star-color': 'white'
+            }}>
+              <div className="star"></div>
+              <div className="star"></div>
+              <div className="star"></div>
+              <div className="star"></div>
+              <div className="star"></div>
+              <div className="star"></div>
+              <div className="star"></div>
+              <div className="star"></div>
+              <div className="star"></div>
+              <div className="star"></div>
+              <div className="star"></div>
+            </div>
+          ))}
+          
           <Projects />
         </div>
-        
       </div>
 
       <Contacts/> 
