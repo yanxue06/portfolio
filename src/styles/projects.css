@@ -4,7 +4,7 @@
   position: relative;
   margin-top: 60vh;
   background: #2d112b;
-  z-index: 2;  
+  z-index: 5;
   min-height: fit-content;
   height: auto;
 }
@@ -43,7 +43,7 @@
 /* Make sure Card.Root components are above stars */
 .chakra-card {
   position: relative;
-  z-index: 10;
+  z-index: 15;
 }
 
 @media (max-width: 1000px) {
@@ -78,7 +78,7 @@
 
 @media screen and (max-width: 1500px) {
   .heading {
-    top: 175px !important;
+    top: 150px !important;
   }
 } 
 /* Media queries for responsive design */

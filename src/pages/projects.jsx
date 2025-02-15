@@ -23,31 +23,30 @@ export default function Parallax() {
 
   return (
     <div className="p3"> 
-      {/* Multiple black star sections above parallax */}
-      {[0, 1, 2].map((index) => (
-        <div key={`top-stars-${index}`} className="stars" style={{ 
-          position: 'absolute',
-          top: `${index * 60}vh`,
-          left: 0,
-          width: '100%',
-          height: '60vh',
-          zIndex: 1,
-          pointerEvents: 'none'
-        }}>
-          <div className="star"></div>
-          <div className="star"></div>
-          <div className="star"></div>
-          <div className="star"></div>
-          <div className="star"></div>
-          <div className="star"></div>
-          <div className="star"></div>
-          <div className="star"></div>
-          <div className="star"></div>
-          <div className="star"></div>
-          <div className="star"></div>
-          
-        </div>
-      ))}
+      
+      <div className="stars" style={{ 
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '60vh',  // Limit height to viewport height
+        zIndex: 1,
+        pointerEvents: 'none',
+        color: 'rgb(36, 35, 35)', 
+      }}>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+      </div>
+      
 
       <div className="heading">PROJECTS</div>
 
@@ -133,32 +132,6 @@ export default function Parallax() {
         </div>
 
         <div className="parallax__mask">
-          {/* Multiple white star sections below mask */}
-          {[0, 1, 2, 3].map((index) => (
-            <div key={`bottom-stars-${index}`} className="stars" style={{ 
-              position: 'absolute',
-              top: `${index * 100}vh`,
-              left: 0,
-              width: '100%',
-              height: '5000vh',
-              zIndex: -1,
-              pointerEvents: 'none',
-              '--star-color': 'white'
-            }}>
-              <div className="star"></div>
-              <div className="star"></div>
-              <div className="star"></div>
-              <div className="star"></div>
-              <div className="star"></div>
-              <div className="star"></div>
-              <div className="star"></div>
-              <div className="star"></div>
-              <div className="star"></div>
-              <div className="star"></div>
-              <div className="star"></div>
-            </div>
-          ))}
-          
           <Projects />
         </div>
       </div>

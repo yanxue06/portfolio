@@ -64,7 +64,8 @@ export default function Projects() {
                                 objectFit="contain" // Ensure image covers the entire area
                                 w="100%"
                                 h="100%" 
-                                display="block" // Remove any inline spacing
+                                display="absolute" // Remove any inline spacing
+                                zIndex="1000"
                             />
                         </Box>
 
