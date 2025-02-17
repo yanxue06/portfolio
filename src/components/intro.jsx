@@ -49,7 +49,11 @@ export default function intro() {
                     <div className="box">
                         <div className="top-section">
                             <TypeWriter />
-                            <span>I'm</span>
+                            <span style={{ 
+                                color: "white",
+                            }}>
+                                I'm
+                            </span>
                             <div className="name">
                                 <span
                                     style={{
@@ -64,7 +68,11 @@ export default function intro() {
                         </div>
 
                         <div className="bottom-section">
-                            ECE Student at The University of Waterloo
+                            <span style={{ 
+                                color: "white",
+                            }}>
+                                ECE Student at The University of Waterloo
+                            </span>
                         </div>
 
                         <div className="logo">

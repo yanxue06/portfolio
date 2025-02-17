@@ -114,14 +114,14 @@ export default function About() {
                         >
                             <Button
                                 color="white"
-                                backgroundColor="66789F"
+                                backgroundColor="#66789F"
                                 _hover={{ bg: "rgba(141, 140, 178, 0.79)" }}
                             >
                                 Gallery
                             </Button>
                             <Button
                                 color="white"
-                                backgroundColor="66789F"
+                                backgroundColor="#66789F"
                                 _hover={{ bg: "rgba(141, 140, 178, 0.79)" }}
                             >
                                 Blog

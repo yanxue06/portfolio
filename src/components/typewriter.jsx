@@ -9,6 +9,7 @@ const Typewriter = () => {
                 deleteSpeed: 50,
                 loop: true,
                 waitUntilVisible: true,
+                color: "white", 
             }}
             getBeforeInit={(instance) => {
                 instance
