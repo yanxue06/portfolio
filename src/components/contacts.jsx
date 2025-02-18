@@ -74,9 +74,6 @@ export default function Contacts() {
                             }}
                         > 
                         
-                        <a href="https://www.instagram.com/yan._.xue_/" target="_blank" rel="noopener noreferrer">
-                            <img src={gram} alt="instagram" style={{ width: "50px", height: "50px"}}/>
-                        </a> 
 
                         <a href="mailto:y9xue@uwaterloo.ca" target="_blank" rel="noopener noreferrer">
                             <img src={email} alt="email" style={{ width: "50px", height: "50px"}}/>
@@ -89,6 +86,10 @@ export default function Contacts() {
                         <a href="https://github.com/yanxue06" target="_blank" rel="noopener noreferrer">
                             <img src={github} alt="github" style={{ width: "50px", height: "50px"}}/>
                         </a>
+
+                        <a href="https://www.instagram.com/yan._.xue_/" target="_blank" rel="noopener noreferrer">
+                            <img src={gram} alt="instagram" style={{ width: "50px", height: "50px"}}/>
+                        </a> 
                         
                         
                         {/* <a href="mailto:y9xue@uwaterloo.ca" target="_blank" rel="noopener noreferrer">
