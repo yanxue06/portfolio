@@ -120,10 +120,10 @@ export default function intro() {
                                 }}
                                 onClick={() =>
                                     window.open(
-                                        "https://drive.google.com/file/d/1sIRAkgYDKeerLE165GTgi71MYjT5p19t/view?usp=sharing",
+                                        "https://drive.google.com/file/d/1F_xz1pwgoQ7foE8NInCy6Srn-GfsLDjk/view?usp=sharing",
                                         "_blank"
                                     )
-                                } // Replace with your resume link
+                                } 
                             >
                                 Resume
                             </Button>
