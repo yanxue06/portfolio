@@ -41,6 +41,7 @@ export default function About() {
                 >
                     <Image
                         objectFit="cover"
+                        loading="lazy"
                         css={{
                           width: "40%",
                           height: "auto",

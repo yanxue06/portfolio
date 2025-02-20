@@ -176,14 +176,31 @@ const TimeLine = () => {
                             </TimelineDot>
                             <TimelineConnector 
                               sx={{
-                                backgroundColor: "rgb(120, 134, 167)",
                                 "@media (max-width: 1000px)": {
-                                  minHeight: "120px",
+                                  height: "120px", // adjust this value as needed
+                                  backgroundColor: "rgb(120, 134, 167)",
                                 },
-                                
-                                "@media (max-width: 775px)": {
-                                  minHeight: "140px",
-                                }
+                                "@media (max-width: 778px)": {
+                                  height: "145px", // adjust this value as needed
+                                },
+                                "@media (max-width: 730px)": {
+                                  height: "145px", // adjust this value as needed
+                                },
+                                "@media (max-width: 639px)": {
+                                  height: "200px", // adjust this value as needed
+                                },
+                                "@media (max-width: 533px)": {
+                                  height: "230px", // adjust this value as needed
+                                },
+                                "@media (max-width: 440px)": {
+                                  height: "320px", // adjust this value as needed
+                                },
+                                "@media (max-width: 382px)": {
+                                  height: "340px", // adjust this value as needed
+                                },
+                                "@media (max-width: 382px)": {
+                                  height: "360px", // adjust this value as needed
+                                },
                               }}
                             />
                         </TimelineSeparator>
@@ -275,25 +292,27 @@ const TimeLine = () => {
                             <TimelineConnector
                                 sx={{
                                     "@media (max-width: 1000px)": {
-                                        // Let it grow if needed, but always have at least 50px height
-                                        minHeight: "130px",
-                                        flexGrow: 1,
-                                        backgroundColor: "rgb(120, 134, 167)",
-                                        // Ensure it stretches vertically
-                                        alignSelf: "stretch",
-                                        margin: "0 auto",
+                                      height: "130px", // adjust this value as needed
+                                      backgroundColor: "rgb(120, 134, 167)",
                                     },
-                                    "@media (max-width: 800px)": {
-                                    // Let it grow if needed, but always have at least 50px height
-                                    minHeight: "150px",
-                                    flexGrow: 1,
-                                    backgroundColor: "rgb(120, 134, 167)",
-                                    // Ensure it stretches vertically
-                                    alignSelf: "stretch",
-                                    margin: "0 auto",
+                                    "@media (max-width: 700px)": {
+                                      height: "178px", // adjust this value as needed
                                     },
-                                }}
-                            />
+                                    "@media (max-width: 550px)": {
+                                      height: "230px", // adjust this value as needed
+                                    },
+                                    "@media (max-width: 471px)": {
+                                      height: "250px", // adjust this value as needed
+                                    },
+                                    "@media (max-width: 440px)": {
+                                      height: "300px", // adjust this value as needed
+                                    },
+                                    "@media (max-width: 370px)": {
+                                      height: "340px", // adjust this value as needed
+                                    },
+                                  
+                                  }}
+                                />
                         </TimelineSeparator>
 
 
@@ -382,6 +401,21 @@ const TimeLine = () => {
                                   height: "100px", // adjust this value as needed
                                   backgroundColor: "rgb(120, 134, 167)",
                                 },
+                                "@media (max-width: 730px)": {
+                                  height: "138px", // adjust this value as needed
+                                },
+                                "@media (max-width: 550px)": {
+                                  height: "160px", // adjust this value as needed
+                                },
+                                "@media (max-width: 471px)": {
+                                  height: "180px", // adjust this value as needed
+                                },
+                                "@media (max-width: 440px)": {
+                                  height: "225px", // adjust this value as needed
+                                },
+                                "@media (max-width: 382px)": {
+                                  height: "265px", // adjust this value as needed
+                                },
                               }}
                             />
                         </TimelineSeparator>
@@ -411,6 +445,7 @@ const TimeLine = () => {
                                         "@media (max-width: 1000px)": {
                                             width: "100%"
                                         },
+                                        
                                     }}
                                 >
                                     <Typography
@@ -468,8 +503,7 @@ const TimeLine = () => {
                             >
                                 <BuildIcon />
                             </TimelineDot>
-                            <TimelineConnector 
-                            />
+                           
                         </TimelineSeparator>
                         <TimelineContent
                             sx={{
