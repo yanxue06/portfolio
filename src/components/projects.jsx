@@ -311,7 +311,7 @@ export default function Projects() {
                                     >
                                         Comparisum is a platform that summarizes chunks of amazon reviews 
                                         for products. It provides top pros and cons, considering number of 
-                                        helpful votes and overall rating, ensuring that users can make an informed 
+                                        helpful votes and overall rating, ensuring that users can make informed 
                                         decision purchases. 
 
                                     </Card.Description>
