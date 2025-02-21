@@ -10,8 +10,9 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import LaptopMacIcon from "@mui/icons-material/LaptopMac";
-import WorkIcon from "@mui/icons-material/Work";
-import BuildIcon from "@mui/icons-material/Build";
+import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
+import SecurityIcon from "@mui/icons-material/Security";
+import SchoolIcon from "@mui/icons-material/School";
 import { Card, For } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import {useMediaQuery } from "@mui/material";
@@ -299,7 +300,7 @@ const TimeLine = () => {
 
       <TimelineSeparator>
         <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-          <LaptopMacIcon />
+          <ElectricBoltIcon />
         </TimelineDot>
         <TimelineConnector
           sx={{
@@ -423,7 +424,7 @@ const TimeLine = () => {
 
       <TimelineSeparator>
         <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-          <WorkIcon />
+          <SecurityIcon />
         </TimelineDot>
         <TimelineConnector
           sx={{
@@ -549,7 +550,7 @@ const TimeLine = () => {
 
       <TimelineSeparator>
         <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-          <BuildIcon />
+          <SchoolIcon />
         </TimelineDot>
         {/* No connector here, but you can add if needed */}
       </TimelineSeparator>

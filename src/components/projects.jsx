@@ -10,8 +10,10 @@ import housing from "../images/projects/Housing.svg";
 import LinkCom from "../images/projects/LinkCom.png";
 import CSV from "../images/projects/CSV.svg";
 import Portfolio from "../images/projects/Portfolio.svg";
-import { Badge, Box, Button, Card, HStack, Image} from "@chakra-ui/react";
+import { Badge, Box, Button, Card, HStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function Projects() {
     return (
@@ -53,15 +55,17 @@ export default function Projects() {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                <Image
+                                <LazyLoadImage
                                     src={blank}
-                                    width = "800px"
                                     alt="Coming Soon..."
-                                    objectFit="contain" // Ensure image covers the entire area
-                                    objectPosition="center" // Center the image
-                                    w="100%"
-                                    h="100%" // Image takes full height
-                                    display="block" // Remove any inline spacing
+                                    effect="blur"
+                                    width="100%"
+                                    height="100%"
+                                    style={{
+                                        objectFit: "contain",
+                                        objectPosition: "center",
+                                        display: "block"
+                                    }}
                                 />
                             </Box>
 
@@ -148,14 +152,17 @@ export default function Projects() {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                <Image
+                                <LazyLoadImage
                                     src={JobBot}
                                     alt="JobBot"
-                                    objectFit="contain" // Ensure image covers the entire area
-                                    w="100%"
-                                    h="100%" 
-                                    display="absolute" // Remove any inline spacing
-                                    zIndex="1000"
+                                    effect="blur"
+                                    width="100%"
+                                    height="100%"
+                                    style={{
+                                        objectFit: "contain",
+                                        display: "absolute",
+                                        zIndex: "1000"
+                                    }}
                                 />
                             </Box>
 
@@ -266,14 +273,17 @@ export default function Projects() {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                <Image
+                                <LazyLoadImage
                                     src={Comparisum}
                                     alt="Comparisum"
-                                    objectFit="contain" // Ensure image covers the entire area
-                                    objectPosition="center" // Center the image
-                                    w="100%"
-                                    h="100%" // Image takes full height
-                                    display="block" // Remove any inline spacing
+                                    effect="blur"
+                                    width="100%"
+                                    height="100%"
+                                    style={{
+                                        objectFit: "contain",
+                                        objectPosition: "center",
+                                        display: "block"
+                                    }}
                                 />
                             </Box>
 
@@ -377,14 +387,17 @@ export default function Projects() {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                <Image
+                                <LazyLoadImage
                                     src={blank} 
                                     alt="blank"
-                                    objectFit="contain" // Ensure image covers the entire area
-                                    objectPosition="center" // Center the image
-                                    w="100%"
-                                    h="100%" // Image takes full height
-                                    display="block" // Remove any inline spacing
+                                    effect="blur"
+                                    width="100%"
+                                    height="100%"
+                                    style={{
+                                        objectFit: "contain",
+                                        objectPosition: "center",
+                                        display: "block"
+                                    }}
                                 />
                             </Box>
 
@@ -483,14 +496,17 @@ export default function Projects() {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                <Image
+                                <LazyLoadImage
                                     src={housing}
                                     alt="House Price Predictor"
-                                    objectFit="contain" // Ensure image covers the entire area
-                                    objectPosition="center" // Center the image
-                                    w="100%"
-                                    h="100%" // Image takes full height
-                                    display="block" // Remove any inline spacing
+                                    effect="blur"
+                                    width="100%"
+                                    height="100%"
+                                    style={{
+                                        objectFit: "contain",
+                                        objectPosition: "center",
+                                        display: "block"
+                                    }}
                                 />
                             </Box>
 
@@ -590,14 +606,17 @@ export default function Projects() {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                <Image
+                                <LazyLoadImage
                                     src={CSV}
                                     alt="CSV Data Normalizer"
-                                    objectFit="contain" // Ensure image covers the entire area
-                                    objectPosition="center" // Center the image
-                                    w="100%"
-                                    h="100%" // Image takes full height
-                                    display="block" // Remove any inline spacing
+                                    effect="blur"
+                                    width="100%"
+                                    height="100%"
+                                    style={{
+                                        objectFit: "contain",
+                                        objectPosition: "center",
+                                        display: "block"
+                                    }}
                                 />
                             </Box>
 
@@ -698,14 +717,17 @@ export default function Projects() {
                                     justifyContent="center"
                                     alignItems="center"
                                 >
-                                    <Image
+                                    <LazyLoadImage
                                         src={RFID}
                                         alt="RFID Card Swipe"
-                                        objectFit="contain" // Ensure image covers the entire area
-                                        objectPosition="center" // Center the image
-                                        w="100%"
-                                        h="100%" // Image takes full height
-                                        display="block" // Remove any inline spacing
+                                        effect="blur"
+                                        width="100%"
+                                        height="100%"
+                                        style={{
+                                            objectFit: "contain",
+                                            objectPosition: "center",
+                                            display: "block"
+                                        }}
                                     />
                                 </Box>
 
@@ -808,14 +830,17 @@ export default function Projects() {
                                     justifyContent="center"
                                     alignItems="center"
                                 >
-                                    <Image
+                                    <LazyLoadImage
                                         src={LinkCom}
                                         alt="LinkCom"
-                                        objectFit="contain" // Ensure image covers the entire area
-                                        objectPosition="center" // Center the image
-                                        w="100%"
-                                        h="100%" // Image takes full height
-                                        display="block" // Remove any inline spacing
+                                        effect="blur"
+                                        width="100%"
+                                        height="100%"
+                                        style={{
+                                            objectFit: "contain",
+                                            objectPosition: "center",
+                                            display: "block"
+                                        }}
                                     />
                                 </Box>
 
@@ -915,14 +940,17 @@ export default function Projects() {
                                     justifyContent="center"
                                     alignItems="center"
                                 >
-                                    <Image
+                                    <LazyLoadImage
                                         src={trackify}
                                         alt="Trackify"
-                                        objectFit="contain" // Ensure image covers the entire area
-                                        objectPosition="center" // Center the image
-                                        w="100%"
-                                        h="100%" // Image takes full height
-                                        display="block" // Remove any inline spacing
+                                        effect="blur"
+                                        width="100%"
+                                        height="100%"
+                                        style={{
+                                            objectFit: "contain",
+                                            objectPosition: "center",
+                                            display: "block"
+                                        }}
                                     />
                                 </Box>
 
@@ -1028,14 +1056,17 @@ export default function Projects() {
                                     justifyContent="center"
                                     alignItems="center"
                                 >
-                                    <Image
+                                    <LazyLoadImage
                                         src={Portfolio}
                                         alt="Portfolio"
-                                        objectFit="contain" // Ensure image covers the entire area
-                                        objectPosition="center" // Center the image
-                                        w="100%"
-                                        h="100%" // Image takes full height
-                                        display="block" // Remove any inline spacing
+                                        effect="blur"
+                                        width="100%"
+                                        height="100%"
+                                        style={{
+                                            objectFit: "contain",
+                                            objectPosition: "center",
+                                            display: "block"
+                                        }}
                                     />
                                 </Box>
 
