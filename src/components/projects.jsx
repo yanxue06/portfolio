@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import "../styles/home.css";
 import "../styles/projects.css";
 import trackify from "../images/projects/Trackify.svg";
@@ -15,7 +14,6 @@ import { Badge, Box, Button, Card, HStack, Image} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 export default function Projects() {
-
     return (
         <section id="projects" className="p3">
                 <div className="projectsCol">
