@@ -7,7 +7,7 @@ import Comparisum from "../images/projects/Comparisum.svg";
 import RFID from "../images/projects/RFID.svg";
 import JobBot from "../images/projects/JobBot.svg";
 import housing from "../images/projects/Housing.svg";
-import LinkCom from "../images/projects/LinkCom.svg";
+import LinkCom from "../images/projects/LinkCom.png";
 import CSV from "../images/projects/CSV.svg";
 import Portfolio from "../images/projects/Portfolio.svg";
 import { Badge, Box, Button, Card, HStack, Image} from "@chakra-ui/react";
