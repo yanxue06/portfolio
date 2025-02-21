@@ -545,7 +545,7 @@ const TimeLine = () => {
         }}
         color="white"
       >
-        Sep 2024 - Dec 2024
+        Jul 2024 - Aug 2024
       </TimelineOppositeContent>
 
       <TimelineSeparator>
