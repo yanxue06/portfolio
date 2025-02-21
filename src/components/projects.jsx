@@ -2,7 +2,7 @@ import * as React from "react";
 import "../styles/home.css";
 import "../styles/projects.css";
 import trackify from "../images/projects/Trackify.svg";
-import blank from "../images/projects/blank.svg";
+import blank from "../images/projects/Blank.svg";
 import Comparisum from "../images/projects/Comparisum.svg";
 import RFID from "../images/projects/RFID.svg";
 import JobBot from "../images/projects/JobBot.svg";
