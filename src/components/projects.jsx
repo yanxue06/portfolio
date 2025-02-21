@@ -1,15 +1,15 @@
 import * as React from "react";
 import "../styles/home.css";
 import "../styles/projects.css";
-import trackify from "../images/projects/Trackify.svg";
-import blank from "../images/projects/blank.svg";
-import Comparisum from "../images/projects/Comparisum.svg";
-import RFID from "../images/projects/RFID.svg";
-import JobBot from "../images/projects/JobBot.svg";
-import housing from "../images/projects/Housing.svg";
+import trackify from "../images/projects/Trackify.png";
+import blank from "../images/projects/blank.png";
+import Comparisum from "../images/projects/Comparisum.png";
+import RFID from "../images/projects/RFID.png";
+import JobBot from "../images/projects/JobBot.png";
+import housing from "../images/projects/Housing.png";
 import LinkCom from "../images/projects/LinkCom.png";
-import CSV from "../images/projects/CSV.svg";
-import Portfolio from "../images/projects/Portfolio.svg";
+import CSV from "../images/projects/CSV.png";
+import Portfolio from "../images/projects/Portfolio.png";
 import { Badge, Box, Button, Card, HStack, Image} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
