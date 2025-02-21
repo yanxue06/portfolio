@@ -32,6 +32,15 @@ export default function Navbar() {
         setIsMobileMenuOpen(false);
     };
 
+    // Add this function to handle smooth scrolling
+    const scrollToContact = (e) => {
+        e.preventDefault();
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <motion.nav
             className={`navbar ${scrollY > 0 ? "navbar-scrolled" : ""}`}
@@ -61,7 +70,7 @@ export default function Navbar() {
                         GALLERY
                     </Link> */}
 
-                    <a href="#contact" className="navbar-link">
+                    <a href="#contact" className="navbar-link" onClick={scrollToContact}>
                         CONTACT
                     </a>
                 </div>
@@ -86,7 +95,7 @@ export default function Navbar() {
                     {/* <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
                         GALLERY
                     </Link> */}
-                    <a href="#contact" className="navbar-link" onClick={handleLinkClick}>
+                    <a href="#contact" className="navbar-link" onClick={scrollToContact}>
                         CONTACT
                     </a>
                 </div>

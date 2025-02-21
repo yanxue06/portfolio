@@ -75,36 +75,77 @@ export default function Contacts() {
                         > 
                         
 
-                        <a href="mailto:y9xue@uwaterloo.ca" target="_blank" rel="noopener noreferrer">
-                            <img src={email} alt="email" style={{ width: "50px", height: "50px"}}/>
-                        </a>
+                        <div 
+                            onClick={() => {
+                                window.location.href = 'mailto:y9xue@uwaterloo.ca';
+                            }}
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <img 
+                                src={email} 
+                                alt="email" 
+                                style={{ 
+                                    width: "50px", 
+                                    height: "50px",
+                                    cursor: "pointer",
+                                    transform: "scale(1)",
+                                    transition: "transform 0.2s"
+                                }}
+                                onMouseOver={(e) => e.target.style.transform = "scale(1.1)"}
+                                onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+                            />
+                        </div>
 
                         <a href="https://linkedin.com/in/yanxue-ce" target="_blank" rel="noopener noreferrer">
-                            <img src={linkedIn} alt="linkedIn" style={{ width: "50px", height: "50px"}}/>
+                            <img 
+                                src={linkedIn} 
+                                alt="linkedIn" 
+                                style={{ 
+                                    width: "50px", 
+                                    height: "50px",
+                                    cursor: "pointer",
+                                    transform: "scale(1)",
+                                    transition: "transform 0.2s"
+                                }}
+                                onMouseOver={(e) => e.target.style.transform = "scale(1.1)"}
+                                onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+                            />
                         </a>
 
                         <a href="https://github.com/yanxue06" target="_blank" rel="noopener noreferrer">
-                            <img src={github} alt="github" style={{ width: "50px", height: "50px"}}/>
+                            <img 
+                                src={github} 
+                                alt="github" 
+                                style={{ 
+                                    width: "50px", 
+                                    height: "50px",
+                                    cursor: "pointer",
+                                    transform: "scale(1)",
+                                    transition: "transform 0.2s"
+                                }}
+                                onMouseOver={(e) => e.target.style.transform = "scale(1.1)"}
+                                onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+                            />
                         </a>
 
                         <a href="https://www.instagram.com/yan._.xue_/" target="_blank" rel="noopener noreferrer">
-                            <img src={gram} alt="instagram" style={{ width: "50px", height: "50px"}}/>
+                            <img 
+                                src={gram} 
+                                alt="instagram" 
+                                style={{ 
+                                    width: "50px", 
+                                    height: "50px",
+                                    cursor: "pointer",
+                                    transform: "scale(1)",
+                                    transition: "transform 0.2s"
+                                }}
+                                onMouseOver={(e) => e.target.style.transform = "scale(1.1)"}
+                                onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+                            />
                         </a> 
                         
                         
-                        {/* <a href="mailto:y9xue@uwaterloo.ca" target="_blank" rel="noopener noreferrer">
-                            y9xue@uwaterloo.ca
-                        </a>
-
-                        LinkedIn:
-                        <a href="https://linkedin.com/in/yanxue-ce" target="_blank" rel="noopener noreferrer">
-                            linkedin.com/in/yanxue-ce
-                        </a>
-
-                        GitHub:
-                        <a href="https://github.com/yanxue06" target="_blank" rel="noopener noreferrer">
-                            github.com/yanxue06
-                        </a> */}
+                
                         
                         </div>
                     </div>
