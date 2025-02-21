@@ -120,7 +120,7 @@ export default function intro() {
                                 }}
                                 onClick={() =>
                                     window.open(
-                                        "https://drive.google.com/file/d/1F_xz1pwgoQ7foE8NInCy6Srn-GfsLDjk/view?usp=sharing",
+                                        "https://drive.google.com/file/d/1mfj9Y-r5R9PUYANOvmY2IYvf4Q1NPmAT/view?usp=sharing",
                                         "_blank"
                                     )
                                 } 

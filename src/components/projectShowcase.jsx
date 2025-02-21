@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import projectPic from "../images/projects/p3.svg";
+import Trackify from "../images/projects/Trackify.svg";
 import { Box, Button, Card, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import '../styles/projectShowcase.css';
@@ -50,7 +50,7 @@ function ProjectShowcase() {
                 objectPosition: "center",
               },
             }}
-            src={projectPic}
+            src={Trackify}
             alt="Project Preview"
           />
           <Box css={{
@@ -84,7 +84,7 @@ function ProjectShowcase() {
                   }
                 }}
               >
-                I've made over 12 projects in the past 6 months. Throughout my first few projects, my goal was just to learn. But, with my  
+                I've made over 10 projects in the past 6 months. Throughout my first few projects, my goal was just to learn. But, with my  
                 recent projects, I've been able to create tools that solve real-world problems, primarily focusing on productivity.
               </Card.Description>
             </Card.Body>

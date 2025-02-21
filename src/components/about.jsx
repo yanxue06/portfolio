@@ -96,9 +96,8 @@ export default function About() {
                                 at Waterloo, ON for the next few years. I'm always excited to 
                                 improve my skills and explore new experiences.
                                 <br /><br />
-                                My hobbies are guitar, chess, table tennis, soccer, frisbee, and literally anything with my dog, Rocky.  
-                                Below is my gallery, which are some of my photos taken throughout 
-                                my life, as well as my blog, where I write about random things.
+                                Beyond coding, I love guitar, chess, table tennis, soccer, frisbee, and traveling.
+                                My gallery and blog are coming soon! 
                             </Card.Description>
                         </Card.Body>
                         <Card.Footer
