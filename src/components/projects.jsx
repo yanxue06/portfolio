@@ -879,7 +879,6 @@ export default function Projects() {
                                             <Badge colorScheme="purple" fontSize="sm">
                                                 C
                                             </Badge>
-                                            
                                         </HStack>
                                     </Box>
 
@@ -1097,11 +1096,15 @@ export default function Projects() {
                                         </Card.Description>
 
                                         <HStack mt={4} spacing={3} flexWrap="wrap" >
-                                            <Badge colorScheme="teal" fontSize="sm">
-                                                Python
-                                            </Badge>
+                                        
                                             <Badge colorScheme="blue" fontSize="sm">
                                                 React
+                                            </Badge>
+                                            <Badge colorScheme="blue" fontSize="sm">
+                                                HTML
+                                            </Badge>
+                                            <Badge colorScheme="blue" fontSize="sm">
+                                                CSS
                                             </Badge>
                                             <Badge colorScheme="orange" fontSize="sm">
                                                 JavaScript
