@@ -9,33 +9,22 @@ import TypeWriter from "./typewriter";
 import "../styles/stars.scss";
 
 export default function intro() {
+    // Create a responsive array of stars
+    const getStars = () => {
+        // Default number for larger screens
+        const defaultStars = 46;
+        // Smaller number for mobile screens
+        const mobileStars = 20;
+        
+        return Array(window.innerWidth > 750 ? defaultStars : mobileStars)
+            .fill()
+            .map((_, i) => <div key={i} className="star"></div>);
+    };
+
     return (
         <section id="home" className="p1">
-   
-            <div class="stars">
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
+            <div className="stars">
+                {getStars()}
             </div>
 
             <motion.div
