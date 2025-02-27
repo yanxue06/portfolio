@@ -179,9 +179,6 @@ const TimeLine = () => {
             "@media (max-width: 778px)": {
               height: "145px",
             },
-            "@media (max-width: 730px)": {
-              height: "145px",
-            },
             "@media (max-width: 639px)": {
               height: "200px",
             },
@@ -189,7 +186,7 @@ const TimeLine = () => {
               height: "230px",
             },
             "@media (max-width: 440px)": {
-              height: "320px",
+              height: "300px",
             },
             "@media (max-width: 382px)": {
               height: "360px",
@@ -432,17 +429,17 @@ const TimeLine = () => {
               height: "100px",
               backgroundColor: "rgb(120, 134, 167)",
             },
-            "@media (max-width: 730px)": {
-              height: "138px",
+            "@media (max-width: 850px)": {
+              height: "158px",
             },
             "@media (max-width: 550px)": {
-              height: "160px",
+              height: "190px",
             },
-            "@media (max-width: 471px)": {
-              height: "180px",
+            "@media (max-width: 520px)": {
+              height: "210px",
             },
-            "@media (max-width: 440px)": {
-              height: "225px",
+            "@media (max-width: 495px)": {
+              height: "260px",
             },
             "@media (max-width: 382px)": {
               height: "265px",
@@ -519,6 +516,7 @@ const TimeLine = () => {
             >
               - Developed Python Scripts to automate company workflows,
               including ping testing and data cleaning.
+              <br />
               - Solely built the company website, generating over $33,000 worth of job revenue
             </Typography>
           </CustomPaper>
