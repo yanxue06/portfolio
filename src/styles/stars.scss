@@ -53,7 +53,7 @@
         --fall-duration: #{random_range(10000, 20000s) / 1000};
         
         @if $i < 5 {
-          --fall-delay: #{$i * 100s / 1000};  // Quick initial delay
+          --fall-delay: #{$i * 10s / 1000};  // Quick initial delay
         } @else {
             --fall-delay: #{random_range(1000, 10000s) / 1000};  // Later stars more spread out
         }

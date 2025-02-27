@@ -482,7 +482,7 @@ const TimeLine = () => {
               component="span"
               sx={{ fontWeight: "bold" }}
             >
-              Automation Developer | Skynet Security System
+              Software Engineering Intern | Skynet Security System Ltd. 
             </Typography>
 
             {/* LOCATION ONLY for LARGE SCREENS */}
@@ -519,6 +519,7 @@ const TimeLine = () => {
             >
               - Developed Python Scripts to automate company workflows,
               including ping testing and data cleaning.
+              - Solely built the company website, generating over $33,000 worth of job revenue
             </Typography>
           </CustomPaper>
         </motion.div>
