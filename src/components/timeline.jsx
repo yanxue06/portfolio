@@ -172,28 +172,41 @@ const TimeLine = () => {
           <LaptopMacIcon />
         </TimelineDot>
         <TimelineConnector
-          sx={{
+           sx={{
+            backgroundColor: "rgb(120, 134, 167)",
             "@media (max-width: 1000px)": {
-              height: "120px",
-              backgroundColor: "rgb(120, 134, 167)",
+              height: "170px",
             },
-            "@media (max-width: 778px)": {
-              height: "145px",
+            "@media (max-width: 800px)": {
+              height: "190px",
             },
-            "@media (max-width: 639px)": {
-              height: "200px",
-            },
-            "@media (max-width: 533px)": {
+            "@media (max-width: 700px)": {
+              height: "210px",
+            }, 
+            "@media (max-width: 600px)": {
               height: "230px",
             },
-            "@media (max-width: 440px)": {
-              height: "300px",
+            "@media (max-width: 550px)": {
+              height: "250px",
             },
-            "@media (max-width: 382px)": {
-              height: "380px",
+            "@media (max-width: 500px)": {
+              height: "270px",
+            },
+            "@media (max-width: 471px)": {
+              height: "290px",
+            },
+            "@media (max-width: 440px)": {
+              height: "310px",
+            },
+            "@media (max-width: 420px)": {
+              height: "330px",
+            },
+            "@media (max-width: 385px)": {
+              height: "350px",
             },
           }}
-        />
+      />
+        
       </TimelineSeparator>
 
       <TimelineContent
@@ -347,67 +360,131 @@ const TimeLine = () => {
           transition={{ duration: 1 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <RightArrowPaper
-            sx={{
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              ":hover": {
-                transform: "scale(1.01)",
-                boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
-              },
-              "@media (max-width: 1000px)": {
-                width: "100%",
-              },
-            }}
-          >
-            <Typography
-              variant="h6"
-              component="span"
-              sx={{ fontWeight: "bold" }}
-            >
-              Automation Developer | Pacific Grace Mandarin Church (PGMC)
-            </Typography>
-
-            {/* LOCATION ONLY for LARGE SCREENS */}
-            <Typography
-              variant="subtitle2"
+          {isLargeScreen ? (
+            <RightArrowPaper
               sx={{
-                fontStyle: "italic",
-                color: "rgba(200, 210, 230, 255)",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                ":hover": {
+                  transform: "scale(1.01)",
+                  boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
+                },
                 "@media (max-width: 1000px)": {
-                  display: "none", // Hide location-only text on small screens
+                  width: "100%",
                 },
               }}
             >
-              Markham, ON
-            </Typography>
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{ fontWeight: "bold" }}
+              >
+                Automation Developer | Pacific Grace Mandarin Church (PGMC)
+              </Typography>
 
-            {/* LOCATION + DATE for SMALL SCREENS */}
-            <Typography
-              variant="subtitle2"
+              {/* LOCATION ONLY for LARGE SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (max-width: 1000px)": {
+                    display: "none", // Hide location-only text on small screens
+                  },
+                }}
+              >
+                Markham, ON
+              </Typography>
+
+              {/* LOCATION + DATE for SMALL SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (min-width: 1000px)": {
+                    display: "none", // Hide combined text on large screens
+                  },
+                }}
+              >
+                Remote - Vancouver, BC | Nov 2024 - Mar 2025
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  marginTop: "8px",
+                  width: "100%",
+                }}
+              >
+                - Developed and deployed a Python-based Discord bot using Docker, automating daily Bible readings and
+                announcements for a 105+ member community, streamlining communication by over 80%
+                <br />
+                - Integrated Google Sheets API for real-time updates and hosted on Google Cloud Run for scalability
+              </Typography>
+            </RightArrowPaper>
+          ) : (
+            <CustomPaper
               sx={{
-                fontStyle: "italic",
-                color: "rgba(200, 210, 230, 255)",
-                "@media (min-width: 1000px)": {
-                  display: "none", // Hide combined text on large screens
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                ":hover": {
+                  transform: "scale(1.01)",
+                  boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
+                },
+                "@media (max-width: 1000px)": {
+                  width: "100%",
                 },
               }}
             >
-              Remote - Vancouver, BC | Nov 2024 - Mar 2025
-            </Typography>
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{ fontWeight: "bold" }}
+              >
+                Automation Developer | Pacific Grace Mandarin Church (PGMC)
+              </Typography>
 
-            <Typography
-              variant="body2"
-              sx={{
-                marginTop: "8px",
-                width: "100%",
-              }}
-            >
-              - Developed and deployed a Python-based Discord bot using Docker, automating daily Bible readings and
-              announcements for a 105+ member community, streamlining communication by over 80%
-              <br />
-              - Integrated Google Sheets API for real-time updates and hosted on Google Cloud Run for scalability
-            </Typography>
-          </RightArrowPaper>
+              {/* LOCATION ONLY for LARGE SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (max-width: 1000px)": {
+                    display: "none", // Hide location-only text on small screens
+                  },
+                }}
+              >
+                Markham, ON
+              </Typography>
+
+              {/* LOCATION + DATE for SMALL SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (min-width: 1000px)": {
+                    display: "none", // Hide combined text on large screens
+                  },
+                }}
+              >
+                Remote - Vancouver, BC | Nov 2024 - Mar 2025
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  marginTop: "8px",
+                  width: "100%",
+                }}
+              >
+                - Developed and deployed a Python-based Discord bot using Docker, automating daily Bible readings and
+                announcements for a 105+ member community, streamlining communication by over 80%
+                <br />
+                - Integrated Google Sheets API for real-time updates and hosted on Google Cloud Run for scalability
+              </Typography>
+            </CustomPaper>
+          )}
         </motion.div>
       </TimelineContent>
     </TimelineItem>
@@ -479,58 +556,113 @@ const TimeLine = () => {
           transition={{ duration: 1 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <CustomPaper
-            sx={{
-              "@media (max-width: 1000px)": {
-                width: "100%",
-              },
-            }}
-          >
-            <Typography
-              variant="h6"
-              component="span"
-              sx={{ fontWeight: "bold" }}
-            >
-              Firmware Member | Midnight Sun
-            </Typography>
-
-            {/* LOCATION ONLY for LARGE SCREENS */}
-            <Typography
-              variant="subtitle2"
+          {isLargeScreen ? (
+            <CustomPaper
               sx={{
-                fontStyle: "italic",
-                color: "rgba(200, 210, 230, 255)",
                 "@media (max-width: 1000px)": {
-                  display: "none",
+                  width: "100%",
                 },
               }}
             >
-              Waterloo, ON
-            </Typography>
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{ fontWeight: "bold" }}
+              >
+                Firmware Member | Midnight Sun
+              </Typography>
 
-            {/* LOCATION + DATE for SMALL SCREENS */}
-            <Typography
-              variant="subtitle2"
+              {/* LOCATION ONLY for LARGE SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (max-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Waterloo, ON
+              </Typography>
+
+              {/* LOCATION + DATE for SMALL SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (min-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Waterloo, ON | Sep 2024 - Dec 2024
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{ marginTop: "8px", width: "100%" }}
+              >
+                - Created a backup driver using C to integrate STM32's Backup registers, ensuring access control during power loss
+                <br />
+                - Implemented an ADC driver with C firmware and I2C communication to convert temperature to voltage
+              </Typography>
+            </CustomPaper>
+          ) : (
+            <CustomPaper
               sx={{
-                fontStyle: "italic",
-                color: "rgba(200, 210, 230, 255)",
-                "@media (min-width: 1000px)": {
-                  display: "none",
+                "@media (max-width: 1000px)": {
+                  width: "100%",
                 },
               }}
             >
-              Waterloo, ON | Sep 2024 - Dec 2024
-            </Typography>
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{ fontWeight: "bold" }}
+              >
+                Firmware Member | Midnight Sun
+              </Typography>
 
-            <Typography
-              variant="body2"
-              sx={{ marginTop: "8px", width: "100%" }}
-            >
-              - Created a backup driver using C to integrate STM32's Backup registers, ensuring access control during power loss
-              <br />
-              - Implemented an ADC driver with C firmware and I2C communication to convert temperature to voltage
-            </Typography>
-          </CustomPaper>
+              {/* LOCATION ONLY for LARGE SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (max-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Waterloo, ON
+              </Typography>
+
+              {/* LOCATION + DATE for SMALL SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (min-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Waterloo, ON | Sep 2024 - Dec 2024
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{ marginTop: "8px", width: "100%" }}
+              >
+                - Created a backup driver using C to integrate STM32's Backup registers, ensuring access control during power loss
+                <br />
+                - Implemented an ADC driver with C firmware and I2C communication to convert temperature to voltage
+              </Typography>
+            </CustomPaper>
+          )}
         </motion.div>
       </TimelineContent>
     </TimelineItem>
@@ -606,67 +738,131 @@ const TimeLine = () => {
           transition={{ duration: 1 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <RightArrowPaper
-            sx={{
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              ":hover": {
-                transform: "scale(1.01)",
-                boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
-              },
-              "@media (max-width: 1000px)": {
-                width: "100%",
-              },
-            }}
-          >
-            <Typography
-              variant="h6"
-              component="span"
-              sx={{ fontWeight: "bold" }}
-            >
-              Software Engineering Intern | Skynet Security System Ltd. 
-            </Typography>
-
-            {/* LOCATION ONLY for LARGE SCREENS */}
-            <Typography
-              variant="subtitle2"
+          {isLargeScreen ? (
+            <RightArrowPaper
               sx={{
-                fontStyle: "italic",
-                color: "rgba(200, 210, 230, 255)",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                ":hover": {
+                  transform: "scale(1.01)",
+                  boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
+                },
                 "@media (max-width: 1000px)": {
-                  display: "none",
+                  width: "100%",
                 },
               }}
             >
-              Vancouver, BC
-            </Typography>
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{ fontWeight: "bold" }}
+              >
+                Software Engineering Intern | Skynet Security System Ltd. 
+              </Typography>
 
-            {/* LOCATION + DATE for SMALL SCREENS */}
-            <Typography
-              variant="subtitle2"
+              {/* LOCATION ONLY for LARGE SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (max-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Vancouver, BC
+              </Typography>
+
+              {/* LOCATION + DATE for SMALL SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (min-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Vancouver, BC | Feb 2023 - Aug 2024
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{ marginTop: "8px", width: "100%" }}
+              >
+                - Developed a multiprocessing Python script for CSV normalization, increasing workflow speed by 40%
+                <br />
+                - Designed and built a cross-platform invoice system with Python, Tkinter, and ReportLab, automating billing
+                for 50+ clients and reducing invoice preparation time by 75%
+                <br />
+                - Developed the company's website and advertisements using React, TypeScript, and Figma, which contributed
+                to 36% of client job bookings, generating $72,000+ in revenue in 2023
+              </Typography>
+            </RightArrowPaper>
+          ) : (
+            <CustomPaper
               sx={{
-                fontStyle: "italic",
-                color: "rgba(200, 210, 230, 255)",
-                "@media (min-width: 1000px)": {
-                  display: "none",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                ":hover": {
+                  transform: "scale(1.01)",
+                  boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
+                },
+                "@media (max-width: 1000px)": {
+                  width: "100%",
                 },
               }}
             >
-              Vancouver, BC | Feb 2023 - Aug 2024
-            </Typography>
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{ fontWeight: "bold" }}
+              >
+                Software Engineering Intern | Skynet Security System Ltd. 
+              </Typography>
 
-            <Typography
-              variant="body2"
-              sx={{ marginTop: "8px", width: "100%" }}
-            >
-              - Developed a multiprocessing Python script for CSV normalization, increasing workflow speed by 40%
-              <br />
-              - Designed and built a cross-platform invoice system with Python, Tkinter, and ReportLab, automating billing
-              for 50+ clients and reducing invoice preparation time by 75%
-              <br />
-              - Developed the company's website and advertisements using React, TypeScript, and Figma, which contributed
-              to 36% of client job bookings, generating $72,000+ in revenue in 2023
-            </Typography>
-          </RightArrowPaper>
+              {/* LOCATION ONLY for LARGE SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (max-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Vancouver, BC
+              </Typography>
+
+              {/* LOCATION + DATE for SMALL SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (min-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Vancouver, BC | Feb 2023 - Aug 2024
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{ marginTop: "8px", width: "100%" }}
+              >
+                - Developed a multiprocessing Python script for CSV normalization, increasing workflow speed by 40%
+                <br />
+                - Designed and built a cross-platform invoice system with Python, Tkinter, and ReportLab, automating billing
+                for 50+ clients and reducing invoice preparation time by 75%
+                <br />
+                - Developed the company's website and advertisements using React, TypeScript, and Figma, which contributed
+                to 36% of client job bookings, generating $72,000+ in revenue in 2023
+              </Typography>
+            </CustomPaper>
+          )}
         </motion.div>
       </TimelineContent>
     </TimelineItem>
@@ -715,70 +911,137 @@ const TimeLine = () => {
           transition={{ duration: 1 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <CustomPaper
-            sx={{
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              ":hover": {
-                transform: "scale(1.01)",
-                boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
-              },
-              "@media (max-width: 1000px)": {
-                width: "100%",
-              },
-            }}
-          >
-            <Typography
-              variant="h6"
-              component="span"
+          {isLargeScreen ? (
+            <CustomPaper
               sx={{
-                fontWeight: "bold",
-                width: "100%",
-              }}
-            >
-              Engineering Instructor | Simon Fraser University (SFU) Camps
-            </Typography>
-
-            {/* LOCATION ONLY for LARGE SCREENS */}
-            <Typography
-              variant="subtitle2"
-              sx={{
-                fontStyle: "italic",
-                color: "rgba(200, 210, 230, 255)",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                ":hover": {
+                  transform: "scale(1.01)",
+                  boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
+                },
                 "@media (max-width: 1000px)": {
-                  display: "none",
+                  width: "100%",
                 },
               }}
             >
-              Vancouver, BC
-            </Typography>
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{
+                  fontWeight: "bold",
+                  width: "100%",
+                }}
+              >
+                Engineering Instructor | Simon Fraser University (SFU) Camps
+              </Typography>
 
-            {/* LOCATION + DATE for SMALL SCREENS */}
-            <Typography
-              variant="subtitle2"
+              {/* LOCATION ONLY for LARGE SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (max-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Vancouver, BC
+              </Typography>
+
+              {/* LOCATION + DATE for SMALL SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (min-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Vancouver, BC | Sep 2024 - Dec 2024
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  marginTop: "8px",
+                  width: "100%",
+                }}
+              >
+                - Collaborated with staff to oversee STEM lessons and icebreakers
+                <br />
+                - Constructed a curriculum on Aerodynamics for 20+ youth
+                aerodynamics
+              </Typography>
+            </CustomPaper>
+          ) : (
+            <CustomPaper
               sx={{
-                fontStyle: "italic",
-                color: "rgba(200, 210, 230, 255)",
-                "@media (min-width: 1000px)": {
-                  display: "none",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                ":hover": {
+                  transform: "scale(1.01)",
+                  boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
+                },
+                "@media (max-width: 1000px)": {
+                  width: "100%",
                 },
               }}
             >
-              Vancouver, BC | Sep 2024 - Dec 2024
-            </Typography>
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{
+                  fontWeight: "bold",
+                  width: "100%",
+                }}
+              >
+                Engineering Instructor | Simon Fraser University (SFU) Camps
+              </Typography>
 
-            <Typography
-              variant="body2"
-              sx={{
-                marginTop: "8px",
-                width: "100%",
-              }}
-            >
-              - Collaborated with staff to oversee STEM lessons and icebreakers
-              <br />
-              - Constructed a curriculum on Aerodynamics for 20+ youth
-              aerodynamics
-            </Typography>
-          </CustomPaper>
+              {/* LOCATION ONLY for LARGE SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (max-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Vancouver, BC
+              </Typography>
+
+              {/* LOCATION + DATE for SMALL SCREENS */}
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  fontStyle: "italic",
+                  color: "rgba(200, 210, 230, 255)",
+                  "@media (min-width: 1000px)": {
+                    display: "none",
+                  },
+                }}
+              >
+                Vancouver, BC | Sep 2024 - Dec 2024
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  marginTop: "8px",
+                  width: "100%",
+                }}
+              >
+                - Collaborated with staff to oversee STEM lessons and icebreakers
+                <br />
+                - Constructed a curriculum on Aerodynamics for 20+ youth
+                aerodynamics
+              </Typography>
+            </CustomPaper>
+          )}
         </motion.div>
       </TimelineContent>
     </TimelineItem>
