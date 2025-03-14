@@ -10,6 +10,7 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import LaptopMacIcon from "@mui/icons-material/LaptopMac";
+import SettingsIcon from "@mui/icons-material/Settings";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import SecurityIcon from "@mui/icons-material/Security";
 import SchoolIcon from "@mui/icons-material/School";
@@ -83,54 +84,54 @@ const TimeLine = () => {
 
         <>
             
-            <section className="timeline">
-  <motion.div
-    initial={{ x: 0, opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 1 }}
-    viewport={{ once: true, amount: 0.8 }}
-  >
-    <div id="experience" style={{ marginBottom: "20px" }}>
-      <For each={["subtle"]}>
-        {(variant) => (
-          <Card.Root
-            style={{
-              width: window.innerWidth < 660 ? "80%" : "40%", // Adjust the width dynamically
-              margin: "0 auto", // Optional: center the element for smaller screens
-            }}
-            variant={variant}
-            key={variant}
-            css={{
-              border: "2px solid rgba(235, 235, 235, 0.6)", // Outline
-              backgroundColor: "#2B3F57",
-              borderRadius: "8px", // Rounded corners
-              transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth hover effect
-              "&:hover": {
-                transform: "scale(1.02)", // Slight zoom on hover
-                boxShadow: "0 0 10px rgba(255, 255, 255, 0.2)", // Shadow on hover
-              },
-            }}
-          >
-            <Card.Body gap="2" css={{ textAlign: "center" }}>
-              <Card.Title
-                mb="2"
+      <section className="timeline">
+      <motion.div
+        initial={{ x: 0, opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true, amount: 0.8 }}
+      >
+        <div id="experience" style={{ marginBottom: "20px" }}>
+          <For each={["subtle"]}>
+            {(variant) => (
+              <Card.Root
+                style={{
+                  width: window.innerWidth < 660 ? "80%" : "40%", // Adjust the width dynamically
+                  margin: "0 auto", // Optional: center the element for smaller screens
+                }}
+                variant={variant}
+                key={variant}
                 css={{
-                  fontSize: "35px",
-                  fontWeight: "bold" /* Make the text bold */,
-                  color: "white" /* White text color for contrast */,
-                  letterSpacing: "3px" /* Add spacing between letters */,
+                  border: "2px solid rgba(235, 235, 235, 0.6)", // Outline
+                  backgroundColor: "#2B3F57",
+                  borderRadius: "8px", // Rounded corners
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth hover effect
+                  "&:hover": {
+                    transform: "scale(1.02)", // Slight zoom on hover
+                    boxShadow: "0 0 10px rgba(255, 255, 255, 0.2)", // Shadow on hover
+                  },
                 }}
               >
-                Experience
-              </Card.Title>
-            </Card.Body>
-          </Card.Root>
-        )}
-      </For>
-    </div>
-  </motion.div>
+                <Card.Body gap="2" css={{ textAlign: "center" }}>
+                  <Card.Title
+                    mb="2"
+                    css={{
+                      fontSize: "35px",
+                      fontWeight: "bold" /* Make the text bold */,
+                      color: "white" /* White text color for contrast */,
+                      letterSpacing: "3px" /* Add spacing between letters */,
+                    }}
+                  >
+                    Experience
+                  </Card.Title>
+                </Card.Body>
+              </Card.Root>
+            )}
+          </For>
+        </div>
+      </motion.div>
 
-  {/* TIMELINE */}
+    {/* TIMELINE */}
   <Timeline
     position={timelinePosition}
     sx={{
@@ -189,7 +190,7 @@ const TimeLine = () => {
               height: "300px",
             },
             "@media (max-width: 382px)": {
-              height: "360px",
+              height: "380px",
             },
           }}
         />
@@ -264,11 +265,149 @@ const TimeLine = () => {
                 width: "100%",
               }}
             >
-              - Developed a prototype autonomous robot control system using <b>React</b>, <b>Flask</b>, 
-                and <b>Python</b>, integrating <b>15+ </b> Robot endpoints to support real-time navigation, 
-                object avoidance, and stock retrieval for over <b>50,000+ </b> warehouse items.
+              - Processed 1.48M+ customer query records using SQL and Python, applying embeddings and clustering to
+              train a Rasa chatbot, automating request categorization and cutting manual work by 80%
+              <br />
+              - Engineered an autonomous robot control system using Python, React, and Flask, integrating 15+ Robot
+              endpoints to support real-time navigation and stock retrieval for over 50,000+ warehouse items
+              <br />
+              - Developing HongMall's first e-commerce web application using Angular and TypeScript, supporting a growing
+              mobile user base of 1M+ customers
             </Typography>
           </CustomPaper>
+        </motion.div>
+      </TimelineContent>
+    </TimelineItem>
+    {/* ITEM 1 */}
+    <TimelineItem
+      sx={{
+        width: "100%",
+        margin: "0",
+        padding: "0px",
+        "@media (max-width: 1000px)": {
+          flexDirection: "row",
+          alignItems: "flex-start",
+          width: "100%",
+        },
+      }}
+    >
+      {/* Date on the left for LARGE screens */}
+      <TimelineOppositeContent
+        sx={{
+          m: "auto 0",
+          color: "rgba(255, 255, 255, 0.94)",
+          "@media (max-width: 1000px)": {
+            display: "none", // Hide the date on smaller screens
+          },
+        }}
+      >
+        Nov 2024 - Mar 2025
+      </TimelineOppositeContent>
+
+      <TimelineSeparator>
+        <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
+          <SettingsIcon />
+        </TimelineDot>
+        <TimelineConnector
+          sx={{
+            "@media (max-width: 1000px)": {
+              height: "120px",
+              backgroundColor: "rgb(120, 134, 167)",
+            },
+            "@media (max-width: 778px)": {
+              height: "145px",
+            },
+            "@media (max-width: 639px)": {
+              height: "200px",
+            },
+            "@media (max-width: 533px)": {
+              height: "230px",
+            },
+            "@media (max-width: 440px)": {
+              height: "300px",
+            },
+            "@media (max-width: 382px)": {
+              height: "380px",
+            },
+          }}
+        />
+      </TimelineSeparator>
+
+      <TimelineContent
+        sx={{
+          "@media (max-width: 1000px)": {
+            flex: 1,
+            marginLeft: "16px",
+          },
+        }}
+      >
+        <motion.div
+          initial={{ x: 50, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <RightArrowPaper
+            sx={{
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              ":hover": {
+                transform: "scale(1.01)",
+                boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
+              },
+              "@media (max-width: 1000px)": {
+                width: "100%",
+              },
+            }}
+          >
+            <Typography
+              variant="h6"
+              component="span"
+              sx={{ fontWeight: "bold" }}
+            >
+              Automation Developer | Pacific Grace Mandarin Church (PGMC)
+            </Typography>
+
+            {/* LOCATION ONLY for LARGE SCREENS */}
+            <Typography
+              variant="subtitle2"
+              sx={{
+                fontStyle: "italic",
+                color: "rgba(200, 210, 230, 255)",
+                "@media (max-width: 1000px)": {
+                  display: "none", // Hide location-only text on small screens
+                },
+              }}
+            >
+              Markham, ON
+            </Typography>
+
+            {/* LOCATION + DATE for SMALL SCREENS */}
+            <Typography
+              variant="subtitle2"
+              sx={{
+                fontStyle: "italic",
+                color: "rgba(200, 210, 230, 255)",
+                "@media (min-width: 1000px)": {
+                  display: "none", // Hide combined text on large screens
+                },
+              }}
+            >
+              Remote - Vancouver, BC | Nov 2024 - Mar 2025
+            </Typography>
+
+            <Typography
+              variant="body2"
+              sx={{
+                marginTop: "8px",
+                width: "100%",
+              }}
+            >
+              - Developed and deployed a Python-based Discord bot using Docker, automating daily Bible readings and
+              announcements for a 105+ member community, streamlining communication by over 80%
+              <br />
+              - Integrated Google Sheets API for real-time updates and hosted on Google Cloud Run for scalability
+            </Typography>
+          </RightArrowPaper>
         </motion.div>
       </TimelineContent>
     </TimelineItem>
@@ -312,12 +451,12 @@ const TimeLine = () => {
               height: "230px",
             },
             "@media (max-width: 471px)": {
-              height: "250px",
+              height: "240px",
             },
             "@media (max-width: 440px)": {
-              height: "300px",
+              height: "280px",
             },
-            "@media (max-width: 370px)": {
+            "@media (max-width: 385px)": {
               height: "340px",
             },
           }}
@@ -340,7 +479,7 @@ const TimeLine = () => {
           transition={{ duration: 1 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <PaperComponent
+          <CustomPaper
             sx={{
               "@media (max-width: 1000px)": {
                 width: "100%",
@@ -387,12 +526,11 @@ const TimeLine = () => {
               variant="body2"
               sx={{ marginTop: "8px", width: "100%" }}
             >
-              - Created a backup driver to ensure data handling during power loss.
-              <br />- Implemented an ADC driver with C firmware and I2C
-              communication to read and convert temperature readings from raw
-              voltage values.
+              - Created a backup driver using C to integrate STM32's Backup registers, ensuring access control during power loss
+              <br />
+              - Implemented an ADC driver with C firmware and I2C communication to convert temperature to voltage
             </Typography>
-          </PaperComponent>
+          </CustomPaper>
         </motion.div>
       </TimelineContent>
     </TimelineItem>
@@ -439,10 +577,16 @@ const TimeLine = () => {
               height: "210px",
             },
             "@media (max-width: 495px)": {
-              height: "260px",
+              height: "270px",
+            },
+            "@media (max-width: 455px)": {
+              height: "320px",
+            },
+            "@media (max-width: 420px)": {
+              height: "350px",
             },
             "@media (max-width: 382px)": {
-              height: "265px",
+              height: "395px",
             },
           }}
         />
@@ -462,7 +606,7 @@ const TimeLine = () => {
           transition={{ duration: 1 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <CustomPaper
+          <RightArrowPaper
             sx={{
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
               ":hover": {
@@ -514,12 +658,15 @@ const TimeLine = () => {
               variant="body2"
               sx={{ marginTop: "8px", width: "100%" }}
             >
-              - Developed Python Scripts to automate company workflows,
-              including ping testing and data cleaning.
+              - Developed a multiprocessing Python script for CSV normalization, increasing workflow speed by 40%
               <br />
-              - Solely built the company website, generating over $33,000 worth of job revenue
+              - Designed and built a cross-platform invoice system with Python, Tkinter, and ReportLab, automating billing
+              for 50+ clients and reducing invoice preparation time by 75%
+              <br />
+              - Developed the company's website and advertisements using React, TypeScript, and Figma, which contributed
+              to 36% of client job bookings, generating $72,000+ in revenue in 2023
             </Typography>
-          </CustomPaper>
+          </RightArrowPaper>
         </motion.div>
       </TimelineContent>
     </TimelineItem>
@@ -568,7 +715,7 @@ const TimeLine = () => {
           transition={{ duration: 1 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <PaperComponent
+          <CustomPaper
             sx={{
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
               ":hover": {
@@ -631,7 +778,7 @@ const TimeLine = () => {
               - Constructed a curriculum on Aerodynamics for 20+ youth
               aerodynamics
             </Typography>
-          </PaperComponent>
+          </CustomPaper>
         </motion.div>
       </TimelineContent>
     </TimelineItem>
