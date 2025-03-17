@@ -147,11 +147,6 @@ const TimeLine = () => {
         width: "100%",
         margin: "0",
         padding: "0px",
-        "@media (max-width: 1000px)": {
-          flexDirection: "row",
-          alignItems: "flex-start",
-          width: "100%",
-        },
       }}
     >
       {/* Date on the left for LARGE screens */}
@@ -172,40 +167,7 @@ const TimeLine = () => {
           <LaptopMacIcon />
         </TimelineDot>
         <TimelineConnector
-           sx={{
-            backgroundColor: "rgb(120, 134, 167)",
-            "@media (max-width: 1000px)": {
-              height: "170px",
-            },
-            "@media (max-width: 800px)": {
-              height: "190px",
-            },
-            "@media (max-width: 700px)": {
-              height: "210px",
-            }, 
-            "@media (max-width: 600px)": {
-              height: "230px",
-            },
-            "@media (max-width: 550px)": {
-              height: "250px",
-            },
-            "@media (max-width: 500px)": {
-              height: "270px",
-            },
-            "@media (max-width: 471px)": {
-              height: "290px",
-            },
-            "@media (max-width: 440px)": {
-              height: "310px",
-            },
-            "@media (max-width: 420px)": {
-              height: "330px",
-            },
-            "@media (max-width: 385px)": {
-              height: "350px",
-            },
-          }}
-      />
+        />
         
       </TimelineSeparator>
 
@@ -297,11 +259,6 @@ const TimeLine = () => {
         width: "100%",
         margin: "0",
         padding: "0px",
-        "@media (max-width: 1000px)": {
-          flexDirection: "row",
-          alignItems: "flex-start",
-          width: "100%",
-        },
       }}
     >
       {/* Date on the left for LARGE screens */}
@@ -322,27 +279,6 @@ const TimeLine = () => {
           <SettingsIcon />
         </TimelineDot>
         <TimelineConnector
-          sx={{
-            "@media (max-width: 1000px)": {
-              height: "120px",
-              backgroundColor: "rgb(120, 134, 167)",
-            },
-            "@media (max-width: 778px)": {
-              height: "145px",
-            },
-            "@media (max-width: 639px)": {
-              height: "200px",
-            },
-            "@media (max-width: 533px)": {
-              height: "230px",
-            },
-            "@media (max-width: 440px)": {
-              height: "300px",
-            },
-            "@media (max-width: 382px)": {
-              height: "380px",
-            },
-          }}
         />
       </TimelineSeparator>
 
@@ -491,12 +427,7 @@ const TimeLine = () => {
 
     {/* ITEM 2 */}
     <TimelineItem
-      sx={{
-        "@media (max-width: 1000px)": {
-          flexDirection: "row",
-          alignItems: "flex-start",
-        },
-      }}
+      
     >
       {/* Date on the left for LARGE screens */}
       <TimelineOppositeContent
@@ -516,27 +447,6 @@ const TimeLine = () => {
           <ElectricBoltIcon />
         </TimelineDot>
         <TimelineConnector
-          sx={{
-            "@media (max-width: 1000px)": {
-              height: "130px",
-              backgroundColor: "rgb(120, 134, 167)",
-            },
-            "@media (max-width: 700px)": {
-              height: "178px",
-            },
-            "@media (max-width: 550px)": {
-              height: "230px",
-            },
-            "@media (max-width: 471px)": {
-              height: "240px",
-            },
-            "@media (max-width: 440px)": {
-              height: "280px",
-            },
-            "@media (max-width: 385px)": {
-              height: "340px",
-            },
-          }}
         />
       </TimelineSeparator>
 
@@ -669,12 +579,6 @@ const TimeLine = () => {
 
     {/* ITEM 3 */}
     <TimelineItem
-      sx={{
-        "@media (max-width: 1000px)": {
-          flexDirection: "row",
-          alignItems: "flex-start",
-        },
-      }}
     >
       {/* Date on the left for LARGE screens */}
       <TimelineOppositeContent
@@ -694,33 +598,7 @@ const TimeLine = () => {
           <SecurityIcon />
         </TimelineDot>
         <TimelineConnector
-          sx={{
-            "@media (max-width: 1000px)": {
-              height: "100px",
-              backgroundColor: "rgb(120, 134, 167)",
-            },
-            "@media (max-width: 850px)": {
-              height: "158px",
-            },
-            "@media (max-width: 550px)": {
-              height: "190px",
-            },
-            "@media (max-width: 520px)": {
-              height: "210px",
-            },
-            "@media (max-width: 495px)": {
-              height: "270px",
-            },
-            "@media (max-width: 455px)": {
-              height: "320px",
-            },
-            "@media (max-width: 420px)": {
-              height: "350px",
-            },
-            "@media (max-width: 382px)": {
-              height: "395px",
-            },
-          }}
+          
         />
       </TimelineSeparator>
 
@@ -869,13 +747,6 @@ const TimeLine = () => {
 
     {/* ITEM 4 */}
     <TimelineItem
-      sx={{
-        "@media (max-width: 1000px)": {
-          flexDirection: "row",
-          alignItems: "flex-start",
-          width: "100%",
-        },
-      }}
     >
       {/* Date on the left for LARGE screens */}
       <TimelineOppositeContent
