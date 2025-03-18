@@ -15,6 +15,12 @@ import g9 from '../images/gallery/g9.png'
 import g10 from '../images/gallery/g10.png'
 import g11 from '../images/gallery/g11.png'
 import g12 from '../images/gallery/g12.png'
+// Import the new images
+import g13 from '../images/gallery/g13.png'
+import g14 from '../images/gallery/g14.png'
+import g15 from '../images/gallery/g15.png'
+import g16 from '../images/gallery/g16.png'
+import g17 from '../images/gallery/g17.png'
 import Contacts from '../components/contacts';
 
 import Box from '@mui/material/Box';
@@ -32,18 +38,25 @@ export default function Gallery() {
     
     // Create an array of image data from your imported images
     const itemData = [
-      { img: g1, title: 'Gallery Image 1' },
-      { img: g2, title: 'Gallery Image 2' },
-      { img: g3, title: 'Gallery Image 3' },
-      { img: g4, title: 'Gallery Image 4' },
-      { img: g5, title: 'Gallery Image 5' },
-      { img: g6, title: 'Gallery Image 6' },
-      { img: g7, title: 'Gallery Image 7' },
-      { img: g8, title: 'Gallery Image 8' },
-      { img: g9, title: 'Gallery Image 9' },
-      { img: g10, title: 'Gallery Image 10' },
-      { img: g11, title: 'Gallery Image 11' },
-      { img: g12, title: 'Gallery Image 12' }
+      // Original images
+      { img: g1, title: 'Vancouver, BC' },
+      { img: g2, title: 'Vancouver, BC' },
+      { img: g3, title: 'Vancouver, BC' },
+      { img: g4, title: 'Vancouver, BC' },
+      { img: g5, title: 'Waterloo, ON' },
+      { img: g6, title: 'Waterloo, ON' },
+      { img: g7, title: 'Vancouver, BC' },
+      { img: g8, title: 'Toronto, ON' },
+      { img: g9, title: 'Waterloo, ON' },
+      { img: g10, title: 'Vancouver, BC' },
+      { img: g11, title: 'Ontario Skys' },
+      { img: g12, title: 'Vancouver, BC' },
+      // New images
+      { img: g13, title: 'New Adventure' },
+      { img: g14, title: 'Memories' },
+      { img: g15, title: 'Friends Gathering' },
+      { img: g16, title: 'Weekend Trip' },
+      { img: g17, title: 'Exploring' }
     ];
     
     // Handle image load
