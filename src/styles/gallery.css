@@ -1,5 +1,91 @@
+.p3 { 
+  background-color: rgb(120, 134, 167);
+  position: relative;
+  min-height: 100vh;
+  padding-top: 120px; /* Provide space for the title */
+}
 
-  .gallery img:hover {
-    transform: scale(1.02); 
+.title { 
+  display: flex;
+  width: 100%; 
+  justify-content: center;
+  font-size: 2rem;
+  color: #2a4884;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative; /* Keep it relative */
+}
+
+/* Improved Image Styling */
+.gallery img {
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: saturate(0.9) brightness(0.9);
+}
+
+.gallery img:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  filter: saturate(1.1) brightness(1.05);
+}
+
+.gallery {
+  position: relative; /* Already set, but confirming */
+  background-color: rgba(25, 35, 50, 0.7);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Image Item Styling */
+.MuiImageListItem-root {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Image Caption Overlay */
+.MuiImageListItem-root::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 14px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  opacity: 0;
+  border-radius: 0 0 8px 8px;
+}
+
+.MuiImageListItem-root:hover::after {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  .gallery {
+    padding: 30px 0;
   }
+  
+  .photos {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery {
+    padding: 20px 0;
+  }
+  
+  .photos {
+    font-size: 1.4rem;
+  }
+  
+  .gallery img:hover {
+    transform: scale(1.03);
+  }
+}
   

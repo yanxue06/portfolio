@@ -58,8 +58,8 @@ export default function Gallery() {
     
   return (
     <div className="p3">
-      <div className="photos">
-        under construction... 
+      <div className="title">
+        Photo Gallery
       </div>
       <div className="gallery">
         <Box sx={{ 
@@ -67,12 +67,14 @@ export default function Gallery() {
           maxWidth: 1200,
           height: 'auto',
           margin: '0 auto',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          position: 'relative'
         }}>
           <ImageList variant="masonry" cols={3} gap={12}>
             {itemData.map((item, index) => (
               <ImageListItem 
                 key={item.img}
+                data-title={item.title}
                 sx={{
                   opacity: loadedImages[index] ? 1 : 0,
                   transform: loadedImages[index] ? 'translateY(0)' : 'translateY(20px)',
