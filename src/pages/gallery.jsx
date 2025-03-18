@@ -53,10 +53,10 @@ export default function Gallery() {
       { img: g12, title: 'Vancouver, BC' },
       // New images
       { img: g13, title: 'New Adventure' },
-      { img: g14, title: 'Memories' },
-      { img: g15, title: 'Friends Gathering' },
-      { img: g16, title: 'Weekend Trip' },
-      { img: g17, title: 'Exploring' }
+      { img: g14, title: 'Hangzhou, China' },
+      { img: g15, title: 'Anhui, China' },
+      { img: g16, title: 'Anhui, China' },
+      { img: g17, title: 'GOOGLE PLEASE HIRE ME' }
     ];
     
     // Handle image load
