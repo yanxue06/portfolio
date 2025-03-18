@@ -22,6 +22,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 
 export default function Gallery() {
+     
     useEffect(() => {
       window.scrollTo(0, 0);
     }, []);
@@ -57,10 +58,7 @@ export default function Gallery() {
     };
     
   return (
-    <div className="p3">
-      <div className="title">
-        Photo Gallery
-      </div>
+    <div className="galleryPage">
       <div className="gallery">
         <Box sx={{ 
           width: '90%', 

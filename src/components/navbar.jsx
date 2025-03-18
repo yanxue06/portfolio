@@ -97,6 +97,9 @@ export default function Navbar() {
                     <Link to="/projects" className="navbar-link" onClick={handleLinkClick}>
                         PROJECTS
                     </Link>
+                    <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
+                        GALLERY
+                    </Link>
                     {/* <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
                         GALLERY
                     </Link> */}
