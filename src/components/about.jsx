@@ -97,7 +97,7 @@ export default function About() {
                                 improve my skills and explore new experiences.
                                 <br /><br />
                                 Beyond coding, I love guitar, chess (add me on chess.com <a 
-                                    href="https://link.chess.com/friend/GkCA48" 
+                                    href="https://link.chess.com/friend/HFiGMJ" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     style={{
@@ -110,7 +110,7 @@ export default function About() {
                                         }
                                     }}
                                 >here</a>), table tennis, soccer, frisbee, and traveling.
-                                My gallery and blog are coming soon! 
+
                             </Card.Description>
                         </Card.Body>
                         <Card.Footer
@@ -135,13 +135,7 @@ export default function About() {
                             >
                                 Gallery
                             </Button>
-                            <Button
-                                color="white"
-                                backgroundColor="#66789F"
-                                _hover={{ bg: "rgba(141, 140, 178, 0.79)" }}
-                            >
-                                Blog
-                            </Button>
+                           
                         </Card.Footer>
                     </Box>
                 </Card.Root>
