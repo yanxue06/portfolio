@@ -41,6 +41,8 @@ export default function Navbar() {
         }
     };
 
+
+
     return (
         <motion.nav
             className={`navbar ${scrollY > 0 ? "navbar-scrolled" : ""}`}
@@ -69,6 +71,9 @@ export default function Navbar() {
                     {/* <Link to="/gallery" className="navbar-link">
                         GALLERY
                     </Link> */}
+                    <a href="/gallery" className="navbar-link">
+                        GALLERY
+                    </a>
 
                     <a href="#contact" className="navbar-link" onClick={scrollToContact}>
                         CONTACT

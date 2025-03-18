@@ -1,30 +1,5 @@
-.photos { 
-    width: 80%; 
-    height: 100%; 
-    justify-content: center; 
-    min-height: 15vh; 
 
-    text-align: left;  
-    padding-top: 20%; 
-    font-size: 40px; 
-    font-weight: bold; 
-    padding-left: 10px; 
-}
-
-  .gallery {
-    display: grid; 
-    grid-template-columns: auto auto auto; 
-    padding: 20px; 
-  }
-  
-  .gallery img {
-    width: 100%;/* Make images fit their grid cells */
-    height: 100%; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensures images fill their cells neatly */
-    transition: transform 0.3s ease; /* Optional: Add a resizing animation */
-  }
-  
   .gallery img:hover {
-    transform: scale(1.2); 
+    transform: scale(1.02); 
   }
   

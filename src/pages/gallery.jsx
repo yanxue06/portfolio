@@ -1,8 +1,8 @@
 // about.jsx
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Typewriter from '../components/typewriter'
-import '../styles/gallery.css'
 
+import '../styles/gallery.css'
 import g1 from '../images/gallery/g1.png'
 import g2 from '../images/gallery/g2.png'
 import g3 from '../images/gallery/g3.png'
@@ -17,31 +17,81 @@ import g11 from '../images/gallery/g11.png'
 import g12 from '../images/gallery/g12.png'
 import Contacts from '../components/contacts';
 
-
+import Box from '@mui/material/Box';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 
 export default function Gallery() {
     useEffect(() => {
       window.scrollTo(0, 0);
     }, []);
+    
+    // State to track which images have loaded
+    const [loadedImages, setLoadedImages] = useState({});
+    
+    // Create an array of image data from your imported images
+    const itemData = [
+      { img: g1, title: 'Gallery Image 1' },
+      { img: g2, title: 'Gallery Image 2' },
+      { img: g3, title: 'Gallery Image 3' },
+      { img: g4, title: 'Gallery Image 4' },
+      { img: g5, title: 'Gallery Image 5' },
+      { img: g6, title: 'Gallery Image 6' },
+      { img: g7, title: 'Gallery Image 7' },
+      { img: g8, title: 'Gallery Image 8' },
+      { img: g9, title: 'Gallery Image 9' },
+      { img: g10, title: 'Gallery Image 10' },
+      { img: g11, title: 'Gallery Image 11' },
+      { img: g12, title: 'Gallery Image 12' }
+    ];
+    
+    // Handle image load
+    const handleImageLoad = (index) => {
+      // Add a small delay proportional to the image index
+      setTimeout(() => {
+        setLoadedImages(prev => ({
+          ...prev,
+          [index]: true
+        }));
+      }, index * 150); // 150ms delay between each image appearing
+    };
+    
   return (
     <div className="p3">
       <div className="photos">
         under construction... 
       </div>
-      {/* <div className="gallery"> 
-        <img src={g1} alt="1"/> 
-        <img src={g2} alt="2"/> 
-        <img src={g3} alt="3"/> 
-        <img src={g4} alt="4"/> 
-        <img src={g5} alt="5"/> 
-        <img src={g6} alt="6"/> 
-        <img src={g7} alt="7"/> 
-        <img src={g8} alt="8"/> 
-        <img src={g9} alt="9"/> 
-        <img src={g10} alt="10"/> 
-        <img src={g11} alt="11"/> 
-        <img src={g12} alt="12"/> 
-      </div>  */}
+      <div className="gallery">
+        <Box sx={{ 
+          width: '90%', 
+          maxWidth: 1200,
+          height: 'auto',
+          margin: '0 auto',
+          overflow: 'hidden'
+        }}>
+          <ImageList variant="masonry" cols={3} gap={12}>
+            {itemData.map((item, index) => (
+              <ImageListItem 
+                key={item.img}
+                sx={{
+                  opacity: loadedImages[index] ? 1 : 0,
+                  transform: loadedImages[index] ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'opacity 0.5s ease, transform 0.5s ease',
+                }}
+              >
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  loading="lazy"
+                  style={{ borderRadius: '8px' }}
+                  // This triggers when the image finishes loading
+                  onLoad={() => handleImageLoad(index)}
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </Box>
+      </div> 
       <Contacts/> 
     </div>
     
