@@ -38,10 +38,9 @@ function ProjectShowcase() {
           <Image
             objectFit="cover"
             css={{
-              width: "40%",
+              width: "50%",
               height: "auto",
               borderRadius: "8px",
-              marginRight: "16px",
               "@media (max-width: 780px)": {
                 width: "100%",
                 marginRight: 0,
