@@ -52,7 +52,7 @@ export default function Gallery() {
       { img: g11, title: 'Ontario Skys' },
       { img: g12, title: 'Vancouver, BC' },
       // New images
-      { img: g13, title: 'New Adventure' },
+      { img: g13, title: 'XuanCheng, China' },
       { img: g14, title: 'Hangzhou, China' },
       { img: g15, title: 'Anhui, China' },
       { img: g16, title: 'Anhui, China' },
