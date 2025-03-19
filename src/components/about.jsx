@@ -96,7 +96,7 @@ export default function About() {
                                 at Waterloo, ON for the next few years. I'm always excited to 
                                 improve my skills and explore new experiences.
                                 <br /><br />
-                                Beyond coding, I love guitar, chess (add me on chess.com <a 
+                                Beyond coding, I love guitar, chess, {/*(add me on chess.com <a 
                                     href="https://link.chess.com/friend/HFiGMJ" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
@@ -108,8 +108,8 @@ export default function About() {
                                         "&:hover": {
                                             color: "#7cb5ff"  
                                         }
-                                    }}
-                                >here</a>), table tennis, soccer, frisbee, and traveling.
+                                }} >here</a>) */}
+                                soccer, table tennis, frisbee, and traveling.
 
                             </Card.Description>
                         </Card.Body>
