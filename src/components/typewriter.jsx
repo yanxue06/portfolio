@@ -9,7 +9,6 @@ const Typewriter = () => {
                 deleteSpeed: 50,
                 loop: true,
                 waitUntilVisible: true,
-                color: "white", 
             }}
             getBeforeInit={(instance) => {
                 instance
@@ -28,9 +27,9 @@ const Typewriter = () => {
                     .type("안녕하세요! ")
                     .pause(1500)
                     .delete(20); // Deletes "안녕하세요, I'm"
-
                 return instance;
             }}
+            style={{ color: "white" }}
         ></TypeIt>
     );
 };

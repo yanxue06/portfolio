@@ -67,6 +67,7 @@ function ProjectShowcase() {
                 css={{
                   fontSize: "clamp(24px, 3vw, 28px)",
                   fontWeight: "bold",
+                  color: "white",
                 }}
               >
                 Projects

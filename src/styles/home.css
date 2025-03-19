@@ -50,7 +50,7 @@ body {
 .top-section { 
   /* The key: reserve enough height so that when the typewriter text 
      starts typing, it doesn’t push the top heading. */
-    
+  color: white; 
   min-height: 1.5em; 
   font-size: 45px;  /* since its typewriter */ 
   position: relative; 
