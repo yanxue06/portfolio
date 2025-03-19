@@ -55,14 +55,18 @@ export default function Gallery() {
     <div className="galleryPage">
       <div className="gallery">
         <Box sx={{ 
-          width: '90%', 
-          maxWidth: 1200,
-          height: 'auto',
+          width: '95%', 
           margin: '0 auto',
           overflow: 'hidden',
-          position: 'relative'
+          position: 'relative',
+          minHeight: '1200px'
         }}>
-          <ImageList variant="masonry" cols={3} gap={12}>
+          <ImageList 
+            variant="masonry" 
+            cols={3} 
+            gap={12}
+            sx={{ overflow: 'hidden' }}
+          >
             {itemData.map((item, index) => (
               <ImageListItem 
                 key={item.img}

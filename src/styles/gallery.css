@@ -10,6 +10,11 @@
   position: relative; /* Keep it relative */
 }
 
+/* Add overflow control to prevent scrollbars */
+html, body {
+  overflow-x: hidden;
+}
+
 /* Improved Image Styling */
 .gallery img {
   border-radius: 8px;
@@ -27,6 +32,8 @@
   position: relative;
   padding-top: 80px; /* Adjust this value to match your navbar height plus some extra space */
   background-color: rgba(25, 35, 50); /* Dark background to match your current theme */
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  width: 100%;
 }
 
 .gallery {
@@ -35,6 +42,8 @@
   padding-top: 20px; /* Reduced from 200px since we're handling spacing at the page level */
   background-color: rgba(25, 35, 50);
   z-index: 1; /* Ensure it's below the navbar */
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  width: 100%;
 }
 
 /* Image Item Styling */
