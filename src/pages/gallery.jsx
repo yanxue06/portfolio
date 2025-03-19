@@ -48,14 +48,14 @@ export default function Gallery() {
           ...prev,
           [index]: true
         }));
-      }, index * 150); // 150ms delay between each image appearing
+      }, index * 300); // 150ms delay between each image appearing
     };
     
   return (
     <div className="galleryPage">
       <div className="gallery">
         <Box sx={{ 
-          width: '95%', 
+          width: '65%', 
           margin: '0 auto',
           overflow: 'hidden',
           position: 'relative',
