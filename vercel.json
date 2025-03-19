@@ -2,6 +2,7 @@
   "headers": [
     {
       "source": "/images/(.*)",
+      "rewrites": [{ "source": "/(.*)", "destination": "/", 
       "headers": [
         {
           "key": "Cache-Control",

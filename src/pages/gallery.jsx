@@ -76,7 +76,7 @@ export default function Gallery() {
                 <img
                   src={item.img}
                   alt={item.title}
-                  // loading="lazy"
+                  loading="lazy"
                   style={{ borderRadius: '1px' }}
                   // This triggers when the image finishes loading
                   onLoad={() => handleImageLoad(index)}

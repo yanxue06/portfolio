@@ -129,9 +129,7 @@ export default function About() {
                                 color="white"
                                 backgroundColor="#66789F"
                                 _hover={{ bg: "rgba(141, 140, 178, 0.79)" }}
-                                onClick={() => window.open("/gallery", "_blank")}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                onClick={() => window.location.href = "/gallery"}
                             >
                                 Gallery
                             </Button>
