@@ -48,7 +48,7 @@ export default function Gallery() {
           ...prev,
           [index]: true
         }));
-      }, index * 300); // 150ms delay between each image appearing
+      }, index * 300); 
     };
     
   return (

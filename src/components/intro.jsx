@@ -18,12 +18,16 @@ export default function intro() {
         
         return Array(window.innerWidth > 750 ? defaultStars : mobileStars)
             .fill()
-            .map((_, i) => <div key={i} className="star"></div>);
+            .map((_, i) => <div key={i} className="star" style={{
+                color: 'white'
+            }}></div>);
     };
 
     return (
         <section id="home" className="p1">
-            <div className="stars">
+            <div className="stars" style={{
+                color: 'white'
+            }} >
                 {getStars()}
             </div>
 
