@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import Trackify from "../images/projects/Trackify.svg";
+import Trackify from "/images/projects/Trackify.svg";
 import { Box, Button, Card, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import '../styles/projectShowcase.css';

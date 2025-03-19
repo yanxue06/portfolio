@@ -4,7 +4,7 @@ import "../styles/particle.scss";
 import "../styles/timeline.css";
 import "../styles/arrow.scss";
 
-import Yan from "../images/Yan.jpeg";
+import Yan from "/images/Yan.jpeg";
 import "../styles/navbar.css";
 import { motion } from "framer-motion";
 import { Box, Button, Card, Image } from "@chakra-ui/react";

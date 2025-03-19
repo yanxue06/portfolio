@@ -1,9 +1,9 @@
 import React from "react";
 import '../styles/contacts.css'
-import gram from '../images/icons/gram.png'
-import email from '../images/icons/email.png'
-import linkedIn from '../images/icons/linkedIn.png'
-import github from '../images/icons/github.png'
+import gram from '/images/icons/gram.png'
+import email from '/images/icons/email.png'
+import linkedIn from '/images/icons/linkedIn.png'
+import github from '/images/icons/github.png'
 
 export default function Contacts() { 
     return ( 

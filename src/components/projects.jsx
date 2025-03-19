@@ -1,15 +1,15 @@
-import * as React from "react";
+
 import "../styles/home.css";
 import "../styles/projects.css";
-import trackify from "../images/projects/Trackify.svg";
-import blank from "../images/projects/Blank.svg";
-import Comparisum from "../images/projects/Comparisum.svg";
-import RFID from "../images/projects/RFID.svg";
-import JobBot from "../images/projects/JobBot.svg";
-import housing from "../images/projects/Housing.svg";
-import LinkCom from "../images/projects/LinkCom.png";
-import CSV from "../images/projects/CSV.svg";
-import Portfolio from "../images/projects/Portfolio.svg";
+import trackify from "/images/projects/Trackify.svg";
+import blank from "/images/projects/Blank.svg";
+import Comparisum from "/images/projects/Comparisum.svg";
+import RFID from "/images/projects/RFID.svg";
+import JobBot from "/images/projects/JobBot.svg";
+import housing from "/images/projects/Housing.svg";
+import LinkCom from "/images/projects/LinkCom.png";
+import CSV from "/images/projects/CSV.svg";
+import Portfolio from "/images/projects/Portfolio.svg";
 import { Badge, Box, Button, Card, HStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
