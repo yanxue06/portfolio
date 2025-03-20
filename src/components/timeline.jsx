@@ -253,6 +253,7 @@ const TimeLine = () => {
         </motion.div>
       </TimelineContent>
     </TimelineItem>
+    
     {/* ITEM 1 */}
     <TimelineItem
       sx={{
@@ -271,7 +272,7 @@ const TimeLine = () => {
           },
         }}
       >
-        Nov 2024 - Mar 2025
+        Jan 2025 - Apr 2025
       </TimelineOppositeContent>
 
       <TimelineSeparator>
