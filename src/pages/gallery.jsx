@@ -10,12 +10,47 @@ import ImageListItem from '@mui/material/ImageListItem';
 
 export default function Gallery() {
      
+    const [loadedImages, setLoadedImages] = useState({});
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+    
     useEffect(() => {
       window.scrollTo(0, 0);
+      
+      // Add window resize listener
+      const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+      };
+      
+      window.addEventListener('resize', handleResize);
+      
+      // Clean up
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
     }, []);
     
-    // State to track which images have loaded
-    const [loadedImages, setLoadedImages] = useState({});
+    // Determine responsive values based on window width
+    const getResponsiveValues = () => {
+      // Default (desktop)
+      let containerWidth = '75%';
+      let columns = 3;
+      
+      // Tablet
+      if (windowWidth < 900) {
+        containerWidth = '85%';
+        columns = 2;
+      }
+      
+      // Mobile
+      if (windowWidth < 600) {
+        containerWidth = '90%';
+        columns = 1;
+      }
+      
+      return { containerWidth, columns };
+    };
+    
+    const { containerWidth, columns } = getResponsiveValues();
     
     // Create an array of image data using string paths instead of imports
     const itemData = [
@@ -55,16 +90,16 @@ export default function Gallery() {
     <div className="galleryPage">
       <div className="gallery">
         <Box sx={{ 
-          width: '65%', 
+          width: containerWidth, 
           margin: '0 auto',
           overflow: 'hidden',
           position: 'relative',
-          minHeight: '1200px'
+          minHeight: windowWidth < 600 ? '800px' : '1200px'
         }}>
           <ImageList 
             variant="masonry" 
-            cols={3} 
-            gap={12}
+            cols={columns} 
+            gap={windowWidth < 600 ? 8 : 12}
             sx={{ overflow: 'hidden' }}
           >
             {itemData.map((item, index) => (
@@ -81,7 +116,11 @@ export default function Gallery() {
                   src={item.img}
                   alt={item.title}
                   loading="lazy"
-                  style={{ borderRadius: '1px' }}
+                  style={{ 
+                    borderRadius: '1px',
+                    width: '100%', 
+                    height: 'auto'
+                  }}
                   // This triggers when the image finishes loading
                   onLoad={() => handleImageLoad(index)}
                 />

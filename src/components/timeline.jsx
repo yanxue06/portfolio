@@ -342,7 +342,7 @@ const TimeLine = () => {
                   },
                 }}
               >
-                Remote - Vancouver, BC | Nov 2024 - Mar 2025
+                Remote - Vancouver, BC | Jan 2025 - Apr 2025
               </Typography>
 
               <Typography
