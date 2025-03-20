@@ -328,7 +328,7 @@ const TimeLine = () => {
                   },
                 }}
               >
-                Markham, ON
+                Remote - Vancouver, BC
               </Typography>
 
               {/* LOCATION + DATE for SMALL SCREENS */}
