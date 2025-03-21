@@ -96,7 +96,6 @@ const TimeLine = () => {
             {(variant) => (
               <Card.Root
                 style={{
-                  width: window.innerWidth < 860 ? "70%" : "40%", // Adjust the width dynamically
                   margin: "0 auto", // Optional: center the element for smaller screens
                 }}
                 variant={variant}
@@ -109,6 +108,13 @@ const TimeLine = () => {
                   "&:hover": {
                     transform: "scale(1.02)", // Slight zoom on hover
                     boxShadow: "0 0 10px rgba(255, 255, 255, 0.2)", // Shadow on hover
+                  },
+                  width: "40%", // Default width for larger screens
+                  "@media (max-width: 860px)": {
+                    width: "55%", // Width for smaller screens
+                  },
+                  "@media (max-width: 500px)": {
+                    width: "85%", // Width for smaller screens
                   },
                 }}
               >
