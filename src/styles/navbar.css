@@ -136,7 +136,7 @@
 }
 
 /* Media query for mobile */
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 1000px) {
   .navbar-links {
     display: none; /* Hide desktop links */
   }

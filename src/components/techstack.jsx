@@ -169,7 +169,18 @@ const TechStack = ({
             }}
             className="tech-content"
             >
-         
+              <h3 style={{
+                fontSize: "20px",
+                fontWeight: "600",
+                marginBottom: "16px",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                color: "rgb(220, 229, 251)"
+              }}>
+                {categoryIcons[activeCategory] && React.cloneElement(categoryIcons[activeCategory], { size: 24 })}
+                <span>{activeCategory}</span>
+              </h3>
               <div style={{ 
                 display: "flex", 
                 flexWrap: "wrap", 

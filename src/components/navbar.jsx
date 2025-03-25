@@ -41,7 +41,14 @@ export default function Navbar() {
         }
     };
 
-
+    const openResume = (e) => {
+        e.preventDefault();
+        window.open(
+            "https://drive.google.com/file/d/1ILOfLwwijZj3ubTjZVhDw18MbRARtB2w/view?usp=sharing",
+            "_blank"
+        );
+        setIsMobileMenuOpen(false);
+    };
 
     return (
         <motion.nav
@@ -72,11 +79,13 @@ export default function Navbar() {
                         EXPERIENCE
                     </Link>
 
-                    {/* <Link to="/gallery" className="navbar-link">
-                        GALLERY
-                    </Link> */}
+                    
                     <a href="/gallery" className="navbar-link">
                         GALLERY
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1ILOfLwwijZj3ubTjZVhDw18MbRARtB2w/view?usp=sharing" className="navbar-link" target="_blank" rel="noopener noreferrer">
+                        RESUME
                     </a>
 
                     <a href="#contact" className="navbar-link" onClick={scrollToContact}>
@@ -108,7 +117,15 @@ export default function Navbar() {
                     <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
                         GALLERY
                     </Link>
-                    <a href="#contact" className="navbar-link" onClick={scrollToContact}>
+
+                    <a href="#" className="navbar-link" onClick={openResume}>
+                        RESUME
+                    </a>
+
+                    <a href="#contact" className="navbar-link" onClick={(e) => {
+                        scrollToContact(e);
+                        handleLinkClick();
+                    }}>
                         CONTACT
                     </a>
                 </div>

@@ -51,15 +51,14 @@ const Experience = () => {
         },
       
         /* Default width: 60% */
-        width: "60%",
         textAlign: "left",
       
-        /* Media query: At 1600px and up => set width to 600px */
-        "@media (min-width:1600px)": {
-            width: "600px",
+        "@media (max-width: 2000px)": { 
+            width: "90%"
         },
-        "@media (max-width: 1599px)": { 
-            width: "80%"
+
+        "@media (max-width: 10000px)": { 
+            maxWidth: "800px"
         }
 
 
@@ -95,50 +94,9 @@ const Experience = () => {
                 transition={{ duration: 1 }}
                 viewport={{ once: true, amount: 0.8 }}
             >
-                <div id="experience" style={{ marginBottom: "20px" }}>
-                <For each={["subtle"]}>
-                    {(variant) => (
-                    <Card.Root
-                        style={{
-                        margin: "0 auto", // Optional: center the element for smaller screens
-                        }}
-                        variant={variant}
-                        key={variant}
-                        css={{
-                        border: "2px solid rgba(235, 235, 235, 0.6)", // Outline
-                        backgroundColor: "#2B3F57",
-                        borderRadius: "8px", // Rounded corners
-                        transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth hover effect
-                        "&:hover": {
-                            transform: "scale(1.02)", // Slight zoom on hover
-                            boxShadow: "0 0 10px rgba(255, 255, 255, 0.2)", // Shadow on hover
-                        },
-                        width: "40%", // Default width for larger screens
-                        "@media (max-width: 860px)": {
-                            width: "55%", // Width for smaller screens
-                        },
-                        "@media (max-width: 500px)": {
-                            width: "85%", // Width for smaller screens
-                        },
-                        }}
-                    >
-                        <Card.Body gap="2" css={{ textAlign: "center" }}>
-                        <Card.Title
-                            mb="2"
-                            css={{
-                            fontSize: "35px",
-                            fontWeight: "bold" /* Make the text bold */,
-                            color: "white" /* White text color for contrast */,
-                            letterSpacing: "3px" /* Add spacing between letters */,
-                            }}
-                        >
-                            Experience
-                        </Card.Title>
-                        </Card.Body>
-                    </Card.Root>
-                    )}
-                </For>
-                </div>
+                <h1 style={{textAlign: "center", color: "rgb(231, 232, 229)", fontWeight: "bold"}}> 
+                    Experience
+                </h1>
             </motion.div>
 
             {/* TIMELINE */}

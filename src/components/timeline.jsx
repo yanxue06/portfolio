@@ -113,17 +113,17 @@ const TimeLine = () => {
           <Card.Description
             css={{
               color: "rgb(220, 229, 251)",
-              width: "90%",
+              width: "100%",
               fontSize: "clamp(0.9rem, 1.5vw, 1rem)",
               lineHeight: "1.4",
-              maxWidth: "100%",
               marginBottom: "24px",
               "@media (max-width: 780px)": {
                 fontSize: "0.9rem"
               }
             }}
           >
-            Places I've worked at and projects I've contributed to.
+            Some of my work experience! Most recently, I was an SWE @ HongMall, while also doing part-time renmote work at 
+            Pacific Grace Church developing a discord bot! 
           </Card.Description>
           
           {/* Add fixed width container for the Swiper */}
@@ -132,7 +132,7 @@ const TimeLine = () => {
               modules={[Navigation, Pagination, Autoplay]}
               spaceBetween={20}
               initialSlide={0}
-              slidesPerView={3} 
+              slidesPerView={2} 
               navigation={{
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
@@ -148,16 +148,12 @@ const TimeLine = () => {
                 disableOnInteraction: false
               }}
               breakpoints={{
-                0: {
+                600: {
                   slidesPerView: 1,
                   spaceBetween: 20,
                 },
-                600: {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-                },
                 900: {
-                  slidesPerView: 3,
+                  slidesPerView: 2,
                   spaceBetween: 20,
                 }
               }}
@@ -178,7 +174,7 @@ const TimeLine = () => {
                       border: "1px solid rgba(235, 235, 235, 0.1)",
                       transition: "transform 0.3s ease, box-shadow 0.3s ease",
                       boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-                      height: "320px", // Fixed height
+                      height: "220px",
                       "&:hover": {
                         transform: "translateY(-5px)",
                         boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
