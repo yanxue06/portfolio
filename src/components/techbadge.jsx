@@ -5,12 +5,13 @@ const TechBadge = ({ name = "Technology", color = "#3178c6", icon, iconOnly = fa
   // Default icon if no specific icon is provided
   return (
     <div
-      style={{
+      css={{
         display: "flex",
         alignItems: "center",
+        justifyContent: "center",
         gap: "8px",
         transition: "all 0.2s",
-        padding: iconOnly ? "8px" : "12px 16px",
+        padding: "8px 12px",
         borderRadius: "8px",
         backgroundColor: "#1e2f3e",
         color: "rgb(220, 229, 251)",
@@ -18,13 +19,26 @@ const TechBadge = ({ name = "Technology", color = "#3178c6", icon, iconOnly = fa
         boxShadow: `0 0 10px ${color}20`,
         cursor: "pointer",
         transform: "scale(1)",
+        fontSize: "14px",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        maxWidth: "100%",
         "&:hover": {
           transform: "scale(1.05)",
           boxShadow: `0 0 15px ${color}30`,
+        },
+        "@media (max-width: 780px)": {
+          padding: "6px 8px",
+          fontSize: "13px"
+        },
+        "@media (max-width: 480px)": {
+          padding: "4px 6px",
+          fontSize: "12px"
         }
       }}
     >
-      <span style={{ fontSize: "14px" }}>{name}</span>
+      <span>{name}</span>
     </div>
   );
 };
