@@ -3,9 +3,6 @@ import { Code, Globe, Library, Wrench } from "lucide-react"; // Import icons fro
 
 const TechBadge = ({ name = "Technology", color = "#3178c6", icon, iconOnly = false }) => {
   // Default icon if no specific icon is provided
-  
-
-
   return (
     <div
       style={{
