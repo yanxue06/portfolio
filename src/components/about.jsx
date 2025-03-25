@@ -11,34 +11,37 @@ import { Box, Button, Card, Image } from "@chakra-ui/react";
 
 export default function About() {
     return (
-        <section id="about" className="about">
+        <section id="about" className="about" style={{ width: "100%" }}>
             <motion.div
                 initial={{ x: -40, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
+                style={{ width: "100%" }}
             >
                 <Card.Root
                     overflow="hidden"
                     css={{
-                        width: "85%", // Adjusted to 85% of the screen width
-                        backgroundColor: "#2B3F57", 
+                        width: "70% !important",
+                        height: "550px", 
                         maxWidth: "1200px",
+                        backgroundColor: "#2B3F57", 
                         boxShadow: "0 0 2px 1px rgba(235, 235, 235, 0.4)",
                         transition: "transform 0.3s ease, box-shadow 0.3s ease",
                         margin: "0 auto",
                         display: "flex",
-                        flexDirection: "row", // Default layout
+                        flexDirection: "row",
+                        borderRadius: "8px",
                         "&:hover": {
                             transform: "scale(1.02)",
                             boxShadow: "0 0 5px 5px rgba(147, 143, 143, 0.5)",
                         },
                         "@media (max-width: 780px)": {
-                            flexDirection: "column", // Stack vertically on mobile
-                            width: "90%", // Slightly wider on mobile
+                            flexDirection: "column",
+                            width: "90% !important", 
                         },
                     }}
-                >
+                    >
                     <Image
                         objectFit="cover"
                         loading="lazy"

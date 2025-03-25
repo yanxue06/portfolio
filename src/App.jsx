@@ -6,8 +6,8 @@ import './styles/navbar.css';
 
 import Home from './pages/home'; 
 import Gallery from "./pages/gallery";
-import Projects from "./pages/projects"
-
+import Projects from "./pages/projects";
+import Experience from './pages/Experience';
 
 export default function App() {
   return (
@@ -18,7 +18,8 @@ export default function App() {
           <Route path="/" element={<Home />} />  
           <Route path="/home" element={<Home />} />    
           <Route path="/gallery" element={<Gallery />} />    
-          <Route path="/projects" element={<Projects />} /> \
+          <Route path="/projects" element={<Projects />} /> 
+          <Route path="/experience" element={<Experience />} /> 
         </Routes>
       </Router>
     </>

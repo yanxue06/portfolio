@@ -68,6 +68,10 @@ export default function Navbar() {
                         PROJECTS
                     </Link>
 
+                    <Link to="/experience" className="navbar-link">
+                        EXPERIENCE
+                    </Link>
+
                     {/* <Link to="/gallery" className="navbar-link">
                         GALLERY
                     </Link> */}
@@ -97,12 +101,12 @@ export default function Navbar() {
                     <Link to="/projects" className="navbar-link" onClick={handleLinkClick}>
                         PROJECTS
                     </Link>
+                    <Link to="/experience" className="navbar-link" onClick={handleLinkClick}>
+                        EXPERIENCE
+                    </Link>
                     <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
                         GALLERY
                     </Link>
-                    {/* <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
-                        GALLERY
-                    </Link> */}
                     <a href="#contact" className="navbar-link" onClick={scrollToContact}>
                         CONTACT
                     </a>

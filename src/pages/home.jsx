@@ -11,6 +11,8 @@ import "../styles/navbar.css";
 import TechStack from '../components/techstack';
 import Contacts from '../components/contacts';
 import ProjectShowcase from "../components/projectShowcase";
+import techstack from "../components/techstack";
+
 
 export default function App() {
     useEffect(() => {
@@ -29,9 +31,11 @@ export default function App() {
 
                         <TimeLine />
 
+                        <TechStack/> 
+                        
                         <ProjectShowcase/>
                         
-                        {/* <TechStack/>  */}
+                       
                     </div> 
                 </section>
 
