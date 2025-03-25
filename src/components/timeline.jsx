@@ -20,6 +20,15 @@ const logoPlaceholders = {
 
 const experiences = [
   {
+    title: "Software Developer",
+    company: "Rocketry",
+    period: "Mar 2025 - Present",
+    location: "Waterloo, ON",
+    brief: "ROCKETS!",
+    logoPath: logoPlaceholders["Rocketry"],
+    colorAccent: "#65B5FF"
+  },
+  {
     title: "Software Engineering Intern",
     company: "HongMall",
     period: "Jan 2025 - present",
@@ -55,15 +64,7 @@ const experiences = [
     logoPath: logoPlaceholders["Skynet Security System Ltd."],
     colorAccent: "#4CAF50"
   },
-  {
-    title: "Software Developer",
-    company: "Rocketry",
-    period: "Mar 2025 - Present",
-    location: "Waterloo, ON",
-    brief: "ROCKETS!",
-    logoPath: logoPlaceholders["Rocketry"],
-    colorAccent: "#65B5FF"
-  },
+  
  
 ];
 
