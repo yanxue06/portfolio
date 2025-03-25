@@ -11,11 +11,11 @@ import { ArrowRight } from "lucide-react";
 
 // Default company logos - replace with actual logos later
 const logoPlaceholders = {
-  "HongMall": "/images/logo-placeholder1.svg",
-  "Pacific Grace Mandarin Church": "/images/logo-placeholder2.svg",
-  "Midnight Sun": "/images/logo-placeholder3.svg",
-  "Skynet Security System Ltd.": "/images/logo-placeholder4.svg", 
-  "Rocketry": "/images/logo-placeholder5.svg",
+  "HongMall": "/images/logos/hongmall.png",
+  "Pacific Grace Mandarin Church": "/images/logos/pgmc.png",
+  "Midnight Sun": "/images/logos/midnightsun.png",
+  "Skynet Security System Ltd.": "/images/logos/skynet.svg", 
+  "Rocketry": "/images/logos/rocketry.png",
 };
 
 const experiences = [
@@ -64,8 +64,6 @@ const experiences = [
     logoPath: logoPlaceholders["Skynet Security System Ltd."],
     colorAccent: "#4CAF50"
   },
-  
- 
 ];
 
 const TimeLine = () => {
@@ -200,28 +198,19 @@ const TimeLine = () => {
                           display: "flex",
                           alignItems: "center",
                           marginBottom: "12px",
+                          height: "44px",
                         }}
                       >
-                        <Box 
-                          css={{
-                            width: "40px",
-                            height: "40px",
-                            borderRadius: "6px",
-                            background: "#0B131E",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
+                        <img 
+                          src={exp.logoPath} 
+                          alt={`${exp.company} logo`}
+                          style={{ 
+                            height: "52px", 
+                            width: "auto", 
                             marginRight: "10px",
-                            border: "1px solid rgba(235, 235, 235, 0.2)",
-                            overflow: "hidden",
+                            filter: "drop-shadow(0 0 1px rgba(255, 255, 255, 0.5))"
                           }}
-                        >
-                          <img 
-                            src={exp.logoPath} 
-                            alt={`${exp.company} logo`} 
-                            style={{ width: "100%", height: "100%", objectFit: "contain" }} 
-                          />
-                        </Box>
+                        />
                         <Box css={{ flex: 1, overflow: "hidden" }}>
                           <h3 style={{ 
                             fontSize: "1rem", 
@@ -294,8 +283,9 @@ const TimeLine = () => {
                             },
                           }}
                         >
-                          View details
-                          <ArrowRight size={14} style={{ marginLeft: "6px" }} />
+                          <span style={{ color: "rgb(220, 229, 251)" }}>See more › </span>
+
+                         
                         </Button>
                       </Box>
                     </Box>
