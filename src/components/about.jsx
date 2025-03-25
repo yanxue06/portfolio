@@ -23,7 +23,6 @@ export default function About() {
                     overflow="hidden"
                     css={{
                         width: "70% !important",
-                        height: "550px", 
                         maxWidth: "1200px",
                         backgroundColor: "#2B3F57", 
                         boxShadow: "0 0 2px 1px rgba(235, 235, 235, 0.4)",
