@@ -88,7 +88,7 @@ const Experience = () => {
 
     <>
             
-      <section className="timeline" style={{ paddingTop: "80px" }}>
+      <section className="timeline" style={{ paddingTop: "80px", backgroundColor: "#161D25"}}>
             <motion.div
                 initial={{ x: 0, opacity: 0 }}
                 whileInView={{ opacity: 1 }}

@@ -123,7 +123,7 @@ const TimeLine = () => {
               }
             }}
           >
-            Places I've worked and projects I've contributed to throughout my career.
+            Places I've worked at and projects I've contributed to.
           </Card.Description>
           
           {/* Add fixed width container for the Swiper */}
