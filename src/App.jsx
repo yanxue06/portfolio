@@ -7,7 +7,7 @@ import './styles/navbar.css';
 import Home from './pages/home'; 
 import Gallery from "./pages/gallery";
 import Projects from "./pages/projects";
-import Experience from './pages/Experience';
+import Experience from './pages/experience';
 
 export default function App() {
   return (
