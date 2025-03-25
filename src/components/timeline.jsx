@@ -122,7 +122,7 @@ const TimeLine = () => {
               }
             }}
           >
-            Some of my work experience! Most recently, I was an SWE @ HongMall, while also doing part-time renmote work at 
+            Some of my work experience! Most recently, I was an SWE @ HongMall, while also doing part-time remote work at 
             Pacific Grace Church developing a discord bot! 
           </Card.Description>
           
