@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TechBadge from "./TechBadge";
+import TechBadge from "./techBadge";
 import { Code, Globe, Library, Wrench } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card } from "@chakra-ui/react";

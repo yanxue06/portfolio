@@ -27,7 +27,6 @@ const TechBadge = ({ name = "Technology", color = "#3178c6", icon, iconOnly = fa
         }
       }}
     >
-      {/* Display the icon (either provided or default) */}
       <span style={{ fontSize: "14px" }}>{name}</span>
     </div>
   );
