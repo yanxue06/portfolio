@@ -80,8 +80,8 @@ export default function About() {
                                     fontWeight: "bold",
                                     color: "white",
                                 }}
-                            >
-                                About Me
+                            >   
+                                <h1 style={{ color: "rgb(196, 223, 235)", marginBottom: "10px" }}>About Me</h1>
                             </Card.Title>
                             <Card.Description
                                 css={{

@@ -135,11 +135,10 @@ const TechStack = ({
             css={{
               fontSize: "clamp(24px, 3vw, 28px)",
               fontWeight: "bold",
-              color: "white",
               textAlign: "left"
             }}
           >
-            Skills
+            <h1 style={{ color: "rgb(196, 223, 235)", marginBottom: "10px" }}>Skills</h1>
           </Card.Title>
 
           {isMobile ? (
@@ -165,7 +164,7 @@ const TechStack = ({
                 backgroundColor: "#1e2f3e",
               }
             }}>
-              <InputLabel id="category-select-label" sx={{ color: "rgb(220, 229, 251)" }}></InputLabel>
+              <InputLabel id="category-select-label" sx={{ color: "rgb(220, 229, 251)" }}> Categories</InputLabel>
               <Select
                 labelId="category-select-label"
                 id="category-select"
