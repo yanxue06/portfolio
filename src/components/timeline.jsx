@@ -21,7 +21,7 @@ const logoPlaceholders = {
 const experiences = [
   {
     title: "Software Developer",
-    company: "Rocketry",
+    company: "Waterloo Rocketry",
     period: "Mar 2025 - Present",
     location: "Waterloo, ON",
     brief: "ROCKETS!",
@@ -30,7 +30,7 @@ const experiences = [
   },
   {
     title: "Software Engineering Intern",
-    company: "HongMall",
+    company: "HongMall Canada",
     period: "Jan 2025 - present",
     location: "Markham, ON",
     brief: "Developing e-commerce solutions and automation systems serving 1M+ customers",
@@ -93,6 +93,9 @@ const TimeLine = () => {
               transform: "scale(1.02)",
               boxShadow: "0 0 5px 5px rgba(147, 143, 143, 0.5)",
             },
+            "@media (max-width: 1500px)": {
+                width: "90% !important", 
+            },
             "@media (max-width: 780px)": {
               width: "90%",
               padding: "16px",
@@ -132,7 +135,7 @@ const TimeLine = () => {
               modules={[Navigation, Pagination, Autoplay]}
               spaceBetween={20}
               initialSlide={0}
-              slidesPerView={2} 
+              slidesPerView={1} 
               navigation={{
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',

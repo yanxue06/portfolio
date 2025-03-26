@@ -31,6 +31,9 @@ function ProjectShowcase() {
               transform: "scale(1.02)",
               boxShadow: "0 0 5px 5px rgba(147, 143, 143, 0.5)",
             },
+            "@media (max-width: 1500px)": {
+              width: "90% !important", 
+            },
             "@media (max-width: 780px)": {
               flexDirection: "column",
               width: "90%", 
@@ -92,7 +95,6 @@ function ProjectShowcase() {
             </Card.Body>
             <Card.Footer
               css={{
-                marginTop: "16px",
                 display: "flex",
                 gap: "8px",
                 "@media (max-width: 780px)": {

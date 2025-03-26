@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TechBadge from "./techbadge";
 import { Code, Globe, Library, Wrench } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card } from "@chakra-ui/react";
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Chip from '@mui/material/Chip';
 
 const TechStack = ({
   categories = {
@@ -54,6 +62,22 @@ const TechStack = ({
   },
 }) => {
   const [activeCategory, setActiveCategory] = useState("Languages");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 1050);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   const categoryIcons = {
     Languages: <Code size={20} />,
@@ -68,6 +92,10 @@ const TechStack = ({
     } else {
       setActiveCategory(categoryName);
     }
+  };
+
+  const handleCategoryChange = (event) => {
+    setActiveCategory(event.target.value);
   };
 
   return (
@@ -93,6 +121,9 @@ const TechStack = ({
               transform: "scale(1.02)",
               boxShadow: "0 0 5px 5px rgba(147, 143, 143, 0.5)",
             },
+            "@media (max-width: 1500px)": {
+                width: "90% !important", 
+            },
             "@media (max-width: 780px)": {
               width: "90%",
               padding: "24px 16px",
@@ -111,52 +142,112 @@ const TechStack = ({
             Skills
           </Card.Title>
 
-          <div 
-            style={{ 
-              display: "flex", 
-              flexWrap: "wrap", 
-              gap: "16px", 
-              marginBottom: "24px"
-            }}
-            className="category-buttons"
-          >
-            {Object.entries(categories).map(([categoryName, technologies]) => (
-              <button
-                key={categoryName}
-                onClick={() => toggleCategory(categoryName)}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "12px 16px",
-                  borderRadius: "8px",
-                  transition: "all 0.2s",
-                  backgroundColor: activeCategory === categoryName ? "#1e2f3e" : "#2B3F57",
+          {isMobile ? (
+            <FormControl fullWidth sx={{ 
+              marginBottom: "24px",
+              "& .MuiOutlinedInput-root": {
+                backgroundColor: "#1e2f3e",
+                color: "rgb(220, 229, 251)",
+                borderRadius: "8px",
+                border: "1px solid rgba(235, 235, 235, 0.2)",
+              },
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "rgba(235, 235, 235, 0.2)",
+              },
+              "& .MuiInputLabel-root": {
+                color: "rgb(220, 229, 251)",
+              },
+              "& .MuiSelect-icon": {
+                color: "rgb(220, 229, 251)",
+              },
+              "& .MuiMenuItem-root": {
+                color: "rgb(220, 229, 251)",
+                backgroundColor: "#1e2f3e",
+              }
+            }}>
+              <InputLabel id="category-select-label" sx={{ color: "rgb(220, 229, 251)" }}></InputLabel>
+              <Select
+                labelId="category-select-label"
+                id="category-select"
+                value={activeCategory}
+                onChange={handleCategoryChange}
+                label="Category"
+                sx={{
                   color: "rgb(220, 229, 251)",
-                  border: "1px solid rgba(235, 235, 235, 0.2)",
-                  transform: activeCategory === categoryName ? "scale(1.05)" : "scale(1)",
-                  boxShadow: activeCategory === categoryName ? "0 4px 12px rgba(0, 0, 0, 0.2)" : "none",
-                  cursor: "pointer",
-                  minWidth: "150px",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(235, 235, 235, 0.2)",
+                  },
                 }}
-                className={`category-button ${activeCategory === categoryName ? 'active' : ''}`}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      backgroundColor: "#1e2f3e",
+                      color: "rgb(220, 229, 251)",
+                    },
+                  },
+                }}
               >
-                <div style={{ 
-                  fontSize: "20px", 
-                  marginBottom: "8px",
-                  color: "rgb(220, 229, 251)"
-                }}>
-                  {categoryIcons[categoryName] || <Code size={20} />}
-                </div>
-                <span style={{ 
-                  fontSize: "14px", 
-                  fontWeight: "500",
-                  color: "rgb(220, 229, 251)"
-                }}>{categoryName}</span>
-              </button>
-            ))}
-          </div>
+                {Object.keys(categories).map((categoryName) => (
+                  <MenuItem 
+                    key={categoryName} 
+                    value={categoryName}
+                    sx={{ 
+                      backgroundColor: "#1e2f3e",
+                      color: "rgb(220, 229, 251)",
+                      "&:hover": {
+                        backgroundColor: "#2B3F57",
+                      },
+                      "&.Mui-selected": {
+                        backgroundColor: "#2B3F57",
+                      },
+                    }}
+                  >
+                    {categoryName}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          ) : (
+            <div 
+              style={{ 
+                display: "flex", 
+                flexWrap: "wrap", 
+                gap: "16px", 
+                marginBottom: "24px"
+              }}
+              className="category-buttons"
+            >
+              {Object.entries(categories).map(([categoryName, technologies]) => (
+                <button
+                  key={categoryName}
+                  onClick={() => toggleCategory(categoryName)}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "12px 16px",
+                    borderRadius: "8px",
+                    transition: "all 0.2s",
+                    backgroundColor: activeCategory === categoryName ? "#1e2f3e" : "#2B3F57",
+                    color: "rgb(220, 229, 251)",
+                    border: "1px solid rgba(235, 235, 235, 0.2)",
+                    transform: activeCategory === categoryName ? "scale(1.05)" : "scale(1)",
+                    boxShadow: activeCategory === categoryName ? "0 4px 12px rgba(0, 0, 0, 0.2)" : "none",
+                    cursor: "pointer",
+                    minWidth: "150px",
+                  }}
+                  className={`category-button ${activeCategory === categoryName ? 'active' : ''}`}
+                >
+                  <span style={{ 
+                    fontSize: "14px", 
+                    fontWeight: "500",
+                    color: "rgb(220, 229, 251)"
+                  }}>{categoryName}</span>
+                </button>
+              ))}
+            </div>
+          )}
 
           {activeCategory && (
             <div style={{
@@ -169,18 +260,6 @@ const TechStack = ({
             }}
             className="tech-content"
             >
-              <h3 style={{
-                fontSize: "20px",
-                fontWeight: "600",
-                marginBottom: "16px",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                color: "rgb(220, 229, 251)"
-              }}>
-                {categoryIcons[activeCategory] && React.cloneElement(categoryIcons[activeCategory], { size: 24 })}
-                <span>{activeCategory}</span>
-              </h3>
               <div style={{ 
                 display: "flex", 
                 flexWrap: "wrap", 
@@ -198,46 +277,50 @@ const TechStack = ({
       </motion.div>
 
       <style jsx>{`
-        @media (max-width: 780px) {
-          .category-buttons {
-            gap: 12px;
+      @media (max-width: 1200px) {
+        .category-buttons {
+          @media (max-width: 780px) {
+            .category-buttons {
+              gap: 12px;
+            }
+            
+            .category-button {
+              min-width: 120px;
+              padding: 10px 12px;
+            }
+            
+            .tech-content {
+              padding: 16px;
+            }
           }
           
-          .category-button {
-            min-width: 120px;
-            padding: 10px 12px;
-          }
-          
-          .tech-content {
-            padding: 16px;
+          @media (max-width: 480px) {
+            .category-button {
+              min-width: 100px;
+              padding: 8px 10px;
+              flex-grow: 1;
+            }
+            
+            .category-button div {
+              font-size: 18px;
+              margin-bottom: 6px;
+            }
+            
+            .category-button span {
+              font-size: 12px;
+            }
+            
+            .tech-content h3 {
+              font-size: 18px;
+              margin-bottom: 12px;
+            }
+            
+            .tech-badges {
+              gap: 8px;
+            }
           }
         }
-        
-        @media (max-width: 480px) {
-          .category-button {
-            min-width: 100px;
-            padding: 8px 10px;
-            flex-grow: 1;
-          }
-          
-          .category-button div {
-            font-size: 18px;
-            margin-bottom: 6px;
-          }
-          
-          .category-button span {
-            font-size: 12px;
-          }
-          
-          .tech-content h3 {
-            font-size: 18px;
-            margin-bottom: 12px;
-          }
-          
-          .tech-badges {
-            gap: 8px;
-          }
-        }
+      }
       `}</style>
     </section>
   );

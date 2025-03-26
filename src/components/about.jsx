@@ -35,9 +35,11 @@ export default function About() {
                             transform: "scale(1.02)",
                             boxShadow: "0 0 5px 5px rgba(147, 143, 143, 0.5)",
                         },
+                        "@media (max-width: 1500px)": {
+                            width: "90% !important", 
+                        },
                         "@media (max-width: 780px)": {
                             flexDirection: "column",
-                            width: "90% !important", 
                         },
                     }}
                     >

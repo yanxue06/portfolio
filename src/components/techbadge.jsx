@@ -10,7 +10,7 @@ const TechBadge = ({ name = "Technology", color = "#3178c6", icon, iconOnly = fa
         alignItems: "center",
         gap: "8px",
         transition: "all 0.2s",
-        padding: iconOnly ? "8px" : "12px 16px",
+        padding: iconOnly ? "8px" : "10px 14px",
         borderRadius: "8px",
         backgroundColor: "#1e2f3e",
         color: "rgb(220, 229, 251)",
@@ -18,13 +18,14 @@ const TechBadge = ({ name = "Technology", color = "#3178c6", icon, iconOnly = fa
         boxShadow: `0 0 10px ${color}20`,
         cursor: "pointer",
         transform: "scale(1)",
-        "&:hover": {
-          transform: "scale(1.05)",
-          boxShadow: `0 0 15px ${color}30`,
+        fontSize: "13px",
+        "@media (max-width: 480px)": {
+          padding: "8px 12px",
+          fontSize: "12px"
         }
       }}
     >
-      <span style={{ fontSize: "14px" }}>{name}</span>
+      <span>{name}</span>
     </div>
   );
 };

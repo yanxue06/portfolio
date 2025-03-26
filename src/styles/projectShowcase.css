@@ -17,8 +17,4 @@
   background-color: rgba(141, 140, 178, 0.79) !important;
 }
 
-@media (max-width: 780px) {
-  .projects-showcase {
-    padding-top: 60px;
-  }
-}
+
