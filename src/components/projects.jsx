@@ -10,18 +10,229 @@ import housing from "/images/projects/Housing.svg";
 import LinkCom from "/images/projects/LinkCom.png";
 import CSV from "/images/projects/CSV.svg";
 import Portfolio from "/images/projects/Portfolio.svg";
+import Powerprompt from "/images/projects/Powerprompt.svg";
 import { Badge, Box, Button, Card, HStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import drugforecast from "/images/projects/drugforecast.svg";
 
 export default function Projects() {
     return (
         <section id="projects" className="p3">
                 <div className="projectsCol">
-                    
+                
+                <div className="projectsRow"> 
+                <motion.div
+                            initial={{ x: 0, opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ duration: 1 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                        > 
+                        <Card.Root
+                            display="flex"
+                            flexDirection="column" // Stack image on top of text
+                            maxW="900px"
+                            mx="auto"
+                            overflow="hidden"
+                            borderRadius="xl"
+                            boxShadow="lg"
+                            bg="black"
+                            h="auto"
+                            
+                            width="80%" // Let the card grow to fit content
+                            transition="transform 0.3s ease, box-shadow 0.3s ease" // Transition for smooth effect
+                            css={{
+                                "&:hover": {
+                                    transform: "scale(1.02)", // Gentle zoom effect
+                                    boxShadow: "0 0 20px rgba(255, 255, 255, 0.3)", // Enhanced glow
+                                }
+                            }}
+                        >
+                            <Box
+                                w="100%"
+                                bg="black" // Matches the card background
+                                display="flex"
+                                justifyContent="center"
+                                alignItems="center"
+                            >
+                                <LazyLoadImage
+                                    src={drugforecast}
+                                    alt="Drug Forecast"
+                                    effect="blur"
+                                    width="100%"
+                                    height="100%"
+                                    style={{
+                                        objectFit: "contain",
+                                        objectPosition: "center",
+                                        display: "block"
+                                    }}
+                                />
+                            </Box>
+
+                            <Box
+                                p={6}
+                                display="flex"
+                                flexDirection="column"
+                                justifyContent="space-between"
+                                w="100%" // Full width of the card
+                            >
+                                <Box>
+                                    <Card.Title
+                                        mb={2}
+                                        fontSize="2xl"
+                                        fontWeight="bold"
+                                        color="white"
+                                    >
+                                        Drug Sensescence Forecasting 
+                                    </Card.Title>
+                                    <Card.Description
+                                        fontSize="lg"
+                                        lineHeight="tall"
+                                        color="gray.300"
+                                        width="100%"
+                                    >
+                                        This project explores the lifespan extension potential of chemical compounds using machine learning. Under the mentorship of Dr. Michał Koziarski, we are developing predictive models to assess compounds' effects on longevity.
+
+                                    </Card.Description>
+
+                                    <HStack mt={4} spacing={3} flexWrap="wrap" >
+                                        <Badge colorScheme="teal" fontSize="sm">Python</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Pandas</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Scikit-learn
+                                        </Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Matplotlib</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Seaborn</Badge>
+                                    </HStack>
+                                </Box>
+
+                                <Button
+                                    variant="solid"
+                                    bg="white"
+                                    color="black"
+                                    fontSize="sm"
+                                    width="40%"
+                                    marginTop="20px"
+                                    _hover={{ bg: "gray.300" }}
+                                    as="a"
+                                    href="https://github.com/yanxue06/ML-Age"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="project-button"
+                                >
+                                    See The Code
+                                </Button>
+                            </Box>
+                        </Card.Root>
+                </motion.div>
+                <motion.div
+                            initial={{ x: 0, opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ duration: 1 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                        > 
+                        <Card.Root
+                            display="flex"
+                            flexDirection="column" // Stack image on top of text
+                            maxW="900px"
+                            mx="auto"
+                            overflow="hidden"
+                            borderRadius="xl"
+                            boxShadow="lg"
+                            bg="black"
+                            h="auto"
+                            
+                            width="80%" // Let the card grow to fit content
+                            transition="transform 0.3s ease, box-shadow 0.3s ease" // Transition for smooth effect
+                            css={{
+                                "&:hover": {
+                                    transform: "scale(1.02)", // Gentle zoom effect
+                                    boxShadow: "0 0 20px rgba(255, 255, 255, 0.3)", // Enhanced glow
+                                }
+                            }}
+                        >
+                            <Box
+                                w="100%"
+                                bg="black" // Matches the card background
+                                display="flex"
+                                justifyContent="center"
+                                alignItems="center"
+                            >
+                                <LazyLoadImage
+                                    src={drugforecast}
+                                    alt="Drug Forecast"
+                                    effect="blur"
+                                    width="100%"
+                                    height="100%"
+                                    style={{
+                                        objectFit: "contain",
+                                        objectPosition: "center",
+                                        display: "block"
+                                    }}
+                                />
+                            </Box>
+
+                            <Box
+                                p={6}
+                                display="flex"
+                                flexDirection="column"
+                                justifyContent="space-between"
+                                w="100%" // Full width of the card
+                            >
+                                <Box>
+                                    <Card.Title
+                                        mb={2}
+                                        fontSize="2xl"
+                                        fontWeight="bold"
+                                        color="white"
+                                    >
+                                        Drug Sensescence Forecasting 
+                                    </Card.Title>
+                                    <Card.Description
+                                        fontSize="lg"
+                                        lineHeight="tall"
+                                        color="gray.300"
+                                        width="100%"
+                                    >
+                                        This project explores the lifespan extension potential of chemical compounds using machine learning. Under the mentorship of Dr. Michał Koziarski, we are developing predictive models to assess compounds' effects on longevity.
+
+                                    </Card.Description>
+
+                                    <HStack mt={4} spacing={3} flexWrap="wrap" >
+                                        <Badge colorScheme="teal" fontSize="sm">Python</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Pandas</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Scikit-learn
+                                        </Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Matplotlib</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Seaborn</Badge>
+                                    </HStack>
+                                </Box>
+
+                                <Button
+                                    variant="solid"
+                                    bg="white"
+                                    color="black"
+                                    fontSize="sm"
+                                    width="40%"
+                                    marginTop="20px"
+                                    _hover={{ bg: "gray.300" }}
+                                    as="a"
+                                    href="https://github.com/yanxue06/ML-Age"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="project-button"
+                                >
+                                    See The Code
+                                </Button>
+                            </Box>
+                        </Card.Root>
+                        </motion.div>
+                    </div>
+
                     {/* ROW 1 */}
                     <div className="projectsRow">
+                    
+
                         <motion.div
                             initial={{ x: 0, opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -56,8 +267,8 @@ export default function Projects() {
                                 alignItems="center"
                             >
                                 <LazyLoadImage
-                                    src={blank}
-                                    alt="Coming Soon..."
+                                    src={Powerprompt}
+                                    alt="Powerprompt"
                                     effect="blur"
                                     width="100%"
                                     height="100%"
@@ -83,7 +294,7 @@ export default function Projects() {
                                         fontWeight="bold"
                                         color="white"
                                     >
-                                        Coming Soon... 
+                                        PowerPrompt 
                                     </Card.Title>
                                     <Card.Description
                                         fontSize="lg"
@@ -91,12 +302,14 @@ export default function Projects() {
                                         color="gray.300"
                                         width="100%"
                                     >
-                                        Coming Soon... 
+                                        Raising Awareness: PowerPrompt gives users real-time feedback on the energy consumption of their ChatGPT interactions. Our friendly monkey mascot 🐒 updates users on their energy usage, token count, and carbon footprint—helping them see the environmental impact of their conversations.
                                     </Card.Description>
 
                                     <HStack mt={4} spacing={3} flexWrap="wrap" >
-                                        
-                                        
+                                        <Badge colorScheme="teal" fontSize="sm">React</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">JavaScript</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Chrome Storage API</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Vite</Badge>
                                     </HStack>
                                 </Box>
 
@@ -109,7 +322,7 @@ export default function Projects() {
                                     marginTop="20px"
                                     _hover={{ bg: "gray.300" }}
                                     as="a"
-                                    href="https://github.com/yanxue06/Housing-Price-Predictor"
+                                    href="https://github.com/yanxue06/Powerprompt"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="project-button"

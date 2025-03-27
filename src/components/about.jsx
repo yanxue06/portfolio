@@ -118,28 +118,7 @@ export default function About() {
 
                             </Card.Description>
                         </Card.Body>
-                        <Card.Footer
-                            css={{
-                                marginTop: "16px",
-                                display: "flex",
-                                gap: "8px",
-                                "@media (max-width: 780px)": {
-                                    flexWrap: "wrap",
-                                    justifyContent: "flex-start", // Buttons always left-aligned
-                                    marginBottom: "16px"
-                                }
-                            }}
-                        >
-                            <Button
-                                color="white"
-                                backgroundColor="#66789F"
-                                _hover={{ bg: "rgba(141, 140, 178, 0.79)" }}
-                                onClick={() => window.location.href = "/gallery"}
-                            >
-                                Gallery
-                            </Button>
-                           
-                        </Card.Footer>
+              
                     </Box>
                 </Card.Root>
             </motion.div>
