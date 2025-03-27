@@ -57,7 +57,7 @@ export default function Projects() {
                                 alignItems="center"
                             >
                                 <LazyLoadImage
-                                    src={drugforecast}
+                                    src={blank}
                                     alt="Drug Forecast"
                                     effect="blur"
                                     width="100%"
@@ -84,7 +84,7 @@ export default function Projects() {
                                         fontWeight="bold"
                                         color="white"
                                     >
-                                        Drug Sensescence Forecasting 
+                                    HarmoniQ (WORK IN PROGRESS)
                                     </Card.Title>
                                     <Card.Description
                                         fontSize="lg"
@@ -92,17 +92,16 @@ export default function Projects() {
                                         color="gray.300"
                                         width="100%"
                                     >
-                                        This project explores the lifespan extension potential of chemical compounds using machine learning. Under the mentorship of Dr. Michał Koziarski, we are developing predictive models to assess compounds' effects on longevity.
-
+                                        Connecting people through music w/ real-time messaging and music sharing! 
                                     </Card.Description>
 
                                     <HStack mt={4} spacing={3} flexWrap="wrap" >
                                         <Badge colorScheme="teal" fontSize="sm">Python</Badge>
-                                        <Badge colorScheme="teal" fontSize="sm">Pandas</Badge>
-                                        <Badge colorScheme="teal" fontSize="sm">Scikit-learn
+                                        <Badge colorScheme="teal" fontSize="sm">Typescript</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">React
                                         </Badge>
-                                        <Badge colorScheme="teal" fontSize="sm">Matplotlib</Badge>
-                                        <Badge colorScheme="teal" fontSize="sm">Seaborn</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Gemini API</Badge>
+                                        <Badge colorScheme="teal" fontSize="sm">Supabase</Badge>
                                     </HStack>
                                 </Box>
 
@@ -115,7 +114,7 @@ export default function Projects() {
                                     marginTop="20px"
                                     _hover={{ bg: "gray.300" }}
                                     as="a"
-                                    href="https://github.com/yanxue06/ML-Age"
+                                    href="https://github.com/yanxue06/harmoniq"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="project-button"
