@@ -112,7 +112,7 @@ const TechStack = ({
             width: "70%",
             maxWidth: "1200px", 
             margin: "0 auto", 
-            padding: "32px", 
+            padding: "32px",
             backgroundColor: "#2B3F57", 
             borderRadius: "8px",
             boxShadow: "0 0 2px 1px rgba(235, 235, 235, 0.4)",
@@ -253,7 +253,7 @@ const TechStack = ({
               backgroundColor: "#1e2f3e",
               borderRadius: "8px",
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
-              padding: "24px",
+              padding: "32px",
               transition: "all 0.3s",
               border: "1px solid rgba(235, 235, 235, 0.1)"
             }}
@@ -262,7 +262,7 @@ const TechStack = ({
               <div style={{ 
                 display: "flex", 
                 flexWrap: "wrap", 
-                gap: "12px"
+                gap: "16px"
               }}
               className="tech-badges"
               >
