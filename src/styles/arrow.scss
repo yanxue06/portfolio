@@ -35,6 +35,11 @@ $arrow-line-width: 4px;
       }
     }
   }
+
+  // smaller arrow sizes when screen is smaller 
+  @media (max-width: 768px) {
+    height: 75px;
+  }
 }
 
 
