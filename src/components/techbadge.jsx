@@ -1,7 +1,12 @@
 import React from "react";
 import { Code, Globe, Library, Wrench } from "lucide-react"; // Import icons from lucide-react
 
-const TechBadge = ({ name = "Technology", color = "#3178c6", icon, iconOnly = false }) => {
+const TechBadge = ({
+  name = "Technology",
+  color = "#3178c6",
+  icon,
+  iconOnly = false,
+}) => {
   // Default icon if no specific icon is provided
   return (
     <div
@@ -21,8 +26,8 @@ const TechBadge = ({ name = "Technology", color = "#3178c6", icon, iconOnly = fa
         fontSize: "13px",
         "@media (max-width: 480px)": {
           padding: "8px 12px",
-          fontSize: "12px"
-        }
+          fontSize: "12px",
+        },
       }}
     >
       <span>{name}</span>
