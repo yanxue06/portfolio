@@ -1,5 +1,5 @@
-import { Group, InputElement } from '@chakra-ui/react'
-import * as React from 'react'
+import { Group, InputElement } from "@chakra-ui/react";
+import * as React from "react";
 
 export const InputGroup = React.forwardRef(function InputGroup(props, ref) {
   const {
@@ -8,17 +8,17 @@ export const InputGroup = React.forwardRef(function InputGroup(props, ref) {
     endElement,
     endElementProps,
     children,
-    startOffset = '6px',
-    endOffset = '6px',
+    startOffset = "6px",
+    endOffset = "6px",
     ...rest
-  } = props
+  } = props;
 
-  const child = React.Children.only(children)
+  const child = React.Children.only(children);
 
   return (
     <Group ref={ref} {...rest}>
       {startElement && (
-        <InputElement pointerEvents='none' {...startElementProps}>
+        <InputElement pointerEvents="none" {...startElementProps}>
           {startElement}
         </InputElement>
       )}
@@ -30,10 +30,10 @@ export const InputGroup = React.forwardRef(function InputGroup(props, ref) {
         ...children.props,
       })}
       {endElement && (
-        <InputElement placement='end' {...endElementProps}>
+        <InputElement placement="end" {...endElementProps}>
           {endElement}
         </InputElement>
       )}
     </Group>
-  )
-})
+  );
+});

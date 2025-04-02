@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import { motion } from "framer-motion";
 import Trackify from "/images/projects/Trackify.svg";
 import { Box, Button, Card, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import '../styles/projectShowcase.css';
+import "../styles/projectShowcase.css";
 
 function ProjectShowcase() {
   return (
@@ -32,11 +32,11 @@ function ProjectShowcase() {
               boxShadow: "0 0 5px 5px rgba(147, 143, 143, 0.5)",
             },
             "@media (max-width: 1500px)": {
-              width: "90% !important", 
+              width: "90% !important",
             },
             "@media (max-width: 780px)": {
               flexDirection: "column",
-              width: "90%", 
+              width: "90%",
             },
           }}
         >
@@ -57,15 +57,17 @@ function ProjectShowcase() {
             src={Trackify}
             alt="Project Preview"
           />
-          <Box css={{
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            "@media (max-width: 780px)": {
-              padding: "0 12px"
-            }
-          }}>
+          <Box
+            css={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              "@media (max-width: 780px)": {
+                padding: "0 12px",
+              },
+            }}
+          >
             <Card.Body>
               <Card.Title
                 mb="2"
@@ -75,8 +77,11 @@ function ProjectShowcase() {
                   color: "white",
                 }}
               >
-                <h1 style={{ color: "rgb(196, 223, 235)", marginBottom: "10px" }}>Projects</h1>
-                
+                <h1
+                  style={{ color: "rgb(196, 223, 235)", marginBottom: "10px" }}
+                >
+                  Projects
+                </h1>
               </Card.Title>
               <Card.Description
                 css={{
@@ -86,12 +91,14 @@ function ProjectShowcase() {
                   lineHeight: "1.4",
                   maxWidth: "100%",
                   "@media (max-width: 780px)": {
-                    fontSize: "20px"
-                  }
+                    fontSize: "20px",
+                  },
                 }}
               >
-                I've made over 10 projects in the past 6 months. Throughout my first few projects, my goal was just to learn. But, with my  
-                recent projects, I've been able to create tools that solve real-world problems, primarily focusing on productivity.
+                I've made over 10 projects in the past 6 months. Throughout my
+                first few projects, my goal was just to learn. But, with my
+                recent projects, I've been able to create tools that solve
+                real-world problems, primarily focusing on productivity.
               </Card.Description>
             </Card.Body>
             <Card.Footer
@@ -101,8 +108,8 @@ function ProjectShowcase() {
                 "@media (max-width: 780px)": {
                   flexWrap: "wrap",
                   justifyContent: "flex-start",
-                  marginBottom: "16px"
-                }
+                  marginBottom: "16px",
+                },
               }}
             >
               <Button

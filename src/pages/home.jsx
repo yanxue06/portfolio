@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "../styles/home.css";
 import "../styles/particle.scss";
 import "../styles/timeline.css";
@@ -8,42 +8,37 @@ import About from "../components/about";
 import Arrows from "../components/arrow";
 import "../styles/navbar.css";
 
-import TechStack from '../components/techstack';
-import Contacts from '../components/contacts';
+import TechStack from "../components/techstack";
+import Contacts from "../components/contacts";
 import ProjectShowcase from "../components/projectShowcase";
 
-
 export default function App() {
-    useEffect(() => {
-          window.scrollTo(0, 0);
-    }, []);
-    return (
-        <>
-            <div className="max-w-[1000px] mx-auto px-4">
-                <Arrows />
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  return (
+    <>
+      <div className="max-w-[1000px] mx-auto px-4">
+        <Arrows />
 
-                <Intro />
+        <Intro />
 
-                <section className="p2">
-                    <div className="col"> 
-                        <About />
+        <section className="p2">
+          <div className="col">
+            <About />
 
-                        <TimeLine />
+            <TimeLine />
 
-                        <TechStack/> 
-                        
-                        <ProjectShowcase/>
-                        
-                       
-                    </div> 
-                </section>
+            <TechStack />
 
-                
-                {/* <Projects /> */}
+            <ProjectShowcase />
+          </div>
+        </section>
 
-                <Contacts/> 
-                
-            </div>
-        </>
-    );
+        {/* <Projects /> */}
+
+        <Contacts />
+      </div>
+    </>
+  );
 }

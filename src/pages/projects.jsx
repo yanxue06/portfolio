@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/parallax.scss"; // Ensure your build system compiles SCSS
 import "../styles/projects.css";
 import Projects from "../components/projects";
-import Contacts from '../components/contacts';
+import Contacts from "../components/contacts";
 import "../styles/stars.scss";
 
 export default function Parallax() {
@@ -22,18 +22,20 @@ export default function Parallax() {
   }, []);
 
   return (
-    <div className="p3"> 
-      
-      <div className="stars" style={{ 
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '60vh',  // Limit height to viewport height
-        zIndex: 1,
-        pointerEvents: 'none',
-        color: 'rgb(36, 35, 35)', 
-      }}>
+    <div className="p3">
+      <div
+        className="stars"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "60vh", // Limit height to viewport height
+          zIndex: 1,
+          pointerEvents: "none",
+          color: "rgb(36, 35, 35)",
+        }}
+      >
         <div className="star"></div>
         <div className="star"></div>
         <div className="star"></div>
@@ -46,12 +48,10 @@ export default function Parallax() {
         <div className="star"></div>
         <div className="star"></div>
       </div>
-      
 
       <div className="heading">PROJECTS</div>
 
       <div className="parallax">
-    
         {/* Parallax layers with images */}
         <div
           className="parallax__layer parallax__layer__0"
@@ -136,8 +136,7 @@ export default function Parallax() {
         </div>
       </div>
 
-      <Contacts/> 
-      
+      <Contacts />
     </div>
   );
 }
