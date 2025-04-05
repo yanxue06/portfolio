@@ -369,8 +369,7 @@ const Experience = () => {
                       component="span"
                       sx={{ fontWeight: "bold" }}
                     >
-                      Automation Developer | Pacific Grace Mandarin Church
-                      (PGMC)
+                      Automation Developer | Pacific Grace Church
                     </Typography>
 
                     {/* LOCATION ONLY for LARGE SCREENS */}
@@ -434,8 +433,7 @@ const Experience = () => {
                       component="span"
                       sx={{ fontWeight: "bold" }}
                     >
-                      Automation Developer | Pacific Grace Mandarin Church
-                      (PGMC)
+                      Automation Developer | Pacific Grace Church
                     </Typography>
 
                     {/* LOCATION ONLY for LARGE SCREENS */}

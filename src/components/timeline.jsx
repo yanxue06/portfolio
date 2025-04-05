@@ -40,7 +40,7 @@ const experiences = [
   },
   {
     title: "Automation Developer",
-    company: "Pacific Grace Mandarin Church",
+    company: "Pacific Grace Church",
     period: "Jan 2025 - Apr 2025",
     location: "Remote - Vancouver, BC",
     brief:
