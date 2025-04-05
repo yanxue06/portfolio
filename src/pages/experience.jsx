@@ -14,25 +14,57 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import SecurityIcon from "@mui/icons-material/Security";
 import SchoolIcon from "@mui/icons-material/School";
-import { Card, For } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "@mui/material";
 import Contacts from "../components/contacts";
+import "../styles/stars.scss";
+import "../styles/experience.css";
 
 const Experience = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  // Styling for the card content with text wrapping
+  
+  // Function to create floating particles
+  const getFloatingElements = () => {
+    const elements = [];
+    const icons = [<LaptopMacIcon />, <SettingsIcon />, <ElectricBoltIcon />, <SecurityIcon />, <SchoolIcon />];
+    
+    for (let i = 0; i < 40; i++) {
+      const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+      elements.push(
+        <div 
+          key={i}
+          className="floating-element"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDuration: `${Math.random() * 10 + 10}s`,
+            animationDelay: `${Math.random() * 5}s`,
+            opacity: 0.1 + Math.random() * 0.2,
+            transform: `scale(${0.5 + Math.random()})`,
+            color: `rgba(${120 + Math.random() * 80}, ${134 + Math.random() * 40}, ${167 + Math.random() * 50}, 0.3)`,
+          }}
+        >
+          {randomIcon}
+        </div>
+      );
+    }
+    
+    return elements;
+  };
+  
+  // Styling for the card content with text wrapping and enhanced styling
   const CustomPaper = styled(Paper)(({ theme }) => ({
-    backgroundColor: "#66789F",
+    backgroundColor: "rgba(102, 120, 159, 0.95)",
     color: "rgb(231, 232, 229)",
     padding: theme.spacing(2),
-    borderRadius: theme.spacing(1.5),
-    boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
+    borderRadius: theme.spacing(2),
+    boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.4)",
     position: "relative",
     whiteSpace: "normal",
     wordWrap: "break-word",
+    backdropFilter: "blur(5px)",
     "&:before": {
       content: '""',
       position: "absolute",
@@ -46,8 +78,8 @@ const Experience = () => {
     },
     transition: "transform 0.3s ease, box-shadow 0.3s ease",
     ":hover": {
-      transform: "scale(1.01)",
-      boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
+      transform: "scale(1.03)",
+      boxShadow: "0 0 15px rgba(170, 205, 248, 0.7)",
     },
 
     /* Default width: 60% */
@@ -81,27 +113,51 @@ const Experience = () => {
 
   const PaperComponent = isLargeScreen ? RightArrowPaper : CustomPaper;
 
+  // Create a responsive array of stars like in intro page
+  const getStars = () => {
+    // Default number for larger screens
+    const defaultStars = 20;
+    // Smaller number for mobile screens
+    const mobileStars = 12;
+
+    return Array(window.innerWidth > 750 ? defaultStars : mobileStars)
+      .fill()
+      .map((_, i) => (
+        <div
+          key={i}
+          className="star"
+          style={{
+            color: "white",
+          }}
+        ></div>
+      ));
+  };
+
   return (
     <>
       <section
-        className="timeline"
-        style={{ paddingTop: "80px", backgroundColor: "#161D25" }}
+        className="timeline-section"
+        style={{ paddingTop: "80px", backgroundColor: "#161D25", position: "relative", overflow: "hidden" }}
       >
+        <div className="stars experience-stars">
+          {getStars()}
+        </div>
+        
+        <div className="floating-elements-container">
+          {getFloatingElements()}
+        </div>
+        
         <motion.div
-          initial={{ x: 0, opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          initial={{ y: -50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.2, type: "spring", stiffness: 100 }}
           viewport={{ once: true, amount: 0.8 }}
+          className="experience-title-container"
         >
-          <h1
-            style={{
-              textAlign: "center",
-              color: "rgb(231, 232, 229)",
-              fontWeight: "bold",
-            }}
-          >
+          <h1 className="experience-title">
             Experience
           </h1>
+          <div className="title-underline"></div>
         </motion.div>
 
         {/* TIMELINE */}
@@ -136,10 +192,21 @@ const Experience = () => {
             </TimelineOppositeContent>
 
             <TimelineSeparator>
-              <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-                <LaptopMacIcon />
-              </TimelineDot>
-              <TimelineConnector />
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <TimelineDot sx={{ 
+                  backgroundColor: "rgb(120, 134, 167)",
+                  boxShadow: "0 0 10px rgba(170, 205, 248, 0.7)",
+                }}>
+                  <LaptopMacIcon />
+                </TimelineDot>
+              </motion.div>
+              <TimelineConnector sx={{ 
+                backgroundColor: "rgba(170, 205, 248, 0.5)",
+                width: "3px",
+              }} />
             </TimelineSeparator>
 
             <TimelineContent
@@ -153,8 +220,9 @@ const Experience = () => {
               <motion.div
                 initial={{ x: 50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.8, type: "spring" }}
                 viewport={{ once: true, amount: 0.2 }}
+                whileHover={{ y: -5 }}
               >
                 <CustomPaper
                   sx={{
@@ -251,10 +319,21 @@ const Experience = () => {
             </TimelineOppositeContent>
 
             <TimelineSeparator>
-              <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-                <SettingsIcon />
-              </TimelineDot>
-              <TimelineConnector />
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <TimelineDot sx={{ 
+                  backgroundColor: "rgb(120, 134, 167)",
+                  boxShadow: "0 0 10px rgba(170, 205, 248, 0.7)",
+                }}>
+                  <SettingsIcon />
+                </TimelineDot>
+              </motion.div>
+              <TimelineConnector sx={{ 
+                backgroundColor: "rgba(170, 205, 248, 0.5)",
+                width: "3px",
+              }} />
             </TimelineSeparator>
 
             <TimelineContent
@@ -268,8 +347,9 @@ const Experience = () => {
               <motion.div
                 initial={{ x: 50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.8, type: "spring" }}
                 viewport={{ once: true, amount: 0.2 }}
+                whileHover={{ y: -5 }}
               >
                 {isLargeScreen ? (
                   <RightArrowPaper
@@ -422,10 +502,21 @@ const Experience = () => {
             </TimelineOppositeContent>
 
             <TimelineSeparator>
-              <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-                <ElectricBoltIcon />
-              </TimelineDot>
-              <TimelineConnector />
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <TimelineDot sx={{ 
+                  backgroundColor: "rgb(120, 134, 167)",
+                  boxShadow: "0 0 10px rgba(170, 205, 248, 0.7)",
+                }}>
+                  <ElectricBoltIcon />
+                </TimelineDot>
+              </motion.div>
+              <TimelineConnector sx={{ 
+                backgroundColor: "rgba(170, 205, 248, 0.5)",
+                width: "3px",
+              }} />
             </TimelineSeparator>
 
             <TimelineContent
@@ -441,8 +532,9 @@ const Experience = () => {
               <motion.div
                 initial={{ x: -50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.8, type: "spring" }}
                 viewport={{ once: true, amount: 0.2 }}
+                whileHover={{ y: -5 }}
               >
                 {isLargeScreen ? (
                   <CustomPaper
@@ -575,10 +667,21 @@ const Experience = () => {
             </TimelineOppositeContent>
 
             <TimelineSeparator>
-              <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-                <SecurityIcon />
-              </TimelineDot>
-              <TimelineConnector />
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <TimelineDot sx={{ 
+                  backgroundColor: "rgb(120, 134, 167)",
+                  boxShadow: "0 0 10px rgba(170, 205, 248, 0.7)",
+                }}>
+                  <SecurityIcon />
+                </TimelineDot>
+              </motion.div>
+              <TimelineConnector sx={{ 
+                backgroundColor: "rgba(170, 205, 248, 0.5)",
+                width: "3px",
+              }} />
             </TimelineSeparator>
 
             <TimelineContent
@@ -592,8 +695,9 @@ const Experience = () => {
               <motion.div
                 initial={{ x: 50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.8, type: "spring" }}
                 viewport={{ once: true, amount: 0.2 }}
+                whileHover={{ y: -5 }}
               >
                 {isLargeScreen ? (
                   <RightArrowPaper
@@ -746,9 +850,17 @@ const Experience = () => {
             </TimelineOppositeContent>
 
             <TimelineSeparator>
-              <TimelineDot sx={{ backgroundColor: "rgb(120, 134, 167)" }}>
-                <SchoolIcon />
-              </TimelineDot>
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <TimelineDot sx={{ 
+                  backgroundColor: "rgb(120, 134, 167)",
+                  boxShadow: "0 0 10px rgba(170, 205, 248, 0.7)",
+                }}>
+                  <SchoolIcon />
+                </TimelineDot>
+              </motion.div>
               {/* No connector here, but you can add if needed */}
             </TimelineSeparator>
 
@@ -763,8 +875,9 @@ const Experience = () => {
               <motion.div
                 initial={{ x: 50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.8, type: "spring" }}
                 viewport={{ once: true, amount: 0.2 }}
+                whileHover={{ y: -5 }}
               >
                 {isLargeScreen ? (
                   <CustomPaper
