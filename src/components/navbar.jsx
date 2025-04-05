@@ -78,9 +78,9 @@ export default function Navbar() {
             EXPERIENCE
           </Link>
 
-          <a href="/gallery" className="navbar-link">
+          {/* <a href="/gallery" className="navbar-link">
             GALLERY
-          </a>
+          </a> */}
 
           <a
             href="https://drive.google.com/file/d/1ILOfLwwijZj3ubTjZVhDw18MbRARtB2w/view?usp=sharing"
