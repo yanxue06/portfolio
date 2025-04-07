@@ -14,20 +14,20 @@ const logoPlaceholders = {
   HongMall: "/images/logos/hongmall.png",
   "Pacific Grace Mandarin Church": "/images/logos/pgmc.png",
   "Midnight Sun": "/images/logos/midnightsun.png",
-  "Skynet Security System Ltd.": "/images/logos/skynet.svg",
+  "Skynet Security System Ltd.": "/images/logos/skynet.png",
   Rocketry: "/images/logos/rocketry.png",
 };
 
 const experiences = [
-  {
-    title: "Software Developer",
-    company: "Waterloo Rocketry",
-    period: "Mar 2025 - Present",
-    location: "Waterloo, ON",
-    brief: "ROCKETS!",
-    logoPath: logoPlaceholders["Rocketry"],
-    colorAccent: "#65B5FF",
-  },
+  // {
+  //   title: "Software Developer",
+  //   company: "Waterloo Rocketry",
+  //   period: "Sep 2024 - Present",
+  //   location: "Waterloo, ON",
+  //   brief: "ROCKETS!",
+  //   logoPath: logoPlaceholders["Rocketry"],
+  //   colorAccent: "#65B5FF",
+  // },
   {
     title: "Software Engineering Intern",
     company: "HongMall Canada",
