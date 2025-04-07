@@ -50,7 +50,7 @@ const experiences = [
   },
   {
     title: "Firmware Member",
-    company: "Midnight Sun",
+    company: "Midnight Sun Design Team",
     period: "Sep 2024 - Dec 2024",
     location: "Waterloo, ON",
     brief:
