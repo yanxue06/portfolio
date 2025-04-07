@@ -125,9 +125,9 @@ export default function Navbar() {
             PROJECTS
           </Link>
 
-          <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
+          {/* <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
             GALLERY
-          </Link>
+          </Link> */}
 
           <a href="#" className="navbar-link" onClick={openResume}>
             RESUME
