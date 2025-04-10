@@ -757,9 +757,7 @@ const Experience = () => {
                       Python, Tkinter, and ReportLab, automating billing for 50+
                       clients and reducing invoice preparation time by 75%
                       <br />- Developed the company's website and advertisements
-                      using React, TypeScript, and Figma, which contributed to
-                      36% of client job bookings, generating $72,000+ in revenue
-                      in 2023
+                      using React, TypeScript, and Figma 
                     </Typography>
                   </RightArrowPaper>
                 ) : (
