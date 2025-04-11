@@ -44,7 +44,7 @@ export default function Navbar() {
   const openResume = (e) => {
     e.preventDefault();
     window.open(
-      "https://drive.google.com/file/d/1ILOfLwwijZj3ubTjZVhDw18MbRARtB2w/view?usp=sharing",
+      "https://drive.google.com/file/d/14kh81yd2DY1tn5Na59kQVCM55NkZiuF-/view?usp=sharing",
       "_blank",
     );
     setIsMobileMenuOpen(false);
@@ -83,7 +83,7 @@ export default function Navbar() {
           </a> */}
 
           <a
-            href="https://drive.google.com/file/d/1ILOfLwwijZj3ubTjZVhDw18MbRARtB2w/view?usp=sharing"
+            href="https://drive.google.com/file/d/14kh81yd2DY1tn5Na59kQVCM55NkZiuF-/view?usp=sharing"
             className="navbar-link"
             target="_blank"
             rel="noopener noreferrer"
