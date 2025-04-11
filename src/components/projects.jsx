@@ -81,7 +81,7 @@ export default function Projects() {
                     fontWeight="bold"
                     color="white"
                   >
-                    HarmoniQ (WORK IN PROGRESS)
+                    Code Sage (coming soon)
                   </Card.Title>
                   <Card.Description
                     fontSize="lg"
@@ -89,8 +89,7 @@ export default function Projects() {
                     color="gray.300"
                     width="100%"
                   >
-                    Connecting people through music w/ real-time messaging and
-                    music sharing!
+                    Building a platform to help me learn algorithms and data structures!
                   </Card.Description>
 
                   <HStack mt={4} spacing={3} flexWrap="wrap">
