@@ -12,9 +12,9 @@ export default function intro() {
   // Create a responsive array of stars
   const getStars = () => {
     // Default number for larger screens
-    const defaultStars = 27;
+    const defaultStars = 15;
     // Smaller number for mobile screens
-    const mobileStars = 15;
+    const mobileStars = 8;
 
     return Array(window.innerWidth > 750 ? defaultStars : mobileStars)
       .fill()
