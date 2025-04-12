@@ -25,35 +25,6 @@ const Experience = () => {
     window.scrollTo(0, 0);
   }, []);
   
-  // Function to create floating particles
-  const getFloatingElements = () => {
-    const elements = [];
-    const icons = [<LaptopMacIcon />, <SettingsIcon />, <ElectricBoltIcon />, <SecurityIcon />, <SchoolIcon />];
-    
-    for (let i = 0; i < 40; i++) {
-      const randomIcon = icons[Math.floor(Math.random() * icons.length)];
-      elements.push(
-        <div 
-          key={i}
-          className="floating-element"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDuration: `${Math.random() * 10 + 10}s`,
-            animationDelay: `${Math.random() * 5}s`,
-            opacity: 0.1 + Math.random() * 0.2,
-            transform: `scale(${0.5 + Math.random()})`,
-            color: `rgba(${120 + Math.random() * 80}, ${134 + Math.random() * 40}, ${167 + Math.random() * 50}, 0.3)`,
-          }}
-        >
-          {randomIcon}
-        </div>
-      );
-    }
-    
-    return elements;
-  };
-  
   // Styling for the card content with text wrapping and enhanced styling
   const CustomPaper = styled(Paper)(({ theme }) => ({
     backgroundColor: "rgba(102, 120, 159, 0.95)",
@@ -142,10 +113,7 @@ const Experience = () => {
         <div className="stars experience-stars">
           {getStars()}
         </div>
-        
-        <div className="floating-elements-container">
-          {getFloatingElements()}
-        </div>
+      
         
         <motion.div
           initial={{ y: -50, opacity: 0 }}

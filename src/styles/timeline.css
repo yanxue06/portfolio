@@ -6,6 +6,5 @@
   background-color: #161D25;
   z-index: 0;
   transition: transform 0.5s ease-in-out; /* Smooth transition */
-  margin-bottom: -75vh; /* adjust this for the gap */ 
 }
 

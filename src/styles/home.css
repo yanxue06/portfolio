@@ -94,11 +94,6 @@ h4 {
 }
 
 
-body.scrolled .p2 {
-  transform: translateY(-75vh); /* Move p2 upward to cover p1 */
-} 
-
-
 p { 
   width: 70%; 
   height: 100%; 
