@@ -23,7 +23,7 @@ export default function Parallax() {
 
   return (
     <div className="p3">
-      <div
+      {/* <div
         className="stars"
         style={{
           position: "absolute",
@@ -47,7 +47,7 @@ export default function Parallax() {
         <div className="star"></div>
         <div className="star"></div>
         <div className="star"></div>
-      </div>
+      </div> */}
 
       <div className="heading">PROJECTS</div>
 
