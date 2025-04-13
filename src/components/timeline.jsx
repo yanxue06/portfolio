@@ -115,7 +115,7 @@ const TimeLine = () => {
               color: "white",
             }}
           >
-            <h1 style={{ color: "rgb(196, 223, 235)", marginBottom: "10px" }}>
+            <h1 style={{ fontSize: "38px", color: "rgb(196, 223, 235)", marginBottom: "10px" }}>
               Experience
             </h1>
           </Card.Title>

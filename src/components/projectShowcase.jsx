@@ -78,7 +78,7 @@ function ProjectShowcase() {
                 }}
               >
                 <h1
-                  style={{ color: "rgb(196, 223, 235)", marginBottom: "10px" }}
+                  style={{fontSize: "38px", color: "rgb(196, 223, 235)", marginBottom: "10px" }}
                 >
                   Projects
                 </h1>

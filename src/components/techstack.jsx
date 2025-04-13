@@ -117,6 +117,7 @@ export default function TechStack() {
       >
         <Box sx={{ 
           width: '70%', 
+          maxWidth: "1200px",
           bgcolor: 'rgb(15, 27, 36)', 
           margin: '0 auto',
           backgroundColor: "#2B3F57",
