@@ -264,8 +264,7 @@ const Experience = () => {
               </motion.div>
             </TimelineContent>
           </TimelineItem>
-
-          {/* ITEM 1 */}
+          
           <TimelineItem
             sx={{
               width: "100%",
@@ -337,6 +336,188 @@ const Experience = () => {
                       component="span"
                       sx={{ fontWeight: "bold" }}
                     >
+                      Software Developer | Waterloo Rocketry
+                    </Typography>
+
+                    {/* LOCATION ONLY for LARGE SCREENS */}
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        fontStyle: "italic",
+                        color: "rgba(200, 210, 230, 255)",
+                        "@media (max-width: 1000px)": {
+                          display: "none", // Hide location-only text on small screens
+                        },
+                      }}
+                    >
+                      Waterloo, ON 
+                    </Typography>
+
+                    {/* LOCATION + DATE for SMALL SCREENS */}
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        fontStyle: "italic",
+                        color: "rgba(200, 210, 230, 255)",
+                        "@media (min-width: 1000px)": {
+                          display: "none", // Hide combined text on large screens
+                        },
+                      }}
+                    >
+                      Waterloo, ON | Sep 2024 - present 
+                    </Typography>
+
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        marginTop: "8px",
+                        width: "100%",
+                      }}
+                    >
+                      - Developed the Monte Carlo simulation plugin in Java for processing simulation parameters such as temperatures
+                      and launch angles, storing simulation results in a CSV file for analysis
+                      <br />- Used simulation data to generate plots that reveal patterns about rocket behavior, enabling the optimization of
+                      launch parameters such as optimal release angles
+                    </Typography>
+                  </RightArrowPaper>
+                ) : (
+                  <CustomPaper
+                    sx={{
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                      ":hover": {
+                        transform: "scale(1.01)",
+                        boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
+                      },
+                      "@media (max-width: 1000px)": {
+                        width: "100%",
+                      },
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      component="span"
+                      sx={{ fontWeight: "bold" }}
+                    >
+                      Software Developer | Waterloo Rocketry 
+                    </Typography>
+
+                    {/* LOCATION ONLY for LARGE SCREENS */}
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        fontStyle: "italic",
+                        color: "rgba(200, 210, 230, 255)",
+                        "@media (max-width: 1000px)": {
+                          display: "none", // Hide location-only text on small screens
+                        },
+                      }}
+                    >
+                      Waterloo, ON
+                    </Typography>
+
+                    {/* LOCATION + DATE for SMALL SCREENS */}
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        fontStyle: "italic",
+                        color: "rgba(200, 210, 230, 255)",
+                        "@media (min-width: 1000px)": {
+                          display: "none", // Hide combined text on large screens
+                        },
+                      }}
+                    >
+                      Waterloo, ON | Sep 2024 - present 
+                    </Typography>
+
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        marginTop: "8px",
+                        width: "100%",
+                      }}
+                    >
+                      - Developed the Monte Carlo simulation plugin in Java for processing simulation parameters such as temperatures
+                      and launch angles, storing simulation results in a CSV file for analysis
+                      <br />- Used simulation data to generate plots that reveal patterns about rocket behavior, enabling the optimization of
+                      launch parameters such as optimal release angles
+                    </Typography>
+                  </CustomPaper>
+                )}
+              </motion.div>
+            </TimelineContent>
+          </TimelineItem>
+
+          <TimelineItem
+            sx={{
+              width: "100%",
+              margin: "0",
+              padding: "0px",
+            }}
+          >
+            {/* Date on the left for LARGE screens */}
+            <TimelineOppositeContent
+              sx={{
+                m: "auto 0",
+                color: "rgba(255, 255, 255, 0.94)",
+                "@media (max-width: 1000px)": {
+                  display: "none", // Hide the date on smaller screens
+                },
+              }}
+            >
+              Jan 2025 - Apr 2025
+            </TimelineOppositeContent>
+
+            <TimelineSeparator>
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <TimelineDot sx={{ 
+                  backgroundColor: "rgb(120, 134, 167)",
+                  boxShadow: "0 0 10px rgba(170, 205, 248, 0.7)",
+                }}>
+                  <SettingsIcon />
+                </TimelineDot>
+              </motion.div>
+              <TimelineConnector sx={{ 
+                backgroundColor: "rgba(170, 205, 248, 0.5)",
+                width: "3px",
+              }} />
+            </TimelineSeparator>
+
+            <TimelineContent
+              sx={{
+                "@media (max-width: 1000px)": {
+                  flex: 1,
+                  marginLeft: "16px",
+                },
+              }}
+            >
+              <motion.div
+                initial={{ x: 50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, type: "spring" }}
+                viewport={{ once: true, amount: 0.2 }}
+                whileHover={{ y: -5 }}
+              >
+                {isLargeScreen ? (
+                  <CustomPaper
+                    sx={{
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                      ":hover": {
+                        transform: "scale(1.01)",
+                        boxShadow: "0 0 6px 10px rgba(147, 143, 143, 0.5)",
+                      },
+                      "@media (max-width: 1000px)": {
+                        width: "100%",
+                      },
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      component="span"
+                      sx={{ fontWeight: "bold" }}
+                    >
                       Automation Developer | Pacific Grace Church
                     </Typography>
 
@@ -382,7 +563,7 @@ const Experience = () => {
                       <br />- Integrated Google Sheets API for real-time updates
                       and hosted on Google Cloud Run for scalability
                     </Typography>
-                  </RightArrowPaper>
+                  </CustomPaper>
                 ) : (
                   <CustomPaper
                     sx={{
@@ -503,7 +684,7 @@ const Experience = () => {
                 whileHover={{ y: -5 }}
               >
                 {isLargeScreen ? (
-                  <CustomPaper
+                  <RightArrowPaper
                     sx={{
                       "@media (max-width: 1000px)": {
                         width: "100%",
@@ -556,7 +737,7 @@ const Experience = () => {
                       <br />- Implemented an ADC driver with C firmware and I2C
                       communication to convert temperature to voltage
                     </Typography>
-                  </CustomPaper>
+                  </RightArrowPaper>
                 ) : (
                   <CustomPaper
                     sx={{
@@ -666,7 +847,7 @@ const Experience = () => {
                 whileHover={{ y: -5 }}
               >
                 {isLargeScreen ? (
-                  <RightArrowPaper
+                  <CustomPaper
                     sx={{
                       transition: "transform 0.3s ease, box-shadow 0.3s ease",
                       ":hover": {
@@ -729,7 +910,7 @@ const Experience = () => {
                       36% of client job bookings, generating $72,000+ in revenue
                       in 2023
                     </Typography>
-                  </RightArrowPaper>
+                  </CustomPaper>
                 ) : (
                   <CustomPaper
                     sx={{
@@ -846,7 +1027,7 @@ const Experience = () => {
                 whileHover={{ y: -5 }}
               >
                 {isLargeScreen ? (
-                  <CustomPaper
+                  <RightArrowPaper
                     sx={{
                       transition: "transform 0.3s ease, box-shadow 0.3s ease",
                       ":hover": {
@@ -910,7 +1091,7 @@ const Experience = () => {
                       <br />- Constructed a curriculum on Aerodynamics for 20+
                       youth aerodynamics
                     </Typography>
-                  </CustomPaper>
+                  </RightArrowPaper>
                 ) : (
                   <CustomPaper
                     sx={{
