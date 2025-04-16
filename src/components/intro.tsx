@@ -41,7 +41,6 @@ export default function intro() {
       </div>
 
       <motion.div
-        className="flex justify-center w-full py-2 md:mt-0 mt-[520px] overflow-hidden dark:text-[#ececec]"
         initial={{ x: -10, opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
