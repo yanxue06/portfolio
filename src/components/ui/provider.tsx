@@ -6,4 +6,4 @@ interface ProviderProps {
 
 export function Provider({ children }: ProviderProps) {
   return <>{children}</>;
-} 
+}

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "../styles/home.css";
-import "../styles/particle.scss";
 import "../styles/timeline.css";
 import TimeLine from "../components/timeline";
 import Intro from "../components/intro";

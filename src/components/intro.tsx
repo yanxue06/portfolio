@@ -1,6 +1,5 @@
 import * as React from "react";
 import "../styles/home.css";
-import "../styles/particle.scss";
 import "../styles/timeline.css";
 import "../styles/arrow.scss";
 import { motion } from "framer-motion";
@@ -16,7 +15,7 @@ export default function intro() {
     const mobileStars = 8;
 
     return Array(window.innerWidth > 750 ? defaultStars : mobileStars)
-      .fill()
+      .fill(0)
       .map((_, i) => (
         <div
           key={i}
@@ -78,7 +77,6 @@ export default function intro() {
                 ECE Student at The University of Waterloo
               </span>
             </div>
-          
           </div>
         </div>
       </motion.div>

@@ -1,5 +1,5 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
-import { Card, CardContent } from "./ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Card, CardContent } from "./ui/card";
 
 export function TechStack() {
   const categories = {
@@ -47,9 +47,9 @@ export function TechStack() {
       { name: "Scikit Learn", color: "#4d4d4d" },
       { name: "Puncc - Conformal Prediction", color: "#4d4d4d" },
     ],
-  }
+  };
 
-  const categoryNames = Object.keys(categories)
+  const categoryNames = Object.keys(categories);
 
   return (
     <div className="w-full max-w-4xl mx-auto p-6 rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 shadow-2xl border border-gray-800">
@@ -60,7 +60,9 @@ export function TechStack() {
       <Tabs defaultValue={categoryNames[0]} className="w-full">
         <TabsList
           className="grid w-full mb-6 bg-gray-800/50 p-1 rounded-lg"
-          style={{ gridTemplateColumns: `repeat(${categoryNames.length}, 1fr)` }}
+          style={{
+            gridTemplateColumns: `repeat(${categoryNames.length}, 1fr)`,
+          }}
         >
           {categoryNames.map((category) => (
             <TabsTrigger
@@ -78,14 +80,16 @@ export function TechStack() {
             <Card className="border-0 bg-transparent shadow-none">
               <CardContent className="pt-0 px-0">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {categories[category as keyof typeof categories].map((tech) => (
-                    <div
-                      key={tech.name}
-                      className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 hover:border-cyan-500/50 hover:bg-gray-700 transition-all duration-300 text-gray-200 rounded-lg px-4 py-3 text-center text-sm flex items-center justify-center shadow-sm hover:shadow-cyan-900/20 hover:shadow-md transform hover:-translate-y-1"
-                    >
-                      {tech.name}
-                    </div>
-                  ))}
+                  {categories[category as keyof typeof categories].map(
+                    (tech) => (
+                      <div
+                        key={tech.name}
+                        className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 hover:border-cyan-500/50 hover:bg-gray-700 transition-all duration-300 text-gray-200 rounded-lg px-4 py-3 text-center text-sm flex items-center justify-center shadow-sm hover:shadow-cyan-900/20 hover:shadow-md transform hover:-translate-y-1"
+                      >
+                        {tech.name}
+                      </div>
+                    ),
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -93,5 +97,5 @@ export function TechStack() {
         ))}
       </Tabs>
     </div>
-  )
+  );
 }

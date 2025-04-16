@@ -7,7 +7,10 @@ export default function Projects() {
     <section id="projects" className="p3">
       <div className="projectsCol">
         <div className="projects-placeholder">
-          <p>Projects component placeholder - will be replaced with shadcn components</p>
+          <p>
+            Projects component placeholder - will be replaced with shadcn
+            components
+          </p>
         </div>
       </div>
     </section>

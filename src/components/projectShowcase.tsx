@@ -14,8 +14,13 @@ function ProjectShowcase() {
         style={{ width: "100%", display: "flex", justifyContent: "center" }}
       >
         <div className="project-showcase-placeholder">
-          <p>Project showcase placeholder - will be replaced with shadcn components</p>
-          <Link to="/projects" className="project-showcase-button">See more</Link>
+          <p>
+            Project showcase placeholder - will be replaced with shadcn
+            components
+          </p>
+          <Link to="/projects" className="project-showcase-button">
+            See more
+          </Link>
         </div>
       </motion.div>
     </section>
