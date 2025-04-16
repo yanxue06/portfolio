@@ -4,6 +4,7 @@ import "./styles/home.css";
 import Navbar from "./components/navbar";
 import "./styles/navbar.css";
 
+// import "./index.css";
 import Home from "./pages/home";
 // import Gallery from "./pages/gallery";
 import Projects from "./pages/projects";

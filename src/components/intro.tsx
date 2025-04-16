@@ -4,7 +4,6 @@ import "../styles/particle.scss";
 import "../styles/timeline.css";
 import "../styles/arrow.scss";
 import { motion } from "framer-motion";
-import Button from "@mui/material/Button";
 import TypeWriter from "./typewriter";
 import "../styles/stars.scss";
 
@@ -79,53 +78,7 @@ export default function intro() {
                 ECE Student at The University of Waterloo
               </span>
             </div>
-
-            <div className="logo">
-              <Button
-                variant="contained"
-                style={{
-                  backgroundColor: "rgba(54, 81, 114, 255)",
-                  color: "white",
-                }}
-                onClick={() =>
-                  window.open("https://linkedin.com/in/yanxue-ce/", "_blank")
-                }
-                sx={{
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
-                  ":hover": {
-                    transform: "scale(1.05)", // Slight zoom-in on hover
-                    boxShadow: "0 0 2px 4px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
-                  },
-                }}
-              >
-                LinkedIn
-              </Button>
-
-              {/* Resume Button */}
-              <Button
-                variant="outlined"
-                style={{
-                  borderColor: "#aacdf8",
-                  backgroundColor: "#FFFFFF",
-                  color: "black",
-                }}
-                sx={{
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
-                  ":hover": {
-                    transform: "scale(1.05)", // Slight zoom-in on hover
-                    boxShadow: "0 0 2px 4px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
-                  },
-                }}
-                onClick={() =>
-                  window.open(
-                    "https://drive.google.com/file/d/14kh81yd2DY1tn5Na59kQVCM55NkZiuF-/view?usp=sharing",
-                    "_blank",
-                  )
-                }
-              >
-                Resume
-              </Button>
-            </div>
+          
           </div>
         </div>
       </motion.div>
