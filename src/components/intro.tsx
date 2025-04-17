@@ -5,6 +5,7 @@ import "../styles/arrow.scss";
 import { motion } from "framer-motion";
 import TypeWriter from "./typewriter";
 import "../styles/stars.scss";
+import { Button } from "@/components/ui/button";
 
 export default function intro() {
   // Create a responsive array of stars
@@ -76,6 +77,31 @@ export default function intro() {
               >
                 ECE Student at The University of Waterloo
               </span>
+            </div>
+            <div className="logo">
+              <Button
+                variant="intro"
+                className="bg-[#365172] text-white transition-transform hover:scale-105 hover:shadow-md"
+                onClick={() =>
+                  window.open("https://linkedin.com/in/yanxue-ce/", "_blank")
+                }
+              >
+                LINKEDIN
+              </Button>
+
+              {/* Resume Button */}
+              <Button
+                variant="intro"
+                className="border border-[#aacdf8] bg-white text-black transition-transform hover:scale-105 hover:shadow-md"
+                onClick={() =>
+                  window.open(
+                    "https://drive.google.com/file/d/14kh81yd2DY1tn5Na59kQVCM55NkZiuF-/view?usp=sharing",
+                    "_blank",
+                  )
+                }
+              >
+                RESUME
+              </Button>
             </div>
           </div>
         </div>
