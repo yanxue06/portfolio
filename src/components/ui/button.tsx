@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         intro:
-        "bg-background shadow-sm hover:bg-accent hover:text-accent-foreground rounded-lg",
+          "bg-background shadow-sm hover:bg-accent hover:text-accent-foreground rounded-lg",
         secondary:
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",

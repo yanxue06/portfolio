@@ -13,7 +13,7 @@ const TimeLine = () => {
         style={{ width: "100%", display: "flex", justifyContent: "center" }}
       >
         <div className="timeline-placeholder">
-          <p>Timeline placeholder - will be replaced with shadcn components</p>
+          <p>I've made a </p>
         </div>
       </motion.div>
     </section>

@@ -1,67 +1,90 @@
-import React, {useRef, useEffect} from "react" 
-import { Card, CardContent } from "@/components/ui/card"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import AutoPlay from "embla-carousel-autoplay"
-
+import React, { useRef, useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import AutoPlay from "embla-carousel-autoplay";
+import { motion } from "framer-motion";
 
 export default function About() {
-  
-  const autoplay = useRef(AutoPlay({delay: 2000}))
-  
+  type autoplay = {
+    delay: number;
+  };
+
+  type images = {
+    src: string;
+    alt?: string;
+  };
+
+  const autoplay = useRef(AutoPlay({ delay: 2000 }));
+
   const images = [
     { src: "/images/Yan.jpeg", alt: "Me" },
-    { src: "/placeholder.svg?height=400&width=600", alt: "Image 2" },
-    { src: "/placeholder.svg?height=400&width=600", alt: "Image 3" },
-    { src: "/placeholder.svg?height=400&width=600", alt: "Image 4" },
-    { src: "/placeholder.svg?height=400&width=600", alt: "Image 5" },
-  ]
+    { src: "/images/gallery/g9.png", alt: "Me" },
+    // { src: "/images/gallery/g17.png", alt: "Me" },
+    // { src: "/images/gallery/g11.png", alt: "Me" },
+    // { src: "/images/gallery/g12.png", alt: "Me" },
+  ];
 
   return (
-    <div className = "flex flex-row items-center justify-center gap-8 mt-20">
-      <div className = "flex flex-col items-start w-3/5 max-w-3xl gap-4"> 
-        <h1 className = "text-4xl font-bold text-left text-white">
-          About Me
-        </h1> 
-        <p className = "text-sm text-white font-size"> 
-        Hey! I'm Yan, a passionate software developer and AI enthusiast studying Computer Engineering at The University of Waterloo. I'm originally from Vancouver, BC, but I'll be studying abroad at Waterloo, ON for the next few years. I'm always excited to improve my skills and explore new experiences.
-        <br></br>
-        <br></br>
-        Beyond coding, I love guitar, chess, soccer, table tennis, frisbee, and traveling.
-        </p> 
-      </div>
-      <div className = "w-2/5 max-w-3xl"> 
-        <Carousel className="w-2/5 max-w-3xl" plugins={[autoplay.current]}>
-          <div className="flex flex-col items-center justify-center gap-4">
-            <div> 
-              <CarouselContent>
-                {images.map((image, index) => (
-                  <CarouselItem key={index}>
+    <div className="flex flex-col items-center justify-center w-full">
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex justify-center items-stretch lg:w-[1150px] md:flex-row flex-col mt-20"
+      >
+        <div className="flex flex-col items-start justify-center flex-1 w-full px-12 md:p-12 md:w-1/2">
+          <h1 className="w-full p-2 text-3xl font-black text-white md:text-5xl">
+            ABOUT ME
+          </h1>
+          <p className="w-full p-2 pb-4 text-sm font-light text-white md:text-base">
+            Hey! I'm Yan, a passionate software developer and AI enthusiast
+            studying Computer Engineering at The University of Waterloo. I'm
+            originally from Vancouver, BC, but I'll be studying abroad at
+            Waterloo, ON for the next few years. I'm always excited to improve
+            my skills and explore new experiences.
+            <br></br>
+            <br></br>
+            Beyond coding, I love guitar, chess, soccer, table tennis, frisbee,
+            and traveling.
+          </p>
+        </div>
+        <div className="flex flex-col justify-center flex-1 w-full p-12 lg:p-12 md:w-1/2 lg:mb-0">
+          <Carousel className="w-full" plugins={[autoplay.current]}>
+            <div className="flex flex-col items-center justify-center gap-4">
+              <div>
+                <CarouselContent>
+                  {images.map((image, index) => (
+                    <CarouselItem key={index}>
                       <Card>
                         <CardContent className="flex items-center justify-center">
                           <div className="relative w-full overflow-hidden rounded-lg">
                             <img
                               src={image.src || "/placeholder.svg"}
-                              alt={image.alt}  
+                              alt={image.alt}
                               className="object-cover"
                               loading="lazy"
                             />
                           </div>
                         </CardContent>
                       </Card>
-          
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </div> 
-            <div className="flex items-center justify-center">
-              <CarouselPrevious className="relative text-white"/>
-              <CarouselNext className="relative text-white" />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </div>
+              <div className="flex items-center justify-center">
+                <CarouselPrevious className="relative text-white" />
+                <CarouselNext className="relative text-white" />
+              </div>
             </div>
-          </div>
-        </Carousel>
-      </div>
-      
+          </Carousel>
+        </div>
+      </motion.div>
     </div>
-  )
+  );
 }
-
