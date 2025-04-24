@@ -1,10 +1,10 @@
-import "../styles/home.css";
 import "../styles/projects.css";
 import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Projects() {
   return (
-    <section id="projects" className="p3">
+    <section id="projects">
       <div className="projectsCol">
         <div className="projects-placeholder">
           <p>

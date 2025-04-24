@@ -95,7 +95,7 @@ export default function intro() {
                 className="border border-[#aacdf8] bg-white text-black transition-transform hover:scale-105 hover:shadow-md"
                 onClick={() =>
                   window.open(
-                    "https://drive.google.com/file/d/14kh81yd2DY1tn5Na59kQVCM55NkZiuF-/view?usp=sharing",
+                    "https://drive.google.com/file/d/1nn-5CVafI1kciq1xsWkS4vaHGK6TjFxn/view?usp=sharing",
                     "_blank",
                   )
                 }

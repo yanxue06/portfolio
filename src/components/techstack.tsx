@@ -45,14 +45,14 @@ export function TechStack() {
       { name: "Pandas", color: "#4d4d4d" },
       { name: "OpenCV", color: "#4d4d4d" },
       { name: "MatplotLib", color: "#4d4d4d" },
-      { name: "Scikit Learn", color: "#4d4d4d" },
+      { name: "Scikit-learn", color: "#4d4d4d" },
     ],
   };
 
   const categoryNames = Object.keys(categories);
 
   return (
-    <div className="flex justify-center w-[100%]"> 
+    <div className="flex justify-center w-[100%]">
       <div className="flex flex-col items-center justify-center lg:w-[70%] sm:w-[90%] max-w-[1000px]">
         {/* <h2 className="mb-8 text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">
           Tech Stack
@@ -97,6 +97,6 @@ export function TechStack() {
           ))}
         </Tabs>
       </div>
-    </div> 
+    </div>
   );
 }
