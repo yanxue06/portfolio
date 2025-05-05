@@ -81,7 +81,7 @@ export default function Projects() {
                     fontWeight="bold"
                     color="white"
                   >
-                    Code Sage (coming soon)
+                    UW MarketPlace (coming soon)
                   </Card.Title>
                   <Card.Description
                     fontSize="lg"
@@ -89,7 +89,8 @@ export default function Projects() {
                     color="gray.300"
                     width="100%"
                   >
-                    Building a platform to help me learn algorithms and data structures!
+                    Building a platform to help students buy and sell used items
+                    on campus. 
                   </Card.Description>
 
                   <HStack mt={4} spacing={3} flexWrap="wrap">
@@ -106,7 +107,7 @@ export default function Projects() {
                       Gemini API
                     </Badge>
                     <Badge colorScheme="teal" fontSize="sm">
-                      Supabase
+                      PostgreSQL
                     </Badge>
                   </HStack>
                 </Box>
@@ -246,119 +247,7 @@ export default function Projects() {
 
         {/* ROW 1 */}
         <div className="projectsRow">
-          <motion.div
-            initial={{ x: 0, opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <Card.Root
-              display="flex"
-              flexDirection="column" // Stack image on top of text
-              maxW="900px"
-              mx="auto"
-              overflow="hidden"
-              borderRadius="xl"
-              boxShadow="lg"
-              bg="black"
-              h="auto"
-              width="80%" // Let the card grow to fit content
-              transition="transform 0.3s ease, box-shadow 0.3s ease" // Transition for smooth effect
-              css={{
-                "&:hover": {
-                  transform: "scale(1.02)", // Gentle zoom effect
-                  boxShadow: "0 0 20px rgba(255, 255, 255, 0.3)", // Enhanced glow
-                },
-              }}
-            >
-              <Box
-                w="100%"
-                bg="black" // Matches the card background
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <LazyLoadImage
-                  src={Powerprompt}
-                  alt="Powerprompt"
-                  effect="blur"
-                  width="100%"
-                  height="100%"
-                  style={{
-                    objectFit: "contain",
-                    objectPosition: "center",
-                    display: "block",
-                  }}
-                />
-              </Box>
-
-              <Box
-                p={6}
-                display="flex"
-                flexDirection="column"
-                justifyContent="space-between"
-                w="100%" // Full width of the card
-              >
-                <Box>
-                  <Card.Title
-                    mb={2}
-                    fontSize="2xl"
-                    fontWeight="bold"
-                    color="white"
-                  >
-                    PowerPrompt
-                  </Card.Title>
-                  <Card.Description
-                    fontSize="lg"
-                    lineHeight="tall"
-                    color="gray.300"
-                    width="100%"
-                  >
-                    Raising Awareness: PowerPrompt gives users real-time
-                    feedback on the energy consumption of their ChatGPT
-                    interactions. Our friendly monkey mascot 🐒 updates users on
-                    their energy usage, token count, and carbon
-                    footprint—helping them see the environmental impact of their
-                    conversations.
-                  </Card.Description>
-
-                  <HStack mt={4} spacing={3} flexWrap="wrap">
-                    <Badge colorScheme="teal" fontSize="sm">
-                      React
-                    </Badge>
-                    <Badge colorScheme="teal" fontSize="sm">
-                      JavaScript
-                    </Badge>
-                    <Badge colorScheme="teal" fontSize="sm">
-                      Chrome Storage API
-                    </Badge>
-                    <Badge colorScheme="teal" fontSize="sm">
-                      Vite
-                    </Badge>
-                  </HStack>
-                </Box>
-
-                <Button
-                  variant="solid"
-                  bg="white"
-                  color="black"
-                  fontSize="sm"
-                  width="40%"
-                  marginTop="20px"
-                  _hover={{ bg: "gray.300" }}
-                  as="a"
-                  href="https://github.com/yanxue06/Powerprompt"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-button"
-                >
-                  See The Code
-                </Button>
-              </Box>
-            </Card.Root>
-          </motion.div>
-
-          <motion.div
+        <motion.div
             initial={{ x: 0, opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -476,10 +365,125 @@ export default function Projects() {
               </Box>
             </Card.Root>
           </motion.div>
+          
+          <motion.div
+            initial={{ x: 0, opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <Card.Root
+              display="flex"
+              flexDirection="column" // Stack image on top of text
+              maxW="900px"
+              mx="auto"
+              overflow="hidden"
+              borderRadius="xl"
+              boxShadow="lg"
+              bg="black"
+              h="auto"
+              width="80%" // Let the card grow to fit content
+              transition="transform 0.3s ease, box-shadow 0.3s ease" // Transition for smooth effect
+              css={{
+                "&:hover": {
+                  transform: "scale(1.02)", // Gentle zoom effect
+                  boxShadow: "0 0 20px rgba(255, 255, 255, 0.3)", // Enhanced glow
+                },
+              }}
+            >
+              <Box
+                w="100%"
+                bg="black" // Matches the card background
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <LazyLoadImage
+                  src={Powerprompt}
+                  alt="Powerprompt"
+                  effect="blur"
+                  width="100%"
+                  height="100%"
+                  style={{
+                    objectFit: "contain",
+                    objectPosition: "center",
+                    display: "block",
+                  }}
+                />
+              </Box>
+
+              <Box
+                p={6}
+                display="flex"
+                flexDirection="column"
+                justifyContent="space-between"
+                w="100%" // Full width of the card
+              >
+                <Box>
+                  <Card.Title
+                    mb={2}
+                    fontSize="2xl"
+                    fontWeight="bold"
+                    color="white"
+                  >
+                    PowerPrompt
+                  </Card.Title>
+                  <Card.Description
+                    fontSize="lg"
+                    lineHeight="tall"
+                    color="gray.300"
+                    width="100%"
+                  >
+                    Raising Awareness: PowerPrompt gives users real-time
+                    feedback on the energy consumption of their ChatGPT
+                    interactions. Our friendly monkey mascot 🐒 updates users on
+                    their energy usage, token count, and carbon
+                    footprint—helping them see the environmental impact of their
+                    conversations.
+                  </Card.Description>
+
+                  <HStack mt={4} spacing={3} flexWrap="wrap">
+                    <Badge colorScheme="teal" fontSize="sm">
+                      React
+                    </Badge>
+                    <Badge colorScheme="teal" fontSize="sm">
+                      JavaScript
+                    </Badge>
+                    <Badge colorScheme="teal" fontSize="sm">
+                      Chrome Storage API
+                    </Badge>
+                    <Badge colorScheme="teal" fontSize="sm">
+                      Vite
+                    </Badge>
+                  </HStack>
+                </Box>
+
+                <Button
+                  variant="solid"
+                  bg="white"
+                  color="black"
+                  fontSize="sm"
+                  width="40%"
+                  marginTop="20px"
+                  _hover={{ bg: "gray.300" }}
+                  as="a"
+                  href="https://github.com/yanxue06/Powerprompt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-button"
+                >
+                  See The Code
+                </Button>
+              </Box>
+            </Card.Root>
+          </motion.div>
+
+
         </div>
 
         {/* ROW 2 */}
         <div className="projectsRow">
+          
           <motion.div
             initial={{ x: 0, opacity: 0 }}
             whileInView={{ opacity: 1 }}

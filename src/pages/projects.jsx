@@ -23,32 +23,6 @@ export default function Parallax() {
 
   return (
     <div className="p3">
-      {/* <div
-        className="stars"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "60vh", // Limit height to viewport height
-          zIndex: 1,
-          pointerEvents: "none",
-          color: "rgb(36, 35, 35)",
-        }}
-      >
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-      </div> */}
-
       <div className="heading">PROJECTS</div>
 
       <div className="parallax">
@@ -56,77 +30,84 @@ export default function Parallax() {
         <div
           className="parallax__layer parallax__layer__0"
           style={{
-            transform: `translateY(${scrollY * 1.5}px)`, // Dramatic multiplier
+            transform: `translateY(${scrollY * 1.5}px)`,
+            willChange: "transform",
           }}
         >
           <img
-            src="https://github.com/samdbeckham/blog/blob/master/dev/_assets/images/articles/firewatch/layer_0.png?raw=true"
+            src="https://raw.githubusercontent.com/samdbeckham/blog/master/dev/_assets/images/articles/firewatch/layer_0.png"
             alt="Layer 0"
           />
         </div>
         <div
           className="parallax__layer parallax__layer__1"
           style={{
-            transform: `translateY(${scrollY * 1.2}px)`, // Dramatic multiplier
+            transform: `translateY(${scrollY * 1.2}px)`,
+            willChange: "transform",
           }}
         >
           <img
-            src="https://github.com/samdbeckham/blog/blob/master/dev/_assets/images/articles/firewatch/layer_1.png?raw=true"
+            src="https://raw.githubusercontent.com/samdbeckham/blog/master/dev/_assets/images/articles/firewatch/layer_1.png"
             alt="Layer 1"
           />
         </div>
         <div
           className="parallax__layer parallax__layer__2"
           style={{
-            transform: `translateY(${scrollY * 0.9}px)`, // Dramatic multiplier
+            transform: `translateY(${scrollY * 0.9}px)`,
+            willChange: "transform",
           }}
         >
           <img
-            src="https://github.com/samdbeckham/blog/blob/master/dev/_assets/images/articles/firewatch/layer_2.png?raw=true"
+            src="https://raw.githubusercontent.com/samdbeckham/blog/master/dev/_assets/images/articles/firewatch/layer_2.png"
             alt="Layer 2"
           />
         </div>
         <div
           className="parallax__layer parallax__layer__3"
           style={{
-            transform: `translateY(${scrollY * 0.6}px)`, // Dramatic multiplier
+            transform: `translateY(${scrollY * 0.6}px)`,
+            willChange: "transform",
           }}
         >
           <img
-            src="https://github.com/samdbeckham/blog/blob/master/dev/_assets/images/articles/firewatch/layer_3.png?raw=true"
+            src="https://raw.githubusercontent.com/samdbeckham/blog/master/dev/_assets/images/articles/firewatch/layer_3.png"
             alt="Layer 3"
           />
         </div>
         <div
           className="parallax__layer parallax__layer__4"
           style={{
-            transform: `translateY(${scrollY * 0.4}px)`, // Dramatic multiplier
+            transform: `translateY(${scrollY * 0.4}px)`,
+            willChange: "transform",
           }}
         >
           <img
-            src="https://github.com/samdbeckham/blog/blob/master/dev/_assets/images/articles/firewatch/layer_4.png?raw=true"
+            src="https://raw.githubusercontent.com/samdbeckham/blog/master/dev/_assets/images/articles/firewatch/layer_4.png"
             alt="Layer 4"
           />
         </div>
         <div
           className="parallax__layer parallax__layer__5"
           style={{
-            transform: `translateY(${scrollY * 0.2}px)`, // Dramatic multiplier
+            transform: `translateY(${scrollY * 0.2}px)`,
+            willChange: "transform",
           }}
         >
           <img
-            src="https://github.com/samdbeckham/blog/blob/master/dev/_assets/images/articles/firewatch/layer_5.png?raw=true"
+            src="https://raw.githubusercontent.com/samdbeckham/blog/master/dev/_assets/images/articles/firewatch/layer_5.png"
             alt="Layer 5"
           />
         </div>
         <div
           className="parallax__layer parallax__layer__6"
           style={{
-            transform: `translateY(${scrollY * 0.1}px)`, // Dramatic multiplier
+            transform: `translateY(${scrollY * 0.1}px)`,
+            willChange: "transform",
           }}
         >
           <img
-            src="https://github.com/samdbeckham/blog/blob/master/dev/_assets/images/articles/firewatch/layer_6.png?raw=true"
+            src="https://raw.githubusercontent.com/samdbeckham/blog/master/dev/_assets/images/articles/firewatch/layer_6.png"
             alt="Layer 6"
           />
         </div>
