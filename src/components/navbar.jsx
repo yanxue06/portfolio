@@ -83,7 +83,7 @@ export default function Navbar() {
           </a> */}
 
           <a
-            href="https://drive.google.com/file/d/14kh81yd2DY1tn5Na59kQVCM55NkZiuF-/view?usp=sharing"
+            href="https://drive.google.com/file/d/1GaY18en5uG3t7NXMazNztAmako2b3cHv/view?usp=sharing"
             className="navbar-link"
             target="_blank"
             rel="noopener noreferrer"
