@@ -78,7 +78,7 @@ export default function Navbar() {
           </a> */}
 
           <a
-            href="https://drive.google.com/file/d/1cEH85jFmfPhMH9kKKC7ukhGUZMoUSR4G/view?usp=sharing"
+            href="\resume.pdf"
             className="navbar-link"
             target="_blank"
             rel="noopener noreferrer"
