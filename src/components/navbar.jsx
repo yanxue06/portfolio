@@ -42,11 +42,6 @@ export default function Navbar() {
   };
 
   const openResume = (e) => {
-    e.preventDefault();
-    window.open(
-      "https://drive.google.com/file/d/1cEH85jFmfPhMH9kKKC7ukhGUZMoUSR4G/view?usp=sharing",
-      "_blank",
-    );
     setIsMobileMenuOpen(false);
   };
 
@@ -129,7 +124,7 @@ export default function Navbar() {
             GALLERY
           </Link> */}
 
-          <a href="#" className="navbar-link" onClick={openResume}>
+          <a href="/resume.pdf" className="navbar-link" target="_blank" onClick={openResume}>
             RESUME
           </a>
 
