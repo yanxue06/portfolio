@@ -60,22 +60,31 @@ export default function TechStack() {
   const categories = {
     Languages: [
       { name: "Python", color: "#4d4d4d" },
+      { name: "TypeScript", color: "#4d4d4d" },
+      { name: "JavaScript", color: "#4d4d4d" },
       { name: "C++", color: "#4d4d4d" },
       { name: "C", color: "#4d4d4d" },
       { name: "Java", color: "#4d4d4d" },
-      { name: "TypeScript", color: "#4d4d4d" },
-      { name: "JavaScript", color: "#4d4d4d" },
+      { name: "SQL", color: "#4d4d4d" },
+    
     ],
     "Developer Tools": [
       { name: "HTML", color: "#4d4d4d" },
       { name: "CSS", color: "#4d4d4d" },
-      { name: "SQL", color: "#4d4d4d" },
+      { name: "Tailwindcss", color: "#4d4d4d" },
       { name: "Git", color: "#4d4d4d" },
       { name: "Supabase", color: "#4d4d4d" },
       { name: "Firebase", color: "#4d4d4d" },
       { name: "Bash", color: "#4d4d4d" },
       { name: "Docker", color: "#4d4d4d" },
       { name: "AWS", color: "#4d4d4d" },
+      { name: "PostgreSQL", color: "#4d4d4d" },
+      { name: "MongoDB", color: "#4d4d4d" },
+      { name: "Redis", color: "#4d4d4d" },
+      { name: "SQLite", color: "#4d4d4d" },
+      { name: "MySQL", color: "#4d4d4d" },
+      { name: "GitHub", color: "#4d4d4d" },
+      { name: "GitLab", color: "#4d4d4d" },
       { name: "VSCode", color: "#4d4d4d" },
       { name: "PyCharm", color: "#4d4d4d" },
       { name: "Cursor", color: "#4d4d4d" },
@@ -100,7 +109,7 @@ export default function TechStack() {
       { name: "OpenCV", color: "#4d4d4d" },
       { name: "MatplotLib", color: "#4d4d4d" },
       { name: "Scikit Learn", color: "#4d4d4d" },
-      { name: "Puncc - Conformal Prediction", color: "#4d4d4d" },
+      { name: "Puncc", color: "#4d4d4d" },
     ],
   };
 
