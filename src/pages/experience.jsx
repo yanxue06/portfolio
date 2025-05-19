@@ -25,6 +25,7 @@ const Experience = () => {
     window.scrollTo(0, 0);
   }, []);
   
+
   // Styling for the card content with text wrapping and enhanced styling
   const CustomPaper = styled(Paper)(({ theme }) => ({
     backgroundColor: "rgba(102, 120, 159, 0.95)",
@@ -138,6 +139,8 @@ const Experience = () => {
             },
           }}
         >
+
+          
           {/* ITEM 1 */}
           <TimelineItem
             sx={{
@@ -247,18 +250,15 @@ const Experience = () => {
                       width: "100%",
                     }}
                   >
-                    - Processed 1.48M+ customer query records using SQL and
+                    - Processed customer query records using SQL and
                     Python, applying embeddings and clustering to train a Rasa
-                    chatbot, automating request categorization and cutting
-                    manual work by 80%
+                    chatbot 
                     <br />
                     - Engineered an autonomous robot control system using
-                    Python, React, and Flask, integrating 15+ Robot endpoints to
-                    support real-time navigation and stock retrieval for over
-                    50,000+ warehouse items
+                    Python, React, and Flask, integrating Robot endpoints to
+                    support real-time navigation and stock retrieval 
                     <br />- Developing HongMall's first e-commerce web
-                    application using Angular and TypeScript, supporting a
-                    growing mobile user base of 1M+ customers
+                    application using Angular and TypeScript 
                   </Typography>
                 </CustomPaper>
               </motion.div>
@@ -518,7 +518,7 @@ const Experience = () => {
                       component="span"
                       sx={{ fontWeight: "bold" }}
                     >
-                      Automation Developer | Pacific Grace Church
+                      Bot Developer | Pacific Grace Church
                     </Typography>
 
                     {/* LOCATION ONLY for LARGE SCREENS */}
@@ -558,9 +558,9 @@ const Experience = () => {
                     >
                       - Developed and deployed a Python-based Discord bot using
                       Docker, automating daily Bible readings and announcements
-                      for a 105+ member community, streamlining communication by
-                      over 80%
-                      <br />- Integrated Google Sheets API for real-time updates
+                      for a large community 
+                      <br />
+                      - Integrated Google Sheets API for real-time updates
                       and hosted on Google Cloud Run for scalability
                     </Typography>
                   </CustomPaper>
@@ -582,7 +582,7 @@ const Experience = () => {
                       component="span"
                       sx={{ fontWeight: "bold" }}
                     >
-                      Automation Developer | Pacific Grace Church
+                      Bot Developer | Pacific Grace Church
                     </Typography>
 
                     {/* LOCATION ONLY for LARGE SCREENS */}
@@ -622,8 +622,7 @@ const Experience = () => {
                     >
                       - Developed and deployed a Python-based Discord bot using
                       Docker, automating daily Bible readings and announcements
-                      for a 105+ member community, streamlining communication by
-                      over 80%
+                      for a large community 
                       <br />- Integrated Google Sheets API for real-time updates
                       and hosted on Google Cloud Run for scalability
                     </Typography>
@@ -900,15 +899,12 @@ const Experience = () => {
                       sx={{ marginTop: "8px", width: "100%" }}
                     >
                       - Developed a multiprocessing Python script for CSV
-                      normalization, increasing workflow speed by 40%
+                      normalization 
                       <br />
                       - Designed and built a cross-platform invoice system with
-                      Python, Tkinter, and ReportLab, automating billing for 50+
-                      clients and reducing invoice preparation time by 75%
+                      Python, Tkinter, and ReportLab, automating billing several clients
                       <br />- Developed the company's website and advertisements
-                      using React, TypeScript, and Figma, which contributed to
-                      36% of client job bookings, generating $72,000+ in revenue
-                      in 2023
+                      using React, TypeScript, and Figma 
                     </Typography>
                   </CustomPaper>
                 ) : (
@@ -965,15 +961,12 @@ const Experience = () => {
                       sx={{ marginTop: "8px", width: "100%" }}
                     >
                       - Developed a multiprocessing Python script for CSV
-                      normalization, increasing workflow speed by 40%
+                      normalization
                       <br />
                       - Designed and built a cross-platform invoice system with
-                      Python, Tkinter, and ReportLab, automating billing for 50+
-                      clients and reducing invoice preparation time by 75%
+                      Python, Tkinter, and ReportLab, automating billing for serveral clients
                       <br />- Developed the company's website and advertisements
-                      using React, TypeScript, and Figma, which contributed to
-                      36% of client job bookings, generating $72,000+ in revenue
-                      in 2023
+                      using React, TypeScript, and Figma
                     </Typography>
                   </CustomPaper>
                 )}
@@ -1154,8 +1147,8 @@ const Experience = () => {
                     >
                       - Collaborated with staff to oversee STEM lessons and
                       icebreakers
-                      <br />- Constructed a curriculum on Aerodynamics for 20+
-                      youth aerodynamics
+                      <br />- Constructed a curriculum on Aerodynamics a class of
+                      youth 
                     </Typography>
                   </CustomPaper>
                 )}
