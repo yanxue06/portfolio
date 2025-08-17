@@ -4,7 +4,6 @@ import "../styles/particle.scss";
 import "../styles/timeline.css";
 import "../styles/arrow.scss";
 
-import Yan from "/images/Yan.jpeg";
 import "../styles/navbar.css";
 import { motion } from "framer-motion";
 import { Box, Button, Card, Image } from "@chakra-ui/react";
@@ -43,26 +42,7 @@ export default function About() {
             },
           }}
         >
-          <Image
-            objectFit="cover"
-            loading="lazy"
-            css={{
-              width: "40%",
-              height: "auto",
-              borderRadius: "8px",
-              marginRight: "16px",
-              "@media (max-width: 780px)": {
-                width: "100%",
-                height: "600px", // Fixed height for cropping
-                marginRight: 0,
-                marginBottom: "20px",
-                objectFit: "cover", // Force crop
-                objectPosition: "center", // Focus on the center (your face)
-              },
-            }}
-            src={Yan}
-            alt="About Me"
-          />
+         
           <Box
             css={{
               flex: 1,
@@ -83,11 +63,7 @@ export default function About() {
                   color: "white",
                 }}
               >
-                <h1
-                  style={{ fontSize: "38px", color: "rgb(196, 223, 235)", marginBottom: "10px" }}
-                >
-                  About Me
-                </h1>
+                
               </Card.Title>
               <Card.Description
                 css={{

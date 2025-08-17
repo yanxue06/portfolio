@@ -8,9 +8,7 @@ import About from "../components/about";
 import Arrows from "../components/arrow";
 import "../styles/navbar.css";
 
-import TechStack from "../components/techstack";
 import Contacts from "../components/contacts";
-import ProjectShowcase from "../components/projectShowcase";
 
 export default function App() {
   useEffect(() => {
@@ -29,9 +27,6 @@ export default function App() {
 
             <TimeLine />
 
-            <TechStack />
-
-            <ProjectShowcase />
           </div>
         </section>
 
