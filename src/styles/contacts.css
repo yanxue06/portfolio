@@ -31,3 +31,55 @@
   background-color: black;
   height: 30vh; 
 }
+
+@media (max-width: 900px) {
+  .contactsRow {
+    flex-direction: column;   
+    gap: 24px;
+  }
+
+  .contactsCol {
+    width: 100%;
+    text-align: center;       
+  }
+
+  .contact_description {
+    margin: 0 auto;
+    max-width: 60ch;     
+  }
+
+  .contact_description .footer { 
+    display: flex;
+    width: 100%; 
+    align-items: center;
+  }
+
+  .contact_list > div {
+    justify-content: center;  
+  }
+
+  .contact_list img {
+    width: 44px;
+    height: 44px;              
+  }
+
+  footer,
+  .copyRight {
+    text-align: center;
+  }
+
+
+}
+
+  /* Mobile: stack + center */
+@media (max-width: 900px) {
+  footer {
+    text-align: center;
+  }
+
+  footer p {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60ch; /* keeps line length comfortable */
+  }
+}

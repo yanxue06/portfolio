@@ -35,7 +35,6 @@ export default function Contacts() {
             style={{
               marginTop: "20px",
               color: "grey",
-              textAlign: "center", // Center-align the text
               lineHeight: "1.6", // Adjust line height for readability
             }}
           >

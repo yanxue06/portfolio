@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import "../styles/home.css";
-import "../styles/particle.scss";
 import "../styles/navbar.css";
 import { motion } from "framer-motion";
 import "../styles/about.css";
@@ -77,11 +76,11 @@ export default function About() {
             </h1>
 
             <p>
-              Hey! I'm a computer engineering student at uWaterloo, although I'm originally from Vancouver.
-              I believe that software should be used to better the lives of people, and I love building to serve people!   
+              Hey! I'm a computer engineering student at uWaterloo, who  
+              strongly believes that software should be used to help people.    
             </p>
             <p>
-              I also love guitar, frisbee, and chess :)   
+              Besides coding, I also love guitar, frisbee, and chess :)   
             </p>
            
           </div>

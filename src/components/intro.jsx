@@ -1,6 +1,5 @@
 import * as React from "react";
 import "../styles/home.css";
-import "../styles/particle.scss";
 import "../styles/timeline.css";
 import "../styles/arrow.scss";
 import { motion } from "framer-motion";
@@ -77,7 +76,7 @@ export default function intro() {
                   color: "white",
                 }}
               >
-                ECE Student at The University of Waterloo
+                Computer Engineering @ uWaterloo 
               </span>
             </div>
 
