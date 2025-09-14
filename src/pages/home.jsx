@@ -7,7 +7,7 @@ import Intro from "../components/intro";
 import About from "../components/about";
 import Arrows from "../components/arrow";
 import "../styles/navbar.css";
-
+import Projects from "../components/projects"
 import Contacts from "../components/contacts";
 
 export default function App() {
@@ -26,6 +26,8 @@ export default function App() {
             <About />
 
             <TimeLine />
+
+            <Projects /> 
 
           </div>
         </section>

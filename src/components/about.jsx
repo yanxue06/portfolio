@@ -68,7 +68,14 @@ export default function About() {
 
           {/* Description - Right Side */}
           <div className="about-text">
-            <h1>About Me</h1>
+            <h1>
+              About <span style={{
+                background: "linear-gradient(90deg, #63d0f8, #65b5ff)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}>Me</span>
+            </h1>
+
             <p>
               Hey! I'm a computer engineering student at uWaterloo, although I'm originally from Vancouver.
               I believe that software should be used to better the lives of people, and I love building to serve people!   

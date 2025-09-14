@@ -13,10 +13,10 @@
   "dependencies": {
     "@chakra-ui/react": "^3.5.1",
     "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^6.3.1",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^6.5.0",
     "@mui/lab": "^6.0.0-beta.24",
-    "@mui/material": "^6.3.1",
+    "@mui/material": "^6.5.0",
     "@vercel/analytics": "^1.5.0",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.3",

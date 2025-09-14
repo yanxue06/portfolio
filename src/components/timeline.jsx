@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Box, Card } from "@chakra-ui/react";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 const logoPlaceholders = {
   BitGo: "/images/logos/bitgo.jpeg",
@@ -52,34 +54,7 @@ const experiences = [
   },
 ];
 
-const ImageRow = ({ images }) => {
-  if (!images || images.length === 0) return null;
-  
-  return (
-    <Box
-      css={{
-        display: "flex",
-        gap: "8px",
-        marginTop: "12px",
-        flexWrap: "wrap",
-      }}
-    >
-      {images.map((image, index) => (
-        <img
-          key={index}
-          src={image}
-          alt={`Experience image ${index + 1}`}
-          style={{
-            height: "32px",
-            width: "auto",
-            borderRadius: "4px",
-            filter: "drop-shadow(0 0 1px rgba(255, 255, 255, 0.3))",
-          }}
-        />
-      ))}
-    </Box>
-  );
-};
+
 
 const DescriptionBlock = ({ description }) => {
   const parseDescription = (text) => {
@@ -163,51 +138,6 @@ const DescriptionBlock = ({ description }) => {
   );
 };
 
-const CompanyInfo = ({ company, role, colorAccent }) => {
-  return (
-    <Box
-      css={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "flex-start",
-        marginBottom: "12px",
-        flexWrap: "wrap",
-        gap: "8px",
-      }}
-    >
-      <Box css={{ flex: 1, minWidth: "200px" }}>
-        <h3
-          style={{
-            fontSize: "1.3rem",
-            fontWeight: "bold",
-            color: colorAccent,
-            marginBottom: "4px",
-            lineHeight: "1.2",
-            textShadow: `0 0 15px ${colorAccent}80`,
-            background: `linear-gradient(135deg, ${colorAccent} 0%, #FF5A6E 100%)`,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          {role}
-        </h3>
-        <p
-          style={{
-            color: "rgb(220, 229, 251)",
-            fontSize: "1rem",
-            fontWeight: "600",
-            opacity: 1,
-            width: "100%",
-          }}
-        >
-          {company}
-        </p>
-      </Box>
-    
-    </Box>
-  );
-};
 
 const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, location, description, images, colorAccent, index, ...props }, ref) => {
   return (
@@ -234,27 +164,59 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
         css={{
           flex: 1,
           marginLeft: "80px",
-          backgroundColor: "rgba(15, 23, 42, 0.95)",
-          border: `1px solid ${colorAccent}40`,
-          borderRadius: "12px",
+
+          position: "relative",
+          overflow: "hidden",
+          borderRadius: "16px",
+          background: "linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))",
+          backdropFilter: "blur(18px) saturate(125%)",
+          WebkitBackdropFilter: "blur(18px) saturate(125%)",
+          border: "1px solid rgba(255,255,255,0.18)",
+          boxShadow:
+            "0 10px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.16)",
+
+          // Accent glow & sheen
+          "&::before": {
+            content: "''",
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            background: `radial-gradient(600px 240px at -15% -20%, ${colorAccent}22 0%, transparent 70%),
+                        radial-gradient(600px 240px at 115% 120%, rgba(255,255,255,0.12) 0%, transparent 60%)`,
+          },
+          "&::after": {
+            content: "''",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "1px",
+            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)",
+            opacity: 0.7,
+            pointerEvents: "none",
+          },
+
+          // Hover lift + subtle accent ring
           transition: "transform 0.3s ease, box-shadow 0.3s ease",
-          backdropFilter: "blur(20px)",
-          boxShadow: `0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)`,
           "&:hover": {
-            transform: "translateY(-2px)",
-            boxShadow: `0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px ${colorAccent}60, inset 0 1px 0 rgba(255, 255, 255, 0.15)`,
+            transform: "translateY(-3px)",
+            boxShadow: `0 18px 60px rgba(0,0,0,0.55),
+                        0 0 0 1px ${colorAccent}66,
+                        inset 0 0 30px ${colorAccent}26`,
           },
-          "@media (max-width: 968px)": {
-            marginLeft: "70px",
+
+          // Fallback when backdrop-filter isn’t supported
+          "@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px)))": {
+            background: "rgba(15, 23, 42, 0.85)",
           },
-          "@media (max-width: 768px)": {
-            marginLeft: "60px",
-          },
-          "@media (max-width: 480px)": {
-            marginLeft: "55px",
-          },
+
+          // Responsive offsets (kept from your original)
+          "@media (max-width: 968px)": { marginLeft: "70px" },
+          "@media (max-width: 768px)": { marginLeft: "60px" },
+          "@media (max-width: 480px)": { marginLeft: "55px" },
         }}
       >
+
         <Card.Body p="24px">
           {/* Header with logo and company info */}
           <Box
@@ -338,29 +300,17 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
                 gap: "4px",
               },
             }}
-          >
-            <Box css={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <Box
-                css={{
-                  width: "4px",
-                  height: "4px",
-                  borderRadius: "50%",
-                  backgroundColor: "rgba(255, 255, 255, 0.5)",
-                }}
-              />
+          >   
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <LocationOnIcon style={{ marginRight: "4px", fontSize: "1rem" }} />
               <span>{location}</span>
-            </Box>
-            <Box css={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <Box
-                css={{
-                  width: "4px",
-                  height: "4px",
-                  borderRadius: "50%",
-                  backgroundColor: "rgba(255, 255, 255, 0.5)",
-                }}
-              />
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <DateRangeIcon style={{ marginRight: "4px", fontSize: "1rem" }} />
               <span>{dateRange}</span>
-            </Box>
+            </div>
+
           </Box>
 
           {/* Description */}
@@ -560,7 +510,7 @@ const TimelineContainer = ({ children }) => {
 
 const TimeLine = () => {
   return (
-    <section style={{ width: "100%", padding: "60px 0" }}>
+    <section style={{ width: "100%", padding: "60px 0"}}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -576,19 +526,13 @@ const TimeLine = () => {
             marginBottom: "16px",
           }}
         >
-          Experience
+          Work <span style={{
+                background: "linear-gradient(90deg, #63d0f8, #65b5ff)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}>Experience</span>
         </h1>
-        <p
-          style={{
-            color: "rgb(220, 229, 251)",
-            fontSize: "clamp(0.9rem, 1.5vw, 1.1rem)",
-            maxWidth: "600px",
-            margin: "0 auto",
-            lineHeight: "1.6",
-          }}
-        >
-          My professional journey through software engineering, automation, and firmware development
-        </p>
+      
       </motion.div>
 
       <div style={{ 
