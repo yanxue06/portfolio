@@ -1,14 +1,48 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import "../styles/home.css";
 import "../styles/particle.scss";
-import "../styles/timeline.css";
-import "../styles/arrow.scss";
-
 import "../styles/navbar.css";
 import { motion } from "framer-motion";
-import { Box, Button, Card, Image } from "@chakra-ui/react";
+import "../styles/about.css";
 
 export default function About() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Gallery images array
+  const galleryImages = [
+    '/images/gallery/g1.png',
+    '/images/gallery/g2.png',
+    '/images/gallery/g3.png',
+    '/images/gallery/g4.png',
+    '/images/gallery/g5.png',
+    '/images/gallery/g6.png',
+    '/images/gallery/g7.png',
+    '/images/gallery/g8.png',
+    '/images/gallery/g9.png',
+    '/images/gallery/g10.png',
+    '/images/gallery/g11.png',
+    '/images/gallery/g12.png',
+    '/images/gallery/g13.png',
+    '/images/gallery/g14.png',
+    '/images/gallery/g15.png',
+    '/images/gallery/g16.png',
+    '/images/gallery/g17.png'
+  ];
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        (prevIndex + 1) % galleryImages.length
+      );
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [galleryImages.length]);
+
+
+
   return (
     <section id="about" className="about" style={{ width: "100%" }}>
       <motion.div
@@ -18,91 +52,33 @@ export default function About() {
         viewport={{ once: true, amount: 0.2 }}
         style={{ width: "100%" }}
       >
-        <Card.Root
-          overflow="hidden"
-          css={{
-            width: "70% !important",
-            maxWidth: "1200px",
-            backgroundColor: "#2B3F57",
-            boxShadow: "0 0 2px 1px rgba(235, 235, 235, 0.4)",
-            transition: "transform 0.3s ease, box-shadow 0.3s ease",
-            margin: "0 auto",
-            display: "flex",
-            flexDirection: "row",
-            borderRadius: "8px",
-            "&:hover": {
-              transform: "scale(1.02)",
-              boxShadow: "0 0 5px 5px rgba(147, 143, 143, 0.5)",
-            },
-            "@media (max-width: 1500px)": {
-              width: "90% !important",
-            },
-            "@media (max-width: 780px)": {
-              flexDirection: "column",
-            },
-          }}
-        >
-         
-          <Box
-            css={{
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between", // Ensures footer sticks to the bottom
-              "@media (max-width: 780px)": {
-                padding: "0 12px", // Add some side padding on mobile
-              },
-            }}
-          >
-            <Card.Body>
-              <Card.Title
-                mb="2"
-                css={{
-                  fontSize: "clamp(24px, 3vw, 28px)",
-                  fontWeight: "bold",
-                  color: "white",
-                }}
-              >
-                
-              </Card.Title>
-              <Card.Description
-                css={{
-                  color: "rgb(220, 229, 251)",
-                  width: "90%",
-                  fontSize: "clamp(18px, 2vw, 25px)",
-                  lineHeight: "1.4",
-                  maxWidth: "100%",
-                  "@media (max-width: 780px)": {
-                    fontSize: "20px", // Slightly smaller text on mobile
-                  },
-                }}
-              >
-                Hey! I'm Yan, a passionate software developer and AI enthusiast
-                studying Computer Engineering at The University of Waterloo. I'm
-                originally from Vancouver, BC, but I'll be studying abroad at
-                Waterloo, ON for the next few years. I'm always excited to
-                improve my skills and explore new experiences.
-                <br />
-                <br />
-                Beyond coding, I love guitar, chess,{" "}
-                {/*(add me on chess.com <a 
-                                    href="https://link.chess.com/friend/HFiGMJ" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    style={{
-                                        color: "#4d9fff", 
-                                        textDecoration: "underline", 
-                                        fontWeight: "500",
-                                        transition: "color 0.2s ease", 
-                                        "&:hover": {
-                                            color: "#7cb5ff"  
-                                        }
-                                }} >here</a>) */}
-                soccer, table tennis, frisbee, and traveling.
-              </Card.Description>
-            </Card.Body>
-          </Box>
-        </Card.Root>
+        <div className="about-content">
+          {/* Photo Carousel - Left Side */}
+          <div className="about-carousel-container">
+            <div className="about-carousel">
+              <div className="carousel-image-container">
+                <img 
+                  src={galleryImages[currentImageIndex]} 
+                  alt={`Gallery image ${currentImageIndex + 1}`}
+                  className="carousel-image"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Description - Right Side */}
+          <div className="about-text">
+            <h1>About Me</h1>
+            <p>
+              Hey! I'm a computer engineering student at uWaterloo, although I'm originally from Vancouver.
+              I believe that software should be used to better the lives of people, and I love building to serve people!   
+            </p>
+            <p>
+              I also love guitar, frisbee, and chess :)   
+            </p>
+           
+          </div>
+        </div>
       </motion.div>
     </section>
   );

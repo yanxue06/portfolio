@@ -65,13 +65,13 @@ export default function Navbar() {
             HOME
           </Link>
 
-          <Link to="/projects" className="navbar-link">
+          {/* <Link to="/projects" className="navbar-link">
             PROJECTS
-          </Link>
+          </Link> */}
 
-          <Link to="/experience" className="navbar-link">
+          {/* <Link to="/experience" className="navbar-link">
             EXPERIENCE
-          </Link>
+          </Link> */}
 
           {/* <a href="/gallery" className="navbar-link">
             GALLERY
