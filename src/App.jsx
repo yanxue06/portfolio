@@ -4,7 +4,7 @@ import "./styles/home.css";
 import Navbar from "./components/navbar";
 import "./styles/navbar.css";
 
-import Home from "./pages/home";
+import Home from "./pages/home"; // You may want to rename this file to About.jsx
 // import Projects from "./pages/projects";
 // import Experience from "./pages/experience";
 
@@ -15,9 +15,7 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          {/* <Route path="/projects" element={<Projects />} /> */}
-          {/* <Route path="/experience" element={<Experience />} /> */}
+          <Route path="/about" element={<Home />} /> {/* Changed from /home to /about */}
         </Routes>
       </Router>
     </>

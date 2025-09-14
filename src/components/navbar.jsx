@@ -45,6 +45,36 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   };
 
+  // Add these scroll functions
+  const scrollToSection = (sectionId, e) => {
+    e.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  // Add this scroll function for About section
+  const scrollToAbout = (e) => {
+    e.preventDefault();
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  // Add this function to scroll to top
+  const scrollToTop = (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <motion.nav
       className={`navbar ${scrollY > 0 ? "navbar-scrolled" : ""}`}
@@ -54,28 +84,32 @@ export default function Navbar() {
       <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">
-          <Link to="/" className="navbar-link" onClick={handleLinkClick}>
+          <a href="#" className="navbar-link" onClick={scrollToTop}>
             Yan
-          </Link>
+          </a>
         </div>
 
         {/* Desktop Links */}
         <div className="navbar-links">
-          <Link to="/home" className="navbar-link">
-            HOME
-          </Link>
+          <a href="#about" className="navbar-link" onClick={scrollToAbout}>
+            ABOUT
+          </a>
 
-          {/* <Link to="/projects" className="navbar-link">
+          <a
+            href="#projects"
+            className="navbar-link"
+            onClick={(e) => scrollToSection("projects", e)}
+          >
             PROJECTS
-          </Link> */}
+          </a>
 
-          {/* <Link to="/experience" className="navbar-link">
+          <a
+            href="#experience"
+            className="navbar-link"
+            onClick={(e) => scrollToSection("experience", e)}
+          >
             EXPERIENCE
-          </Link> */}
-
-          {/* <a href="/gallery" className="navbar-link">
-            GALLERY
-          </a> */}
+          </a>
 
           <a
             href="\resume.pdf"
@@ -102,29 +136,32 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div className={`mobile-menu ${isMobileMenuOpen ? "active" : ""}`}>
-          <Link to="/home" className="navbar-link" onClick={handleLinkClick}>
-            HOME
-          </Link>
-          <Link
-            to="/experience"
+          <a href="#about" className="navbar-link" onClick={scrollToAbout}>
+            ABOUT
+          </a>
+
+          <a
+            href="#projects"
             className="navbar-link"
-            onClick={handleLinkClick}
-          >
-            EXPERIENCE
-          </Link>
-          <Link
-            to="/projects"
-            className="navbar-link"
-            onClick={handleLinkClick}
+            onClick={(e) => scrollToSection("projects", e)}
           >
             PROJECTS
-          </Link>
+          </a>
 
-          {/* <Link to="/gallery" className="navbar-link" onClick={handleLinkClick}>
-            GALLERY
-          </Link> */}
+          <a
+            href="#experience"
+            className="navbar-link"
+            onClick={(e) => scrollToSection("experience", e)}
+          >
+            EXPERIENCE
+          </a>
 
-          <a href="/resume.pdf" className="navbar-link" target="_blank" onClick={openResume}>
+          <a
+            href="/resume.pdf"
+            className="navbar-link"
+            target="_blank"
+            onClick={openResume}
+          >
             RESUME
           </a>
 

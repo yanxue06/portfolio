@@ -23,11 +23,17 @@ export default function App() {
 
         <section className="p2">
           <div className="col">
-            <About />
+            <div id="about">
+              <About />
+            </div>
+            
+            <div id="experience">
+              <TimeLine />
+            </div>
 
-            <TimeLine />
-
-            <Projects /> 
+            <div id="projects">
+              <Projects />
+            </div>
 
           </div>
         </section>
