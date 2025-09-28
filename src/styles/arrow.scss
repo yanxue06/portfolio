@@ -71,3 +71,13 @@ $arrow-line-width: 4px;
     }
   }
 }
+
+@media (max-width: 768px) {
+  .arrow {
+    &:before,
+    &:after {
+      width: 2px;
+      height: 30px;
+    }
+  }
+}

@@ -6,7 +6,7 @@ html {
   width: 100%; 
   overflow-x: hidden; 
   overflow-y: auto; 
-  font-size: 20px; 
+  font-size: 22px; 
 }
 
 body {
@@ -52,21 +52,21 @@ body {
      starts typing, it doesn’t push the top heading. */
   color: white; 
   min-height: 1.5em; 
-  font-size: 45px;  /* since its typewriter */ 
+  font-size: 47px;  /* since its typewriter */ 
   position: relative; 
   z-index: 999; 
 }
 
 .bottom-section { 
   color: white; 
-  font-size: 30px; 
+  font-size: 32px; 
   margin-bottom: 1%; 
   position: relative; 
   z-index: 999; 
 }
 
 h1 { 
-  font-size: 50px;  
+  font-size: 52px;  
   text-decoration: bold; 
   padding: 0; 
   margin: 0; 
@@ -98,7 +98,7 @@ p {
   width: 70%; 
   height: 100%; 
   margin: 0; 
-  font-size: 30px; 
+  font-size: 32px; 
   text-align: left; 
 }
 
@@ -130,7 +130,7 @@ p {
   display: flex;
   width: 100%; 
   justify-content: center;
-  font-size: 60px; /* Large text size for prominence */
+  font-size: 62px; /* Large text size for prominence */
 }
 
 /* .gradientBridge { 
@@ -417,3 +417,28 @@ a {
   }
 } */
 
+@media (max-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+
+  .top-section {
+    font-size: 37px;
+  }
+
+  .bottom-section {
+    font-size: 26px;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+
+  p {
+    font-size: 26px;
+  }
+
+  .heading {
+    font-size: 52px;
+  }
+}
