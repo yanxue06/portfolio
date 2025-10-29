@@ -127,7 +127,7 @@ const DescriptionBlock = ({ description }) => {
     <p
       style={{
         color: "rgba(255, 255, 255, 0.8)",
-        fontSize: "0.9rem",
+        fontSize: "0.85rem",
         width: "100%",
         lineHeight: "1.6",
         marginBottom: "0",
@@ -151,12 +151,15 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
       style={{
         display: "flex",
         alignItems: "flex-start",
-        marginBottom: "60px",
+        marginBottom: "45px",
         position: "relative",
       }}
       css={{
         "@media (max-width: 768px)": {
-          marginBottom: "40px",
+          marginBottom: "35px",
+        },
+        "@media (max-width: 480px)": {
+          marginBottom: "30px",
         },
       }}
     >
@@ -217,16 +220,17 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
         }}
       >
 
-        <Card.Body p="24px">
+        <Card.Body p="20px">
           {/* Header with logo and company info */}
           <Box
             css={{
               display: "flex",
               alignItems: "center",
-              gap: "16px",
-              marginBottom: "16px",
+              gap: "14px",
+              marginBottom: "14px",
               "@media (max-width: 768px)": {
-                gap: "12px",
+                gap: "10px",
+                marginBottom: "12px",
               },
             }}
           >
@@ -234,8 +238,8 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
             {images && images.length > 0 && (
               <Box
                 css={{
-                  width: "48px",
-                  height: "48px",
+                  width: "40px",
+                  height: "40px",
                   borderRadius: "8px",
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
                   display: "flex",
@@ -243,14 +247,18 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
                   justifyContent: "center",
                   flexShrink: 0,
                   border: `1px solid ${colorAccent}30`,
+                  "@media (max-width: 768px)": {
+                    width: "36px",
+                    height: "36px",
+                  },
                 }}
               >
                 <img
                   src={images[0]}
                   alt={`${company} logo`}
                   style={{
-                    width: "32px",
-                    height: "32px",
+                    width: "28px",
+                    height: "28px",
                     borderRadius: "4px",
                     objectFit: "contain",
                   }}
@@ -262,7 +270,7 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
             <Box css={{ flex: 1, minWidth: 0 }}>
               <h3
                 style={{
-                  fontSize: "1.25rem",
+                  fontSize: "1.1rem",
                   fontWeight: "700",
                   color: "white",
                   marginBottom: "2px",
@@ -273,7 +281,7 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
               </h3>
               <p
                 style={{
-                  fontSize: "1rem",
+                  fontSize: "0.95rem",
                   fontWeight: "500",
                   color: colorAccent,
                   marginBottom: "0",
@@ -290,24 +298,25 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
             css={{
               display: "flex",
               alignItems: "center",
-              gap: "16px",
-              marginBottom: "16px",
-              fontSize: "0.875rem",
+              gap: "12px",
+              marginBottom: "12px",
+              fontSize: "0.8rem",
               color: "rgba(255, 255, 255, 0.7)",
               "@media (max-width: 768px)": {
                 flexDirection: "column",
                 alignItems: "flex-start",
                 gap: "4px",
+                fontSize: "0.75rem",
               },
             }}
           >   
             <div style={{ display: "flex", alignItems: "center" }}>
-              <LocationOnIcon style={{ marginRight: "4px", fontSize: "1rem" }} />
+              <LocationOnIcon style={{ marginRight: "4px", fontSize: "0.95rem" }} />
               <span>{location}</span>
             </div>
 
             <div style={{ display: "flex", alignItems: "center" }}>
-              <DateRangeIcon style={{ marginRight: "4px", fontSize: "1rem" }} />
+              <DateRangeIcon style={{ marginRight: "4px", fontSize: "0.95rem" }} />
               <span>{dateRange}</span>
             </div>
 
@@ -317,7 +326,7 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
           <Box
             css={{
               color: "rgba(255, 255, 255, 0.8)",
-              fontSize: "0.9rem",
+              fontSize: "0.85rem",
               lineHeight: "1.6",
             }}
           >
@@ -373,9 +382,12 @@ const TimelineContainer = ({ children }) => {
         if (ref && timelineRef.current) {
           const entryRect = ref.getBoundingClientRect();
           const timelineRect = timelineRef.current.getBoundingClientRect();
-          return entryRect.top - timelineRect.top + 20;
+          // Align with card padding (20px) + half the logo height (20px) = 40px
+          // But we need to account for the actual rendered position
+          return entryRect.top - timelineRect.top + 30;
         }
-        return 80 + (index * 260);
+        // Fallback: initial padding + (index * approximate entry height)
+        return 35 + (index * 180);
       });
       setDotPositions(positions);
     };
@@ -392,7 +404,7 @@ const TimelineContainer = ({ children }) => {
     };
       }, []);
   const getDotPosition = (index) => {
-    return dotPositions[index] || (80 + (index * 260));
+    return dotPositions[index] || (35 + (index * 180));
   };
 
   return (
@@ -401,19 +413,19 @@ const TimelineContainer = ({ children }) => {
       css={{
         position: "relative",
         width: "100%",
-        maxWidth: "1200px",
+        maxWidth: "1000px",
         margin: "0 auto",
-        padding: "40px 40px",
+        padding: "35px 35px",
         "@media (max-width: 968px)": {
-          padding: "40px 30px",
+          padding: "35px 28px",
           margin: "0 15px",
         },
         "@media (max-width: 768px)": {
-          padding: "40px 20px",
-          margin: "0 15px",
+          padding: "30px 20px",
+          margin: "0 12px",
         },
         "@media (max-width: 480px)": {
-          padding: "40px 15px",
+          padding: "25px 15px",
           margin: "0 10px",
         },
       }}
@@ -471,27 +483,27 @@ const TimelineContainer = ({ children }) => {
               position: "absolute",
               left: "40px",
               top: `${getDotPosition(index)}px`,
-              width: "16px",
-              height: "16px",
+              width: "14px",
+              height: "14px",
               background: `radial-gradient(circle, ${colorAccent} 0%, ${colorAccent}aa 40%, ${colorAccent}33 70%, transparent 100%)`,
               borderRadius: "50%",
-              boxShadow: `0 0 20px ${colorAccent}80`,
+              boxShadow: `0 0 18px ${colorAccent}80`,
               zIndex: 4,
               transform: "translate(-50%, 0)",
               "@media (max-width: 968px)": {
                 left: "30px",
-                width: "14px",
-                height: "14px",
-              },
-              "@media (max-width: 768px)": {
-                left: "20px",
                 width: "12px",
                 height: "12px",
               },
-              "@media (max-width: 480px)": {
-                left: "15px",
+              "@media (max-width: 768px)": {
+                left: "20px",
                 width: "10px",
                 height: "10px",
+              },
+              "@media (max-width: 480px)": {
+                left: "15px",
+                width: "9px",
+                height: "9px",
               },
             }}
           />
@@ -510,20 +522,20 @@ const TimelineContainer = ({ children }) => {
 
 const TimeLine = () => {
   return (
-    <section style={{ width: "100%", padding: "60px 0"}}>
+    <section style={{ width: "100%", padding: "50px 0"}}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true, amount: 0.2 }}
-        style={{ textAlign: "center", marginBottom: "40px" }}
+        style={{ textAlign: "center", marginBottom: "35px" }}
       >
         <h1
           style={{
-            fontSize: "clamp(2rem, 4vw, 2.5rem)",
+            fontSize: "clamp(1.7rem, 4vw, 2.3rem)",
             fontWeight: "bold",
             color: "rgb(196, 223, 235)",
-            marginBottom: "16px",
+            marginBottom: "14px",
           }}
         >
           Work <span style={{
@@ -536,9 +548,9 @@ const TimeLine = () => {
       </motion.div>
 
       <div style={{ 
-        maxWidth: "1200px", 
+        maxWidth: "1000px", 
         margin: "0 auto", 
-        padding: "0 20px",
+        padding: "0 18px",
         width: "100%" 
       }}>
         <TimelineContainer>

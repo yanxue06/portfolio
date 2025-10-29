@@ -3,9 +3,9 @@
   width: 100%; 
   justify-content: center;
   background: rgba(0, 0, 0, 0.6);
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #ffffff;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   position: relative; /* Keep it relative */
 }
@@ -30,7 +30,7 @@ html, body {
 
 .galleryPage {
   position: relative;
-  padding-top: 80px; /* Adjust this value to match your navbar height plus some extra space */
+  padding-top: 70px; /* Adjust this value to match your navbar height plus some extra space */
   background-color: rgba(25, 35, 50); /* Dark background to match your current theme */
   overflow-x: hidden; /* Prevent horizontal scrollbar */
   width: 100%;
@@ -38,8 +38,8 @@ html, body {
 
 .gallery {
   position: relative;
-  padding: 30px;
-  padding-top: 20px; /* Reduced from 200px since we're handling spacing at the page level */
+  padding: 25px;
+  padding-top: 18px; /* Reduced from 200px since we're handling spacing at the page level */
   background-color: rgba(25, 35, 50);
   z-index: 1; /* Ensure it's below the navbar */
   overflow-x: hidden; /* Prevent horizontal scrollbar */
@@ -60,10 +60,10 @@ html, body {
   left: 0;
   padding-top: 150px;
   width: 100%;
-  padding: 15px;
+  padding: 12px;
   background: rgba(0, 0, 0, 0.6);
   color: white;
-  font-size: 14px;
+  font-size: 0.85rem;
   transform: translateY(100%);
   transition: transform 0.3s ease;
   opacity: 0;
@@ -76,27 +76,81 @@ html, body {
 }
 
 /* Responsive Adjustments */
-@media (max-width: 900px) {
-  .gallery {
-    padding: 30px 0;
+@media (max-width: 1200px) {
+  .title {
+    font-size: 1.7rem;
+    letter-spacing: 1.8px;
   }
-  
-  .photos {
-    font-size: 1.6rem;
+
+  .gallery {
+    padding: 22px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
+  .title {
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+  }
+
   .gallery {
     padding: 20px 0;
   }
   
-  .photos {
+  .galleryPage {
+    padding-top: 60px;
+  }
+
+  .MuiImageListItem-root::after {
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
     font-size: 1.4rem;
+  }
+
+  .gallery {
+    padding: 18px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+  }
+
+  .gallery {
+    padding: 15px 0;
   }
   
   .gallery img:hover {
     transform: scale(1.03);
   }
+
+  .MuiImageListItem-root::after {
+    font-size: 0.75rem;
+    padding: 8px;
+  }
 }
-  
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .galleryPage {
+    padding-top: 55px;
+  }
+
+  .gallery {
+    padding: 12px 0;
+  }
+
+  .gallery img {
+    border-radius: 6px;
+  }
+}

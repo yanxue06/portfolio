@@ -12,7 +12,7 @@
 .heading {
   position: absolute; 
   width: 100%;
-  top: 200px; 
+  top: 150px; 
   justify-content: center; 
   color: rgb(46, 25, 25); 
   z-index: 999; 
@@ -32,13 +32,13 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 45px;
   padding-left: 5%; 
   padding-right: 5%; 
-  padding-top: 10%; 
-  padding-bottom: 10%; 
+  padding-top: 8%; 
+  padding-bottom: 8%; 
   z-index: 10;
-} 
+}
 
 /* Make sure Card.Root components are above stars */
 .chakra-card {
@@ -78,29 +78,66 @@
 
 @media screen and (max-width: 1500px) {
   .heading {
-    top: 150px !important;
+    top: 130px !important;
+  }
+
+  .projectsCol {
+    gap: 40px;
   }
 } 
+
+@media screen and (max-width: 1200px) {
+  .heading {
+    top: 120px !important;
+  }
+
+  .projectsCol {
+    gap: 35px;
+    padding-top: 7%;
+    padding-bottom: 7%;
+  }
+}
+
 /* Media queries for responsive design */
 @media screen and (max-width: 768px) {
+  .heading {
+    top: 100px !important;
+  }
+
+  .projectsCol {
+    gap: 30px;
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+
   /* Adjust button size for mobile */
   .chakra-button {
-    width: 60% !important;     /* Wider buttons on mobile */
-    min-width: 120px !important; /* Minimum width to prevent text overflow */
-    padding: 12px 16px !important; /* More padding for better touch targets */
-    font-size: 0.9rem !important;  /* Slightly smaller font to fit */
-    white-space: nowrap !important; /* Prevent text wrapping */
+    width: 60% !important;
+    min-width: 120px !important;
+    padding: 10px 14px !important;
+    font-size: 0.85rem !important;
+    white-space: nowrap !important;
   }
 }
 
 /* Even smaller screens */
 @media screen and (max-width: 480px) {
   .heading {
-    font-size: 2.5rem;
+    font-size: 2rem !important;
+    top: 90px !important;
   }
 
-  .button {
-    width: 80% !important;     /* Even wider buttons for very small screens */
-    padding: 10px 14px !important;
+  .projectsCol {
+    gap: 25px;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 6%;
+    padding-bottom: 6%;
+  }
+
+  .chakra-button {
+    width: 70% !important;
+    padding: 9px 12px !important;
+    font-size: 0.8rem !important;
   }
 }
