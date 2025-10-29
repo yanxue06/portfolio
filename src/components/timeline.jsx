@@ -20,7 +20,7 @@ const experiences = [
     location: "Palo Alto, CA",
     description: "Working on the Developer Experience team, using Rust and OpenAPI to optimize workflows and improve BitGo's API",
     images: [logoPlaceholders["BitGo"]],
-    colorAccent: "#65B5FF",
+    colorAccent: "#4A9FE8", // Deep blue
   },
   {
     year: "2025",
@@ -30,7 +30,7 @@ const experiences = [
     location: "Waterloo, ON",
     description: "Building software for NPO Marrilac place that centralizes resident records and support daily tracking programs",
     images: [logoPlaceholders["Blueprint"]],
-    colorAccent: "#65B5FF",
+    colorAccent: "#5CB5FF", // Bright blue
   },
   {
     year: "2025",
@@ -40,7 +40,7 @@ const experiences = [
     location: "Markham, ON",
     description: "Built a customer service chatbot to serve 1M+ users and developed a centralized interface for controlling warehouse robots",
     images: [logoPlaceholders["HongMall"]],
-    colorAccent: "#65B5FF",
+    colorAccent: "#70C5FF", // Sky blue
   },
   {
     year: "2023",
@@ -50,7 +50,7 @@ const experiences = [
     location: "Vancouver, BC",
     description: "Developed the company website and created tools for billing and inventory management",
     images: [logoPlaceholders["Skynet Security System Ltd."]],
-    colorAccent: "#65B5FF",
+    colorAccent: "#85D5FF", // Light sky blue
   },
 ];
 
@@ -170,50 +170,66 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
 
           position: "relative",
           overflow: "hidden",
-          borderRadius: "16px",
-          background: "linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))",
-          backdropFilter: "blur(18px) saturate(125%)",
-          WebkitBackdropFilter: "blur(18px) saturate(125%)",
-          border: "1px solid rgba(255,255,255,0.18)",
-          boxShadow:
-            "0 10px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.16)",
+          borderRadius: "20px",
+          background: "linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05))",
+          backdropFilter: "blur(24px) saturate(180%)",
+          WebkitBackdropFilter: "blur(24px) saturate(180%)",
+          border: "1.5px solid rgba(255,255,255,0.25)",
+          boxShadow: `
+            0 8px 32px rgba(0,0,0,0.35),
+            0 2px 8px rgba(0,0,0,0.25),
+            inset 0 1px 1px rgba(255,255,255,0.3),
+            inset 0 -1px 1px rgba(0,0,0,0.2)
+          `,
 
-          // Accent glow & sheen
+          // Liquid glass shimmer effect with unique positioning and more visible tinting
           "&::before": {
             content: "''",
             position: "absolute",
             inset: 0,
             pointerEvents: "none",
-            background: `radial-gradient(600px 240px at -15% -20%, ${colorAccent}22 0%, transparent 70%),
-                        radial-gradient(600px 240px at 115% 120%, rgba(255,255,255,0.12) 0%, transparent 60%)`,
+            background: `
+              radial-gradient(700px 300px at ${index % 2 === 0 ? '-8%' : '108%'} -10%, ${colorAccent}50 0%, transparent 50%),
+              radial-gradient(550px 250px at ${index % 2 === 0 ? '112%' : '-12%'} 105%, rgba(255,255,255,0.16) 0%, transparent 50%),
+              linear-gradient(${135 + (index * 15)}deg, transparent 0%, ${colorAccent}15 35%, transparent 65%)
+            `,
+            opacity: 1,
           },
+          
+          // Top glass reflection with subtle variation
           "&::after": {
             content: "''",
             position: "absolute",
             top: 0,
-            left: 0,
-            right: 0,
-            height: "1px",
-            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)",
-            opacity: 0.7,
+            left: "12%",
+            right: "12%",
+            height: "2px",
+            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.5) 50%, transparent)",
+            opacity: 0.75,
             pointerEvents: "none",
+            borderRadius: "50%",
           },
 
-          // Hover lift + subtle accent ring
-          transition: "transform 0.3s ease, box-shadow 0.3s ease",
+          // Smooth hover transitions with enhanced effects
+          transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease",
           "&:hover": {
-            transform: "translateY(-3px)",
-            boxShadow: `0 18px 60px rgba(0,0,0,0.55),
-                        0 0 0 1px ${colorAccent}66,
-                        inset 0 0 30px ${colorAccent}26`,
+            transform: "translateY(-8px) translateX(4px)",
+            borderColor: `${colorAccent}55`,
+            boxShadow: `
+              0 20px 50px rgba(0,0,0,0.5),
+              0 8px 20px rgba(0,0,0,0.35),
+              0 0 0 1px ${colorAccent}75,
+              inset 0 0 35px ${colorAccent}22,
+              inset 0 2px 2px rgba(255,255,255,0.4)
+            `,
           },
 
-          // Fallback when backdrop-filter isn’t supported
+          // Fallback when backdrop-filter isn't supported
           "@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px)))": {
-            background: "rgba(15, 23, 42, 0.85)",
+            background: "rgba(15, 23, 42, 0.9)",
           },
 
-          // Responsive offsets (kept from your original)
+          // Responsive offsets
           "@media (max-width: 968px)": { marginLeft: "70px" },
           "@media (max-width: 768px)": { marginLeft: "60px" },
           "@media (max-width: 480px)": { marginLeft: "55px" },
@@ -283,7 +299,7 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
                 style={{
                   fontSize: "0.95rem",
                   fontWeight: "500",
-                  color: colorAccent,
+                  color: "#65B5FF",
                   marginBottom: "0",
                   lineHeight: "1.3",
                 }}
@@ -519,6 +535,7 @@ const TimelineContainer = ({ children }) => {
     </Box>
   );
 };
+
 
 const TimeLine = () => {
   return (

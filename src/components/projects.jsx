@@ -45,9 +45,18 @@ const projectsData = [
   }
 ];
 
+// Blue color palette with more visible variations
+const accentColors = [
+  "#4A9FE8", // Deep blue
+  "#5CB5FF", // Bright blue  
+  "#70C5FF", // Sky blue
+  "#85D5FF", // Light sky blue
+  "#9AE0FF", // Pale blue
+];
+
 // Single project card component
 const ProjectCard = ({ project, index }) => {
-  const colorAccent = "#4ECDC4"; // Teal accent color to match the design
+  const colorAccent = accentColors[index % accentColors.length];
 
   return (
     <motion.div
@@ -68,46 +77,63 @@ const ProjectCard = ({ project, index }) => {
           flexDirection: "column",
           position: "relative",
           overflow: "hidden",
-          borderRadius: "16px",
-          background: "linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))",
-          backdropFilter: "blur(18px) saturate(125%)",
-          WebkitBackdropFilter: "blur(18px) saturate(125%)",
-          border: "1px solid rgba(255,255,255,0.18)",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.16)",
+          borderRadius: "20px",
+          background: "linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05))",
+          backdropFilter: "blur(24px) saturate(180%)",
+          WebkitBackdropFilter: "blur(24px) saturate(180%)",
+          border: "1.5px solid rgba(255,255,255,0.25)",
+          boxShadow: `
+            0 8px 32px rgba(0,0,0,0.35),
+            0 2px 8px rgba(0,0,0,0.25),
+            inset 0 1px 1px rgba(255,255,255,0.3),
+            inset 0 -1px 1px rgba(0,0,0,0.2)
+          `,
 
-          // Accent glow & sheen
+          // Liquid glass shimmer effect with more visible tinting
           "&::before": {
             content: "''",
             position: "absolute",
             inset: 0,
             pointerEvents: "none",
-            background: `radial-gradient(600px 240px at -15% -20%, ${colorAccent}22 0%, transparent 70%),
-                        radial-gradient(600px 240px at 115% 120%, rgba(255,255,255,0.12) 0%, transparent 60%)`,
+            background: `
+              radial-gradient(800px 350px at -10% -15%, ${colorAccent}50 0%, transparent 50%),
+              radial-gradient(600px 300px at 110% 110%, rgba(255,255,255,0.18) 0%, transparent 50%),
+              linear-gradient(135deg, transparent 0%, ${colorAccent}15 30%, transparent 70%)
+            `,
+            opacity: 1,
           },
+          
+          // Top glass reflection
           "&::after": {
             content: "''",
             position: "absolute",
             top: 0,
-            left: 0,
-            right: 0,
-            height: "1px",
-            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)",
-            opacity: 0.7,
+            left: "10%",
+            right: "10%",
+            height: "2px",
+            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.5) 50%, transparent)",
+            opacity: 0.8,
             pointerEvents: "none",
+            borderRadius: "50%",
           },
 
-          // Hover lift + subtle accent ring
-          transition: "transform 0.3s ease, box-shadow 0.3s ease",
+          // Hover effects with smooth transitions
+          transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease",
           "&:hover": {
-            transform: "translateY(-8px)",
-            boxShadow: `0 20px 60px rgba(0,0,0,0.55),
-                        0 0 0 1px ${colorAccent}66,
-                        inset 0 0 30px ${colorAccent}26`,
+            transform: "translateY(-12px) scale(1.02)",
+            borderColor: `${colorAccent}60`,
+            boxShadow: `
+              0 20px 60px rgba(0,0,0,0.45),
+              0 8px 20px rgba(0,0,0,0.3),
+              0 0 0 1px ${colorAccent}80,
+              inset 0 0 40px ${colorAccent}20,
+              inset 0 2px 2px rgba(255,255,255,0.4)
+            `,
           },
 
           // Fallback when backdrop-filter isn't supported
           "@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px)))": {
-            background: "rgba(15, 23, 42, 0.85)",
+            background: "rgba(15, 23, 42, 0.9)",
           },
         }}
       >
@@ -321,7 +347,7 @@ const ProjectBox = () => {
         }}
       >
         {projectsData.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
+          <ProjectCard key={index} project={project} index={index} />
         ))}
       </Box>
     </section>
