@@ -1,12 +1,11 @@
 .p2 {
   width: 100vw;
   position: relative;
-  /* Subtle background pattern for glass effect to blur against */
+  /* Opaque background */
   background: 
-    radial-gradient(circle at 25% 25%, rgba(102, 181, 255, 0.1) 0%, transparent 30%),
-    radial-gradient(circle at 75% 75%, rgba(255, 90, 110, 0.08) 0%, transparent 40%),
-    linear-gradient(135deg, rgba(22, 29, 37, 0.9) 0%, rgba(30, 47, 62, 0.85) 100%);
+    radial-gradient(circle at 25% 25%, rgba(102, 181, 255, 0.15) 0%, transparent 30%),
+    radial-gradient(circle at 75% 75%, rgba(255, 90, 110, 0.12) 0%, transparent 40%),
+    linear-gradient(135deg, rgba(22, 29, 37, 1) 0%, rgba(30, 47, 62, 1) 100%);
   z-index: 0;
   transition: transform 0.5s ease-in-out; /* Smooth transition */
 }
-
