@@ -1,14 +1,14 @@
 /* About Section Layout */
-.about-content { 
-    display: flex; 
+.about-content {
+    display: flex;
     flex-direction: row;
-    align-items: center; 
-    justify-content: center; 
-    width: 100%; 
-    max-width: 1000px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px;
     margin: 0 auto;
-    gap: 40px;
-    padding: 25px 35px;
+    gap: 45px;
+    padding: 30px 40px;
     
     /* Enhanced liquid glass effect */
     background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
@@ -85,7 +85,7 @@
 .about-carousel {
     position: relative;
     width: 100%;
-    height: 350px;
+    height: 400px;
     border-radius: 20px;
     overflow: hidden;
 }
@@ -119,21 +119,21 @@
 }
 
 .about-text h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 700;
     background: rgb(196, 223, 235);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     text-align: left;
 }
 
 .about-text p {
-    font-size: 1rem;
+    font-size: 1.15rem;
     line-height: 1.7;
     color: white;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     text-align: left;
     width: 100%;
     opacity: 0.9;
@@ -147,119 +147,119 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
   .about-content {
-    max-width: 900px;
-    gap: 35px;
-    padding: 22px 30px;
+    max-width: 1000px;
+    gap: 40px;
+    padding: 27px 35px;
   }
 
   .about-carousel {
-    height: 320px;
+    height: 365px;
   }
 
   .about-text h1 {
-    font-size: 2.3rem;
+    font-size: 2.6rem;
   }
 
   .about-text p {
-    font-size: 0.98rem;
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 968px) {
     .about-content {
         flex-direction: column;
-        max-width: 700px;
-        gap: 25px;
+        max-width: 780px;
+        gap: 30px;
         text-align: center;
-        padding: 20px 25px;
+        padding: 24px 28px;
         margin: 0 15px;
         border-radius: 24px;
     }
-    
+
     .about-content:before {
         border-radius: 24px;
     }
-    
+
     .about-carousel-container {
-        max-width: 380px;
+        max-width: 420px;
     }
-    
+
     .about-carousel {
-        height: 300px;
+        height: 340px;
     }
-    
+
     .about-text h1 {
-        font-size: 2.1rem;
+        font-size: 2.4rem;
         text-align: center;
     }
 
     .about-text p {
-        font-size: 0.95rem;
+        font-size: 1.08rem;
     }
 }
 
 @media (max-width: 768px) {
     .about-content {
-        gap: 20px;
-        padding: 18px 20px;
+        gap: 24px;
+        padding: 22px 24px;
         margin: 0 12px;
         border-radius: 20px;
     }
-    
+
     .about-content:before {
         border-radius: 20px;
     }
 
     .about-carousel-container {
-        max-width: 350px;
+        max-width: 390px;
     }
-    
+
     .about-carousel {
-        height: 280px;
+        height: 320px;
     }
-    
+
     .about-text h1 {
-        font-size: 1.9rem;
+        font-size: 2.2rem;
     }
-    
+
     .about-text p {
-        font-size: 0.92rem;
+        font-size: 1.05rem;
         line-height: 1.6;
     }
 }
 
 @media (max-width: 480px) {
     .about-content {
-        padding: 16px 15px;
+        padding: 20px 18px;
         margin: 0 10px;
         border-radius: 18px;
-        gap: 18px;
+        gap: 22px;
     }
-    
+
     .about-content:before {
         border-radius: 18px;
     }
-    
+
     .about-content:hover {
         transform: translateY(-2px) scale(1.01);
     }
 
     .about-carousel-container {
-        max-width: 300px;
+        max-width: 340px;
     }
-    
+
     .about-carousel {
-        height: 240px;
+        height: 275px;
     }
-    
+
     .about-text h1 {
-        font-size: 1.7rem;
-        margin-bottom: 15px;
+        font-size: 1.95rem;
+        margin-bottom: 18px;
     }
-    
+
     .about-text p {
-        font-size: 0.88rem;
-        margin-bottom: 12px;
+        font-size: 1rem;
+        margin-bottom: 14px;
         line-height: 1.55;
     }
 }

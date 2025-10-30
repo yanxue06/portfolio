@@ -1,12 +1,12 @@
-html { 
-  margin: 0; 
-  padding: 0; 
-  min-height: 100vh; 
-  height: auto; 
-  width: 100%; 
-  overflow-x: hidden; 
-  overflow-y: auto; 
-  font-size: 16px; 
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  height: auto;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 18px;
 }
 
 body {
@@ -47,29 +47,29 @@ body {
   padding-top: 120px; 
 }
 
-.top-section { 
-  /* The key: reserve enough height so that when the typewriter text 
+.top-section {
+  /* The key: reserve enough height so that when the typewriter text
      starts typing, it doesn't push the top heading. */
-  color: white; 
-  min-height: 1.5em; 
-  font-size: 2.5rem;  /* since its typewriter */ 
-  position: relative; 
-  z-index: 999; 
+  color: white;
+  min-height: 1.5em;
+  font-size: 2.8rem;  /* since its typewriter */
+  position: relative;
+  z-index: 999;
 }
 
-.bottom-section { 
-  color: white; 
-  font-size: 1.5rem; 
-  margin-bottom: 1%; 
-  position: relative; 
-  z-index: 999; 
+.bottom-section {
+  color: white;
+  font-size: 1.7rem;
+  margin-bottom: 1%;
+  position: relative;
+  z-index: 999;
 }
 
-h1 { 
-  font-size: 2.8rem;  
-  text-decoration: bold; 
-  padding: 0; 
-  margin: 0; 
+h1 {
+  font-size: 3.1rem;
+  text-decoration: bold;
+  padding: 0;
+  margin: 0;
 }
 
 h3 { 
@@ -94,12 +94,12 @@ h4 {
 }
 
 
-p { 
-  width: 70%; 
-  height: 100%; 
-  margin: 0; 
-  font-size: 1.25rem; 
-  text-align: left; 
+p {
+  width: 70%;
+  height: 100%;
+  margin: 0;
+  font-size: 1.4rem;
+  text-align: left;
 }
 
 .title {
@@ -128,9 +128,9 @@ p {
 
 .heading {
   display: flex;
-  width: 100%; 
+  width: 100%;
   justify-content: center;
-  font-size: 3rem; /* Large text size for prominence */
+  font-size: 3.4rem; /* Large text size for prominence */
 }
 
 /* .gradientBridge { 
@@ -419,23 +419,49 @@ a {
 
 @media (max-width: 1200px) {
   html {
-    font-size: 15px;
+    font-size: 17px;
   }
 
   .top-section {
-    font-size: 2.3rem;
-  }
-
-  .bottom-section {
-    font-size: 1.4rem;
-  }
-
-  h1 {
     font-size: 2.6rem;
   }
 
+  .bottom-section {
+    font-size: 1.6rem;
+  }
+
+  h1 {
+    font-size: 2.9rem;
+  }
+
   .Yan {
-    max-width: 320px;
+    max-width: 360px;
+  }
+
+  .heading {
+    font-size: 3.1rem;
+  }
+}
+
+@media (max-width: 968px) {
+  html {
+    font-size: 16px;
+  }
+
+  .top-section {
+    font-size: 2.4rem;
+  }
+
+  .bottom-section {
+    font-size: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.7rem;
+  }
+
+  .Yan {
+    max-width: 315px;
   }
 
   .heading {
@@ -443,21 +469,26 @@ a {
   }
 }
 
-@media (max-width: 968px) {
+@media (max-width: 768px) {
   html {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .top-section {
-    font-size: 2.1rem;
+    font-size: 2.2rem;
   }
 
   .bottom-section {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 
   h1 {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+    width: 80%;
   }
 
   .Yan {
@@ -469,9 +500,9 @@ a {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   html {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .top-section {
@@ -479,16 +510,16 @@ a {
   }
 
   .bottom-section {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
 
   h1 {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
   }
 
   p {
-    font-size: 1.1rem;
-    width: 80%;
+    font-size: 1.15rem;
+    width: 85%;
   }
 
   .Yan {
@@ -496,37 +527,6 @@ a {
   }
 
   .heading {
-    font-size: 2.2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  html {
-    font-size: 13px;
-  }
-
-  .top-section {
-    font-size: 1.7rem;
-  }
-
-  .bottom-section {
-    font-size: 1.1rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  p {
-    font-size: 1rem;
-    width: 85%;
-  }
-
-  .Yan {
-    max-width: 220px;
-  }
-
-  .heading {
-    font-size: 2rem;
+    font-size: 2.3rem;
   }
 }

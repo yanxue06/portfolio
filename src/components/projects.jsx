@@ -141,7 +141,7 @@ const ProjectCard = ({ project, index }) => {
         <Box
           css={{
             width: "100%",
-            height: "230px",
+            height: "280px",
             backgroundColor: "rgba(255, 255, 255, 0.05)",
             display: "flex",
             alignItems: "center",
@@ -165,7 +165,7 @@ const ProjectCard = ({ project, index }) => {
 
         <Card.Body 
           css={{
-            padding: "24px",
+            padding: "32px",
             flex: 1,
             display: "flex",
             flexDirection: "column",
@@ -176,7 +176,7 @@ const ProjectCard = ({ project, index }) => {
           <Box>
             <h3
               style={{
-                fontSize: "1.25rem",
+                fontSize: "1.45rem",
                 fontWeight: "700",
                 color: "white",
                 marginBottom: "8px",
@@ -193,7 +193,7 @@ const ProjectCard = ({ project, index }) => {
           <Box
             css={{
               color: "rgba(255, 255, 255, 0.8)",
-              fontSize: "0.9rem",
+              fontSize: "1.05rem",
               lineHeight: "1.6",
               flex: 1,
             }}
@@ -216,8 +216,8 @@ const ProjectCard = ({ project, index }) => {
                 css={{
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
                   color: "rgba(255, 255, 255, 0.8)",
-                  fontSize: "0.75rem",
-                  padding: "4px 8px",
+                  fontSize: "0.9rem",
+                  padding: "6px 10px",
                   borderRadius: "6px",
                   border: "1px solid rgba(255, 255, 255, 0.2)",
                 }}
@@ -311,7 +311,7 @@ const ProjectBox = () => {
       >
         <h1
           style={{
-            fontSize: "clamp(2rem, 4vw, 2.5rem)",
+            fontSize: "clamp(2.2rem, 5vw, 2.8rem)",
             fontWeight: "bold",
             color: "rgb(196, 223, 235)",
             marginBottom: "16px",
@@ -333,11 +333,11 @@ const ProjectBox = () => {
           padding: "0 20px",
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
-          gap: "32px",
+          gap: "40px",
           
           "@media (max-width: 768px)": {
             gridTemplateColumns: "1fr",
-            gap: "24px",
+            gap: "32px",
             padding: "0 16px",
           },
           

@@ -286,7 +286,7 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
             <Box css={{ flex: 1, minWidth: 0 }}>
               <h3
                 style={{
-                  fontSize: "1.1rem",
+                  fontSize: "1.3rem",
                   fontWeight: "700",
                   color: "white",
                   marginBottom: "2px",
@@ -297,7 +297,7 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
               </h3>
               <p
                 style={{
-                  fontSize: "0.95rem",
+                  fontSize: "1.1rem",
                   fontWeight: "500",
                   color: "#65B5FF",
                   marginBottom: "0",
@@ -316,13 +316,13 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
               alignItems: "center",
               gap: "12px",
               marginBottom: "12px",
-              fontSize: "0.8rem",
+              fontSize: "0.95rem",
               color: "rgba(255, 255, 255, 0.7)",
               "@media (max-width: 768px)": {
                 flexDirection: "column",
                 alignItems: "flex-start",
                 gap: "4px",
-                fontSize: "0.75rem",
+                fontSize: "0.85rem",
               },
             }}
           >   
@@ -342,7 +342,7 @@ const TimelineEntry = React.forwardRef(({ year, dateRange, company, role, locati
           <Box
             css={{
               color: "rgba(255, 255, 255, 0.8)",
-              fontSize: "0.85rem",
+              fontSize: "1rem",
               lineHeight: "1.6",
             }}
           >
@@ -549,7 +549,7 @@ const TimeLine = () => {
       >
         <h1
           style={{
-            fontSize: "clamp(1.7rem, 4vw, 2.3rem)",
+            fontSize: "clamp(2rem, 5vw, 2.8rem)",
             fontWeight: "bold",
             color: "rgb(196, 223, 235)",
             marginBottom: "14px",

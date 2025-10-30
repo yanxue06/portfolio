@@ -35,28 +35,28 @@
   
   /* Logo */
   .navbar-logo a {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: bold;
     text-decoration: none;
     color: rgb(253, 249, 238);
-    margin: 0; 
-    padding: 0; 
+    margin: 0;
+    padding: 0;
   }
-  
+
   /* Links for Desktop */
   .navbar-links {
     display: flex;
-    height: 100%; 
-    align-items: center; 
-    gap: 16px;
+    height: 100%;
+    align-items: center;
+    gap: 18px;
   }
-  
+
   .navbar-link {
     text-decoration: none;
     color: rgb(253, 249, 238);
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
   }
