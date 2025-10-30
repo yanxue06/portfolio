@@ -1,9 +1,6 @@
-import * as React from "react";
+import React from "react";
 import "../styles/home.css";
-import "../styles/timeline.css";
-import "../styles/arrow.scss";
 import { motion } from "framer-motion";
-import Button from "@mui/material/Button";
 import TypeWriter from "./typewriter";
 import "../styles/stars.scss";
 
@@ -81,50 +78,60 @@ export default function intro() {
             </div>
 
             <div className="logo">
-              <Button
-                variant="contained"
+              <button
                 style={{
                   backgroundColor: "rgba(54, 81, 114, 255)",
                   color: "white",
+                  padding: "6px 16px",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "1rem",
+                  fontWeight: "500",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = "scale(1.05)";
+                  e.target.style.boxShadow = "0 0 2px 4px rgba(147, 143, 143, 0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = "scale(1)";
+                  e.target.style.boxShadow = "none";
                 }}
                 onClick={() =>
                   window.open("https://linkedin.com/in/yanxue-ce/", "_blank")
                 }
-                sx={{
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
-                  ":hover": {
-                    transform: "scale(1.05)", // Slight zoom-in on hover
-                    boxShadow: "0 0 2px 4px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
-                  },
-                }}
               >
                 LinkedIn
-              </Button>
+              </button>
 
-              {/* Resume Button */}
-              <Button
-                variant="outlined"
+              <button
                 style={{
                   borderColor: "#aacdf8",
                   backgroundColor: "#FFFFFF",
                   color: "black",
+                  padding: "6px 16px",
+                  border: "2px solid #aacdf8",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontSize: "1rem",
+                  fontWeight: "500",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
                 }}
-                sx={{
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease", // Smooth animation
-                  ":hover": {
-                    transform: "scale(1.05)", // Slight zoom-in on hover
-                    boxShadow: "0 0 2px 4px rgba(147, 143, 143, 0.5)", // Enhanced shadow on hover
-                  },
+                onMouseEnter={(e) => {
+                  e.target.style.transform = "scale(1.05)";
+                  e.target.style.boxShadow = "0 0 2px 4px rgba(147, 143, 143, 0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = "scale(1)";
+                  e.target.style.boxShadow = "none";
                 }}
                 onClick={() =>
-                  window.open(
-                    "/resume.pdf",
-                    "_blank",
-                  )
+                  window.open("/resume.pdf", "_blank")
                 }
               >
                 Resume
-              </Button>
+              </button>
             </div>
           </div>
         </div>

@@ -1,7 +1,4 @@
-import * as React from "react";
 import { useState, useEffect } from "react";
-import "../styles/home.css";
-import "../styles/navbar.css";
 import { motion } from "framer-motion";
 import "../styles/about.css";
 

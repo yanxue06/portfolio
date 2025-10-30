@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom"; // Use Link for navigation to routes
 import "../styles/navbar.css";
 
 export default function Navbar() {

@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import "../styles/home.css";
 import "../styles/particle.scss";
-import "../styles/timeline.css";
 import TimeLine from "../components/timeline";
 import Intro from "../components/intro";
 import About from "../components/about";
 import Arrows from "../components/arrow";
-import "../styles/navbar.css";
 import Projects from "../components/projects"
 import Contacts from "../components/contacts";
 
