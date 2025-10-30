@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/home.css";
+import "../styles/navbar.css";
 import { motion } from "framer-motion";
 import TypeWriter from "./typewriter";
 import "../styles/stars.scss";

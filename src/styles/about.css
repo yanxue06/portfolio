@@ -116,6 +116,10 @@
     flex: 1;
     max-width: 600px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .about-text h1 {
@@ -126,7 +130,7 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 24px;
-    text-align: left;
+    text-align: center;
 }
 
 .about-text p {
@@ -134,7 +138,7 @@
     line-height: 1.7;
     color: white;
     margin-bottom: 18px;
-    text-align: left;
+    text-align: center;
     width: 100%;
     opacity: 0.9;
     font-weight: 400;
@@ -172,7 +176,7 @@
         gap: 30px;
         text-align: center;
         padding: 24px 28px;
-        margin: 0 15px;
+        margin: 0 auto;
         border-radius: 24px;
     }
 
@@ -182,10 +186,16 @@
 
     .about-carousel-container {
         max-width: 420px;
+        margin: 0 auto;
     }
 
     .about-carousel {
         height: 340px;
+    }
+
+    .about-text {
+        width: 100%;
+        margin: 0 auto;
     }
 
     .about-text h1 {
@@ -202,7 +212,7 @@
     .about-content {
         gap: 24px;
         padding: 22px 24px;
-        margin: 0 12px;
+        margin: 0 auto;
         border-radius: 20px;
     }
 
@@ -212,10 +222,16 @@
 
     .about-carousel-container {
         max-width: 390px;
+        margin: 0 auto;
     }
 
     .about-carousel {
         height: 320px;
+    }
+
+    .about-text {
+        width: 100%;
+        margin: 0 auto;
     }
 
     .about-text h1 {
@@ -231,7 +247,7 @@
 @media (max-width: 480px) {
     .about-content {
         padding: 20px 18px;
-        margin: 0 10px;
+        margin: 0 auto;
         border-radius: 18px;
         gap: 22px;
     }
@@ -246,10 +262,16 @@
 
     .about-carousel-container {
         max-width: 340px;
+        margin: 0 auto;
     }
 
     .about-carousel {
         height: 275px;
+    }
+
+    .about-text {
+        width: 100%;
+        margin: 0 auto;
     }
 
     .about-text h1 {
