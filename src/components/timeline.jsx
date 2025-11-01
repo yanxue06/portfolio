@@ -475,6 +475,7 @@ const TimelineContainer = ({ children }) => {
           top: "40px",
           width: "2px",
           height: `${scrollProgress * 100}%`,
+          maxHeight: "calc(100% - 80px)",
           backgroundColor: "rgba(101, 181, 255, 0.6)",
           transition: "height 0.3s ease-out",
           zIndex: 2,
