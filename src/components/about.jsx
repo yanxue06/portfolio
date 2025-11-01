@@ -3,6 +3,7 @@ import "../styles/home.css";
 import "../styles/navbar.css";
 import { motion } from "framer-motion";
 import "../styles/about.css";
+import SpotifyPlayer from "./SpotifyPlayer";
 
 export default function About() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -51,7 +52,7 @@ export default function About() {
         style={{ width: "100%" }}
       >
         <div className="about-content">
-          {/* Photo Carousel - Left Side */}
+          {/* Photo Carousel - Left Side on large screens */}
           <div className="about-carousel-container">
             <div className="about-carousel">
               <div className="carousel-image-container">
@@ -64,24 +65,25 @@ export default function About() {
             </div>
           </div>
 
-          {/* Description - Right Side */}
-          <div className="about-text">
-            <h1>
-              About <span style={{
-                background: "linear-gradient(90deg, #63d0f8, #65b5ff)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}>Me</span>
-            </h1>
-
-            <p>
-              Hey! I'm a computer engineering student at uWaterloo, who  
-              strongly believes that software should be used to help people.    
-            </p>
-            <p>
-              Besides coding, I also love guitar, frisbee, and chess :)   
-            </p>
-           
+          {/* Description - Right Side on large screens */}
+          <div className="about-text-container"> 
+            <div className="about-text">
+              <h1>
+                About <span style={{
+                  background: "linear-gradient(90deg, #63d0f8, #65b5ff)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}>Me</span>
+              </h1>
+              <p>
+                Hey! I'm a computer engineering student at uWaterloo, who  
+                strongly believes that software should be used to help people.    
+              </p>
+              <p>
+                Besides coding, I also love guitar, frisbee, and chess :)   
+              </p>
+            </div>
+            <SpotifyPlayer /> 
           </div>
         </div>
       </motion.div>
