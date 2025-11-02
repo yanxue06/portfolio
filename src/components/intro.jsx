@@ -85,7 +85,6 @@ export default function intro() {
                   color: "white",
                   padding: "6px 16px",
                   border: "none",
-                  borderRadius: "4px",
                   cursor: "pointer",
                   fontSize: "1rem",
                   fontWeight: "500",
@@ -108,12 +107,9 @@ export default function intro() {
 
               <button
                 style={{
-                  borderColor: "#aacdf8",
                   backgroundColor: "#FFFFFF",
                   color: "black",
                   padding: "6px 16px",
-                  border: "2px solid #aacdf8",
-                  borderRadius: "4px",
                   cursor: "pointer",
                   fontSize: "1rem",
                   fontWeight: "500",
