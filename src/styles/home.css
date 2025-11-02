@@ -47,16 +47,6 @@ body {
   padding-top: 120px; 
 }
 
-.top-section {
-  /* The key: reserve enough height so that when the typewriter text
-     starts typing, it doesn't push the top heading. */
-  color: white;
-  min-height: 1.5em;
-  font-size: 2.8rem;  /* since its typewriter */
-  position: relative;
-  z-index: 999;
-}
-
 .bottom-section {
   color: white;
   font-size: 1.7rem;
