@@ -18,7 +18,7 @@ const experiences = [
     company: "BitGo",
     role: "Software Engineer Intern",
     location: "Palo Alto, CA",
-    description: "Working on the Developer Experience team, using Rust and OpenAPI to optimize workflows and improve BitGo's API",
+    description: "Working on the Developer Experience team, using Rust to ensure quality in BitGo's API specs",
     images: [logoPlaceholders["BitGo"]],
     colorAccent: "#4A9FE8", // Deep blue
   },
