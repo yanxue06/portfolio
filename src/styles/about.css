@@ -26,22 +26,6 @@
     overflow: hidden; */
 }
 
-.about-content:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(800px 350px at -10% -15%, #5CB5FF50 0%, transparent 50%),
-        radial-gradient(600px 300px at 110% 110%, rgba(255,255,255,0.18) 0%, transparent 50%),
-        linear-gradient(135deg, transparent 0%, #5CB5FF15 30%, transparent 70%);
-    border-radius: 24px;
-    pointer-events: none;
-    opacity: 1;
-}
-
 .about-content:after {
     content: '';
     position: absolute;
