@@ -9,6 +9,13 @@ import LaunchIcon from '@mui/icons-material/Launch';
 // Project data - only non-commented projects
 const projectsData = [
   {
+    title: "Git-semantic search",
+    description: "Search your git history using natural language - find commits by what they mean, not just what they say. Currently with 750+ users and 18 GitHub stars :)",
+    image: "/images/projects/git-semantic-search.png",
+    tags: ["Rust", "Hugging Face"],
+    link: "https://github.com/yanxue06/git-semantic-search",
+  },
+  {
     title: "Drug Sensescence Forecasting",
     description: "This project explores the lifespan extension potential of chemical compounds using machine learning. Under the mentorship of Dr. Michał Koziarski, we are developing predictive models to assess compounds' effects on longevity.",
     image: "/images/projects/drugforecast.png",

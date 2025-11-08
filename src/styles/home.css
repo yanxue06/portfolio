@@ -23,7 +23,7 @@ body {
   display: flex; 
   gap: 20px; 
   width: 100%; 
-  z-index: 999; 
+  z-index: 10; 
 }
 
 .intro {
@@ -34,7 +34,9 @@ body {
   height: 100vh; /* take up the full viewport */ 
   width: 100vw;
   font-weight: bold;
-  text-align: left; 
+  text-align: left;
+  position: relative;
+  z-index: 10;
 }
 
 .box { 
@@ -51,7 +53,7 @@ body {
   color: white;
   font-size: 1.7rem;
   position: relative;
-  z-index: 999;
+  z-index: 10;
 }
 
 .bottom-section {
@@ -59,7 +61,7 @@ body {
   font-size: 1.7rem;
   margin-bottom: 1%;
   position: relative;
-  z-index: 999;
+  z-index: 10;
 }
 
 h1 {
@@ -87,7 +89,27 @@ h4 {
   background-position: center;
   position: relative;
   z-index: 0;
-  margin-bottom: 0; 
+  margin-bottom: 0;
+}
+
+/* Add gradient overlay at the bottom for smooth transition */
+.p1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30vh;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(22, 29, 37, 0.3) 30%,
+    rgba(22, 29, 37, 0.6) 60%,
+    rgba(22, 29, 37, 0.85) 85%,
+    rgba(22, 29, 37, 1) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 
