@@ -6,6 +6,7 @@
   height: 100%; 
   align-items: center; 
   justify-content: center; 
+  background-color: rgb(17, 2, 2); 
 }
 
 .contactsCol {
@@ -27,9 +28,30 @@
   margin-top: 10px; 
 }
 
-.p4 { 
+.p4 {
   background-color: black;
-  height: 30vh; 
+  height: 30vh;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.icon-container:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 900px) {
@@ -64,7 +86,12 @@
 
   .contact_list img {
     width: 40px;
-    height: 40px;              
+    height: 40px;
+  }
+
+  .icon-container {
+    width: 45px;
+    height: 45px;
   }
 
   footer,
@@ -81,6 +108,11 @@
   .contact_list img {
     width: 36px;
     height: 36px;
+  }
+
+  .icon-container {
+    width: 42px;
+    height: 42px;
   }
 
   .copyRight {
@@ -100,6 +132,11 @@
   .contact_list img {
     width: 32px;
     height: 32px;
+  }
+
+  .icon-container {
+    width: 38px;
+    height: 38px;
   }
 
   .copyRight {

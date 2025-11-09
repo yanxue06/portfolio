@@ -1,25 +1,12 @@
 import React from "react";
 import "../styles/contacts.css";
-import gram from "/images/icons/gram.png";
-import email from "/images/icons/email.png";
-import linkedIn from "/images/icons/linkedIn.png";
-import github from "/images/icons/github.png";
+import { SiX, SiLinkedin, SiGithub, SiDiscord, SiInstagram, SiSpotify } from "react-icons/si";
 
 export default function Contacts() {
   return (
     <section id="contact" className="p4">
       <div className="contactsRow">
         <div className="contactsCol">
-          <div
-            style={{
-              fontSize: "30px",
-              color: "rgb(239, 239, 239)",
-              fontWeight: "bold",
-            }}
-          >
-            {" "}
-            Contact Me!
-          </div>
           <div
             className="contact_description"
             style={{
@@ -28,8 +15,7 @@ export default function Contacts() {
               color: "grey",
             }}
           >
-            Thanks for checking out my website! Feel free to contact me, I'm
-            open to any and all oppurtunities.
+            Always open to chat! Feel free to reach out: <a href="mailto:yan.xue@uwaterloo.ca" style={{ textDecoration: "underline" }}>yan.xue@uwaterloo.ca</a> 
           </div>
           <footer
             style={{
@@ -38,30 +24,13 @@ export default function Contacts() {
               lineHeight: "1.6", // Adjust line height for readability
             }}
           >
-            <p
-              style={{
-                fontSize: "14px",
-                marginBottom: "10px",
-              }}
-            >
-              Designed in{" "}
-              <span style={{ color: "#F24E1E", fontWeight: "bold" }}>
-                Figma
-              </span>
-              , built using{" "}
-              <span style={{ color: "#61DAFB", fontWeight: "bold" }}>
-                React
-              </span>{" "}
-              +
-              <span style={{ color: "#646CFF", fontWeight: "bold" }}>Vite</span>
-              , deployed with{" "}
-              <span style={{ color: "white", fontWeight: "bold" }}>Vercel</span>{" "}
-              by
-              <span style={{ color: "#FFD700", fontWeight: "bold" }}>
-                Yan Xue
-              </span>
-              .
-            </p>
+             <div className="copyRight">
+                © 2025{" "}
+                <span style={{ color: "rgb(80, 151, 202)", fontWeight: "bold" }}>
+                  Yan Xue.{ " " }
+                </span>
+                Waterloo, ON.
+              </div>
           </footer>
         </div>
 
@@ -81,98 +50,57 @@ export default function Contacts() {
               style={{
                 width: "100%",
                 display: "flex",
-                gap: "20px",
+                gap: "15px",
                 marginTop: "10px",
+                flexWrap: "wrap",
               }}
             >
-              <div
-                onClick={() => {
-                  window.location.href = "mailto:y9xue@uwaterloo.ca";
-                }}
-                style={{ cursor: "pointer" }}
-              >
-                <img
-                  src={email}
-                  alt="email"
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    cursor: "pointer",
-                    transform: "scale(1)",
-                    transition: "transform 0.2s",
-                  }}
-                  onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
-                  onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-                />
-              </div>
 
               <a
                 href="https://linkedin.com/in/yanxue-ce"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="icon-container"
               >
-                <img
-                  src={linkedIn}
-                  alt="linkedIn"
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    cursor: "pointer",
-                    transform: "scale(1)",
-                    transition: "transform 0.2s",
-                  }}
-                  onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
-                  onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-                />
+                <SiLinkedin size={24} />
               </a>
 
               <a
                 href="https://github.com/yanxue06"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="icon-container"
               >
-                <img
-                  src={github}
-                  alt="github"
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    cursor: "pointer",
-                    transform: "scale(1)",
-                    transition: "transform 0.2s",
-                  }}
-                  onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
-                  onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-                />
+                <SiGithub size={24} />
               </a>
 
               <a
-                href="https://www.instagram.com/yan._.xue_/"
+                href="https://discord.com/users/yamfries7818"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="icon-container"
               >
-                <img
-                  src={gram}
-                  alt="instagram"
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    cursor: "pointer",
-                    transform: "scale(1)",
-                    transition: "transform 0.2s",
-                  }}
-                  onMouseOver={(e) => (e.target.style.transform = "scale(1.1)")}
-                  onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-                />
+                <SiDiscord size={24} />
+              </a>
+
+              <a
+                href="https://www.instagram.com/yanxue06/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-container"
+              >
+                <SiInstagram size={24} />
+              </a>
+
+              <a
+                href="https://open.spotify.com/user/xwc3vx2gkmf3737ajz5o5ki9y"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-container"
+              >
+                <SiSpotify size={24} />
               </a>
             </div>
-          </div>
-          <div className="copyRight">
-            © 2025{" "}
-            <span style={{ color: "#FFD700", fontWeight: "bold" }}>
-              Yan Xue
-            </span>
-            . All rights reserved.
           </div>
         </div>
       </div>
