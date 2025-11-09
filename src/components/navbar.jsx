@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import "../styles/navbar.css";
 
 export default function Navbar() {
@@ -75,23 +74,21 @@ export default function Navbar() {
   };
 
   return (
-    <motion.nav
+    <nav
       className={`navbar ${scrollY > 0 ? "navbar-scrolled" : ""}`}
-      animate={{ opacity: scrollY > 0 ? 1 : 0.9 }}
-      transition={{ duration: 0.5 }}
     >
       <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">
           <a href="#" className="navbar-link" onClick={scrollToTop}>
-            Yan
+            Home
           </a>
         </div>
 
         {/* Desktop Links */}
         <div className="navbar-links">
           <a href="#about" className="navbar-link" onClick={scrollToAbout}>
-            ABOUT
+            About
           </a>
 
           <a
@@ -99,7 +96,7 @@ export default function Navbar() {
             className="navbar-link"
             onClick={(e) => scrollToSection("projects", e)}
           >
-            PROJECTS
+            Projects
           </a>
 
           <a
@@ -107,20 +104,20 @@ export default function Navbar() {
             className="navbar-link"
             onClick={(e) => scrollToSection("experience", e)}
           >
-            EXPERIENCE
+            Experience
           </a>
 
           <a
-            href="\resume.pdf"
+            href="/resume.pdf"
             className="navbar-link"
             target="_blank"
             rel="noopener noreferrer"
           >
-            RESUME
+            Résumé
           </a>
 
           <a href="#contact" className="navbar-link" onClick={scrollToContact}>
-            CONTACT
+            Contact
           </a>
         </div>
 
@@ -136,7 +133,7 @@ export default function Navbar() {
         {/* Mobile Menu */}
         <div className={`mobile-menu ${isMobileMenuOpen ? "active" : ""}`}>
           <a href="#about" className="navbar-link" onClick={scrollToAbout}>
-            ABOUT
+            About
           </a>
 
           <a
@@ -144,7 +141,7 @@ export default function Navbar() {
             className="navbar-link"
             onClick={(e) => scrollToSection("projects", e)}
           >
-            PROJECTS
+            Projects
           </a>
 
           <a
@@ -152,7 +149,7 @@ export default function Navbar() {
             className="navbar-link"
             onClick={(e) => scrollToSection("experience", e)}
           >
-            EXPERIENCE
+            Experience
           </a>
 
           <a
@@ -161,7 +158,7 @@ export default function Navbar() {
             target="_blank"
             onClick={openResume}
           >
-            RESUME
+            Résumé
           </a>
 
           <a
@@ -172,10 +169,10 @@ export default function Navbar() {
               handleLinkClick();
             }}
           >
-            CONTACT
+            Contact
           </a>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }
