@@ -10,7 +10,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 const projectsData = [
   {
     title: "Git-semantic search",
-    description: "Search your git history using natural language - find commits by what they mean, not just what they say. Currently with 750+ users and 18 GitHub stars :)",
+    description: "Search your git history using natural language - find commits by what they mean, not just what they say. Currently with 770+ users",
     image: "/images/projects/git-semantic-search.png",
     tags: ["Rust", "Hugging Face"],
     link: "https://github.com/yanxue06/git-semantic-search",
@@ -71,10 +71,12 @@ const ProjectCard = ({ project, index }) => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true, amount: 0.3 }}
+      onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
       style={{
         width: "100%",
         maxWidth: "400px",
-        margin: "0 auto"
+        margin: "0 auto",
+        cursor: "pointer"
       }}
     >
       <Card.Root

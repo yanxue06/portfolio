@@ -158,7 +158,7 @@ export default function Navbar() {
             target="_blank"
             onClick={openResume}
           >
-            Résumé
+            Resume
           </a>
 
           <a
