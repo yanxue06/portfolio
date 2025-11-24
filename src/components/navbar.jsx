@@ -113,7 +113,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Résumé
+            Resume
           </a>
 
           <a href="#contact" className="navbar-link" onClick={scrollToContact}>
