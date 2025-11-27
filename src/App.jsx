@@ -4,9 +4,7 @@ import "./styles/home.css";
 import Navbar from "./components/navbar";
 import "./styles/navbar.css";
 
-import Home from "./pages/home"; // You may want to rename this file to About.jsx
-// import Projects from "./pages/projects";
-// import Experience from "./pages/experience";
+import Home from "./pages/home";
 
 export default function App() {
   return (

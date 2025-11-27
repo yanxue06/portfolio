@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import { Box, Card, Badge, HStack } from "@chakra-ui/react";
+import { Box, Card, Badge } from "@chakra-ui/react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import GitHubIcon from '@mui/icons-material/GitHub';
