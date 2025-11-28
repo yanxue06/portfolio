@@ -4,6 +4,8 @@ import "../styles/navbar.css";
 import { motion } from "framer-motion";
 import "../styles/about.css";
 import SpotifyPlayer from "./SpotifyPlayer";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function About() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -56,10 +58,13 @@ export default function About() {
           <div className="about-carousel-container">
             <div className="about-carousel">
               <div className="carousel-image-container">
-                <img 
+                <LazyLoadImage 
                   src={galleryImages[currentImageIndex]} 
                   alt={`Gallery image ${currentImageIndex + 1}`}
                   className="carousel-image"
+                  effect="blur"
+                  threshold={0}
+                  wrapperClassName="carousel-image-wrapper"
                 />
               </div>
             </div>

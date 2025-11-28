@@ -73,6 +73,12 @@
     bottom: 0;
 }
 
+.carousel-image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
 .carousel-image {
     width: 100%;
     height: 100%;
