@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "../styles/home.css";
 import "../styles/navbar.css";
 import { motion } from "framer-motion";
@@ -6,14 +6,15 @@ import TypeWriter from "./typewriter";
 import "../styles/stars.scss";
 
 export default function intro() {
-  // Create a responsive array of stars
-  const getStars = () => {
+  // Create a responsive array of stars - memoized to prevent recalculation
+  const stars = useMemo(() => {
     // Default number for larger screens
     const defaultStars = 15;
     // Smaller number for mobile screens
     const mobileStars = 8;
+    const starCount = typeof window !== 'undefined' && window.innerWidth > 750 ? defaultStars : mobileStars;
 
-    return Array(window.innerWidth > 750 ? defaultStars : mobileStars)
+    return Array(starCount)
       .fill()
       .map((_, i) => (
         <div
@@ -24,7 +25,7 @@ export default function intro() {
           }}
         ></div>
       ));
-  };
+  }, []);
 
   return (
     <section id="home" className="p1">
@@ -34,7 +35,7 @@ export default function intro() {
           color: "white",
         }}
       >
-        {getStars()}
+        {stars}
       </div>
 
       <motion.div

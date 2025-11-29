@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @mixin sp-layout {
     @media screen and (max-width: 750px) {
       @content;
@@ -47,14 +49,14 @@
   
     @for $i from 1 through $star-count {
       &:nth-child(#{$i}) {
-        --star-tail-length: #{random_range(500em, 750em) / 100};
-        --top-offset: #{random_range(0vh, 10000vh) / 100};
-        --fall-duration: #{random_range(10000, 20000s) / 1000};
+        --star-tail-length: #{math.div(random_range(500em, 750em), 100)};
+        --top-offset: #{math.div(random_range(0vh, 10000vh), 100)};
+        --fall-duration: #{math.div(random_range(10000, 20000s), 1000)};
         
         @if $i < 5 {
-          --fall-delay: #{$i * 10s / 1000};  // Quick initial delay
+          --fall-delay: #{math.div($i * 10s, 1000)};  // Quick initial delay
         } @else {
-            --fall-delay: #{random_range(1000, 10000s) / 1000};  // Later stars more spread out
+            --fall-delay: #{math.div(random_range(1000, 10000s), 1000)};  // Later stars more spread out
         }
       }
     }

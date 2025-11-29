@@ -31,6 +31,20 @@ export default function About() {
     '/images/gallery/g17.png'
   ];
 
+  // Preload next image for smoother transitions
+  useEffect(() => {
+    const nextIndex = (currentImageIndex + 1) % galleryImages.length;
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = galleryImages[nextIndex];
+    link.as = 'image';
+    document.head.appendChild(link);
+    
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, [currentImageIndex, galleryImages]);
+
   // Auto-advance carousel
   useEffect(() => {
     const interval = setInterval(() => {
@@ -65,6 +79,8 @@ export default function About() {
                   effect="blur"
                   threshold={0}
                   wrapperClassName="carousel-image-wrapper"
+                  loading={currentImageIndex === 0 ? "eager" : "lazy"}
+                  fetchPriority={currentImageIndex === 0 ? "high" : "auto"}
                 />
               </div>
             </div>

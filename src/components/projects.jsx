@@ -163,6 +163,8 @@ const ProjectCard = ({ project, index }) => {
             src={project.image}
             alt={project.title}
             effect="blur"
+            loading="lazy"
+            fetchPriority={index < 2 ? "high" : "auto"}
             style={{
               width: "100%",
               height: "100%",
