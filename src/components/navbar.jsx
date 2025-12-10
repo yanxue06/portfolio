@@ -40,6 +40,8 @@ export default function Navbar() {
   };
 
   const openResume = (e) => {
+    e.preventDefault();
+    window.location.href = "/resume";
     setIsMobileMenuOpen(false);
   };
 
@@ -108,10 +110,8 @@ export default function Navbar() {
           </a>
 
           <a
-            href="/resume.pdf"
+            href="/resume"
             className="navbar-link"
-            target="_blank"
-            rel="noopener noreferrer"
           >
             Resume
           </a>
@@ -153,9 +153,8 @@ export default function Navbar() {
           </a>
 
           <a
-            href="/resume.pdf"
+            href="/resume"
             className="navbar-link"
-            target="_blank"
             onClick={openResume}
           >
             Resume

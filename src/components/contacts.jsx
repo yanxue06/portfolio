@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/contacts.css";
-import { SiX, SiLinkedin, SiGithub, SiDiscord, SiInstagram, SiSpotify } from "react-icons/si";
+import { SiX, SiLinkedin, SiGithub, SiSpotify } from "react-icons/si";
 
 export default function Contacts() {
   return (
@@ -72,24 +72,6 @@ export default function Contacts() {
                 className="icon-container"
               >
                 <SiGithub size={24} />
-              </a>
-
-              <a
-                href="https://discord.com/users/yamfries7818"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="icon-container"
-              >
-                <SiDiscord size={24} />
-              </a>
-
-              <a
-                href="https://www.instagram.com/yanxue06/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="icon-container"
-              >
-                <SiInstagram size={24} />
               </a>
 
               <a

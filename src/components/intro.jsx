@@ -124,7 +124,7 @@ export default function intro() {
                   e.target.style.boxShadow = "none";
                 }}
                 onClick={() =>
-                  window.open("/resume.pdf", "_blank")
+                  window.location.href = "/resume"
                 }
               >
                 Resume
