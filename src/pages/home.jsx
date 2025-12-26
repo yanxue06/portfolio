@@ -7,6 +7,7 @@ import About from "../components/about";
 import Arrows from "../components/arrow";
 import Projects from "../components/projects"
 import Contacts from "../components/contacts";
+// import TravelGlobe from "../components/TravelGlobe";
 
 export default function App() {
   useEffect(() => {
@@ -24,6 +25,10 @@ export default function App() {
             <div id="about">
               <About />
             </div>
+
+            {/* <div id="travel-globe">
+              <TravelGlobe />
+            </div> */}
             
             <div id="experience">
               <TimeLine />

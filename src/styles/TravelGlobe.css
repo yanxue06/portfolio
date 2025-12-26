@@ -1,0 +1,410 @@
+/* Travel Globe Section */
+.travel-globe-section {
+  width: 100%;
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.travel-globe-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.travel-globe-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  width: 100%;
+}
+
+.travel-globe-title-highlight {
+  background: linear-gradient(90deg, #63d0f8, #65b5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.travel-globe-subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* Globe Wrapper - centers the globe */
+.globe-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Globe Container */
+.globe-container {
+  position: relative;
+  width: 650px;
+  height: 650px;
+  min-height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse at center, rgba(0, 60, 80, 0.5) 0%, rgba(0, 20, 40, 0.3) 50%, transparent 70%);
+  border-radius: 50%;
+  cursor: grab;
+  margin: 0 auto;
+}
+
+.globe-container:active {
+  cursor: grabbing;
+}
+
+/* Ensure the canvas from react-globe.gl is centered */
+.globe-container > div {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* Point Tooltip (built-in from react-globe.gl) */
+.globe-point-tooltip {
+  padding: 10px 16px;
+  background: rgba(0, 20, 40, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 243, 255, 0.5);
+  border-radius: 8px;
+  color: #00f3ff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0, 243, 255, 0.3);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* Special marker label (on hover) */
+.special-marker-label {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  background: rgba(0, 20, 40, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 200, 100, 0.5);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.school-marker .special-marker-label {
+  border-color: rgba(150, 100, 255, 0.5);
+}
+
+.special-marker:hover .special-marker-label {
+  opacity: 1;
+}
+
+/* Modal Overlay */
+.globe-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 2rem;
+}
+
+/* Glassmorphism Modal */
+.globe-modal {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: rgba(15, 25, 40, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(0, 200, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Modal Close Button */
+.globe-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.globe-modal-close:hover {
+  background: rgba(255, 100, 100, 0.3);
+  color: #ff6b6b;
+  transform: scale(1.1);
+}
+
+/* Modal Title */
+.globe-modal-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+  background: linear-gradient(135deg, #00f3ff, #65b5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.globe-modal-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+/* Photo Gallery Grid */
+.globe-modal-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gallery-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  border-color: rgba(0, 243, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 243, 255, 0.2);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Scrollbar styling for modal */
+.globe-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.globe-modal::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.globe-modal::-webkit-scrollbar-thumb {
+  background: rgba(0, 243, 255, 0.3);
+  border-radius: 3px;
+}
+
+.globe-modal::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 243, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .globe-container {
+    width: 450px;
+    height: 450px;
+    min-height: 450px;
+  }
+
+  .travel-globe-title {
+    font-size: 2rem;
+  }
+
+  .globe-modal {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .globe-modal-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .globe-modal-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .globe-container {
+    width: 340px;
+    height: 340px;
+    min-height: 340px;
+  }
+
+  .travel-globe-title {
+    font-size: 1.6rem;
+  }
+
+  .travel-globe-subtitle {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+
+  .globe-modal-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
+/* Fix for react-globe.gl canvas positioning */
+.globe-container canvas {
+  display: block;
+}
+
+/* Loading state */
+.globe-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  z-index: 10;
+}
+
+.globe-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 243, 255, 0.2);
+  border-top-color: #00f3ff;
+  border-radius: 50%;
+  animation: globe-spin 1s linear infinite;
+}
+
+@keyframes globe-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Special Marker Styles (Home & School) */
+.special-marker {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.special-marker-icon {
+  font-size: 28px;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.special-marker:hover .special-marker-icon {
+  transform: scale(1.2);
+}
+
+/* Home marker specific */
+.home-icon {
+  filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.8));
+}
+
+.home-pulse {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(255, 180, 50, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: home-pulse 2s ease-out infinite;
+  z-index: 1;
+}
+
+@keyframes home-pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* School marker specific */
+.school-icon {
+  filter: drop-shadow(0 0 8px rgba(150, 100, 255, 0.8));
+}
+
+.school-pulse {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(150, 100, 255, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: school-pulse 2s ease-out infinite;
+  z-index: 1;
+}
+
+@keyframes school-pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
