@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import WordsPullUpMultiStyle from './WordsPullUpMultiStyle'
 
 const BODY_TEXT =
-  'right now: photon in san francisco, building the webhook infra that pushes ai agent responses to 10K+ developers. before that, bitgo. waterloo computer engineering since apr 2024.'
+  "right now i'm at photon in san francisco, building ai infrastructure — webhook delivery, buildspace, everything ci/cd. and honestly, i just like building internal tools."
 
 const EXPERIENCE: Array<{ place: string; logo: string; seal?: boolean; what: string; when: string }> = [
   {
