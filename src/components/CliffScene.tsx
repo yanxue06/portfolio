@@ -1,4 +1,5 @@
 import { motion, type MotionValue } from 'framer-motion'
+import Flocks from './Flocks'
 
 interface CliffSceneProps {
   skyY?: MotionValue<number> | number
@@ -56,18 +57,8 @@ export default function CliffScene({ skyY = 0, cloudY = 0, farY = 0, midY = 0 }:
           <ellipse cx="1170" cy="320" rx="160" ry="12" fill="#f3bd7d" opacity="0.3" />
           <ellipse cx="1240" cy="345" rx="90" ry="8" fill="#a85a3c" opacity="0.32" />
         </g>
-        {/* birds heading home — low right, silhouetted against the sun glow */}
-        <g
-          stroke="#2a160e"
-          strokeWidth="2.4"
-          fill="none"
-          strokeLinecap="round"
-          style={{ animation: 'birds-drift 32s ease-in-out infinite' }}
-        >
-          <path d="M1040 500 q7 -8 14 0 q7 -8 14 0" />
-          <path d="M1112 528 q6 -7 12 0 q6 -7 12 0" opacity="0.85" />
-          <path d="M1000 478 q5 -6 10 0 q5 -6 10 0" opacity="0.7" />
-        </g>
+        {/* birds heading home — randomized flocks looping toward the sun */}
+        <Flocks />
       </motion.g>
 
       {/* far range */}

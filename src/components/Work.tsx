@@ -1,7 +1,8 @@
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useReducedMotion, useSpring } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { useRef, type ReactNode } from 'react'
+import { useRef, type MouseEvent, type ReactNode } from 'react'
 import WordsPullUpMultiStyle from './WordsPullUpMultiStyle'
+import { ShootingStars, Stars } from './ambient'
 import {
   BuildSpaceBanner,
   FlappyBanner,
@@ -151,9 +152,39 @@ function Chips({ project, small }: { project: Project; small?: boolean }) {
 const CARD_SHELL =
   'group flex h-full flex-col overflow-hidden rounded-2xl border border-[#2c2138] bg-[#1d120b] transition-[border-color,box-shadow] duration-300 hover:border-[#4a3a62] hover:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.7)]'
 
+/* Cards tilt a few degrees toward the cursor, springing flat on leave. */
+function Tilt({ children, className }: { children: ReactNode; className?: string }) {
+  const reduce = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null)
+  const rx = useSpring(0, { stiffness: 180, damping: 22 })
+  const ry = useSpring(0, { stiffness: 180, damping: 22 })
+
+  if (reduce) return <div className={className}>{children}</div>
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      style={{ rotateX: rx, rotateY: ry, transformPerspective: 1000 }}
+      onMouseMove={(e: MouseEvent<HTMLDivElement>) => {
+        const r = ref.current?.getBoundingClientRect()
+        if (!r) return
+        rx.set(-((e.clientY - r.top) / r.height - 0.5) * 6)
+        ry.set(((e.clientX - r.left) / r.width - 0.5) * 6)
+      }}
+      onMouseLeave={() => {
+        rx.set(0)
+        ry.set(0)
+      }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
 function WideCard({ project }: { project: Project }) {
   return (
-    <div className={`${CARD_SHELL} sm:flex-row`}>
+    <Tilt className={`${CARD_SHELL} sm:flex-row`}>
       <div className="relative h-56 shrink-0 overflow-hidden sm:h-auto sm:w-[55%]">
         <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.04]">
           {project.banner}
@@ -165,13 +196,13 @@ function WideCard({ project }: { project: Project }) {
         <Chips project={project} />
         <CardLink project={project} />
       </div>
-    </div>
+    </Tilt>
   )
 }
 
 function TallCard({ project }: { project: Project }) {
   return (
-    <div className={CARD_SHELL}>
+    <Tilt className={CARD_SHELL}>
       <div className="h-52 shrink-0 overflow-hidden sm:h-60">
         <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.045]">
           {project.banner}
@@ -187,13 +218,13 @@ function TallCard({ project }: { project: Project }) {
           <CardLink project={project} />
         </div>
       </div>
-    </div>
+    </Tilt>
   )
 }
 
 function CompactCard({ project }: { project: Project }) {
   return (
-    <div className={CARD_SHELL}>
+    <Tilt className={CARD_SHELL}>
       <div className="h-32 shrink-0 overflow-hidden sm:h-36">
         <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.05]">
           {project.banner}
@@ -209,7 +240,7 @@ function CompactCard({ project }: { project: Project }) {
           <CardLink project={project} small />
         </div>
       </div>
-    </div>
+    </Tilt>
   )
 }
 
@@ -238,6 +269,28 @@ export default function Work() {
           filter: 'blur(40px)',
         }}
       />
+      {/* night fully arrived — stars out, the odd one falling, moon up */}
+      <Stars count={120} />
+      <ShootingStars />
+      <div
+        className="pointer-events-none absolute right-[7%] top-20 hidden sm:block"
+        style={{ animation: 'glow 11s ease-in-out infinite' }}
+      >
+        <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden>
+          <defs>
+            <radialGradient id="moonglow">
+              <stop offset="0%" stopColor="#f2e3c2" stopOpacity="0.32" />
+              <stop offset="100%" stopColor="#f2e3c2" stopOpacity="0" />
+            </radialGradient>
+            <mask id="crescent">
+              <rect width="64" height="64" fill="white" />
+              <circle cx="38" cy="27" r="11" fill="black" />
+            </mask>
+          </defs>
+          <circle cx="32" cy="32" r="30" fill="url(#moonglow)" />
+          <circle cx="32" cy="32" r="12" fill="#e8dcc0" mask="url(#crescent)" opacity="0.9" />
+        </svg>
+      </div>
       <div className="relative mx-auto max-w-5xl" ref={gridRef}>
         <div className="mb-10 text-center sm:mb-14">
           <p className="mb-4 text-[10px] uppercase tracking-[0.25em] text-[#9a86b8] sm:text-xs">selected work</p>

@@ -94,10 +94,24 @@ export function ObsidianBanner() {
         <line x1="62" y1="42" x2="122" y2="30" />
         <line x1="262" y1="122" x2="312" y2="142" />
         <line x1="330" y1="48" x2="356" y2="96" />
+        <animate attributeName="opacity" values="0.45;0.28;0.45" dur="4.5s" repeatCount="indefinite" />
       </g>
       {nodes.map(([x, y, r], i) => (
-        <circle key={i} cx={x} cy={y} r={r} fill="#b39ddb" />
+        <circle key={i} cx={x} cy={y} r={r} fill="#b39ddb">
+          <animate
+            attributeName="r"
+            values={`${r};${r * 1.45};${r}`}
+            dur="3.2s"
+            begin={`${i * 0.4}s`}
+            repeatCount="indefinite"
+          />
+        </circle>
       ))}
+      {/* radar ping out of the hub */}
+      <circle cx={hub[0]} cy={hub[1]} r="14" fill="none" stroke="#e6dcff" strokeWidth="1.5">
+        <animate attributeName="r" values="11;30" dur="2.8s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.5;0" dur="2.8s" repeatCount="indefinite" />
+      </circle>
       <circle cx={hub[0]} cy={hub[1]} r="18" fill="#e6dcff" opacity="0.22" />
       <circle cx={hub[0]} cy={hub[1]} r="9" fill="#e6dcff" />
     </svg>
@@ -168,13 +182,27 @@ export function FlappyBanner() {
         </text>
         {/* soft sun */}
         <circle cx="520" cy="92" r="40" fill="#fff6cf" opacity="0.55" />
-        {/* clouds */}
+        {/* clouds, drifting like the pipes are coming at you */}
         <g fill="#ffffff" opacity="0.9">
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0 0; -36 0; 0 0"
+            dur="14s"
+            repeatCount="indefinite"
+          />
           <ellipse cx="285" cy="100" rx="30" ry="12" />
           <ellipse cx="308" cy="106" rx="22" ry="10" />
           <ellipse cx="265" cy="106" rx="18" ry="9" />
         </g>
         <g fill="#ffffff" opacity="0.7">
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0 0; -52 0; 0 0"
+            dur="11s"
+            repeatCount="indefinite"
+          />
           <ellipse cx="480" cy="200" rx="26" ry="10" />
           <ellipse cx="500" cy="206" rx="18" ry="8" />
         </g>
@@ -193,8 +221,16 @@ export function FlappyBanner() {
           <rect x="380" y="142" width="68" height="22" rx="4" fill="#2f8a4b" />
           <rect x="380" y="142" width="68" height="8" rx="4" fill="#46b25e" />
         </g>
-        {/* the bird */}
+        {/* the bird — forever mid-flap */}
         <g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0 0; 0 -9; 0 3; 0 0"
+            keyTimes="0; 0.4; 0.8; 1"
+            dur="1.9s"
+            repeatCount="indefinite"
+          />
           <path d="M86 158 q-14 -3 -24 2" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" opacity="0.5" fill="none" />
           <path d="M84 170 q-12 -2 -20 3" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" opacity="0.35" fill="none" />
           <circle cx="112" cy="162" r="19" fill="url(#birdbody)" stroke="#d9a73c" strokeWidth="2" />

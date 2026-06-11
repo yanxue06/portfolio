@@ -41,7 +41,34 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* sunset scene */
+/* sunset scene — each wing rotates around the bird's body, mirrored */
+.wing {
+  transform-box: fill-box;
+}
+.wing-l {
+  transform-origin: 100% 60%;
+}
+.wing-r {
+  transform-origin: 0% 60%;
+}
+@keyframes flap-l {
+  0%,
+  100% {
+    transform: rotate(26deg);
+  }
+  45% {
+    transform: rotate(-18deg);
+  }
+}
+@keyframes flap-r {
+  0%,
+  100% {
+    transform: rotate(-26deg);
+  }
+  45% {
+    transform: rotate(18deg);
+  }
+}
 @keyframes birds-drift {
   0%,
   100% {
@@ -49,6 +76,70 @@ body {
   }
   50% {
     transform: translate(-18px, -6px);
+  }
+}
+
+/* ambient sky — stars, embers, shooting stars, glow blobs.
+   Each element owns its randomness through CSS vars set inline. */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: var(--dim, 0.12);
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: var(--peak, 0.9);
+    transform: scale(1);
+  }
+}
+@keyframes ember-rise {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--glow, 0.8);
+  }
+  70% {
+    opacity: var(--glow, 0.8);
+  }
+  100% {
+    transform: translateY(var(--rise, -480px));
+    opacity: 0;
+  }
+}
+@keyframes ember-sway {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(var(--sway, 24px));
+  }
+}
+@keyframes shoot {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--travel, 320px));
+    opacity: 0;
+  }
+}
+@keyframes blob-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(34px, -26px) scale(1.07);
+  }
+  66% {
+    transform: translate(-28px, 18px) scale(0.96);
   }
 }
 @keyframes screen-flicker {
@@ -87,6 +178,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .animate-bob,
+  .ambient-anim,
   [style*='glow'] {
     animation: none !important;
   }
