@@ -131,7 +131,7 @@ export default function Hero() {
           className="mt-4 text-sm text-primary/90 sm:text-base lg:text-lg"
         >
           computer engineering @ uwaterloo <span className="mx-1 text-[#f6c87f]">·</span> swe intern @{' '}
-          <span className="font-serif italic">photon</span> (google, vercel + sequoia backed), sf{' '}
+          <span className="font-serif italic">photon</span> (google, vercel + sequoia backed){' '}
           <span className="mx-1 text-[#f6c87f]">·</span> prev @ bitgo
         </motion.p>
         <motion.p
@@ -160,14 +160,6 @@ export default function Hero() {
             </a>
           </Magnetic>
         </motion.div>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 1.2, ease: EASE }}
-          className="mt-4 text-[10px] text-primary/50 sm:text-xs"
-        >
-          *v3 of this site. finally one with a sunset.
-        </motion.p>
       </motion.div>
 
       <motion.a
