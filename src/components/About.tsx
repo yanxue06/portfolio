@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import WordsPullUpMultiStyle from './WordsPullUpMultiStyle'
 
 const BODY_TEXT =
-  "right now i'm at photon in san francisco, building ai infrastructure — webhook delivery, buildspace, everything ci/cd. and honestly, i just like building internal tools."
+  "right now i'm at photon in san francisco, building ai infrastructure — webhook delivery, buildspace, everything ci/cd. in my free time i love building internal tools. i also love frisbee, guitar, and chess."
 
 const EXPERIENCE: Array<{ place: string; logo: string; seal?: boolean; what: string; when: string }> = [
   {
@@ -58,13 +58,14 @@ export default function About() {
     <section id="about" className="bg-[#140d09] px-4 py-16 md:px-6 md:py-24">
       <div className="mx-auto max-w-5xl rounded-[2rem] border border-[#332014] bg-[#1d120b] px-6 py-14 sm:px-10 sm:py-16 md:px-14 md:py-20">
         <p className="mb-8 text-center text-[10px] uppercase tracking-[0.25em] text-[#e89a4e] sm:text-xs">
-          the short version
+          about me
         </p>
         <h2 className="mx-auto max-w-2xl text-center text-3xl leading-[1.02] text-primary sm:text-4xl md:text-5xl lg:text-6xl">
           <WordsPullUpMultiStyle
             segments={[
               { text: "i'm yan.", className: 'font-normal' },
-              { text: 'i like building things.', className: 'font-serif italic' },
+              { text: 'i like building', className: 'font-normal' },
+              { text: 'tools that help people.', className: 'font-serif italic' },
             ]}
           />
         </h2>
