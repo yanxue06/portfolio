@@ -118,28 +118,87 @@ export function ObsidianBanner() {
   )
 }
 
-export function IMessageKitBanner() {
+export function MarillacPlaceBanner() {
+  /* a small care dashboard — each resident's task ticks complete on a loop */
+  const rows = [
+    { y: 92, label: 'intake form', begin: '0s' },
+    { y: 120, label: 'room assignment', begin: '0.5s' },
+    { y: 148, label: 'daily check-in', begin: '1s' },
+  ]
   return (
     <svg viewBox="0 0 400 170" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
       <defs>
-        <linearGradient id="imkbg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#0d2440" />
-          <stop offset="100%" stopColor="#143a66" />
+        <filter id="mpwin" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="5" stdDeviation="9" floodColor="#000000" floodOpacity="0.45" />
+        </filter>
+        <clipPath id="mpclip">
+          <rect x="14" y="12" width="372" height="158" rx="10" />
+        </clipPath>
+        <linearGradient id="mpbg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#220f1b" />
+          <stop offset="100%" stopColor="#34182a" />
         </linearGradient>
+        <radialGradient id="mphearth" cx="0.5" cy="0.1" r="0.9">
+          <stop offset="0%" stopColor="#f3a4b5" stopOpacity="0.22" />
+          <stop offset="100%" stopColor="#f3a4b5" stopOpacity="0" />
+        </radialGradient>
       </defs>
-      <rect width="400" height="170" fill="url(#imkbg)" />
-      <rect x="262" y="32" width="84" height="32" rx="15" fill="#3787f7" />
-      <path d="M340 58 q6 6 12 7 q-9 2 -16 -2 z" fill="#3787f7" />
-      <text x="304" y="53" textAnchor="middle" fontFamily={MONO} fontSize="13" fill="#ffffff">
-        1.3K ★
-      </text>
-      <rect x="138" y="62" width="124" height="56" rx="20" stroke="#ffffff" strokeWidth="4.5" fill="#ffffff" fillOpacity="0.05" />
-      <path d="M150 114 Q146 127 136 131" stroke="#ffffff" strokeWidth="4.5" strokeLinecap="round" fill="none" />
-      {[0, 1, 2].map((i) => (
-        <circle key={i} cx={178 + i * 22} cy="90" r="5.5" fill="#ffffff">
-          <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
-        </circle>
-      ))}
+      <rect width="400" height="170" fill="url(#mpbg)" />
+      <rect x="14" y="12" width="372" height="158" rx="10" fill="#3d1f30" filter="url(#mpwin)" />
+      <g clipPath="url(#mpclip)">
+        {/* warm hearth glow from the top */}
+        <rect x="14" y="12" width="372" height="158" fill="url(#mphearth)" />
+        {/* window titlebar */}
+        <rect x="14" y="12" width="372" height="26" fill="#4a2740" />
+        <circle cx="32" cy="25" r="4.5" fill="#e2655c" />
+        <circle cx="49" cy="25" r="4.5" fill="#e2b95c" />
+        <circle cx="66" cy="25" r="4.5" fill="#69c46f" />
+        <text x="200" y="29" textAnchor="middle" fontFamily={MONO} fontSize="10" fill="#cf94a8">
+          marillac place
+        </text>
+        {/* a heart — care — where git-semantic puts its star */}
+        <path
+          d="M367 31 C360 26.5 356.5 22 360 19 C362.5 16.8 365.5 18.5 367 20.8 C368.5 18.5 371.5 16.8 374 19 C377.5 22 374 26.5 367 31 Z"
+          fill="#f3a4b5"
+        >
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" />
+        </path>
+        {/* section header */}
+        <text x="30" y="60" fontFamily={MONO} fontSize="11" fill="#b3788d">
+          resident tasks
+        </text>
+        <line x1="26" y1="70" x2="374" y2="70" stroke="#ffffff" strokeOpacity="0.07" strokeWidth="1" />
+        {rows.map(({ y, label, begin }) => (
+          <g key={label}>
+            <circle cx="33" cy={y} r="3.5" fill="#d98aa0" />
+            <text x="48" y={y + 4} fontFamily={MONO} fontSize="12.5" fill="#ead0d9">
+              {label}
+            </text>
+            {/* empty checkbox */}
+            <rect x="338" y={y - 9} width="18" height="18" rx="5" fill="none" stroke="#90586c" strokeWidth="1.6" />
+            {/* checked state — fades in, staggered per row */}
+            <g opacity="0">
+              <rect x="338" y={y - 9} width="18" height="18" rx="5" fill="#f3a4b5" />
+              <path
+                d={`M342 ${y} l3.4 4 l7 -8.4`}
+                fill="none"
+                stroke="#3a1622"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <animate
+                attributeName="opacity"
+                values="0;1;1;0"
+                keyTimes="0;0.15;0.82;1"
+                dur="3.6s"
+                begin={begin}
+                repeatCount="indefinite"
+              />
+            </g>
+          </g>
+        ))}
+      </g>
     </svg>
   )
 }

@@ -8,7 +8,7 @@ import {
   FlappyBanner,
   FluxBanner,
   GitSemanticBanner,
-  IMessageKitBanner,
+  MarillacPlaceBanner,
   ObsidianBanner,
 } from './banners'
 
@@ -90,16 +90,17 @@ const MINI_PROJECTS: Project[] = [
     href: 'https://github.com/photon-hq/flux',
   },
   {
-    title: 'imessage-kit',
-    banner: <IMessageKitBanner />,
-    accent: '#6fa8ff',
+    title: 'marillac place',
+    banner: <MarillacPlaceBanner />,
+    accent: '#f3a4b5',
     description: (
       <>
-        co-built type-safe typescript sdk for native imessage. <Hi color="#6fa8ff">1.3K+ stars</Hi> on github.
+        full-stack platform for marillac place — a <Hi color="#f3a4b5">shelter for women</Hi> serving 28
+        residents. graphql api with automated task + record tracking.
       </>
     ),
-    chips: ['TypeScript', 'Zod'],
-    href: 'https://github.com/photon-hq/imessage-kit',
+    chips: ['GraphQL', 'PostgreSQL'],
+    href: 'https://github.com/uwblueprint/marillac-place',
   },
   {
     title: 'flappy code',
