@@ -95,8 +95,8 @@ const MINI_PROJECTS: Project[] = [
     accent: '#f3a4b5',
     description: (
       <>
-        full-stack platform for marillac place — a <Hi color="#f3a4b5">shelter for women</Hi> serving 28
-        residents. graphql api with automated task + record tracking.
+        full-stack platform for marillac place — a <Hi color="#f3a4b5">shelter for homeless mothers</Hi>{' '}
+        serving 28 residents. graphql api with automated task + record tracking.
       </>
     ),
     chips: ['GraphQL', 'PostgreSQL'],
