@@ -99,7 +99,7 @@ const MINI_PROJECTS: Project[] = [
         serving 28 residents. graphql api with automated task + record tracking.
       </>
     ),
-    chips: ['GraphQL', 'PostgreSQL'],
+    chips: ['React', 'GraphQL', 'PostgreSQL'],
     href: 'https://github.com/uwblueprint/marillac-place',
   },
   {
