@@ -1,7 +1,5 @@
-import { motion, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion'
-import { useRef } from 'react'
-import WordsPullUpMultiStyle from './WordsPullUpMultiStyle'
-import { Embers, GlowBlobs, Stars } from './ambient'
+import { motion } from 'framer-motion'
+import type { ReactNode } from 'react'
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -36,118 +34,124 @@ const EXPERIENCE: Array<{ place: string; logo: string; seal?: boolean; what: str
   },
 ]
 
-interface AnimatedLetterProps {
-  char: string
-  index: number
-  total: number
-  progress: MotionValue<number>
-}
-
-function AnimatedLetter({ char, index, total, progress }: AnimatedLetterProps) {
-  const charProgress = index / total
-  const opacity = useTransform(progress, [charProgress - 0.1, charProgress + 0.05], [0.2, 1])
-  return <motion.span style={{ opacity }}>{char}</motion.span>
-}
-
-/* The experience list as a timeline: a dim rail, a quiet line that draws in
-   with scroll, and rows that slide in one by one. */
-function Timeline() {
-  const listRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: listRef, offset: ['start 0.82', 'end 0.45'] })
-  const lineScale = useSpring(scrollYProgress, { stiffness: 90, damping: 24 })
-
+export function Kicker({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto mt-14 max-w-2xl sm:mt-20">
-      <p className="mb-5 text-[10px] uppercase tracking-[0.25em] text-[#e89a4e]/80">where i've been</p>
-      <div ref={listRef} className="relative">
-        {/* rail + draw-in line */}
-        <div className="absolute bottom-3 left-[17px] top-3 w-px bg-[#2a1a0e]" />
-        <motion.div
-          className="absolute bottom-3 left-[17px] top-3 w-px origin-top bg-[#e89a4e]/55"
-          style={{ scaleY: lineScale }}
-        />
+    <p className="flex items-center gap-3 text-[13px] font-bold text-[#e89a4e]">
+      <span className="inline-block h-0.5 w-[34px] bg-[#e89a4e]/60" aria-hidden />
+      {children}
+    </p>
+  )
+}
 
-        {EXPERIENCE.map((row, i) => (
-          <motion.div
-            key={row.place}
-            initial={{ opacity: 0, x: -26 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ delay: i * 0.09, duration: 0.7, ease: EASE }}
-            className="group relative flex items-center gap-3 rounded-xl py-4 pl-11 pr-3 transition-colors duration-300 hover:bg-[#21140c]/80 sm:gap-4"
-          >
-            {/* node on the rail */}
-            <span
-              className="absolute left-[17px] top-1/2 h-[7px] w-[7px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#6b4527] transition-colors duration-300 group-hover:bg-[#e89a4e]"
-            />
-            <img
-              src={row.logo}
-              alt={`${row.place} logo`}
-              loading="lazy"
-              className={`h-9 w-9 shrink-0 object-cover transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110 ${
-                row.seal ? 'rounded-full' : 'rounded-lg border border-[#332014]'
-              }`}
-            />
-            <div className="flex flex-1 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-              <span className="shrink-0 text-sm font-bold text-primary sm:w-24">{row.place}</span>
-              <span className="flex-1 text-xs text-[#c9b18c] sm:text-sm">{row.what}</span>
-              <span className="shrink-0 text-[11px] text-[#8a6f4d] sm:text-xs">{row.when}</span>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </div>
+/* Ink doodles in the right margin, one per section — the scene's own
+   vocabulary (pine, birds, setting sun) drawn small. Hidden when the
+   margin gets tight. */
+export function PineDoodle() {
+  return (
+    <svg
+      className="absolute -right-[120px] top-16 hidden text-[#e89a4e] opacity-[.34] min-[1180px]:block"
+      width="34"
+      height="52"
+      viewBox="0 0 34 52"
+      aria-hidden
+    >
+      <g fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+        <path d="M17 4 L7 20 L13 19 L5 34 L12 33 L4 47 L30 47 L22 33 L29 34 L21 19 L27 20 Z" strokeLinejoin="round" />
+        <path d="M17 47 L17 51" />
+      </g>
+    </svg>
+  )
+}
+
+export function BirdDoodle() {
+  return (
+    <svg
+      className="absolute -right-[128px] top-2 hidden text-[#e89a4e] opacity-[.34] min-[1180px]:block"
+      width="40"
+      height="24"
+      viewBox="0 0 40 24"
+      aria-hidden
+    >
+      <g fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+        <path d="M4 14 Q 12 4 20 13 Q 28 4 36 14" />
+        <path d="M12 20 Q 17 14 22 19" opacity=".7" />
+      </g>
+    </svg>
   )
 }
 
 export default function About() {
-  const bodyRef = useRef<HTMLParagraphElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: bodyRef,
-    offset: ['start 0.8', 'end 0.2'],
-  })
-  const chars = BODY_TEXT.split('')
-
   return (
-    <section
-      id="about"
-      className="relative overflow-hidden px-4 py-20 md:px-6 md:py-28"
-      style={{ background: 'linear-gradient(180deg, #140d09 0%, #1c1117 55%, #140d09 100%)' }}
-    >
-      {/* dusk settling in — last warmth low, first cold purple high, embers, early stars */}
-      <GlowBlobs
-        blobs={[
-          { x: '-6%', y: '18%', size: 460, color: 'rgba(232,154,78,0.1)', dur: 21 },
-          { x: '62%', y: '50%', size: 540, color: 'rgba(184,92,51,0.09)', dur: 26, delay: 4 },
-          { x: '30%', y: '-12%', size: 480, color: 'rgba(124,98,184,0.09)', dur: 23, delay: 9 },
-        ]}
-      />
-      <Stars count={46} topBias />
-      <Embers count={13} />
+    <section id="about" className="bg-[#1d1209] px-6 pt-24 sm:px-8">
+      <div className="relative mx-auto max-w-[880px]">
+        <PineDoodle />
 
-      <div className="relative z-10 mx-auto max-w-5xl">
-        <p className="mb-8 text-center text-[10px] uppercase tracking-[0.25em] text-[#e89a4e] sm:text-xs">
-          about me
-        </p>
-        <h2 className="mx-auto max-w-2xl text-center text-3xl leading-[1.02] text-primary sm:text-4xl md:text-5xl lg:text-6xl">
-          <WordsPullUpMultiStyle
-            segments={[
-              { text: "i'm yan.", className: 'font-normal' },
-              { text: 'i like building', className: 'font-normal' },
-              { text: 'tools that help people.', className: 'font-serif italic' },
-            ]}
-          />
-        </h2>
-        <p
-          ref={bodyRef}
-          className="mx-auto mt-8 max-w-xl text-center text-xs leading-relaxed text-[#e8d6b0] sm:mt-10 sm:text-sm md:text-base"
+        <Kicker>about me</Kicker>
+        <motion.h2
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: EASE }}
+          className="mt-4 max-w-[640px] text-[clamp(34px,4.4vw,52px)] font-normal leading-[1.14] tracking-tight text-primary"
         >
-          {chars.map((char, i) => (
-            <AnimatedLetter key={i} char={char} index={i} total={chars.length} progress={scrollYProgress} />
-          ))}
-        </p>
+          i'm yan. i like building{' '}
+          <span className="relative whitespace-nowrap font-serif italic">
+            tools that help people.
+            <svg
+              className="absolute -bottom-1.5 left-[2%] h-2.5 w-[96%]"
+              viewBox="0 0 300 10"
+              preserveAspectRatio="none"
+              aria-hidden
+            >
+              <path
+                d="M2 6 Q 45 2 90 6 T 180 5 T 298 6"
+                fill="none"
+                stroke="#e89a4e"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                opacity=".7"
+              />
+            </svg>
+          </span>
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ delay: 0.12, duration: 0.8, ease: EASE }}
+          className="mt-5 max-w-[560px] text-[15.5px] leading-[1.8] text-[#c9b18c]"
+        >
+          {BODY_TEXT}
+        </motion.p>
 
-        <Timeline />
+        <div className="relative mt-20">
+          <BirdDoodle />
+          <Kicker>where i've been</Kicker>
+          <div className="mt-6 border-t-2 border-[#e89a4e]/[.55]">
+            {EXPERIENCE.map((row, i) => (
+              <motion.div
+                key={row.place}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ delay: i * 0.07, duration: 0.6, ease: EASE }}
+                className="grid grid-cols-[40px_1fr] items-center gap-x-4 border-b border-[#e89a4e]/[.14] px-2 py-[17px] transition-colors duration-200 hover:bg-[#251609] sm:grid-cols-[150px_40px_130px_1fr] sm:gap-x-[18px]"
+              >
+                <span className="col-span-full font-mono text-xs text-[#e89a4e] sm:col-span-1">{row.when}</span>
+                <img
+                  src={row.logo}
+                  alt={`${row.place} logo`}
+                  loading="lazy"
+                  className={`h-7 w-7 border border-[#e89a4e]/25 object-cover ${row.seal ? 'rounded-full' : 'rounded-[7px]'}`}
+                />
+                <span className="text-[15px] font-extrabold text-primary">{row.place}</span>
+                <span className="col-span-full mt-1 text-sm leading-relaxed text-[#c9b18c] sm:col-span-1 sm:mt-0">
+                  {row.what}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

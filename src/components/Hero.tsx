@@ -95,7 +95,7 @@ export default function Hero() {
       {/* readability dusk at the top, grain over everything */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-[#140a14]/70 via-[#140a14]/25 to-transparent" />
       <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.5] mix-blend-overlay" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-b from-transparent to-[#140d09]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-b from-transparent to-[#1d1209]" />
 
       <nav className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-6 py-5 sm:px-10">
         <a href="#top" className="text-sm font-bold text-primary">
