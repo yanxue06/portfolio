@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const BODY_TEXT =
-  "right now i'm at photon in san francisco, building ai infrastructure — webhook delivery, buildspace, everything ci/cd. in my free time i love building internal tools. i also love frisbee, guitar, and chess."
+  "right now i'm at photon in san francisco, building ai infrastructure — webhook delivery, buildspace, everything ci/cd. in my free time i love building at the intersection of agents and tooling. i also love frisbee, guitar, and chess."
 
 const EXPERIENCE: Array<{ place: string; logo: string; seal?: boolean; what: string; when: string }> = [
   {
