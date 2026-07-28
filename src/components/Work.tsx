@@ -1,14 +1,5 @@
-import {
-  AnimatePresence,
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-  useVelocity,
-} from 'framer-motion'
-import { useRef, useState, type ReactNode } from 'react'
+import { motion, useReducedMotion, useScroll } from 'framer-motion'
+import { useRef, type ReactNode } from 'react'
 import { Kicker } from './About'
 import {
   BuildSpaceBanner,
@@ -126,40 +117,11 @@ const PROJECTS: Project[] = [
 ]
 
 export default function Work() {
-  const reduce = useReducedMotion()
-  const [canHover] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches,
-  )
-  const [hovered, setHovered] = useState<number | null>(null)
-
-  /* the banner preview trails the cursor, tilting with its horizontal speed */
-  const mx = useMotionValue(0)
-  const my = useMotionValue(0)
-  const x = useSpring(mx, { stiffness: 180, damping: 22, mass: 0.5 })
-  const y = useSpring(my, { stiffness: 180, damping: 22, mass: 0.5 })
-  const tilt = useSpring(useTransform(useVelocity(x), [-2500, 2500], [8, -8]), {
-    stiffness: 300,
-    damping: 40,
-  })
-
-  const preview = canHover && !reduce
-
   return (
     <section id="work" className="relative overflow-hidden px-6 pb-24 pt-32 sm:px-10">
       <div className="relative mx-auto max-w-[1200px]">
         <Kicker>selected work</Kicker>
-        <div
-          className="hairline mt-8 border-t"
-          onMouseMove={
-            preview
-              ? (e) => {
-                  mx.set(Math.min(e.clientX + 28, window.innerWidth - 372))
-                  my.set(e.clientY - 96)
-                }
-              : undefined
-          }
-          onMouseLeave={preview ? () => setHovered(null) : undefined}
-        >
+        <div className="hairline mt-8 border-t">
           {PROJECTS.map((project, i) => (
             <motion.a
               key={project.title}
@@ -170,7 +132,6 @@ export default function Work() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.65, ease: EASE }}
-              onMouseEnter={preview ? () => setHovered(i) : undefined}
               className="group relative block py-8 md:py-10"
             >
               <ScrubRule />
@@ -181,23 +142,27 @@ export default function Work() {
                 {String(i + 1).padStart(2, '0')}
               </span>
 
-              <span className="hairline mb-5 block aspect-video overflow-hidden border md:hidden">
-                {project.banner}
-              </span>
+              <div className="md:grid md:grid-cols-[300px_1fr] md:items-start md:gap-8">
+                <span className="hairline mb-5 block aspect-video overflow-hidden border md:mb-0">
+                  {project.banner}
+                </span>
 
-              <div className="flex items-baseline gap-4 transition-transform duration-300 group-hover:translate-x-2">
-                <h3 className="ink text-[clamp(34px,4.8vw,68px)] font-extrabold leading-[0.95] tracking-[-0.03em]">
-                  {project.title}
-                </h3>
-                <span
-                  className="muted text-[20px] transition-all duration-200 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-gold"
-                  aria-hidden
-                >
-                  ↗
+                <span className="block">
+                  <span className="flex items-baseline gap-4 transition-transform duration-300 group-hover:translate-x-2">
+                    <h3 className="ink text-[clamp(34px,4.2vw,58px)] font-extrabold leading-[0.95] tracking-[-0.03em]">
+                      {project.title}
+                    </h3>
+                    <span
+                      className="muted text-[20px] transition-all duration-200 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-gold"
+                      aria-hidden
+                    >
+                      ↗
+                    </span>
+                  </span>
+                  <p className="muted mt-3 max-w-[560px] text-[13.5px] leading-[1.65]">{project.description}</p>
+                  <p className="muted mt-2 font-mono text-[11px] opacity-75">{project.stack}</p>
                 </span>
               </div>
-              <p className="muted mt-3 max-w-[560px] text-[13.5px] leading-[1.65]">{project.description}</p>
-              <p className="muted mt-2 font-mono text-[11px] opacity-75">{project.stack}</p>
             </motion.a>
           ))}
         </div>
@@ -215,29 +180,6 @@ export default function Work() {
           — git-subtree-audit, helios, pr-search, and whatever this month's rabbit hole is.
         </p>
       </div>
-
-      {preview && (
-        <motion.div
-          className="pointer-events-none fixed left-0 top-0 z-40"
-          style={{ x, y, rotate: tilt }}
-          aria-hidden
-        >
-          <AnimatePresence>
-            {hovered !== null && (
-              <motion.div
-                key={hovered}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.94 }}
-                transition={{ duration: 0.25, ease: EASE }}
-                className="hairline h-[192px] w-[344px] overflow-hidden border bg-navy shadow-2xl"
-              >
-                {PROJECTS[hovered].banner}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      )}
     </section>
   )
 }
