@@ -1,8 +1,20 @@
 /* Project banners. flux + buildspace are the real images from the old
    site; the rest are hand-coded SVG: one clean icon, one committed color
    world each. */
+import { useReducedMotion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 
 const MONO = 'ui-monospace, SFMono-Regular, Menlo, monospace'
+
+/* SMIL ignores prefers-reduced-motion — pause the svg timeline instead */
+function useStillSvg() {
+  const reduce = useReducedMotion()
+  const ref = useRef<SVGSVGElement>(null)
+  useEffect(() => {
+    if (reduce) ref.current?.pauseAnimations()
+  }, [reduce])
+  return ref
+}
 
 export function FluxBanner() {
   return <img src="/banners/flux.webp" alt="flux banner" className="h-full w-full object-cover" loading="lazy" />
@@ -26,7 +38,7 @@ export function GitSemanticBanner() {
     { x: 288, y: 66, score: '0.81', begin: '3.9s' },
   ]
   return (
-    <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+    <svg ref={useStillSvg()} viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
       <defs>
         <linearGradient id="gsbg" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#0a120c" />
@@ -81,7 +93,7 @@ export function ObsidianBanner() {
   ]
   const hub: [number, number] = [202, 96]
   return (
-    <svg viewBox="0 0 400 170" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+    <svg ref={useStillSvg()} viewBox="0 0 400 170" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
       <defs>
         <linearGradient id="obsbg" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#1a1130" />
@@ -128,7 +140,7 @@ export function MarillacPlaceBanner() {
     { x: 182, begin: '2.8s' },
   ]
   return (
-    <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+    <svg ref={useStillSvg()} viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
       <defs>
         <linearGradient id="mpdusk" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#241019" />
@@ -189,7 +201,7 @@ export function MarillacPlaceBanner() {
 
 export function FlappyBanner() {
   return (
-    <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+    <svg ref={useStillSvg()} viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
       <defs>
         <linearGradient id="flapsky" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#7cc4ed" />

@@ -45,7 +45,7 @@ export default function FlowBand() {
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24, mass: 0.4 })
 
   return (
-    <div ref={ref} className="overflow-hidden px-6 py-8 sm:px-10" aria-hidden>
+    <div ref={ref} className="relative overflow-hidden px-6 py-8 sm:px-10" aria-hidden>
       <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="h-[80px] w-full sm:h-[110px]">
         {Array.from({ length: LINES }, (_, i) => (
           <FlowLine

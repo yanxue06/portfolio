@@ -76,7 +76,7 @@ function Statement() {
   return (
     <h2
       ref={ref}
-      className="ink mt-6 max-w-[1080px] text-[clamp(40px,6.6vw,88px)] font-bold leading-[1.02] tracking-[-0.03em]"
+      className="ink relative mt-6 max-w-[1080px] text-[clamp(40px,6.6vw,88px)] font-bold leading-[1.02] tracking-[-0.03em]"
     >
       {STATEMENT.map((word, i) =>
         reduce ? (
