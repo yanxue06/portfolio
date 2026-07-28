@@ -4,10 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#F2E3C2',
+        cream: '#F2ECDE',
+        navy: '#0F1E3A',
+        gold: '#C4A35C',
       },
       fontFamily: {
-        serif: ['"Instrument Serif"', 'serif'],
+        sans: ['Archivo', 'sans-serif'],
+        mono: ['"Space Mono"', 'monospace'],
       },
     },
   },

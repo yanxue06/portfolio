@@ -2,8 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* two-tone system — every component colors itself through these vars,
+   so the scroll-driven background morph flips the whole page at once */
+:root {
+  --bg: #f2ecde;
+  --ink: #0f1e3a;
+  --muted: #5e6b85;
+}
+.theme-navy {
+  --bg: #0f1e3a;
+  --ink: #f2ecde;
+  --muted: #8a93a9;
+}
+
 * {
-  font-family: 'Almarai', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 html {
@@ -11,106 +24,69 @@ html {
 }
 
 body {
-  background-color: #140d09;
+  background-color: #f2ecde;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: #f2e3c2;
-  color: #2a1410;
+  background: #0f1e3a;
+  color: #f2ecde;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #140d09;
+  background: #f2ecde;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3a2718;
+  background: rgba(15, 30, 58, 0.35);
   border-radius: 8px;
 }
 
-/* film grain — hero overlay */
-.noise-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+.ink {
+  color: var(--ink);
+}
+.muted {
+  color: var(--muted);
+}
+.hairline {
+  border-color: color-mix(in srgb, var(--ink) 15%, transparent);
+}
+/* stroke-only display text — the oversized project indices */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--ink) 28%, transparent);
 }
 
-/* sunset scene — each wing rotates around the bird's body, mirrored */
-.wing {
-  transform-box: fill-box;
-}
-.wing-l {
-  transform-origin: 100% 60%;
-}
-.wing-r {
-  transform-origin: 0% 60%;
-}
-@keyframes flap-l {
-  0%,
-  100% {
-    transform: rotate(26deg);
+@keyframes marquee {
+  from {
+    transform: translateX(0);
   }
-  45% {
-    transform: rotate(-18deg);
+  to {
+    transform: translateX(-50%);
   }
 }
-@keyframes flap-r {
-  0%,
-  100% {
-    transform: rotate(-26deg);
-  }
-  45% {
-    transform: rotate(18deg);
-  }
-}
-@keyframes birds-drift {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-18px, -6px);
-  }
+.marquee-track {
+  animation: marquee 30s linear infinite;
 }
 
-@keyframes screen-flicker {
-  0%,
-  100% {
-    opacity: 0.14;
-  }
-  40% {
-    opacity: 0.07;
-  }
-  70% {
-    opacity: 0.12;
-  }
+/* reduced motion: no scroll morph — sections become static color blocks */
+.static-blocks {
+  background: #f2ecde;
 }
-@keyframes glow {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-@keyframes bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(6px);
-  }
-}
-.animate-bob {
-  animation: bob 2.2s ease-in-out infinite;
+.static-blocks #about,
+.static-blocks #footer {
+  background: #0f1e3a;
+  --ink: #f2ecde;
+  --muted: #8a93a9;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-bob,
-  [style*='glow'] {
-    animation: none !important;
+  .marquee-track {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
   }
 }
