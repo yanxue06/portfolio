@@ -10,6 +10,7 @@ import {
 } from 'framer-motion'
 import { useRef, useState, type ReactNode } from 'react'
 import { Kicker } from './About'
+import { Asterisk } from './Hero'
 import {
   BuildSpaceBanner,
   FlappyBanner,
@@ -144,9 +145,20 @@ export default function Work() {
 
   const preview = canHover && !reduce
 
+  /* the spinny thing follows into the work section */
+  const { scrollYProgress: pageProgress } = useScroll()
+  const spin = useTransform(pageProgress, [0, 1], [0, reduce ? 0 : 220])
+
   return (
-    <section id="work" className="px-6 pb-24 pt-32 sm:px-10">
-      <div className="mx-auto max-w-[1200px]">
+    <section id="work" className="relative overflow-hidden px-6 pb-24 pt-32 sm:px-10">
+      <motion.div
+        className="ink pointer-events-none absolute -right-[5vw] top-[36%] hidden opacity-[0.08] lg:block"
+        style={{ rotate: spin }}
+        aria-hidden
+      >
+        <Asterisk className="h-[18vw] w-[18vw]" />
+      </motion.div>
+      <div className="relative mx-auto max-w-[1200px]">
         <Kicker>selected work</Kicker>
         <div
           className="hairline mt-8 border-t"

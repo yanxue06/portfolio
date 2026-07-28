@@ -140,7 +140,7 @@ export default function Hero() {
 
       <motion.nav
         style={{ opacity: navOpacity }}
-        className="hairline z-20 flex items-center justify-between border-b px-6 py-5 sm:px-10"
+        className="relative z-20 flex items-center justify-between px-6 py-5 sm:px-10"
       >
         <a href="#top" className="ink font-mono text-sm font-bold">
           yan<span className="text-gold">*</span>
@@ -157,6 +157,14 @@ export default function Hero() {
             </a>
           ))}
         </div>
+        {/* masthead rule draws in on load */}
+        <motion.span
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 0.4, duration: 1.1, ease: EASE }}
+          className="hairline absolute inset-x-0 bottom-0 origin-left border-b"
+          aria-hidden
+        />
       </motion.nav>
 
       <div className="relative z-10 flex flex-1 flex-col justify-center px-6 pb-16 pt-10 sm:px-10">

@@ -12,7 +12,9 @@ import Hero from './components/Hero'
 import Marquee from './components/Marquee'
 import About from './components/About'
 import Work from './components/Work'
+import FlowBand from './components/FlowBand'
 import Footer from './components/Footer'
+import GlowCursor from './components/GlowCursor'
 
 const CREAM = '#f2ecde'
 const NAVY = '#0f1e3a'
@@ -88,8 +90,10 @@ export default function App() {
         <Marquee />
         <About />
         <Work />
+        <FlowBand />
         <Footer />
       </div>
+      <GlowCursor />
     </motion.main>
   )
 }

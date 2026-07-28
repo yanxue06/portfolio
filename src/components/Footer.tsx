@@ -10,6 +10,12 @@ const LINKS = [
   { label: 'email', href: 'mailto:yan.xue@uwaterloo.ca' },
 ]
 
+const SINE_D = (() => {
+  let d = 'M 0 20'
+  for (let x = 20; x <= 1200; x += 20) d += ` L ${x} ${(20 + Math.sin(x / 90) * 12).toFixed(1)}`
+  return d
+})()
+
 export default function Footer() {
   const reduce = useReducedMotion()
   const footRef = useRef<HTMLElement>(null)
@@ -22,6 +28,7 @@ export default function Footer() {
     offset: ['start 0.85', 'start 0.15'],
   })
   const underline = useTransform(footProgress, [0.15, 1], [0, 1])
+  const wave = useTransform(footProgress, [0.45, 1], [0, 1])
 
   return (
     <footer
@@ -68,12 +75,30 @@ export default function Footer() {
           </motion.span>
         </motion.span>
 
+        {/* a gold sine draws in under the sign-off */}
+        <div className="pointer-events-none mt-14 overflow-hidden" aria-hidden>
+          <svg viewBox="0 0 1200 40" preserveAspectRatio="none" className="h-7 w-full">
+            {reduce ? (
+              <path d={SINE_D} fill="none" stroke="#c4a35c" strokeOpacity="0.5" strokeWidth="1.5" />
+            ) : (
+              <motion.path
+                d={SINE_D}
+                fill="none"
+                stroke="#c4a35c"
+                strokeOpacity="0.5"
+                strokeWidth="1.5"
+                style={{ pathLength: wave }}
+              />
+            )}
+          </svg>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ delay: 0.15, duration: 0.7, ease: EASE }}
-          className="hairline mt-16 flex flex-wrap items-center justify-between gap-6 border-t pt-6"
+          className="hairline mt-6 flex flex-wrap items-center justify-between gap-6 border-t pt-6"
         >
           <div className="flex gap-6">
             {LINKS.map((link) => (

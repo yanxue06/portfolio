@@ -15,59 +15,61 @@ export function BuildSpaceBanner() {
 }
 
 export function GitSemanticBanner() {
+  /* a commit graph swept by a semantic search — matching commits flare gold */
+  const quiet: Array<[number, number]> = [
+    [36, 150], [62, 150], [140, 150], [190, 150], [246, 150],
+    [150, 108], [178, 108], [262, 108], [236, 66],
+  ]
+  const hits: Array<{ x: number; y: number; score: string; begin: string }> = [
+    { x: 98, y: 150, score: '0.89', begin: '1.9s' },
+    { x: 204, y: 108, score: '0.84', begin: '3.0s' },
+    { x: 288, y: 66, score: '0.81', begin: '3.9s' },
+  ]
   return (
     <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
       <defs>
-        <filter id="gswin" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="5" stdDeviation="9" floodColor="#000000" floodOpacity="0.45" />
-        </filter>
-        <clipPath id="gsclip">
-          <rect x="12" y="14" width="296" height="172" rx="10" />
-        </clipPath>
+        <linearGradient id="gsbg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#0a120c" />
+          <stop offset="100%" stopColor="#101d12" />
+        </linearGradient>
+        <linearGradient id="gssweep" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#e2c178" stopOpacity="0" />
+          <stop offset="50%" stopColor="#e2c178" stopOpacity="0.13" />
+          <stop offset="100%" stopColor="#e2c178" stopOpacity="0" />
+        </linearGradient>
       </defs>
-      <rect width="320" height="200" fill="#0a0f0a" />
-      <rect x="12" y="14" width="296" height="172" rx="10" fill="#111c11" filter="url(#gswin)" />
-      <g clipPath="url(#gsclip)">
-        <rect x="12" y="14" width="296" height="24" fill="#1d291d" />
-        <circle cx="28" cy="26" r="4" fill="#e2655c" />
-        <circle cx="43" cy="26" r="4" fill="#e2b95c" />
-        <circle cx="58" cy="26" r="4" fill="#69c46f" />
-        <text x="160" y="30" textAnchor="middle" fontFamily={MONO} fontSize="9.5" fill="#6e8a6e">
-          git-semantic
-        </text>
-        <text x="296" y="31" textAnchor="end" fontFamily={MONO} fontSize="11" fill="#e2c178">
-          ★
-        </text>
-        <text x="26" y="66" fontFamily={MONO} fontSize="12">
-          <tspan fill="#69c46f">$ </tspan>
-          <tspan fill="#d7e8cf">search </tspan>
-          <tspan fill="#e2c178">"race condition"</tspan>
-        </text>
-        <text x="26" y="94" fontFamily={MONO} fontSize="12">
-          <tspan fill="#7a8f7a">abc1234 </tspan>
-          <tspan fill="#aed6a0">concurrent login fix</tspan>
-        </text>
-        <text x="294" y="94" textAnchor="end" fontFamily={MONO} fontSize="12" fill="#e2c178">
-          0.89
-        </text>
-        <text x="26" y="120" fontFamily={MONO} fontSize="12">
-          <tspan fill="#7a8f7a">def5678 </tspan>
-          <tspan fill="#aed6a0">token refresh sync</tspan>
-        </text>
-        <text x="294" y="120" textAnchor="end" fontFamily={MONO} fontSize="12" fill="#e2c178">
-          0.84
-        </text>
-        <text x="26" y="146" fontFamily={MONO} fontSize="12">
-          <tspan fill="#7a8f7a">9f31c2d </tspan>
-          <tspan fill="#aed6a0">mutex on session</tspan>
-        </text>
-        <text x="294" y="146" textAnchor="end" fontFamily={MONO} fontSize="12" fill="#e2c178">
-          0.81
-        </text>
-        <rect x="26" y="158" width="7" height="12" fill="#d7e8cf">
-          <animate attributeName="opacity" values="1;0;1" dur="1.4s" repeatCount="indefinite" />
-        </rect>
+      <rect width="320" height="200" fill="url(#gsbg)" />
+      <text x="20" y="34" fontFamily={MONO} fontSize="11">
+        <tspan fill="#69c46f">$ </tspan>
+        <tspan fill="#d7e8cf">search </tspan>
+        <tspan fill="#e2c178">"race condition"</tspan>
+      </text>
+      {/* branching lanes, git log --graph style */}
+      <g fill="none" stroke="#2e4632" strokeWidth="1.6">
+        <path d="M 16 150 H 304" />
+        <path d="M 86 150 C 104 150 104 108 122 108 H 304" />
+        <path d="M 168 108 C 186 108 186 66 204 66 H 304" />
       </g>
+      {quiet.map(([x, y]) => (
+        <circle key={`${x}-${y}`} cx={x} cy={y} r="3.4" fill="#3f6247" />
+      ))}
+      {/* the sweep */}
+      <rect x="-80" y="46" width="80" height="140" fill="url(#gssweep)">
+        <animateTransform attributeName="transform" type="translate" values="0 0; 420 0" dur="4.5s" repeatCount="indefinite" />
+      </rect>
+      {hits.map(({ x, y, score, begin }) => (
+        <g key={score}>
+          <circle cx={x} cy={y} r="3.4" fill="#3f6247" />
+          <g opacity="0">
+            <animate attributeName="opacity" values="0;1;0.55;0.55;0" keyTimes="0;0.04;0.2;0.85;1" dur="4.5s" begin={begin} repeatCount="indefinite" />
+            <circle cx={x} cy={y} r="4.6" fill="#e2c178" />
+            <circle cx={x} cy={y} r="9" fill="none" stroke="#e2c178" strokeOpacity="0.5" strokeWidth="1" />
+            <text x={x} y={y - 14} textAnchor="middle" fontFamily={MONO} fontSize="10" fill="#e2c178">
+              {score}
+            </text>
+          </g>
+        </g>
+      ))}
     </svg>
   )
 }
@@ -119,86 +121,68 @@ export function ObsidianBanner() {
 }
 
 export function MarillacPlaceBanner() {
-  /* a small care dashboard — each resident's task ticks complete on a loop */
-  const rows = [
-    { y: 96, label: 'intake form', begin: '0s' },
-    { y: 126, label: 'room assignment', begin: '0.5s' },
-    { y: 156, label: 'daily check-in', begin: '1s' },
+  /* a home at dusk — a window lights up for each resident, the hearth stays warm */
+  const windows = [
+    { x: 110, begin: '0.4s' },
+    { x: 132, begin: '1.6s' },
+    { x: 182, begin: '2.8s' },
   ]
   return (
     <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
       <defs>
-        <filter id="mpwin" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="5" stdDeviation="9" floodColor="#000000" floodOpacity="0.45" />
-        </filter>
-        <clipPath id="mpclip">
-          <rect x="12" y="14" width="296" height="172" rx="10" />
-        </clipPath>
-        <linearGradient id="mpbg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#220f1b" />
-          <stop offset="100%" stopColor="#34182a" />
+        <linearGradient id="mpdusk" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#241019" />
+          <stop offset="70%" stopColor="#3a1c2c" />
+          <stop offset="100%" stopColor="#452334" />
         </linearGradient>
-        <radialGradient id="mphearth" cx="0.5" cy="0.1" r="0.9">
-          <stop offset="0%" stopColor="#f3a4b5" stopOpacity="0.22" />
-          <stop offset="100%" stopColor="#f3a4b5" stopOpacity="0" />
+        <radialGradient id="mpglow" cx="0.5" cy="0.62" r="0.55">
+          <stop offset="0%" stopColor="#f3c98a" stopOpacity="0.16" />
+          <stop offset="100%" stopColor="#f3c98a" stopOpacity="0" />
         </radialGradient>
       </defs>
-      <rect width="320" height="200" fill="url(#mpbg)" />
-      <rect x="12" y="14" width="296" height="172" rx="10" fill="#3d1f30" filter="url(#mpwin)" />
-      <g clipPath="url(#mpclip)">
-        {/* warm hearth glow from the top */}
-        <rect x="12" y="14" width="296" height="172" fill="url(#mphearth)" />
-        {/* window titlebar */}
-        <rect x="12" y="14" width="296" height="24" fill="#4a2740" />
-        <circle cx="28" cy="26" r="4" fill="#e2655c" />
-        <circle cx="43" cy="26" r="4" fill="#e2b95c" />
-        <circle cx="58" cy="26" r="4" fill="#69c46f" />
-        <text x="160" y="30" textAnchor="middle" fontFamily={MONO} fontSize="9.5" fill="#cf94a8">
-          marillac place
-        </text>
-        {/* a heart — care — where git-semantic puts its star */}
-        <path
-          d="M291 32 C284.6 27.8 281.3 23.6 284.5 20.8 C286.8 18.8 289.6 20.4 291 22.5 C292.4 20.4 295.2 18.8 297.5 20.8 C300.7 23.6 297.4 27.8 291 32 Z"
-          fill="#f3a4b5"
-        >
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" />
-        </path>
-        {/* section header */}
-        <text x="26" y="62" fontFamily={MONO} fontSize="10.5" fill="#b3788d">
-          resident tasks
-        </text>
-        <line x1="22" y1="72" x2="298" y2="72" stroke="#ffffff" strokeOpacity="0.07" strokeWidth="1" />
-        {rows.map(({ y, label, begin }) => (
-          <g key={label}>
-            <circle cx="30" cy={y} r="3.2" fill="#d98aa0" />
-            <text x="44" y={y + 4} fontFamily={MONO} fontSize="11.5" fill="#ead0d9">
-              {label}
-            </text>
-            {/* empty checkbox */}
-            <rect x="272" y={y - 8.5} width="17" height="17" rx="5" fill="none" stroke="#90586c" strokeWidth="1.6" />
-            {/* checked state — fades in, staggered per row */}
-            <g opacity="0">
-              <rect x="272" y={y - 8.5} width="17" height="17" rx="5" fill="#f3a4b5" />
-              <path
-                d={`M276 ${y} l3.2 3.8 l6.6 -8`}
-                fill="none"
-                stroke="#3a1622"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <animate
-                attributeName="opacity"
-                values="0;1;1;0"
-                keyTimes="0;0.15;0.82;1"
-                dur="3.6s"
-                begin={begin}
-                repeatCount="indefinite"
-              />
-            </g>
-          </g>
-        ))}
+      <rect width="320" height="200" fill="url(#mpdusk)" />
+      <rect width="320" height="200" fill="url(#mpglow)" />
+      <line x1="0" y1="164" x2="320" y2="164" stroke="#cf94a8" strokeOpacity="0.3" />
+      {/* bushes */}
+      <path d="M 52 164 Q 66 148 82 164 Z" fill="#2a1420" stroke="#cf94a8" strokeOpacity="0.35" strokeWidth="1.2" />
+      <path d="M 238 164 Q 252 150 268 164 Z" fill="#2a1420" stroke="#cf94a8" strokeOpacity="0.35" strokeWidth="1.2" />
+      {/* house */}
+      <g stroke="#cf94a8" strokeWidth="1.6" fill="#2a1420">
+        <rect x="100" y="112" width="112" height="52" />
+        <path d="M 92 112 L 156 74 L 220 112 Z" />
+        <rect x="188" y="82" width="12" height="22" />
       </g>
+      <rect x="150" y="136" width="14" height="28" fill="#1d0c14" stroke="#cf94a8" strokeOpacity="0.7" strokeWidth="1.2" />
+      {/* a window lights for each resident */}
+      {windows.map(({ x, begin }) => (
+        <g key={x}>
+          <rect x={x} y="124" width="16" height="14" fill="#1d0c14" stroke="#cf94a8" strokeOpacity="0.7" strokeWidth="1.2" />
+          <rect x={x} y="124" width="16" height="14" fill="#f3c98a" opacity="0">
+            <animate attributeName="opacity" values="0;0.95;0.95;0" keyTimes="0;0.08;0.85;1" dur="6s" begin={begin} repeatCount="indefinite" />
+          </rect>
+        </g>
+      ))}
+      {/* chimney smoke */}
+      <path
+        d="M 194 78 C 190 68 200 64 196 54 C 192 46 200 42 198 34"
+        fill="none"
+        stroke="#cf94a8"
+        strokeOpacity="0.45"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      >
+        <animate attributeName="stroke-opacity" values="0.2;0.5;0.2" dur="5s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0" dur="5s" repeatCount="indefinite" />
+      </path>
+      {/* once a loop, a heart drifts up from the hearth */}
+      <path
+        d="M 197 60 C 193.5 57.5 191.5 55 193.4 53.3 C 194.8 52.1 196.3 53 197 54.2 C 197.7 53 199.2 52.1 200.6 53.3 C 202.5 55 200.5 57.5 197 60 Z"
+        fill="#f3a4b5"
+        opacity="0"
+      >
+        <animate attributeName="opacity" values="0;0.9;0" keyTimes="0;0.3;1" dur="6s" begin="3.2s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="translate" values="0 0; 0 -30" dur="6s" begin="3.2s" repeatCount="indefinite" />
+      </path>
     </svg>
   )
 }
