@@ -7,7 +7,7 @@ import {
   useTransform,
 } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { useRef, type MouseEvent, type ReactNode } from 'react'
+import { useRef, type ReactNode } from 'react'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -57,29 +57,15 @@ export function Magnetic({ children }: { children: ReactNode }) {
   )
 }
 
-/* Six thin arms, hairline at any size — the site's mark blown up to
-   architecture. Colored by currentColor so the theme morph carries it. */
-export function Asterisk({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" className={className} aria-hidden>
-      {/* stroke scales with the shape — non-scaling hairlines at 45vw read
-          as stray lines, not a mark */}
-      <g stroke="currentColor" strokeWidth="0.8" strokeLinecap="round">
-        <line x1="4" y1="50" x2="96" y2="50" />
-        <line x1="27" y1="10.2" x2="73" y2="89.8" />
-        <line x1="27" y1="89.8" x2="73" y2="10.2" />
-      </g>
-    </svg>
-  )
-}
-
-/* One line of the load choreography: clipped, slides up into place. */
+/* One line of the load choreography: clipped, slides up into place.
+   The wrapper's pb/-mb keeps descenders inside the clip box — leading
+   0.9 alone cuts the tail off the y. */
 function MaskLine({ children, delay, className }: { children: ReactNode; delay: number; className?: string }) {
   return (
-    <span className={`block overflow-hidden ${className ?? ''}`}>
+    <span className={`block overflow-hidden pb-[0.12em] -mb-[0.12em] ${className ?? ''}`}>
       <motion.span
         className="block"
-        initial={{ y: '108%' }}
+        initial={{ y: '112%' }}
         animate={{ y: 0 }}
         transition={{ delay, duration: 1, ease: EASE }}
       >
@@ -92,18 +78,11 @@ function MaskLine({ children, delay, className }: { children: ReactNode; delay: 
 export default function Hero() {
   const reduce = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll()
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 200])
-
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-  const driftX = useSpring(useTransform(mouseX, [-0.5, 0.5], [16, -16]), { stiffness: 50, damping: 16 })
-  const driftY = useSpring(useTransform(mouseY, [-0.5, 0.5], [12, -12]), { stiffness: 50, damping: 16 })
 
   /* darcy-style pin: the section is 2 viewports tall, the inner block sticks
      for the first one while the marquee + about scroll over it. Everything
-     hands off in sequence — hint, pill, meta, nav — until only the ghosted
-     name is left underneath the incoming content. */
+     hands off in sequence — hint, pill, meta, nav — and the name fades out
+     fully before the incoming content reaches it, so it never reads as cut. */
   const { scrollYProgress: heroProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end end'],
@@ -111,33 +90,16 @@ export default function Hero() {
   const scrollHintOpacity = useTransform(heroProgress, [0, 0.08], [1, 0])
   const chromeOpacity = useTransform(heroProgress, [0.06, 0.18], [1, 0])
   const navOpacity = useTransform(heroProgress, [0.12, 0.24], [1, 0])
-  const nameOpacity = useTransform(heroProgress, [0.18, 0.5], [1, reduce ? 1 : 0.1])
-  const nameScale = useTransform(heroProgress, [0, 0.5], [1, reduce ? 1 : 0.95])
-  const markOpacity = useTransform(heroProgress, [0.3, 0.6], [1, reduce ? 1 : 0.35])
-
-  const handleMouse = (e: MouseEvent<HTMLElement>) => {
-    mouseX.set(e.clientX / window.innerWidth - 0.5)
-    mouseY.set(e.clientY / window.innerHeight - 0.5)
-  }
+  const nameOpacity = useTransform(heroProgress, [0.16, 0.42], [1, reduce ? 1 : 0])
+  const nameScale = useTransform(heroProgress, [0, 0.42], [1, reduce ? 1 : 0.96])
 
   return (
     <section
       id="top"
       ref={sectionRef}
-      onMouseMove={reduce ? undefined : handleMouse}
       className={reduce ? 'relative h-screen' : 'relative h-[170vh] sm:h-[200vh]'}
     >
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
-      <motion.div
-        className="ink pointer-events-none absolute -right-[8vw] top-1/2 hidden -translate-y-1/2 sm:block"
-        style={{ x: driftX, y: driftY, opacity: markOpacity }}
-        aria-hidden
-      >
-        <motion.div style={{ rotate }} className="opacity-[0.13]">
-          <Asterisk className="h-[45vw] w-[45vw]" />
-        </motion.div>
-      </motion.div>
-
       <motion.nav
         style={{ opacity: navOpacity }}
         className="relative z-20 flex items-center justify-between px-6 py-5 sm:px-10"

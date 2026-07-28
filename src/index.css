@@ -90,3 +90,98 @@ body {
     scroll-behavior: auto;
   }
 }
+
+/* campsite — ember glow + fireflies (ported from the basecamp draft) */
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+.firefly {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: #d8b36a;
+  box-shadow: 0 0 6px rgba(216, 179, 106, 0.8);
+  opacity: 0;
+}
+@keyframes firefly-a {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.9;
+  }
+  45% {
+    transform: translate(26px, -18px);
+    opacity: 0.25;
+  }
+  62% {
+    opacity: 0.8;
+  }
+  90% {
+    transform: translate(-8px, 10px);
+    opacity: 0;
+  }
+}
+@keyframes firefly-b {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-22px, -24px);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate(-30px, -6px);
+    opacity: 0.2;
+  }
+}
+@keyframes firefly-c {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  55% {
+    transform: translate(16px, -28px);
+    opacity: 0.35;
+  }
+  80% {
+    transform: translate(28px, -12px);
+    opacity: 0;
+  }
+}
+.firefly-a {
+  animation: firefly-a 9s ease-in-out infinite;
+}
+.firefly-b {
+  animation: firefly-b 11s ease-in-out infinite;
+}
+.firefly-c {
+  animation: firefly-c 7.5s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .firefly,
+  [style*='glow'] {
+    animation: none !important;
+  }
+  .firefly {
+    opacity: 0.5;
+  }
+}

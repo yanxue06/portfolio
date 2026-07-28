@@ -133,68 +133,96 @@ export function ObsidianBanner() {
 }
 
 export function MarillacPlaceBanner() {
-  /* a home at dusk — a window lights up for each resident, the hearth stays warm */
+  /* a home at dusk — windows light one by one, smoke drifts, a heart
+     floats up from the chimney. a home, not a dashboard. */
   const windows = [
-    { x: 110, begin: '0.4s' },
-    { x: 132, begin: '1.6s' },
-    { x: 182, begin: '2.8s' },
+    { x: 118, y: 106, begin: '0s' },
+    { x: 182, y: 106, begin: '1s' },
+    { x: 120, y: 132, begin: '2s' },
   ]
   return (
     <svg ref={useStillSvg()} viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
       <defs>
         <linearGradient id="mpdusk" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#241019" />
-          <stop offset="70%" stopColor="#3a1c2c" />
-          <stop offset="100%" stopColor="#452334" />
+          <stop offset="0%" stopColor="#241120" />
+          <stop offset="100%" stopColor="#3a1c2e" />
         </linearGradient>
-        <radialGradient id="mpglow" cx="0.5" cy="0.62" r="0.55">
-          <stop offset="0%" stopColor="#f3c98a" stopOpacity="0.16" />
-          <stop offset="100%" stopColor="#f3c98a" stopOpacity="0" />
+        <radialGradient id="mpwarm">
+          <stop offset="0%" stopColor="#f3c88a" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#f3c88a" stopOpacity="0" />
         </radialGradient>
       </defs>
       <rect width="320" height="200" fill="url(#mpdusk)" />
-      <rect width="320" height="200" fill="url(#mpglow)" />
-      <line x1="0" y1="164" x2="320" y2="164" stroke="#cf94a8" strokeOpacity="0.3" />
-      {/* bushes */}
-      <path d="M 52 164 Q 66 148 82 164 Z" fill="#2a1420" stroke="#cf94a8" strokeOpacity="0.35" strokeWidth="1.2" />
-      <path d="M 238 164 Q 252 150 268 164 Z" fill="#2a1420" stroke="#cf94a8" strokeOpacity="0.35" strokeWidth="1.2" />
+      {/* ground */}
+      <path d="M0 160 Q 160 150 320 160 L320 200 L0 200 Z" fill="#1c0d18" />
       {/* house */}
-      <g stroke="#cf94a8" strokeWidth="1.6" fill="#2a1420">
-        <rect x="100" y="112" width="112" height="52" />
-        <path d="M 92 112 L 156 74 L 220 112 Z" />
-        <rect x="188" y="82" width="12" height="22" />
-      </g>
-      <rect x="150" y="136" width="14" height="28" fill="#1d0c14" stroke="#cf94a8" strokeOpacity="0.7" strokeWidth="1.2" />
-      {/* a window lights for each resident */}
-      {windows.map(({ x, begin }) => (
-        <g key={x}>
-          <rect x={x} y="124" width="16" height="14" fill="#1d0c14" stroke="#cf94a8" strokeOpacity="0.7" strokeWidth="1.2" />
-          <rect x={x} y="124" width="16" height="14" fill="#f3c98a" opacity="0">
-            <animate attributeName="opacity" values="0;0.95;0.95;0" keyTimes="0;0.08;0.85;1" dur="6s" begin={begin} repeatCount="indefinite" />
-          </rect>
+      <rect x="196" y="54" width="14" height="34" fill="#2e1526" />
+      <path d="M94 98 L160 48 L226 98 Z" fill="#2e1526" />
+      <rect x="106" y="98" width="108" height="64" fill="#4a2740" />
+      <rect x="150" y="126" width="22" height="36" rx="2" fill="#2e1526" />
+      <circle cx="167" cy="145" r="1.6" fill="#cf94a8" />
+      {/* bushes */}
+      <ellipse cx="94" cy="158" rx="16" ry="8" fill="#2a1424" />
+      <ellipse cx="232" cy="159" rx="20" ry="9" fill="#2a1424" />
+      {/* windows light one by one — each is a resident cared for */}
+      {windows.map(({ x, y, begin }) => (
+        <g key={begin}>
+          <rect x={x} y={y} width="20" height="15" rx="1.5" fill="#2e1526" stroke="#38182b" strokeWidth="1.5" />
+          <g opacity="0">
+            <circle cx={x + 10} cy={y + 7.5} r="22" fill="url(#mpwarm)" />
+            <rect x={x} y={y} width="20" height="15" rx="1.5" fill="#f3c88a" />
+            <line x1={x + 10} y1={y} x2={x + 10} y2={y + 15} stroke="#3a1c2e" strokeWidth="1.4" />
+            <line x1={x} y1={y + 7.5} x2={x + 20} y2={y + 7.5} stroke="#3a1c2e" strokeWidth="1.4" />
+            <animate
+              attributeName="opacity"
+              values="0;0.95;0.95;0"
+              keyTimes="0;0.06;0.8;1"
+              dur="7.5s"
+              begin={begin}
+              repeatCount="indefinite"
+            />
+          </g>
         </g>
       ))}
-      {/* chimney smoke */}
-      <path
-        d="M 194 78 C 190 68 200 64 196 54 C 192 46 200 42 198 34"
-        fill="none"
-        stroke="#cf94a8"
-        strokeOpacity="0.45"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-      >
-        <animate attributeName="stroke-opacity" values="0.2;0.5;0.2" dur="5s" repeatCount="indefinite" />
-        <animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0" dur="5s" repeatCount="indefinite" />
-      </path>
-      {/* once a loop, a heart drifts up from the hearth */}
-      <path
-        d="M 197 60 C 193.5 57.5 191.5 55 193.4 53.3 C 194.8 52.1 196.3 53 197 54.2 C 197.7 53 199.2 52.1 200.6 53.3 C 202.5 55 200.5 57.5 197 60 Z"
-        fill="#f3a4b5"
-        opacity="0"
-      >
-        <animate attributeName="opacity" values="0;0.9;0" keyTimes="0;0.3;1" dur="6s" begin="3.2s" repeatCount="indefinite" />
-        <animateTransform attributeName="transform" type="translate" values="0 0; 0 -30" dur="6s" begin="3.2s" repeatCount="indefinite" />
-      </path>
+      {/* smoke puffs off the chimney */}
+      {[0, 1.4, 2.8].map((d, i) => (
+        <circle key={i} cx={203 + i * 2} cy="48" r={2.4 + i * 0.5} fill="#cf94a8" opacity="0">
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0 0; -6 -30"
+            dur="4.5s"
+            begin={`${d}s`}
+            repeatCount="indefinite"
+          />
+          <animate attributeName="opacity" values="0;0.35;0" dur="4.5s" begin={`${d}s`} repeatCount="indefinite" />
+        </circle>
+      ))}
+      {/* once a loop, a heart floats up */}
+      <g transform="translate(203 44)">
+        <g opacity="0">
+          <path
+            d="M0 4 C -3.4 1.6 -5 -0.6 -3.2 -2.4 C -1.8 -3.8 0 -2.6 0 -1 C 0 -2.6 1.8 -3.8 3.2 -2.4 C 5 -0.6 3.4 1.6 0 4 Z"
+            fill="#f3a4b5"
+          />
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0 0; 2 -38"
+            dur="7.5s"
+            begin="3.6s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="opacity"
+            values="0;0.95;0.9;0"
+            keyTimes="0;0.06;0.3;0.5"
+            dur="7.5s"
+            begin="3.6s"
+            repeatCount="indefinite"
+          />
+        </g>
+      </g>
     </svg>
   )
 }
