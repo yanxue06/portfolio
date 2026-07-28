@@ -50,7 +50,9 @@ export default function FlowBand() {
         {Array.from({ length: LINES }, (_, i) => (
           <FlowLine
             key={i}
-            d={wave(8 + (104 / (LINES - 1)) * i, 3 + (i % 4) * 1.6, i * 0.9)}
+            /* amplitude stays under half the 8px line spacing — anything
+               bigger lets neighbours cross and the band reads as a tangle */
+            d={wave(8 + (104 / (LINES - 1)) * i, 2 + (i % 3) * 0.7, i * 0.9)}
             progress={progress}
             delay={(i / LINES) * 0.25}
             reduce={!!reduce}
