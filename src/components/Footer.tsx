@@ -21,8 +21,10 @@ const SINE_D = (() => {
 function Campsite({ reduce, smoke }: { reduce: boolean; smoke: MotionValue<number> }) {
   return (
     <div className="pointer-events-none absolute inset-x-0 bottom-0" aria-hidden>
+      {/* a short wisp above the fire — full-height it crossed the whole
+          footer and read as a stray line */}
       <svg
-        className="absolute bottom-[120px] left-[35%] hidden h-[36vh] w-[220px] sm:block"
+        className="absolute bottom-[128px] left-[42%] hidden h-[150px] w-[80px] sm:block"
         viewBox="0 0 220 460"
         preserveAspectRatio="xMidYMax meet"
         fill="none"

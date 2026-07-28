@@ -61,9 +61,16 @@ export default function Terrain() {
   const reduce = useReducedMotion() ?? false
   const { scrollYProgress } = useScroll()
   const progress = useSpring(scrollYProgress, { stiffness: 70, damping: 22 })
+  /* the hero belongs to the asterisk — the whole layer only fades in after
+     it has left, so the two never share the stage */
+  const layerOpacity = useTransform(scrollYProgress, [0.12, 0.24], [0, 1])
 
   return (
-    <div className="fixed inset-0 z-0" aria-hidden>
+    <motion.div
+      className="fixed inset-0 z-0"
+      style={reduce ? undefined : { opacity: layerOpacity }}
+      aria-hidden
+    >
       <svg className="relative h-full w-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
         <defs>
           <linearGradient id="contourfade" x1="0" y1="0" x2="0" y2="1">
@@ -81,6 +88,6 @@ export default function Terrain() {
           ))}
         </g>
       </svg>
-    </div>
+    </motion.div>
   )
 }
