@@ -55,7 +55,9 @@ export default function App() {
       for (const id of ['about', 'work', 'footer']) {
         const el = document.getElementById(id)
         const top = el ? el.getBoundingClientRect().top + window.scrollY : 0
-        stops.push((top - vh * 0.8) / span, (top - vh * 0.35) / span)
+        /* keep the crossfade span short — the rgb midpoint of navy↔cream is
+           mud, so linger in it as little as possible */
+        stops.push((top - vh * 0.55) / span, (top - vh * 0.28) / span)
       }
       for (let i = 1; i < stops.length; i++) {
         stops[i] = Math.min(Math.max(stops[i], stops[i - 1] + 0.001), 1 - (stops.length - 1 - i) * 0.001)
@@ -80,10 +82,14 @@ export default function App() {
       style={reduce ? undefined : ({ backgroundColor: bg, '--ink': ink, '--muted': muted } as unknown as MotionStyle)}
     >
       <Hero />
-      <Marquee />
-      <About />
-      <Work />
-      <Footer />
+      {/* pulls the rest of the page up over the hero's pinned second viewport
+          so the marquee + about physically scroll across the ghosted name */}
+      <div className={reduce ? 'relative z-10' : 'relative z-10 -mt-[70vh] sm:-mt-[100vh]'}>
+        <Marquee />
+        <About />
+        <Work />
+        <Footer />
+      </div>
     </motion.main>
   )
 }

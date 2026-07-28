@@ -3,11 +3,12 @@ import {
   motion,
   useMotionValue,
   useReducedMotion,
+  useScroll,
   useSpring,
   useTransform,
   useVelocity,
 } from 'framer-motion'
-import { useState, type ReactNode } from 'react'
+import { useRef, useState, type ReactNode } from 'react'
 import { Kicker } from './About'
 import {
   BuildSpaceBanner,
@@ -30,6 +31,23 @@ interface Project {
 
 function Hi({ children }: { children: ReactNode }) {
   return <strong className="ink font-extrabold">{children}</strong>
+}
+
+/* Row divider that fills out as it rides up the viewport — scrubbed, so
+   scrolling back un-draws it. */
+function ScrubRule() {
+  const reduce = useReducedMotion()
+  const ref = useRef<HTMLSpanElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.95', 'start 0.55'] })
+  if (reduce) return <span className="hairline absolute inset-x-0 bottom-0 border-b" aria-hidden />
+  return (
+    <span ref={ref} className="absolute inset-x-0 bottom-0 h-px" aria-hidden>
+      <motion.span
+        style={{ scaleX: scrollYProgress, backgroundColor: 'var(--ink)' }}
+        className="block h-full w-full origin-left opacity-20"
+      />
+    </span>
+  )
 }
 
 const PROJECTS: Project[] = [
@@ -153,8 +171,9 @@ export default function Work() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.65, ease: EASE }}
               onMouseEnter={preview ? () => setHovered(i) : undefined}
-              className="hairline group relative block border-b py-8 md:py-10"
+              className="group relative block py-8 md:py-10"
             >
+              <ScrubRule />
               <span
                 className="text-outline pointer-events-none absolute right-0 top-1/2 hidden -translate-y-1/2 select-none text-[clamp(64px,9vw,150px)] font-extrabold leading-none lg:block"
                 aria-hidden
