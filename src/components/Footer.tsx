@@ -95,7 +95,7 @@ export default function Footer() {
             overflow-hidden parent never intersects, so whileInView on it
             would deadlock */}
         <motion.span
-          className="block overflow-hidden pb-[0.18em] -mb-[0.1em]"
+          className="block overflow-hidden pb-4 -mb-3"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
