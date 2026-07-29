@@ -41,10 +41,11 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
       <motion.g style={{ y: skyY }}>
         <rect x="-20" y="240" width="1480" height="430" fill="url(#horizonWash)" />
         <motion.circle cx="900" cy="600" r="170" fill="url(#sunGlow)" style={{ y: sunY, opacity: glowOpacity }} />
-        {/* the mark as the sun: big, translucent ink, not a yellow badge */}
+        {/* the mark as the sun: big, translucent ink, not a yellow badge.
+            css idle spin + scrubbed rotate compose on nested groups */}
         <motion.g style={{ y: sunY }}>
           <motion.g style={{ rotate: sunRotate, transformBox: 'fill-box', transformOrigin: 'center' } as never}>
-            <g stroke="#16243e" strokeOpacity="0.35" strokeWidth="8" strokeLinecap="round">
+            <g className="sun-spin" stroke="#16243e" strokeOpacity="0.35" strokeWidth="8" strokeLinecap="round">
               <line x1="780" y1="600" x2="1020" y2="600" />
               <line x1="840" y1="496.1" x2="960" y2="703.9" />
               <line x1="840" y1="703.9" x2="960" y2="496.1" />

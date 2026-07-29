@@ -235,3 +235,20 @@ body {
     opacity: 0.12;
   }
 }
+
+/* the asterisk-sun idles at one turn per minute; scroll adds on top */
+.sun-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sun-spin 60s linear infinite;
+}
+@keyframes sun-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sun-spin {
+    animation: none;
+  }
+}

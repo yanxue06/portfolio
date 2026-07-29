@@ -39,7 +39,7 @@ function rand(min: number, max: number) {
 }
 
 function makeFlock(): Flock {
-  const size = Math.round(rand(4, 8))
+  const size = Math.round(rand(3, 5))
   const birds: Bird[] = []
   for (let i = 0; i < size; i++) {
     // loose V: a leader, then alternating sides trailing behind with jitter
@@ -116,8 +116,8 @@ export default function Flocks() {
     const spawn = (delay: number) => {
       timer = window.setTimeout(() => {
         if (!alive) return
-        setFlocks((cur) => (cur.length >= 3 ? cur : [...cur, makeFlock()]))
-        spawn(rand(3500, 8000))
+        setFlocks((cur) => (cur.length >= 1 ? cur : [...cur, makeFlock()]))
+        spawn(rand(9000, 16000))
       }, delay)
     }
     spawn(rand(400, 1200))
