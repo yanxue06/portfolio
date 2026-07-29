@@ -136,9 +136,9 @@ export default function Work() {
             >
               <ScrubRule />
               <motion.span
-                variants={{ hidden: { opacity: 0, x: 32 }, show: { opacity: 1, x: 0 } }}
+                variants={{ hidden: { opacity: 0, x: 32, y: '-64%' }, show: { opacity: 1, x: 0, y: '-64%' } }}
                 transition={{ delay: 0.2, duration: 0.8, ease: EASE }}
-                className="text-outline pointer-events-none absolute right-0 top-1/2 hidden -translate-y-1/2 select-none text-[clamp(64px,9vw,150px)] font-extrabold leading-none lg:block"
+                className="text-outline pointer-events-none absolute right-0 top-1/2 hidden select-none text-[clamp(64px,9vw,150px)] font-extrabold leading-none lg:block"
                 aria-hidden
               >
                 {String(i + 1).padStart(2, '0')}
