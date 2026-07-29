@@ -9,13 +9,9 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
   const reduce = useReducedMotion()
   /* the sun sets on an arc — drifting right while the drop accelerates —
      instead of falling in a straight line */
-  const sunY = useTransform(progress, [0.05, 0.3, 0.5], [0, reduce ? 0 : 48, reduce ? 0 : 135])
+  const sunY = useTransform(progress, [0.05, 0.3, 0.5], [0, reduce ? 0 : 110, reduce ? 0 : 290])
   const sunX = useTransform(progress, [0.05, 0.5], [0, reduce ? 0 : 85])
   const glowOpacity = useTransform(progress, [0.05, 0.5], [1, reduce ? 1 : 0.4])
-  const skyY = useTransform(progress, [0, 0.6], [0, reduce ? 0 : 46])
-  const cloudY = useTransform(progress, [0, 0.6], [0, reduce ? 0 : 34])
-  const farY = useTransform(progress, [0, 0.6], [0, reduce ? 0 : 26])
-  const midY = useTransform(progress, [0, 0.6], [0, reduce ? 0 : 14])
 
   return (
     <svg
@@ -40,13 +36,13 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
       </defs>
 
       {/* sky wash + the asterisk-sun — slowest layer */}
-      <motion.g style={{ y: skyY }}>
+      <g>
         <rect x="-20" y="240" width="1480" height="430" fill="url(#horizonWash)" />
-        <motion.circle cx="900" cy="600" r="170" fill="url(#sunGlow)" style={{ x: sunX, y: sunY, opacity: glowOpacity }} />
-      </motion.g>
+        <motion.circle cx="900" cy="400" r="170" fill="url(#sunGlow)" style={{ x: sunX, y: sunY, opacity: glowOpacity }} />
+      </g>
 
       {/* air — clouds and birds */}
-      <motion.g style={{ y: cloudY }}>
+      <g>
         {/* clouds stay right of the text block — blurred navy on cream
             reads as smudges when they sit under the name */}
         <g filter="url(#soften)" fill="#16243e">
@@ -55,20 +51,20 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
           <ellipse cx="1240" cy="345" rx="90" ry="8" opacity="0.09" />
         </g>
         <Flocks />
-      </motion.g>
+      </g>
 
       {/* far range */}
-      <motion.g style={{ y: farY }}>
+      <g>
         <path
           d="M0 655 L160 585 L330 650 L500 596 L660 648 L840 590 L1010 650 L1180 598 L1330 652 L1440 625 L1440 900 L0 900 Z"
           fill="#16243e"
           opacity="0.3"
         />
         <rect y="580" width="1440" height="120" fill="#c4a35c" opacity="0.05" />
-      </motion.g>
+      </g>
 
       {/* mid hills + pines */}
-      <motion.g style={{ y: midY }}>
+      <g>
         <path
           d="M0 730 Q180 668 380 706 Q560 740 760 700 Q960 664 1140 708 Q1290 742 1440 700 L1440 900 L0 900 Z"
           fill="#16243e"
@@ -82,7 +78,7 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
           <path d="M1306 712 l11 -34 l11 34 z" />
           <path d="M1344 708 l12 -38 l12 38 z" />
         </g>
-      </motion.g>
+      </g>
 
       {/* foreground cliff — anchored, no parallax */}
       <path

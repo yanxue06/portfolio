@@ -93,7 +93,7 @@ export default function Hero() {
   const nameOpacity = useTransform(heroProgress, [0.3, 0.55], [1, reduce ? 1 : 0])
   const nameScale = useTransform(heroProgress, [0, 0.55], [1, reduce ? 1 : 0.96])
   const sceneOpacity = useTransform(heroProgress, [0.45, 0.75], [1, reduce ? 1 : 0])
-  const meshY = useTransform(heroProgress, [0.05, 0.3, 0.5], [0, reduce ? 0 : 48, reduce ? 0 : 135])
+  const meshY = useTransform(heroProgress, [0.05, 0.3, 0.5], [0, reduce ? 0 : 110, reduce ? 0 : 290])
   const meshX = useTransform(heroProgress, [0.05, 0.5], [0, reduce ? 0 : 85])
 
   const handleMouse = (e: MouseEvent<HTMLElement>) => {
@@ -118,7 +118,7 @@ export default function Hero() {
       >
         <motion.div
           style={{ x: meshX, y: meshY }}
-          className="absolute left-[62%] top-[57%] h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full opacity-90"
+          className="absolute left-[62%] top-[34%] h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full opacity-90"
         >
           <MeshGradient
             colors={['#f5edd8', '#e6d5a6', '#c4a35c', '#efe3c0']}
