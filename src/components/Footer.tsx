@@ -159,7 +159,7 @@ export default function Footer() {
             ))}
           </div>
           <p className="muted font-mono text-[11.5px]">
-            © {new Date().getFullYear()} yan xue<span className="text-gold">*</span>
+            © {new Date().getFullYear()} yan xue
           </p>
         </motion.div>
       </div>
