@@ -20,10 +20,12 @@ const NAV_LINKS = [
   { label: 'email', href: 'mailto:yan.xue@uwaterloo.ca' },
 ]
 
-const META_LINES = [
-  'computer engineering @ uwaterloo · swe intern @ photon (google, vercel + sequoia backed) · prev @ bitgo',
-  'i build infra and dev tools, mostly in rust and typescript.',
+const ROLES = [
+  'computer engineering @ uwaterloo',
+  'swe intern @ photon (google, vercel + sequoia backed)',
+  'prev @ bitgo',
 ]
+const TAGLINE = 'i build infra and dev tools, mostly in rust and typescript.'
 
 /* The "say hello" pill leans toward the cursor. */
 export function Magnetic({ children }: { children: ReactNode }) {
@@ -167,7 +169,13 @@ export default function Hero() {
             transition={{ delay: 0.55, duration: 0.8, ease: EASE }}
             className="ink text-[14px] leading-relaxed opacity-90 sm:text-[15px]"
           >
-            {META_LINES[0]}
+            {/* each role is one unbreakable chunk — lines only split at the dots */}
+            {ROLES.map((role, i) => (
+              <span key={role} className="whitespace-nowrap">
+                {role}
+                {i < ROLES.length - 1 && <span className="mx-1.5">·</span>}
+              </span>
+            ))}
           </motion.p>
           <motion.p
             initial={{ y: 14, opacity: 0 }}
@@ -175,7 +183,7 @@ export default function Hero() {
             transition={{ delay: 0.68, duration: 0.8, ease: EASE }}
             className="muted mt-1.5 font-mono text-[12px]"
           >
-            {META_LINES[1]}
+            {TAGLINE}
           </motion.p>
         </motion.div>
 

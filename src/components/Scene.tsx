@@ -8,7 +8,7 @@ import Flocks from './Flocks'
 export default function Scene({ progress }: { progress: MotionValue<number> }) {
   const reduce = useReducedMotion()
   const sunY = useTransform(progress, [0.05, 0.5], [0, reduce ? 0 : 135])
-  const sunRotate = useTransform(progress, [0, 0.6], [0, reduce ? 0 : 130])
+  const sunRotate = useTransform(progress, [0, 0.6], [0, reduce ? 0 : 420])
   const glowOpacity = useTransform(progress, [0.05, 0.5], [1, reduce ? 1 : 0.4])
   const skyY = useTransform(progress, [0, 0.6], [0, reduce ? 0 : 46])
   const cloudY = useTransform(progress, [0, 0.6], [0, reduce ? 0 : 34])
