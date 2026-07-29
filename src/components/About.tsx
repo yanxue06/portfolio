@@ -35,7 +35,7 @@ const EXPERIENCE: Array<{ place: string; logo: string; seal?: boolean; what: str
     logo: '/logos/uwaterloo.png',
     seal: true,
     what: "computer engineering, co-op. dean's honours 2x",
-    when: 'apr 2024 — now',
+    when: 'sep 2024 — now',
   },
 ]
 
