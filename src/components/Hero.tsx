@@ -8,6 +8,7 @@ import {
 } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { useRef, type MouseEvent, type ReactNode } from 'react'
+import Scene from './Scene'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -57,21 +58,6 @@ export function Magnetic({ children }: { children: ReactNode }) {
   )
 }
 
-/* Six thin arms — the site's mark blown up to architecture. The one big
-   asterisk on the page: it spins with scroll in the hero and hands off to
-   the terrain lines. */
-function Asterisk({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" className={className} aria-hidden>
-      <g stroke="currentColor" strokeWidth="0.8" strokeLinecap="round">
-        <line x1="4" y1="50" x2="96" y2="50" />
-        <line x1="27" y1="10.2" x2="73" y2="89.8" />
-        <line x1="27" y1="89.8" x2="73" y2="10.2" />
-      </g>
-    </svg>
-  )
-}
-
 /* One line of the load choreography: clipped, slides up into place.
    The wrapper's pb/-mb keeps descenders inside the clip box — leading
    0.9 alone cuts the tail off the y. */
@@ -93,8 +79,6 @@ function MaskLine({ children, delay, className }: { children: ReactNode; delay: 
 export default function Hero() {
   const reduce = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll()
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 200])
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -110,12 +94,12 @@ export default function Hero() {
     target: sectionRef,
     offset: ['start start', 'end end'],
   })
-  const scrollHintOpacity = useTransform(heroProgress, [0, 0.08], [1, 0])
-  const chromeOpacity = useTransform(heroProgress, [0.06, 0.18], [1, 0])
-  const navOpacity = useTransform(heroProgress, [0.12, 0.24], [1, 0])
-  const nameOpacity = useTransform(heroProgress, [0.16, 0.42], [1, reduce ? 1 : 0])
-  const nameScale = useTransform(heroProgress, [0, 0.42], [1, reduce ? 1 : 0.96])
-  const markOpacity = useTransform(heroProgress, [0.28, 0.52], [1, reduce ? 1 : 0])
+  const scrollHintOpacity = useTransform(heroProgress, [0, 0.06], [1, 0])
+  const chromeOpacity = useTransform(heroProgress, [0.15, 0.32], [1, 0])
+  const navOpacity = useTransform(heroProgress, [0.22, 0.38], [1, 0])
+  const nameOpacity = useTransform(heroProgress, [0.3, 0.55], [1, reduce ? 1 : 0])
+  const nameScale = useTransform(heroProgress, [0, 0.55], [1, reduce ? 1 : 0.96])
+  const sceneOpacity = useTransform(heroProgress, [0.45, 0.75], [1, reduce ? 1 : 0])
 
   const handleMouse = (e: MouseEvent<HTMLElement>) => {
     mouseX.set(e.clientX / window.innerWidth - 0.5)
@@ -130,14 +114,14 @@ export default function Hero() {
       className={reduce ? 'relative h-screen' : 'relative h-[170vh] sm:h-[200vh]'}
     >
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
+      {/* the cliff scene fills the hero behind the type, drifting gently
+          against the cursor; it fades away during the pin handoff */}
       <motion.div
-        className="ink pointer-events-none absolute -right-[8vw] top-1/2 hidden -translate-y-1/2 sm:block"
-        style={{ x: driftX, y: driftY, opacity: markOpacity }}
+        className="pointer-events-none absolute -inset-5"
+        style={{ x: driftX, y: driftY, opacity: sceneOpacity }}
         aria-hidden
       >
-        <motion.div style={{ rotate }} className="opacity-[0.13]">
-          <Asterisk className="h-[45vw] w-[45vw]" />
-        </motion.div>
+        <Scene progress={heroProgress} />
       </motion.div>
 
       <motion.nav
@@ -169,10 +153,10 @@ export default function Hero() {
         />
       </motion.nav>
 
-      <div className="relative z-10 flex flex-1 flex-col justify-center px-6 pb-16 pt-10 sm:px-10">
+      <div className="relative z-10 flex flex-1 flex-col justify-start px-6 pb-16 pt-[10vh] sm:px-10">
         <motion.h1
           style={{ opacity: nameOpacity, scale: nameScale }}
-          className="ink origin-left select-none text-[clamp(76px,20vw,330px)] font-extrabold leading-[0.9] tracking-[-0.04em]"
+          className="ink origin-left select-none text-[clamp(58px,9.5vw,150px)] font-extrabold leading-[0.9] tracking-[-0.04em]"
         >
           <MaskLine delay={0.1}>
             yan xue<span className="align-top text-[0.5em] leading-none text-gold">*</span>
@@ -181,7 +165,7 @@ export default function Hero() {
 
         <motion.div
           style={{ opacity: chromeOpacity }}
-          className="hairline mt-10 grid max-w-[980px] gap-4 border-t pt-6 sm:mt-14 sm:grid-cols-3 sm:gap-0"
+          className="hairline mt-8 grid max-w-[760px] gap-4 border-t pt-6 sm:mt-10 sm:grid-cols-3 sm:gap-0"
         >
           {META_COLUMNS.map((text, i) => (
             <motion.p

@@ -88,7 +88,9 @@ export default function App() {
       <Hero />
       {/* pulls the rest of the page up over the hero's pinned second viewport
           so the marquee + about physically scroll across the ghosted name */}
-      <div className={reduce ? 'relative z-10' : 'relative z-10 -mt-[70vh] sm:-mt-[100vh]'}>
+      {/* smaller pull-up than the hero's extra viewport: the first ~40vh of
+          scroll play the scene animation alone before content arrives */}
+      <div className={reduce ? 'relative z-10' : 'relative z-10 -mt-[45vh] sm:-mt-[60vh]'}>
         <Marquee />
         <About />
         <Work />

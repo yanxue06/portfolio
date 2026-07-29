@@ -117,6 +117,7 @@ const PROJECTS: Project[] = [
 ]
 
 export default function Work() {
+  const reduce = useReducedMotion()
   return (
     <section id="work" className="relative overflow-hidden px-6 pb-24 pt-32 sm:px-10">
       <div className="relative mx-auto max-w-[1200px]">
@@ -128,39 +129,69 @@ export default function Work() {
               href={project.href}
               target="_blank"
               rel="noreferrer"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={reduce ? false : 'hidden'}
+              whileInView="show"
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.65, ease: EASE }}
               className="group relative block py-8 md:py-10"
             >
               <ScrubRule />
-              <span
+              <motion.span
+                variants={{ hidden: { opacity: 0, x: 32 }, show: { opacity: 1, x: 0 } }}
+                transition={{ delay: 0.2, duration: 0.8, ease: EASE }}
                 className="text-outline pointer-events-none absolute right-0 top-1/2 hidden -translate-y-1/2 select-none text-[clamp(64px,9vw,150px)] font-extrabold leading-none lg:block"
                 aria-hidden
               >
                 {String(i + 1).padStart(2, '0')}
-              </span>
+              </motion.span>
 
               <div className="md:grid md:grid-cols-[300px_1fr] md:items-start md:gap-8">
+                {/* banner wipes open left to right */}
                 <span className="hairline mb-5 block aspect-video overflow-hidden border md:mb-0">
-                  {project.banner}
+                  <motion.span
+                    variants={{
+                      hidden: { clipPath: 'inset(0 100% 0 0)' },
+                      show: { clipPath: 'inset(0 0% 0 0)' },
+                    }}
+                    transition={{ duration: 0.9, ease: EASE }}
+                    className="block h-full w-full"
+                  >
+                    {project.banner}
+                  </motion.span>
                 </span>
 
                 <span className="block">
-                  <span className="flex items-baseline gap-4 transition-transform duration-300 group-hover:translate-x-2">
-                    <h3 className="ink text-[clamp(34px,4.2vw,58px)] font-extrabold leading-[0.95] tracking-[-0.03em]">
-                      {project.title}
-                    </h3>
-                    <span
-                      className="muted text-[20px] transition-all duration-200 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-gold"
-                      aria-hidden
+                  {/* title rises out of its own clip line */}
+                  <span className="block overflow-hidden pb-[0.1em] -mb-[0.1em]">
+                    <motion.span
+                      variants={{ hidden: { y: '110%' }, show: { y: 0 } }}
+                      transition={{ delay: 0.08, duration: 0.85, ease: EASE }}
+                      className="flex items-baseline gap-4 transition-transform duration-300 group-hover:translate-x-2"
                     >
-                      ↗
-                    </span>
+                      <h3 className="ink text-[clamp(34px,4.2vw,58px)] font-extrabold leading-[0.95] tracking-[-0.03em]">
+                        {project.title}
+                      </h3>
+                      <span
+                        className="muted text-[20px] transition-all duration-200 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-gold"
+                        aria-hidden
+                      >
+                        ↗
+                      </span>
+                    </motion.span>
                   </span>
-                  <p className="muted mt-3 max-w-[560px] text-[13.5px] leading-[1.65]">{project.description}</p>
-                  <p className="muted mt-2 font-mono text-[11px] opacity-75">{project.stack}</p>
+                  <motion.p
+                    variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+                    transition={{ delay: 0.18, duration: 0.7, ease: EASE }}
+                    className="muted mt-3 max-w-[560px] text-[13.5px] leading-[1.65]"
+                  >
+                    {project.description}
+                  </motion.p>
+                  <motion.p
+                    variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
+                    transition={{ delay: 0.26, duration: 0.7, ease: EASE }}
+                    className="muted mt-2 font-mono text-[11px] opacity-75"
+                  >
+                    {project.stack}
+                  </motion.p>
                 </span>
               </div>
             </motion.a>
