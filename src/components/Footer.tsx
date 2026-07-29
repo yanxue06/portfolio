@@ -152,7 +152,7 @@ export default function Footer() {
                 key={link.label}
                 href={link.href}
                 {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
-                className="muted font-mono text-[13px] transition-colors hover:text-gold"
+                className="muted relative font-mono text-[13px] transition-colors hover:text-gold before:absolute before:-inset-2 before:content-['']"
               >
                 {link.label}
               </a>

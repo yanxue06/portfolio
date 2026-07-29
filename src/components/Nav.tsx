@@ -23,7 +23,7 @@ export default function Nav() {
             key={link.label}
             href={link.href}
             {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
-            className="muted after:bg-gold relative whitespace-nowrap font-mono text-[11px] transition-colors duration-200 hover:text-gold sm:text-[13px] after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:transition-[width] after:duration-300 hover:after:w-full"
+            className="muted after:bg-gold relative whitespace-nowrap font-mono text-[11px] transition-colors duration-200 hover:text-gold sm:text-[13px] after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:transition-[width] after:duration-300 hover:after:w-full before:absolute before:-inset-2 before:content-['']"
           >
             {link.label}
           </a>
