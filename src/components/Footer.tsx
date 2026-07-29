@@ -95,14 +95,14 @@ export default function Footer() {
             overflow-hidden parent never intersects, so whileInView on it
             would deadlock */}
         <motion.span
-          className="block overflow-hidden pb-12 -mb-12"
+          className="block"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.span
             className="block"
-            variants={{ hidden: { y: '135%' }, show: { y: 0 } }}
+            variants={{ hidden: { opacity: 0, y: 48 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 1, ease: EASE }}
           >
             <Magnetic>
