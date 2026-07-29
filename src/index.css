@@ -53,10 +53,14 @@ body {
 .hairline {
   border-color: color-mix(in srgb, var(--ink) 15%, transparent);
 }
-/* stroke-only display text — the oversized project indices */
-.text-outline {
-  color: transparent;
-  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--ink) 28%, transparent);
+/* stroke-only display text — the oversized project indices. warms toward
+   gold while the simplex fill pours into the glyphs on row hover */
+.idx-stroke {
+  stroke: color-mix(in srgb, var(--ink) 28%, transparent);
+  transition: stroke 0.45s ease;
+}
+.group:hover .idx-stroke {
+  stroke: color-mix(in srgb, #c4a35c 60%, transparent);
 }
 
 @keyframes marquee {
