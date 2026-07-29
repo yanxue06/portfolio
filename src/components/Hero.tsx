@@ -39,8 +39,10 @@ export function Magnetic({ children }: { children: ReactNode }) {
       onMouseMove={(e) => {
         const r = ref.current?.getBoundingClientRect()
         if (!r) return
-        mx.set((e.clientX - r.left - r.width / 2) * 0.3)
-        my.set((e.clientY - r.top - r.height / 2) * 0.4)
+        /* pull scales with element size — uncapped, the giant footer type
+           travels ~110px and crosses the viewport clip edge */
+        mx.set(Math.max(-24, Math.min(24, (e.clientX - r.left - r.width / 2) * 0.3)))
+        my.set(Math.max(-16, Math.min(16, (e.clientY - r.top - r.height / 2) * 0.4)))
       }}
       onMouseLeave={() => {
         mx.set(0)
