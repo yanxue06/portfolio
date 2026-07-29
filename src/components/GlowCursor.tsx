@@ -57,8 +57,9 @@ export default function GlowCursor() {
     <motion.div style={{ x, y }} className="pointer-events-none fixed left-0 top-0 z-[94]" aria-hidden>
       <div
         style={{
+          /* ink rides the page morph — navy aura on cream, cream on navy */
           background:
-            'radial-gradient(circle, rgba(196,163,92,0.45) 0%, rgba(196,163,92,0.16) 42%, rgba(196,163,92,0) 70%)',
+            'radial-gradient(circle, color-mix(in srgb, var(--ink, #0f1e3a) 50%, transparent) 0%, color-mix(in srgb, var(--ink, #0f1e3a) 18%, transparent) 42%, transparent 70%)',
         }}
         className={`-translate-x-1/2 -translate-y-1/2 rounded-full transition-[width,height,opacity] duration-500 ${
           active ? 'opacity-100' : 'opacity-0'
