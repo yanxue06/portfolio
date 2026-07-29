@@ -156,10 +156,10 @@ export default function About() {
               >
                 <RowRule />
                 <span
-                  className="absolute left-0 top-1/2 h-10 w-[3px] origin-center -translate-y-1/2 scale-y-0 bg-gold transition-transform duration-300 group-hover:scale-y-100"
+                  className="absolute bottom-6 left-3 top-6 w-[3px] origin-center scale-y-0 bg-gold transition-transform duration-300 group-hover:scale-y-100"
                   aria-hidden
                 />
-                <div className="transition-transform duration-300 group-hover:translate-x-3">
+                <div className="relative transition-transform duration-300 group-hover:translate-x-10">
                   <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
                     <span className="block overflow-hidden pb-[0.08em] -mb-[0.08em]">
                       <motion.span
@@ -171,7 +171,7 @@ export default function About() {
                           src={row.logo}
                           alt={`${row.place} logo`}
                           loading="lazy"
-                          className={`h-8 w-8 object-cover ${row.seal ? 'rounded-full' : 'rounded-[6px]'}`}
+                          className={`h-[1.15em] w-[1.15em] object-cover ${row.seal ? 'rounded-full' : 'rounded-[8px]'}`}
                         />
                         {row.place}
                       </motion.span>
@@ -179,7 +179,7 @@ export default function About() {
                     <motion.span
                       variants={{ hidden: { opacity: 0, x: 26 }, show: { opacity: 1, x: 0 } }}
                       transition={{ delay: 0.14, duration: 0.7, ease: EASE }}
-                      className="muted font-mono text-[12px]"
+                      className="muted font-mono text-[12px] sm:absolute sm:bottom-0 sm:right-0"
                     >
                       {row.when}
                     </motion.span>
