@@ -1,4 +1,4 @@
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion'
+import { m, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion'
 import { useRef, type ReactNode } from 'react'
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -56,7 +56,7 @@ function RowRule() {
   if (reduce) return <span className="hairline absolute inset-x-0 bottom-0 border-b" aria-hidden />
   return (
     <span ref={ref} className="absolute inset-x-0 bottom-0 h-px" aria-hidden>
-      <motion.span
+      <m.span
         style={{ scaleX: scrollYProgress, backgroundColor: 'var(--ink)' }}
         className="block h-full w-full origin-left opacity-20"
       />
@@ -77,9 +77,9 @@ function Word({
 }) {
   const opacity = useTransform(progress, range, [0.14, 1])
   return (
-    <motion.span style={{ opacity }} className={`inline-block ${italic ? 'font-semibold italic' : ''}`}>
+    <m.span style={{ opacity }} className={`inline-block ${italic ? 'font-semibold italic' : ''}`}>
       {children}&nbsp;
-    </motion.span>
+    </m.span>
   )
 }
 
@@ -121,7 +121,7 @@ export default function About() {
       <div className="mx-auto max-w-[1200px]">
         <Kicker>about me</Kicker>
         <Statement />
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -129,7 +129,7 @@ export default function About() {
           className="muted mt-8 max-w-[560px] text-[15.5px] leading-[1.8]"
         >
           {BODY_TEXT}
-        </motion.p>
+        </m.p>
 
         <div className="relative mt-24">
           {/* a little night life while you read — same fireflies as the camp */}
@@ -147,7 +147,7 @@ export default function About() {
           <Kicker>where i've been</Kicker>
           <div className="hairline mt-8 border-t">
             {EXPERIENCE.map((row) => (
-              <motion.div
+              <m.div
                 key={row.place}
                 initial={reduce ? false : 'hidden'}
                 whileInView="show"
@@ -162,7 +162,7 @@ export default function About() {
                 <div className="relative transition-transform duration-300 group-hover:translate-x-10">
                   <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
                     <span className="block overflow-hidden pb-[0.08em] -mb-[0.08em]">
-                      <motion.span
+                      <m.span
                         variants={{ hidden: { y: '110%' }, show: { y: 0 } }}
                         transition={{ duration: 0.85, ease: EASE }}
                         className="ink flex items-center gap-3 text-[clamp(26px,3.8vw,52px)] font-bold leading-none tracking-[-0.02em]"
@@ -174,25 +174,25 @@ export default function About() {
                           className={`h-[1.15em] w-[1.15em] object-cover ${row.seal ? 'rounded-full' : 'rounded-[8px]'}`}
                         />
                         {row.place}
-                      </motion.span>
+                      </m.span>
                     </span>
-                    <motion.span
+                    <m.span
                       variants={{ hidden: { opacity: 0, x: 26 }, show: { opacity: 1, x: 0 } }}
                       transition={{ delay: 0.14, duration: 0.7, ease: EASE }}
                       className="muted font-mono text-[12px] sm:absolute sm:bottom-0 sm:right-0"
                     >
                       {row.when}
-                    </motion.span>
+                    </m.span>
                   </div>
-                  <motion.p
+                  <m.p
                     variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
                     transition={{ delay: 0.2, duration: 0.6, ease: EASE }}
                     className="muted mt-2 text-sm leading-relaxed"
                   >
                     {row.what}
-                  </motion.p>
+                  </m.p>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

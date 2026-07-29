@@ -1,4 +1,4 @@
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion'
+import { m, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion'
 import { useRef } from 'react'
 import { Magnetic } from './Hero'
 
@@ -29,7 +29,7 @@ function Campsite({ reduce, smoke }: { reduce: boolean; smoke: MotionValue<numbe
         preserveAspectRatio="xMidYMax meet"
         fill="none"
       >
-        <motion.path
+        <m.path
           d="M150 456 C 158 420 132 392 142 352 C 152 316 118 296 128 252 C 138 214 102 190 112 148 C 120 112 88 92 96 52 C 100 30 92 16 82 4"
           stroke="rgba(242, 236, 222, 0.18)"
           strokeWidth="1.5"
@@ -94,13 +94,13 @@ export default function Footer() {
         {/* observe the un-clipped wrapper — a child translated below an
             overflow-hidden parent never intersects, so whileInView on it
             would deadlock */}
-        <motion.span
+        <m.span
           className="block"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.span
+          <m.span
             className="block"
             variants={{ hidden: { opacity: 0, y: 48 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 1, ease: EASE }}
@@ -111,15 +111,15 @@ export default function Footer() {
                 className="ink group relative inline-block text-[clamp(56px,11vw,180px)] font-extrabold leading-[0.95] tracking-[-0.04em]"
               >
                 say hello.
-                <motion.span
+                <m.span
                   style={{ scaleX: reduce ? 1 : underline }}
                   className="absolute -bottom-2 left-0 h-[5px] w-full origin-left bg-gold"
                   aria-hidden
                 />
               </a>
             </Magnetic>
-          </motion.span>
-        </motion.span>
+          </m.span>
+        </m.span>
 
         {/* a gold sine draws in under the sign-off */}
         <div className="pointer-events-none mt-14 overflow-hidden" aria-hidden>
@@ -127,7 +127,7 @@ export default function Footer() {
             {reduce ? (
               <path d={SINE_D} fill="none" stroke="#c4a35c" strokeOpacity="0.5" strokeWidth="1.5" />
             ) : (
-              <motion.path
+              <m.path
                 d={SINE_D}
                 fill="none"
                 stroke="#c4a35c"
@@ -139,7 +139,7 @@ export default function Footer() {
           </svg>
         </div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
@@ -161,7 +161,7 @@ export default function Footer() {
           <p className="muted font-mono text-[11.5px]">
             © {new Date().getFullYear()} yan xue
           </p>
-        </motion.div>
+        </m.div>
       </div>
     </footer>
   )

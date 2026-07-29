@@ -9,7 +9,7 @@ export default {
         gold: '#C4A35C',
       },
       fontFamily: {
-        sans: ['Archivo', 'sans-serif'],
+        sans: ['"Archivo Variable"', 'Archivo', 'sans-serif'],
         mono: ['"Space Mono"', 'monospace'],
       },
     },

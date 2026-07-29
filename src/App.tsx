@@ -1,5 +1,5 @@
 import {
-  motion,
+  m,
   transform,
   useMotionValue,
   useMotionValueEvent,
@@ -81,7 +81,7 @@ export default function App() {
   }, [reduce, apply, scrollYProgress])
 
   return (
-    <motion.main
+    <m.main
       className={`min-h-screen ${reduce ? 'static-blocks' : ''}`}
       style={reduce ? undefined : ({ backgroundColor: bg, '--ink': ink, '--muted': muted } as unknown as MotionStyle)}
     >
@@ -100,6 +100,6 @@ export default function App() {
         <Footer />
       </div>
       <GlowCursor />
-    </motion.main>
+    </m.main>
   )
 }

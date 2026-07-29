@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 /* Flocks of birds crossing the evening sky toward the sun at (900, 600) in
@@ -66,7 +66,7 @@ function makeFlock(): Flock {
 
 function FlockGroup({ flock, onDone }: { flock: Flock; onDone: (id: number) => void }) {
   return (
-    <motion.g
+    <m.g
       initial={{ x: -100, y: flock.startY, scale: flock.scale, opacity: 0 }}
       animate={{
         x: [-100, 360, 690, SUN.x - 15],
@@ -91,7 +91,7 @@ function FlockGroup({ flock, onDone }: { flock: Flock; onDone: (id: number) => v
           />
         </g>
       ))}
-    </motion.g>
+    </m.g>
   )
 }
 

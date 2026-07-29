@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
+import { m, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 /* a soft ink aura trailing the pointer — no dot, native cursor hidden.
@@ -72,7 +72,7 @@ export default function GlowCursor() {
 
   if (!fine || reduce) return null
   return (
-    <motion.div style={{ x, y }} className="pointer-events-none fixed left-0 top-0 z-[94]" aria-hidden>
+    <m.div style={{ x, y }} className="pointer-events-none fixed left-0 top-0 z-[94]" aria-hidden>
       <div
         style={{
           /* ink rides the page morph — navy aura on cream, cream on navy */
@@ -93,6 +93,6 @@ export default function GlowCursor() {
           active && lock ? 'opacity-100' : 'opacity-0'
         }`}
       />
-    </motion.div>
+    </m.div>
   )
 }

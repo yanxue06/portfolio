@@ -2,7 +2,7 @@
    cream paper, and the sun is the asterisk — gold, spinning slowly, and
    sinking behind the far ridge as the pinned hero is scrolled. The kid on
    the cliff keeps their laptop. Layers scrub at different rates for depth. */
-import { motion, useReducedMotion, type MotionValue, useTransform } from 'framer-motion'
+import { m, useReducedMotion, type MotionValue, useTransform } from 'framer-motion'
 import Flocks from './Flocks'
 
 export default function Scene({ progress }: { progress: MotionValue<number> }) {
@@ -38,7 +38,7 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
       {/* sky wash + the asterisk-sun — slowest layer */}
       <g>
         <rect x="-20" y="240" width="1480" height="430" fill="url(#horizonWash)" />
-        <motion.circle cx="900" cy="400" r="170" fill="url(#sunGlow)" style={{ x: sunX, y: sunY, opacity: glowOpacity }} />
+        <m.circle cx="900" cy="400" r="170" fill="url(#sunGlow)" style={{ x: sunX, y: sunY, opacity: glowOpacity }} />
       </g>
 
       {/* air — clouds and birds */}

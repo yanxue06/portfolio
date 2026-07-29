@@ -1,7 +1,7 @@
 /* Fixed backdrop behind the whole page — contour lines of the land the
    footer campsite sits on, drawn by scroll itself. Scrolling back un-draws
    them. Stroked with the theme var so the cream/navy morph carries them. */
-import { motion, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion'
+import { m, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion'
 
 const TAU = Math.PI * 2
 
@@ -47,7 +47,7 @@ function Ring({
      screen px and framer's normalized pathLength dashes become dust. */
   const draw = useTransform(progress, ring.range, [0.3, 1])
   return (
-    <motion.path
+    <m.path
       d={blob(ring.cx, ring.cy, ring.r, ring.m)}
       stroke="var(--ink, #0f1e3a)"
       strokeOpacity={ring.o}
@@ -66,7 +66,7 @@ export default function Terrain() {
   const layerOpacity = useTransform(scrollYProgress, [0.12, 0.24], [0, 1])
 
   return (
-    <motion.div
+    <m.div
       className="fixed inset-0 z-0"
       style={reduce ? undefined : { opacity: layerOpacity }}
       aria-hidden
@@ -88,6 +88,6 @@ export default function Terrain() {
           ))}
         </g>
       </svg>
-    </motion.div>
+    </m.div>
   )
 }

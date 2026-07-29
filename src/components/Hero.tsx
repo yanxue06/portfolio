@@ -1,5 +1,5 @@
 import {
-  motion,
+  m,
   useMotionValue,
   useReducedMotion,
   useScroll,
@@ -7,9 +7,14 @@ import {
   useTransform,
 } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { useRef, type MouseEvent, type ReactNode } from 'react'
-import { MeshGradient } from '@paper-design/shaders-react'
+import { lazy, Suspense, useRef, type MouseEvent, type ReactNode } from 'react'
 import Scene from './Scene'
+
+/* the mesh ships in its own chunk, off the critical path — until it lands,
+   the circle is a flat gradient in the same palette */
+const MeshGradient = lazy(() =>
+  import('@paper-design/shaders-react').then((mod) => ({ default: mod.MeshGradient })),
+)
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -32,7 +37,7 @@ export function Magnetic({ children }: { children: ReactNode }) {
   if (reduce) return <>{children}</>
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       style={{ x, y }}
       className="w-fit"
@@ -50,7 +55,7 @@ export function Magnetic({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -60,14 +65,14 @@ export function Magnetic({ children }: { children: ReactNode }) {
 function MaskLine({ children, delay, className }: { children: ReactNode; delay: number; className?: string }) {
   return (
     <span className={`block overflow-hidden pb-[0.12em] -mb-[0.12em] ${className ?? ''}`}>
-      <motion.span
+      <m.span
         className="block"
         initial={{ y: '112%' }}
         animate={{ y: 0 }}
         transition={{ delay, duration: 1, ease: EASE }}
       >
         {children}
-      </motion.span>
+      </m.span>
     </span>
   )
 }
@@ -113,34 +118,43 @@ export default function Hero() {
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
       {/* the cliff scene fills the hero behind the type, drifting gently
           against the cursor; it fades away during the pin handoff */}
-      <motion.div
+      <m.div
         className="pointer-events-none absolute -inset-5"
         style={{ x: driftX, y: driftY, opacity: sceneOpacity }}
         aria-hidden
       >
-        <motion.div
+        <m.div
           style={{ x: meshX, y: meshY }}
           className="absolute left-[62%] top-[34%] h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full opacity-90"
         >
-          <MeshGradient
-            colors={['#f5edd8', '#e6d5a6', '#c4a35c', '#efe3c0']}
-            speed={reduce ? 0 : 0.7}
-            style={{ width: '100%', height: '100%' }}
-          />
-        </motion.div>
+          <Suspense
+            fallback={
+              <div
+                className="h-full w-full"
+                style={{ background: 'radial-gradient(circle at 38% 35%, #f5edd8 0%, #e6d5a6 48%, #c4a35c 100%)' }}
+              />
+            }
+          >
+            <MeshGradient
+              colors={['#f5edd8', '#e6d5a6', '#c4a35c', '#efe3c0']}
+              speed={reduce ? 0 : 0.7}
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Suspense>
+        </m.div>
         <Scene progress={heroProgress} />
-      </motion.div>
+      </m.div>
 
       <div className="relative z-10 flex flex-1 flex-col justify-start px-6 pb-16 pt-[16vh] sm:px-10">
-        <motion.h1
+        <m.h1
           style={{ opacity: nameOpacity, scale: nameScale }}
           className="ink origin-left select-none text-[clamp(58px,9.5vw,150px)] font-extrabold leading-[0.9] tracking-[-0.04em]"
         >
           <MaskLine delay={0.1}>yan xue</MaskLine>
-        </motion.h1>
+        </m.h1>
 
-        <motion.div style={{ opacity: chromeOpacity }} className="mt-5 max-w-[680px]">
-          <motion.p
+        <m.div style={{ opacity: chromeOpacity }} className="mt-5 max-w-[680px]">
+          <m.p
             initial={{ y: 14, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.55, duration: 0.8, ease: EASE }}
@@ -153,19 +167,19 @@ export default function Hero() {
                 {i < ROLES.length - 1 && <span className="mx-1.5">·</span>}
               </span>
             ))}
-          </motion.p>
-          <motion.p
+          </m.p>
+          <m.p
             initial={{ y: 14, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.68, duration: 0.8, ease: EASE }}
             className="muted mt-1.5 font-mono text-[12px]"
           >
             {TAGLINE}
-          </motion.p>
-        </motion.div>
+          </m.p>
+        </m.div>
 
-        <motion.div style={{ opacity: chromeOpacity }} className="mt-10">
-        <motion.div
+        <m.div style={{ opacity: chromeOpacity }} className="mt-10">
+        <m.div
           initial={{ y: 14, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.95, duration: 0.8, ease: EASE }}
@@ -185,17 +199,17 @@ export default function Hero() {
               </span>
             </a>
           </Magnetic>
-        </motion.div>
-        </motion.div>
+        </m.div>
+        </m.div>
       </div>
 
-      <motion.p
+      <m.p
         style={{ opacity: scrollHintOpacity }}
         className="muted absolute bottom-5 left-6 z-10 font-mono text-[11px] sm:left-10"
         aria-hidden
       >
         (scroll)
-      </motion.p>
+      </m.p>
       </div>
     </section>
   )

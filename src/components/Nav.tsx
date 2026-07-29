@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -29,7 +29,7 @@ export default function Nav() {
           </a>
         ))}
       </div>
-      <motion.span
+      <m.span
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ delay: 0.4, duration: 1.1, ease: EASE }}

@@ -1,6 +1,5 @@
-import { AnimatePresence, motion, useReducedMotion, useScroll } from 'framer-motion'
-import { useRef, useState, type ReactNode } from 'react'
-import { SimplexNoise } from '@paper-design/shaders-react'
+import { AnimatePresence, m, useReducedMotion, useScroll } from 'framer-motion'
+import { lazy, Suspense, useRef, useState, type ReactNode } from 'react'
 import { Kicker } from './About'
 import {
   BuildSpaceBanner,
@@ -10,6 +9,12 @@ import {
   MarillacPlaceBanner,
   ObsidianBanner,
 } from './banners'
+
+/* the gold noise fill ships in its own chunk — hover shows a flat gold
+   gradient until it lands */
+const SimplexNoise = lazy(() =>
+  import('@paper-design/shaders-react').then((mod) => ({ default: mod.SimplexNoise })),
+)
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -34,7 +39,7 @@ function ScrubRule() {
   if (reduce) return <span className="hairline absolute inset-x-0 bottom-0 border-b" aria-hidden />
   return (
     <span ref={ref} className="absolute inset-x-0 bottom-0 h-px" aria-hidden>
-      <motion.span
+      <m.span
         style={{ scaleX: scrollYProgress, backgroundColor: 'var(--ink)' }}
         className="block h-full w-full origin-left opacity-20"
       />
@@ -74,7 +79,7 @@ function IndexNumber({ index, lit }: { index: number; lit: boolean }) {
       </svg>
       <AnimatePresence>
         {lit && (
-          <motion.span
+          <m.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -82,15 +87,24 @@ function IndexNumber({ index, lit }: { index: number; lit: boolean }) {
             className="absolute inset-0 block"
             style={{ clipPath: `url(#${clipId})` }}
           >
-            <SimplexNoise
-              colors={['#f5edd8', '#e6d5a6', '#c4a35c', '#b3924a']}
-              stepsPerColor={2}
-              softness={0.8}
-              speed={reduce ? 0 : 0.6}
-              scale={0.35}
-              style={{ width: '100%', height: '100%' }}
-            />
-          </motion.span>
+            <Suspense
+              fallback={
+                <span
+                  className="block h-full w-full"
+                  style={{ background: 'linear-gradient(135deg, #f5edd8, #e6d5a6 45%, #c4a35c)' }}
+                />
+              }
+            >
+              <SimplexNoise
+                colors={['#f5edd8', '#e6d5a6', '#c4a35c', '#b3924a']}
+                stepsPerColor={2}
+                softness={0.8}
+                speed={reduce ? 0 : 0.6}
+                scale={0.35}
+                style={{ width: '100%', height: '100%' }}
+              />
+            </Suspense>
+          </m.span>
         )}
       </AnimatePresence>
     </span>
@@ -182,7 +196,7 @@ export default function Work() {
         <Kicker>selected work</Kicker>
         <div className="hairline mt-8 border-t">
           {PROJECTS.map((project, i) => (
-            <motion.a
+            <m.a
               key={project.title}
               href={project.href}
               target="_blank"
@@ -197,19 +211,19 @@ export default function Work() {
               className="group relative block py-8 md:py-10"
             >
               <ScrubRule />
-              <motion.span
+              <m.span
                 variants={{ hidden: { opacity: 0, x: 32, y: '-50%' }, show: { opacity: 1, x: 0, y: '-50%' } }}
                 transition={{ delay: 0.2, duration: 0.8, ease: EASE }}
                 className="pointer-events-none absolute right-0 top-1/2 hidden select-none lg:block"
                 aria-hidden
               >
                 <IndexNumber index={i} lit={hot === i} />
-              </motion.span>
+              </m.span>
 
               <div className="md:grid md:grid-cols-[300px_1fr] md:items-start md:gap-8">
                 {/* banner wipes open left to right */}
                 <span className="hairline mb-5 block aspect-video overflow-hidden border md:mb-0">
-                  <motion.span
+                  <m.span
                     variants={{
                       hidden: { clipPath: 'inset(0 100% 0 0)' },
                       show: { clipPath: 'inset(0 0% 0 0)' },
@@ -218,13 +232,13 @@ export default function Work() {
                     className="block h-full w-full"
                   >
                     {project.banner}
-                  </motion.span>
+                  </m.span>
                 </span>
 
                 <span className="block">
                   {/* title rises out of its own clip line */}
                   <span className="block overflow-hidden pb-[0.1em] -mb-[0.1em]">
-                    <motion.span
+                    <m.span
                       variants={{ hidden: { y: '110%' }, show: { y: 0 } }}
                       transition={{ delay: 0.08, duration: 0.85, ease: EASE }}
                       className="flex items-baseline gap-4 transition-transform duration-300 group-hover:translate-x-2"
@@ -238,25 +252,25 @@ export default function Work() {
                       >
                         ↗
                       </span>
-                    </motion.span>
+                    </m.span>
                   </span>
-                  <motion.p
+                  <m.p
                     variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
                     transition={{ delay: 0.18, duration: 0.7, ease: EASE }}
                     className="muted mt-3 max-w-[560px] text-[13.5px] leading-[1.65]"
                   >
                     {project.description}
-                  </motion.p>
-                  <motion.p
+                  </m.p>
+                  <m.p
                     variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
                     transition={{ delay: 0.26, duration: 0.7, ease: EASE }}
                     className="muted mt-2 font-mono text-[11px] opacity-75"
                   >
                     {project.stack}
-                  </motion.p>
+                  </m.p>
                 </span>
               </div>
-            </motion.a>
+            </m.a>
           ))}
         </div>
 

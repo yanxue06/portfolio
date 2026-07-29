@@ -1,4 +1,4 @@
-import { motion, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion'
+import { m, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion'
 import { useRef } from 'react'
 
 const LINES = 14
@@ -25,7 +25,7 @@ function FlowLine({
   const pathLength = useTransform(progress, [delay, 0.75 + delay * 0.3], [0, 1])
   if (reduce) return <path d={d} fill="none" stroke="var(--ink)" strokeOpacity="0.2" strokeWidth="1" />
   return (
-    <motion.path
+    <m.path
       d={d}
       fill="none"
       stroke="var(--ink)"
