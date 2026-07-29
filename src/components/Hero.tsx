@@ -20,9 +20,8 @@ const NAV_LINKS = [
   { label: 'email', href: 'mailto:yan.xue@uwaterloo.ca' },
 ]
 
-const META_COLUMNS = [
-  'computer engineering @ uwaterloo',
-  'swe intern @ photon (google, vercel + sequoia backed) · prev @ bitgo',
+const META_LINES = [
+  'computer engineering @ uwaterloo · swe intern @ photon (google, vercel + sequoia backed) · prev @ bitgo',
   'i build infra and dev tools, mostly in rust and typescript.',
 ]
 
@@ -158,26 +157,26 @@ export default function Hero() {
           style={{ opacity: nameOpacity, scale: nameScale }}
           className="ink origin-left select-none text-[clamp(58px,9.5vw,150px)] font-extrabold leading-[0.9] tracking-[-0.04em]"
         >
-          <MaskLine delay={0.1}>
-            yan xue<span className="align-top text-[0.5em] leading-none text-gold">*</span>
-          </MaskLine>
+          <MaskLine delay={0.1}>yan xue</MaskLine>
         </motion.h1>
 
-        <motion.div
-          style={{ opacity: chromeOpacity }}
-          className="hairline mt-8 grid max-w-[760px] gap-4 border-t pt-6 sm:mt-10 sm:grid-cols-3 sm:gap-0"
-        >
-          {META_COLUMNS.map((text, i) => (
-            <motion.p
-              key={i}
-              initial={{ y: 14, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.55 + i * 0.12, duration: 0.8, ease: EASE }}
-              className={`muted font-mono text-[12px] leading-relaxed ${i > 0 ? 'hairline sm:border-l sm:pl-5' : ''} sm:pr-5`}
-            >
-              {text}
-            </motion.p>
-          ))}
+        <motion.div style={{ opacity: chromeOpacity }} className="mt-5 max-w-[680px]">
+          <motion.p
+            initial={{ y: 14, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.55, duration: 0.8, ease: EASE }}
+            className="ink text-[14px] leading-relaxed opacity-90 sm:text-[15px]"
+          >
+            {META_LINES[0]}
+          </motion.p>
+          <motion.p
+            initial={{ y: 14, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.68, duration: 0.8, ease: EASE }}
+            className="muted mt-1.5 font-mono text-[12px]"
+          >
+            {META_LINES[1]}
+          </motion.p>
         </motion.div>
 
         <motion.div style={{ opacity: chromeOpacity }} className="mt-10">

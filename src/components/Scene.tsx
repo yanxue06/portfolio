@@ -28,8 +28,8 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
           <stop offset="100%" stopColor="#c4a35c" stopOpacity="0.16" />
         </linearGradient>
         <radialGradient id="sunGlow">
-          <stop offset="0%" stopColor="#c4a35c" stopOpacity="0.5" />
-          <stop offset="45%" stopColor="#c4a35c" stopOpacity="0.18" />
+          <stop offset="0%" stopColor="#c4a35c" stopOpacity="0.3" />
+          <stop offset="45%" stopColor="#c4a35c" stopOpacity="0.1" />
           <stop offset="100%" stopColor="#c4a35c" stopOpacity="0" />
         </radialGradient>
         <filter id="soften" x="-40%" y="-40%" width="180%" height="180%">
@@ -41,14 +41,14 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
       <motion.g style={{ y: skyY }}>
         <rect x="-20" y="240" width="1480" height="430" fill="url(#horizonWash)" />
         <motion.circle cx="900" cy="600" r="170" fill="url(#sunGlow)" style={{ y: sunY, opacity: glowOpacity }} />
+        {/* the mark as the sun: big, translucent ink, not a yellow badge */}
         <motion.g style={{ y: sunY }}>
           <motion.g style={{ rotate: sunRotate, transformBox: 'fill-box', transformOrigin: 'center' } as never}>
-            <g stroke="#c4a35c" strokeWidth="7" strokeLinecap="round">
-              <line x1="830" y1="600" x2="970" y2="600" />
-              <line x1="865" y1="539.5" x2="935" y2="660.5" />
-              <line x1="865" y1="660.5" x2="935" y2="539.5" />
+            <g stroke="#16243e" strokeOpacity="0.35" strokeWidth="8" strokeLinecap="round">
+              <line x1="780" y1="600" x2="1020" y2="600" />
+              <line x1="840" y1="496.1" x2="960" y2="703.9" />
+              <line x1="840" y1="703.9" x2="960" y2="496.1" />
             </g>
-            <circle cx="900" cy="600" r="11" fill="#c4a35c" />
           </motion.g>
         </motion.g>
       </motion.g>
