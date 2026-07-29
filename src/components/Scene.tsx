@@ -11,7 +11,6 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
      instead of falling in a straight line */
   const sunY = useTransform(progress, [0.05, 0.3, 0.5], [0, reduce ? 0 : 48, reduce ? 0 : 135])
   const sunX = useTransform(progress, [0.05, 0.5], [0, reduce ? 0 : 85])
-  const sunRotate = useTransform(progress, [0, 0.6], [0, reduce ? 0 : 220])
   const glowOpacity = useTransform(progress, [0.05, 0.5], [1, reduce ? 1 : 0.4])
   const skyY = useTransform(progress, [0, 0.6], [0, reduce ? 0 : 46])
   const cloudY = useTransform(progress, [0, 0.6], [0, reduce ? 0 : 34])
@@ -44,17 +43,6 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
       <motion.g style={{ y: skyY }}>
         <rect x="-20" y="240" width="1480" height="430" fill="url(#horizonWash)" />
         <motion.circle cx="900" cy="600" r="170" fill="url(#sunGlow)" style={{ x: sunX, y: sunY, opacity: glowOpacity }} />
-        {/* the mark as the sun: big, translucent ink, not a yellow badge.
-            css idle spin + scrubbed rotate compose on nested groups */}
-        <motion.g style={{ x: sunX, y: sunY }}>
-          <motion.g style={{ rotate: sunRotate, transformBox: 'fill-box', transformOrigin: 'center' } as never}>
-            <g className="sun-spin" stroke="#16243e" strokeOpacity="0.35" strokeWidth="8" strokeLinecap="round">
-              <line x1="780" y1="600" x2="1020" y2="600" />
-              <line x1="840" y1="496.1" x2="960" y2="703.9" />
-              <line x1="840" y1="703.9" x2="960" y2="496.1" />
-            </g>
-          </motion.g>
-        </motion.g>
       </motion.g>
 
       {/* air — clouds and birds */}

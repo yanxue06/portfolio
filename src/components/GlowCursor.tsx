@@ -1,19 +1,19 @@
 import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
-/* nocturne's glow dot, morph-proof: difference blend reads on cream and navy */
+/* a soft gold aura trailing the pointer — no dot, native cursor stays.
+   elements marked data-cursor-capture pull the aura onto their
+   data-capture-point (the say-hello arrow circle), like it gets caught. */
 export default function GlowCursor() {
   const reduce = useReducedMotion()
   const [fine, setFine] = useState(false)
   const [active, setActive] = useState(false)
   const [hot, setHot] = useState(false)
-  const mx = useMotionValue(-100)
-  const my = useMotionValue(-100)
-  const x = useSpring(mx, { stiffness: 380, damping: 32, mass: 0.55 })
-  const y = useSpring(my, { stiffness: 380, damping: 32, mass: 0.55 })
-  /* the gold aura runs on lazier springs so it trails the core like a comet */
-  const hx = useSpring(mx, { stiffness: 110, damping: 20, mass: 0.9 })
-  const hy = useSpring(my, { stiffness: 110, damping: 20, mass: 0.9 })
+  const [captured, setCaptured] = useState(false)
+  const mx = useMotionValue(-200)
+  const my = useMotionValue(-200)
+  const x = useSpring(mx, { stiffness: 130, damping: 20, mass: 0.8 })
+  const y = useSpring(my, { stiffness: 130, damping: 20, mass: 0.8 })
 
   useEffect(() => {
     const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
@@ -26,10 +26,22 @@ export default function GlowCursor() {
   useEffect(() => {
     if (!fine || reduce) return
     const move = (e: MouseEvent) => {
-      mx.set(e.clientX)
-      my.set(e.clientY)
+      const t = e.target as HTMLElement
+      const cap = t.closest?.('[data-cursor-capture]') as HTMLElement | null
+      if (cap) {
+        const pt = (cap.querySelector('[data-capture-point]') as HTMLElement) ?? cap
+        const r = pt.getBoundingClientRect()
+        mx.set(r.left + r.width / 2)
+        my.set(r.top + r.height / 2)
+        setCaptured(true)
+        setHot(true)
+      } else {
+        mx.set(e.clientX)
+        my.set(e.clientY)
+        setCaptured(false)
+        setHot(!!t.closest?.('a, button'))
+      }
       setActive(true)
-      setHot(!!(e.target as HTMLElement).closest?.('a, button'))
     }
     const leave = () => setActive(false)
     window.addEventListener('mousemove', move)
@@ -42,27 +54,16 @@ export default function GlowCursor() {
 
   if (!fine || reduce) return null
   return (
-    <>
-      {/* gold aura — reads on cream and navy alike, breathes wider on links */}
-      <motion.div style={{ x: hx, y: hy }} className="pointer-events-none fixed left-0 top-0 z-[94]" aria-hidden>
-        <div
-          style={{
-            background:
-              'radial-gradient(circle, rgba(196,163,92,0.45) 0%, rgba(196,163,92,0.16) 42%, rgba(196,163,92,0) 70%)',
-          }}
-          className={`-translate-x-1/2 -translate-y-1/2 rounded-full transition-[width,height,opacity] duration-500 ${
-            active ? 'opacity-100' : 'opacity-0'
-          } ${hot ? 'h-44 w-44' : 'h-28 w-28'}`}
-        />
-      </motion.div>
-      <motion.div style={{ x, y }} className="pointer-events-none fixed left-0 top-0 z-[95]" aria-hidden>
-        <div
-          style={{ mixBlendMode: 'difference' }}
-          className={`-translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f0ede4] transition-[width,height,opacity] duration-300 ${
-            active ? 'opacity-90' : 'opacity-0'
-          } ${hot ? 'h-11 w-11' : 'h-3.5 w-3.5'}`}
-        />
-      </motion.div>
-    </>
+    <motion.div style={{ x, y }} className="pointer-events-none fixed left-0 top-0 z-[94]" aria-hidden>
+      <div
+        style={{
+          background:
+            'radial-gradient(circle, rgba(196,163,92,0.45) 0%, rgba(196,163,92,0.16) 42%, rgba(196,163,92,0) 70%)',
+        }}
+        className={`-translate-x-1/2 -translate-y-1/2 rounded-full transition-[width,height,opacity] duration-500 ${
+          active ? 'opacity-100' : 'opacity-0'
+        } ${captured ? 'h-16 w-16' : hot ? 'h-44 w-44' : 'h-28 w-28'}`}
+      />
+    </motion.div>
   )
 }

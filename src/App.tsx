@@ -16,6 +16,7 @@ import FlowBand from './components/FlowBand'
 import Footer from './components/Footer'
 import GlowCursor from './components/GlowCursor'
 import Terrain from './components/Terrain'
+import Nav from './components/Nav'
 
 const CREAM = '#f2ecde'
 const NAVY = '#0f1e3a'
@@ -85,6 +86,7 @@ export default function App() {
       style={reduce ? undefined : ({ backgroundColor: bg, '--ink': ink, '--muted': muted } as unknown as MotionStyle)}
     >
       <Terrain />
+      <Nav />
       <Hero />
       {/* pulls the rest of the page up over the hero's pinned second viewport
           so the marquee + about physically scroll across the ghosted name */}

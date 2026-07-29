@@ -8,17 +8,10 @@ import {
 } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { useRef, type MouseEvent, type ReactNode } from 'react'
+import { MeshGradient } from '@paper-design/shaders-react'
 import Scene from './Scene'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
-
-const NAV_LINKS = [
-  { label: 'about', href: '#about' },
-  { label: 'work', href: '#work' },
-  { label: 'github', href: 'https://github.com/yanxue06' },
-  { label: 'linkedin', href: 'https://linkedin.com/in/yanxue-ce' },
-  { label: 'email', href: 'mailto:yan.xue@uwaterloo.ca' },
-]
 
 const ROLES = [
   'computer engineering @ uwaterloo',
@@ -97,10 +90,11 @@ export default function Hero() {
   })
   const scrollHintOpacity = useTransform(heroProgress, [0, 0.06], [1, 0])
   const chromeOpacity = useTransform(heroProgress, [0.15, 0.32], [1, 0])
-  const navOpacity = useTransform(heroProgress, [0.22, 0.38], [1, 0])
   const nameOpacity = useTransform(heroProgress, [0.3, 0.55], [1, reduce ? 1 : 0])
   const nameScale = useTransform(heroProgress, [0, 0.55], [1, reduce ? 1 : 0.96])
   const sceneOpacity = useTransform(heroProgress, [0.45, 0.75], [1, reduce ? 1 : 0])
+  const meshY = useTransform(heroProgress, [0.05, 0.3, 0.5], [0, reduce ? 0 : 48, reduce ? 0 : 135])
+  const meshX = useTransform(heroProgress, [0.05, 0.5], [0, reduce ? 0 : 85])
 
   const handleMouse = (e: MouseEvent<HTMLElement>) => {
     mouseX.set(e.clientX / window.innerWidth - 0.5)
@@ -122,39 +116,20 @@ export default function Hero() {
         style={{ x: driftX, y: driftY, opacity: sceneOpacity }}
         aria-hidden
       >
+        <motion.div
+          style={{ x: meshX, y: meshY }}
+          className="absolute left-[62%] top-[57%] h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full opacity-90"
+        >
+          <MeshGradient
+            colors={['#f5edd8', '#e6d5a6', '#c4a35c', '#efe3c0']}
+            speed={reduce ? 0 : 0.7}
+            style={{ width: '100%', height: '100%' }}
+          />
+        </motion.div>
         <Scene progress={heroProgress} />
       </motion.div>
 
-      <motion.nav
-        style={{ opacity: navOpacity }}
-        className="relative z-20 flex items-center justify-between px-6 py-5 sm:px-10"
-      >
-        <a href="#top" className="ink font-mono text-sm font-bold">
-          yan<span className="text-gold">*</span>
-        </a>
-        <div className="flex items-center gap-4 sm:gap-7">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
-              className="muted after:bg-gold relative whitespace-nowrap font-mono text-[11px] transition-colors duration-200 hover:text-gold sm:text-[13px] after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:transition-[width] after:duration-300 hover:after:w-full"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-        {/* masthead rule draws in on load */}
-        <motion.span
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ delay: 0.4, duration: 1.1, ease: EASE }}
-          className="hairline absolute inset-x-0 bottom-0 origin-left border-b"
-          aria-hidden
-        />
-      </motion.nav>
-
-      <div className="relative z-10 flex flex-1 flex-col justify-start px-6 pb-16 pt-[10vh] sm:px-10">
+      <div className="relative z-10 flex flex-1 flex-col justify-start px-6 pb-16 pt-[16vh] sm:px-10">
         <motion.h1
           style={{ opacity: nameOpacity, scale: nameScale }}
           className="ink origin-left select-none text-[clamp(58px,9.5vw,150px)] font-extrabold leading-[0.9] tracking-[-0.04em]"
@@ -196,10 +171,14 @@ export default function Hero() {
           <Magnetic>
             <a
               href="mailto:yan.xue@uwaterloo.ca"
+              data-cursor-capture
               className="group inline-flex items-center gap-2 rounded-full bg-navy py-1.5 pl-5 pr-1.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3"
             >
               say hello
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-cream transition-transform duration-300 group-hover:scale-110">
+              <span
+                data-capture-point
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-cream transition-transform duration-300 group-hover:scale-110"
+              >
                 <ArrowRight className="h-4 w-4 text-navy transition-colors duration-200 group-hover:text-gold" />
               </span>
             </a>
