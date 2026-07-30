@@ -1,22 +1,6 @@
 import { m, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { Magnetic } from './Hero'
-import { counts } from '../lib/hits'
-
-/* the count resolves once per load; absent an /api (plain vite dev) it
-   stays null and the line simply doesn't render */
-function Visits() {
-  const [visits, setVisits] = useState<number | null>(null)
-  useEffect(() => {
-    counts.then((c) => c && setVisits(c.visits))
-  }, [])
-  if (visits === null) return null
-  return (
-    <span>
-      {' '}· you're visitor nº{visits.toLocaleString()}
-    </span>
-  )
-}
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -176,7 +160,6 @@ export default function Footer() {
           </div>
           <p className="muted font-mono text-[11.5px]">
             © {new Date().getFullYear()} yan xue
-            <Visits />
           </p>
         </m.div>
       </div>

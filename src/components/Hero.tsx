@@ -7,8 +7,9 @@ import {
   useTransform,
 } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { lazy, Suspense, useRef, type MouseEvent, type ReactNode } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import Scene from './Scene'
+import { addLike, counts } from '../lib/hits'
 
 /* the mesh ships in its own chunk, off the critical path — until it lands,
    the circle is a flat gradient in the same palette */
@@ -56,6 +57,88 @@ export function Magnetic({ children }: { children: ReactNode }) {
     >
       {children}
     </m.div>
+  )
+}
+
+/* the water heart ships in the same lazy chunk as the mesh sun */
+const Water = lazy(() =>
+  import('@paper-design/shaders-react').then((mod) => ({ default: mod.Water })),
+)
+
+const HEART_MASK = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z'/%3E%3C/svg%3E")`
+
+/* the like heart — water rippling inside a heart mask, bare count beside
+   it. spammable on purpose, every mash counts: the spring squish sits on
+   the visual only (a shrinking hit target makes rapid mashing miss), and
+   the burst ships batched from lib/hits. */
+function LikeButton({ reduce }: { reduce: boolean }) {
+  const [base, setBase] = useState<number | null>(null)
+  const [mine, setMine] = useState(0)
+  const squish = useSpring(1, { stiffness: 560, damping: 14 })
+  useEffect(() => {
+    counts.then((c) => c && setBase(c.likes))
+  }, [])
+  const total = (base ?? 0) + mine
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        setMine((m) => m + 1)
+        addLike()
+        if (!reduce) {
+          squish.jump(1.35)
+          squish.set(1)
+        }
+      }}
+      aria-label="like this site — mash away"
+      title="mash away"
+      className="-mx-2 -my-1.5 inline-flex w-fit cursor-pointer items-center gap-2 px-2 py-1.5"
+    >
+      <m.span className="relative h-[26px] w-[26px]" style={{ scale: squish }} aria-hidden>
+        <span
+          className="absolute inset-0"
+          style={{
+            WebkitMaskImage: HEART_MASK,
+            maskImage: HEART_MASK,
+            WebkitMaskSize: '100% 100%',
+            maskSize: '100% 100%',
+          }}
+        >
+          <Suspense
+            fallback={
+              <span
+                className="block h-full w-full"
+                style={{ background: 'radial-gradient(circle at 35% 30%, #bfe3f7 0%, #58a8db 55%, #2f7cb4 100%)' }}
+              />
+            }
+          >
+            <Water
+              colorBack="#3f97cf"
+              colorHighlight="#f2fbff"
+              highlights={0.35}
+              layering={0.6}
+              edges={0.5}
+              waves={0.4}
+              caustic={0.35}
+              size={2}
+              speed={reduce ? 0 : 1.2}
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Suspense>
+        </span>
+      </m.span>
+      <span className="ink font-mono text-[14px] tabular-nums">
+        <m.span
+          key={mine}
+          className="inline-block"
+          initial={reduce || mine === 0 ? false : { scale: 1.3 }}
+          animate={{ scale: 1 }}
+        >
+          {total.toLocaleString()}
+        </m.span>
+      </span>
+    </button>
   )
 }
 
@@ -176,6 +259,14 @@ export default function Hero() {
           >
             {TAGLINE}
           </m.p>
+          <m.div
+            initial={reduce ? false : { y: 14, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.82, duration: 0.8, ease: EASE }}
+            className="mt-6"
+          >
+            <LikeButton reduce={!!reduce} />
+          </m.div>
         </m.div>
 
         <m.div style={{ opacity: chromeOpacity }} className="mt-10">

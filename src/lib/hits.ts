@@ -3,7 +3,7 @@
    whole thing costs one request per session. plain `bun run dev` has no
    /api, so everything degrades to null silently. */
 
-export type Counts = { visits: number; clicks: number }
+export type Counts = { visits: number; clicks: number; likes: number }
 
 const SEEN = 'yx-visited'
 
@@ -27,11 +27,28 @@ export const counts: Promise<Counts | null> = fetch(
   .catch(() => null)
 
 let pendingClicks = 0
+let pendingLikes = 0
+let likeTimer: ReturnType<typeof setTimeout> | undefined
 
 function flush() {
-  if (!pendingClicks) return
-  navigator.sendBeacon(`/api/hits?k=click&n=${pendingClicks}`)
-  pendingClicks = 0
+  if (pendingClicks) {
+    navigator.sendBeacon(`/api/hits?k=click&n=${pendingClicks}`)
+    pendingClicks = 0
+  }
+  /* the api caps a batch at 200, so absurd mashing drains in chunks */
+  while (pendingLikes > 0) {
+    const n = Math.min(pendingLikes, 200)
+    pendingLikes -= n
+    navigator.sendBeacon(`/api/hits?k=like&n=${n}`)
+  }
+}
+
+/* spammable on purpose — every mash counts. likes settle for 900ms, then
+   the whole burst ships as one beacon. */
+export function addLike() {
+  pendingLikes++
+  clearTimeout(likeTimer)
+  likeTimer = setTimeout(flush, 900)
 }
 
 export function trackClicks() {
