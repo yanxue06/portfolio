@@ -5,6 +5,10 @@
 import { m, useReducedMotion, type MotionValue, useTransform } from 'framer-motion'
 import Flocks from './Flocks'
 
+/* drawn twice: once opaque cream, once as the navy wash */
+const FAR_RANGE =
+  'M0 655 L160 585 L330 650 L500 596 L660 648 L840 590 L1010 650 L1180 598 L1330 652 L1440 625 L1440 900 L0 900 Z'
+
 export default function Scene({ progress }: { progress: MotionValue<number> }) {
   const reduce = useReducedMotion()
   /* the sun sets on an arc — drifting right while the drop accelerates —
@@ -53,13 +57,14 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
         <Flocks />
       </g>
 
-      {/* far range */}
+      {/* far range — the ranges are translucent washes, and the mesh sun is a
+          sibling div painted underneath this svg. Without an opaque base the
+          setting sun ghosts through the ridges instead of dropping behind
+          them; this backing runs to the bottom edge, so it makes the whole
+          landmass occlude while the washes above composite unchanged */}
       <g>
-        <path
-          d="M0 655 L160 585 L330 650 L500 596 L660 648 L840 590 L1010 650 L1180 598 L1330 652 L1440 625 L1440 900 L0 900 Z"
-          fill="#16243e"
-          opacity="0.3"
-        />
+        <path d={FAR_RANGE} fill="#f2ecde" />
+        <path d={FAR_RANGE} fill="#16243e" opacity="0.3" />
         <rect y="580" width="1440" height="120" fill="#c4a35c" opacity="0.05" />
       </g>
 
