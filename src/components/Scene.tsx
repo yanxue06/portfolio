@@ -76,18 +76,21 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
 
       {/* mid hills + pines */}
       <g>
+        {/* a low rolling shore instead of a tall hill — its dips duck under
+            the waterline so the coast reads as coves, and the pines stand
+            right at the water's edge */}
         <path
-          d="M0 730 Q180 668 380 706 Q560 740 760 700 Q960 664 1140 708 Q1290 742 1440 700 L1440 900 L0 900 Z"
+          d="M0 800 Q180 762 380 788 Q560 806 760 780 Q960 758 1140 786 Q1290 806 1440 778 L1440 900 L0 900 Z"
           fill="#16243e"
           opacity="0.52"
         />
         <g fill="#0f1e3a" opacity="0.75">
-          <path d="M1150 712 l11 -34 l11 34 z" />
-          <path d="M1186 708 l13 -42 l13 42 z" />
-          <path d="M1226 712 l10 -30 l10 30 z" />
-          <path d="M1262 706 l14 -46 l14 46 z" />
-          <path d="M1306 712 l11 -34 l11 34 z" />
-          <path d="M1344 708 l12 -38 l12 38 z" />
+          <path d="M1150 790 l11 -34 l11 34 z" />
+          <path d="M1186 786 l13 -42 l13 42 z" />
+          <path d="M1226 790 l10 -30 l10 30 z" />
+          <path d="M1262 784 l14 -46 l14 46 z" />
+          <path d="M1306 790 l11 -34 l11 34 z" />
+          <path d="M1344 786 l12 -38 l12 38 z" />
         </g>
       </g>
 
