@@ -3,7 +3,13 @@
    sinking behind the far ridge as the pinned hero is scrolled. The kid on
    the cliff keeps their laptop. Layers scrub at different rates for depth. */
 import { m, useReducedMotion, type MotionValue, useTransform } from 'framer-motion'
+import { lazy, Suspense } from 'react'
 import Flocks from './Flocks'
+
+/* same lazy chunk as the heart and the mesh sun — the sea below the cliff */
+const Water = lazy(() =>
+  import('@paper-design/shaders-react').then((mod) => ({ default: mod.Water })),
+)
 
 /* drawn twice: once opaque cream, once as the navy wash */
 const FAR_RANGE =
@@ -84,6 +90,55 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
           <path d="M1344 708 l12 -38 l12 38 z" />
         </g>
       </g>
+
+      {/* the sea the cliff drops into — the heart's water shader, riding a
+          foreignObject so it scales with the scene. the wavy shoreline is
+          CSS clip-path on the inner div: safari ignores svg clipPaths on
+          foreignObject but honors clip-path on the html child. left edge
+          tucks under the cliff, top edge stays below the pine bases */}
+      <foreignObject x="560" y="700" width="880" height="200">
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            clipPath:
+              "path('M0 26 Q150 14 300 22 Q450 32 600 24 Q700 19 800 24 Q845 26 880 22 L880 200 L0 200 Z')",
+          }}
+        >
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  background: 'radial-gradient(circle at 35% 30%, #bfe3f7 0%, #58a8db 55%, #2f7cb4 100%)',
+                }}
+              />
+            }
+          >
+            <Water
+              colorBack="#3f97cf"
+              colorHighlight="#f2fbff"
+              highlights={0.35}
+              layering={0.6}
+              edges={0.5}
+              waves={0.4}
+              caustic={0.35}
+              size={2}
+              speed={reduce ? 0 : 1.2}
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Suspense>
+        </div>
+      </foreignObject>
+      {/* gold glint along the waterline, same language as the cliff edges */}
+      <path
+        d="M560 726 Q710 714 860 722 Q1010 732 1160 724 Q1260 719 1360 724 Q1405 726 1440 722"
+        stroke="#c4a35c"
+        strokeWidth="2"
+        fill="none"
+        opacity="0.3"
+      />
 
       {/* foreground cliff — anchored, no parallax */}
       <path
