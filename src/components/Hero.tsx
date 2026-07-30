@@ -93,7 +93,7 @@ function LikeButton({ reduce }: { reduce: boolean }) {
       }}
       aria-label="like this site — mash away"
       title="mash away"
-      className="-mx-2 -my-1.5 inline-flex w-fit cursor-pointer items-center gap-2 px-2 py-1.5"
+      className="-mx-2 -my-1.5 flex w-fit cursor-pointer items-center gap-2 px-2 py-1.5"
     >
       <m.span className="relative h-[26px] w-[26px]" style={{ scale: squish }} aria-hidden>
         <span
@@ -269,7 +269,8 @@ export default function Hero() {
           </m.div>
         </m.div>
 
-        <m.div style={{ opacity: chromeOpacity }} className="mt-10">
+        {/* same 24px step as tagline → heart, so the column reads as one rhythm */}
+        <m.div style={{ opacity: chromeOpacity }} className="mt-6">
         <m.div
           initial={{ y: 14, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -279,7 +280,7 @@ export default function Hero() {
             <a
               href="mailto:yan.xue@uwaterloo.ca"
               data-cursor-capture
-              className="group inline-flex items-center gap-2 rounded-full bg-navy py-1.5 pl-5 pr-1.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3"
+              className="group flex w-fit items-center gap-2 rounded-full bg-navy py-1.5 pl-5 pr-1.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3"
             >
               say hello
               <span
