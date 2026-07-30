@@ -8,10 +8,12 @@ import '@fontsource-variable/archivo/wght-italic.css'
 import '@fontsource/space-mono/400.css'
 import '@fontsource/space-mono/700.css'
 import App from './App'
+import { trackClicks } from './lib/hits'
 import './index.css'
 
 inject()
 injectSpeedInsights()
+trackClicks()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
