@@ -96,13 +96,13 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
           CSS clip-path on the inner div: safari ignores svg clipPaths on
           foreignObject but honors clip-path on the html child. left edge
           tucks under the cliff, top edge stays below the pine bases */}
-      <foreignObject x="560" y="700" width="880" height="200">
+      <foreignObject x="560" y="780" width="880" height="120">
         <div
           style={{
             width: '100%',
             height: '100%',
             clipPath:
-              "path('M0 26 Q150 14 300 22 Q450 32 600 24 Q700 19 800 24 Q845 26 880 22 L880 200 L0 200 Z')",
+              "path('M0 26 Q150 14 300 22 Q450 32 600 24 Q700 19 800 24 Q845 26 880 22 L880 120 L0 120 Z')",
           }}
         >
           <Suspense
@@ -133,7 +133,7 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
       </foreignObject>
       {/* gold glint along the waterline, same language as the cliff edges */}
       <path
-        d="M560 726 Q710 714 860 722 Q1010 732 1160 724 Q1260 719 1360 724 Q1405 726 1440 722"
+        d="M560 806 Q710 794 860 802 Q1010 812 1160 804 Q1260 799 1360 804 Q1405 806 1440 802"
         stroke="#c4a35c"
         strokeWidth="2"
         fill="none"
