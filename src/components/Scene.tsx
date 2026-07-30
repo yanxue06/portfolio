@@ -128,14 +128,16 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
                 style={{
                   width: '100%',
                   height: '100%',
-                  background: 'radial-gradient(circle at 35% 30%, #bfe3f7 0%, #58a8db 55%, #2f7cb4 100%)',
+                  background: 'radial-gradient(circle at 35% 30%, #7fa3bd 0%, #3f688c 55%, #2a4a6b 100%)',
                 }}
               />
             }
           >
+            {/* the sea wears the site's dusk — slate navy with cream glints,
+                not the heart's pool blue */}
             <Water
-              colorBack="#3f97cf"
-              colorHighlight="#f2fbff"
+              colorBack="#35608a"
+              colorHighlight="#f2ecde"
               highlights={0.35}
               layering={0.6}
               edges={0.5}
