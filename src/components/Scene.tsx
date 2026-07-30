@@ -35,6 +35,10 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
           <stop offset="0%" stopColor="#c4a35c" stopOpacity="0" />
           <stop offset="100%" stopColor="#c4a35c" stopOpacity="0.16" />
         </linearGradient>
+        <linearGradient id="valleyFog" x1="0" y1="640" x2="0" y2="800" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#f2ecde" stopOpacity="0" />
+          <stop offset="100%" stopColor="#f2ecde" stopOpacity="0.9" />
+        </linearGradient>
         <radialGradient id="sunGlow">
           <stop offset="0%" stopColor="#c4a35c" stopOpacity="0.3" />
           <stop offset="45%" stopColor="#c4a35c" stopOpacity="0.1" />
@@ -73,6 +77,16 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
         <path d={FAR_RANGE} fill="#16243e" opacity="0.3" />
         <rect y="580" width="1440" height="120" fill="#c4a35c" opacity="0.05" />
       </g>
+
+      {/* the land recedes in planes: the range's base dissolves into valley
+          haze, a faint mid ridge steps out of it, then the shore. without
+          these the mountains and valley read as one flat grey wall */}
+      <rect x="-20" y="600" width="1480" height="205" fill="url(#valleyFog)" />
+      <path
+        d="M0 780 Q200 742 420 768 Q640 790 860 756 Q1080 730 1260 762 Q1360 776 1440 758 L1440 900 L0 900 Z"
+        fill="#16243e"
+        opacity="0.18"
+      />
 
       {/* mid hills + pines */}
       <g>
