@@ -6,6 +6,25 @@
 export type Counts = { visits: number; clicks: number; likes: number }
 
 const SEEN = 'yx-visited'
+const LIKES = 'yx-likes'
+
+/* last painted total, so the heart doesn't wait on /api on every load */
+export function peekLikes(): number | null {
+  try {
+    const n = parseInt(localStorage.getItem(LIKES) ?? '', 10)
+    return Number.isFinite(n) ? n : null
+  } catch {
+    return null
+  }
+}
+
+export function rememberLikes(n: number) {
+  try {
+    if (n > (peekLikes() ?? 0)) localStorage.setItem(LIKES, String(n))
+  } catch {
+    /* private mode — the number still lives in react state for this visit */
+  }
+}
 
 function seen(): boolean {
   try {
@@ -24,6 +43,10 @@ export const counts: Promise<Counts | null> = fetch(
   returning ? undefined : { method: 'POST' },
 )
   .then((r) => (r.ok ? r.json() : null))
+  .then((c) => {
+    if (c) rememberLikes(c.likes)
+    return c
+  })
   .catch(() => null)
 
 let pendingClicks = 0

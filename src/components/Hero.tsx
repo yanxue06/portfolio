@@ -9,7 +9,7 @@ import {
 import { ArrowRight } from 'lucide-react'
 import { lazy, Suspense, useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import Scene from './Scene'
-import { addLike, counts } from '../lib/hits'
+import { addLike, counts, peekLikes, rememberLikes } from '../lib/hits'
 
 /* the mesh ships in its own chunk, off the critical path — until it lands,
    the circle is a flat gradient in the same palette */
@@ -72,11 +72,15 @@ const HEART_MASK = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
    the visual only (a shrinking hit target makes rapid mashing miss), and
    the burst ships batched from lib/hits. */
 function LikeButton({ reduce }: { reduce: boolean }) {
-  const [base, setBase] = useState<number | null>(null)
+  /* last painted total from localStorage — first paint shouldn't wait on /api */
+  const [base, setBase] = useState<number | null>(peekLikes)
   const [mine, setMine] = useState(0)
   const squish = useSpring(1, { stiffness: 560, damping: 14 })
   useEffect(() => {
-    counts.then((c) => c && setBase(c.likes))
+    counts.then((c) => {
+      if (!c) return
+      setBase((prev) => Math.max(prev ?? 0, c.likes))
+    })
   }, [])
   const total = (base ?? 0) + mine
 
@@ -84,7 +88,11 @@ function LikeButton({ reduce }: { reduce: boolean }) {
     <button
       type="button"
       onClick={() => {
-        setMine((m) => m + 1)
+        setMine((m) => {
+          const next = m + 1
+          rememberLikes((base ?? 0) + next)
+          return next
+        })
         addLike()
         if (!reduce) {
           squish.jump(1.35)
@@ -135,7 +143,7 @@ function LikeButton({ reduce }: { reduce: boolean }) {
           initial={reduce || mine === 0 ? false : { scale: 1.3 }}
           animate={{ scale: 1 }}
         >
-          {total.toLocaleString()}
+          {base != null || mine > 0 ? total.toLocaleString() : '\u00a0'}
         </m.span>
       </span>
     </button>
