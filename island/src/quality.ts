@@ -17,12 +17,14 @@ export type QualitySettings = {
   flowers: boolean;
   treeNear: number; // trees closer than this (m) are full geometry
   treeFar: number; // trees closer than this (m) are drawn at all, as flat impostors past treeNear
+  capFrames: boolean; // on a 120 Hz+ screen draw every other frame (main.ts MIN_FRAME_MS)
+  terrainLite: boolean; // half the terrain's texture reads: no anti-tiling second sample, one cliff face
 };
 
 export const PRESETS: Record<QualityLevel, QualitySettings> = {
-  high: { level: 'high', pixelRatio: 1.5, shadowMap: 4096, treeShadows: true, ao: 'medium', bloom: true, smaa: true, grass: 1, flowers: true, treeNear: 78, treeFar: 900 },
-  medium: { level: 'medium', pixelRatio: 1, shadowMap: 2048, treeShadows: true, ao: 'low', bloom: true, smaa: true, grass: 0.55, flowers: true, treeNear: 52, treeFar: 650 },
-  low: { level: 'low', pixelRatio: 1, shadowMap: 1024, treeShadows: false, ao: 'off', bloom: false, smaa: false, grass: 0.25, flowers: false, treeNear: 30, treeFar: 420 },
+  high: { level: 'high', pixelRatio: 1.5, shadowMap: 4096, treeShadows: true, ao: 'medium', bloom: true, smaa: true, grass: 1, flowers: true, treeNear: 78, treeFar: 900, capFrames: false, terrainLite: false },
+  medium: { level: 'medium', pixelRatio: 1, shadowMap: 2048, treeShadows: true, ao: 'low', bloom: true, smaa: true, grass: 0.55, flowers: true, treeNear: 52, treeFar: 650, capFrames: true, terrainLite: false },
+  low: { level: 'low', pixelRatio: 1, shadowMap: 1024, treeShadows: false, ao: 'off', bloom: false, smaa: false, grass: 0.25, flowers: false, treeNear: 30, treeFar: 420, capFrames: true, terrainLite: true },
 };
 
 export const LEVELS: QualityLevel[] = ['high', 'medium', 'low'];

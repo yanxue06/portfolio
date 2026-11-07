@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { createNoise2D, fbm } from './noise';
 import { clamp, lerp, smoothstep, linearToSrgb } from '../util/math';
 import { applyFlats, CELL, GRID, HALF, PathIndex, VERTS, WORLD } from './lands/common';
-import { createTerrainMaterial, type TerrainLook } from './terrainMaterial';
+import { createTerrainMaterial, setTerrainLite, type TerrainLook } from './terrainMaterial';
 import type { LayerSet } from './assets';
 import type { LandGen, Landmarks, Point, ShadeOut } from './lands/types';
 
@@ -12,6 +12,8 @@ export type { Spot } from './lands/types';
 
 const nColor = createNoise2D(107);
 const nDry = createNoise2D(108);
+/** Ground tiles per side: GRID / TILES = 48 cells, about 95 m. Must divide GRID. */
+const TILES = 8;
 
 export type Island = {
   gen: LandGen;
@@ -25,10 +27,13 @@ export type Island = {
   rockMask: Float32Array;
   landmarks: Landmarks;
   paths: Point[][];
-  mesh: THREE.Mesh;
+  /** The ground: a group of tiles named 'terrain' that share one set of vertex buffers. */
+  mesh: THREE.Group;
   heightTexture: THREE.DataTexture;
   grassTexture: THREE.DataTexture;
   minimap: HTMLCanvasElement;
+  /** Low preset: the cheaper terrain shader (see setTerrainLite). */
+  setLite(lite: boolean): void;
   heightAt(x: number, z: number): number;
   normalAt(x: number, z: number, out: THREE.Vector3): THREE.Vector3;
   sample(arr: Float32Array, x: number, z: number): number;
@@ -130,35 +135,68 @@ export function buildIsland(gen: LandGen, layers: LayerSet, look: TerrainLook): 
     }
   }
 
-  // Triangulation must match heightAt(): cell diagonal runs b-d.
-  const indices = new Uint32Array(GRID * GRID * 6);
-  let w = 0;
-  for (let j = 0; j < GRID; j++) {
-    for (let i = 0; i < GRID; i++) {
-      const a = j * VERTS + i;
-      const b = a + VERTS;
-      const c = a + VERTS + 1;
-      const d = a + 1;
-      indices[w++] = a;
-      indices[w++] = b;
-      indices[w++] = d;
-      indices[w++] = b;
-      indices[w++] = c;
-      indices[w++] = d;
+  // One grid, drawn as TILES x TILES tiles that share its vertex buffers. Each tile has its own
+  // slice of the index and its own bounds, so three.js skips the tiles off screen. As a single
+  // mesh the whole island was drawn every frame, the half behind the camera included.
+  const attrs = {
+    position: new THREE.BufferAttribute(positions, 3),
+    normal: new THREE.BufferAttribute(normals, 3),
+    aSplatA: new THREE.BufferAttribute(splatA, 4),
+    aSplatB: new THREE.BufferAttribute(splatB, 1),
+  };
+  const material = createTerrainMaterial(layers, look);
+  const mesh = new THREE.Group();
+  mesh.name = 'terrain';
+  const tileGeos: THREE.BufferGeometry[] = [];
+  const box = new THREE.Box3();
+  for (let tj = 0; tj < TILES; tj++) {
+    for (let ti = 0; ti < TILES; ti++) {
+      const i0 = (ti * GRID) / TILES;
+      const i1 = ((ti + 1) * GRID) / TILES;
+      const j0 = (tj * GRID) / TILES;
+      const j1 = ((tj + 1) * GRID) / TILES;
+      // Triangulation must match heightAt(): cell diagonal runs b-d.
+      const indices = new Uint32Array((i1 - i0) * (j1 - j0) * 6);
+      let w = 0;
+      let lo = Infinity;
+      let hi = -Infinity;
+      for (let j = j0; j < j1; j++) {
+        for (let i = i0; i < i1; i++) {
+          const a = j * VERTS + i;
+          const b = a + VERTS;
+          const c = a + VERTS + 1;
+          const d = a + 1;
+          indices[w++] = a;
+          indices[w++] = b;
+          indices[w++] = d;
+          indices[w++] = b;
+          indices[w++] = c;
+          indices[w++] = d;
+        }
+      }
+      for (let j = j0; j <= j1; j++) {
+        for (let i = i0; i <= i1; i++) {
+          const y = heights[j * VERTS + i];
+          lo = Math.min(lo, y);
+          hi = Math.max(hi, y);
+        }
+      }
+      const geo = new THREE.BufferGeometry();
+      for (const [name, attr] of Object.entries(attrs)) geo.setAttribute(name, attr);
+      geo.setIndex(new THREE.BufferAttribute(indices, 1));
+      box.min.set(-HALF + i0 * CELL, lo, -HALF + j0 * CELL);
+      box.max.set(-HALF + i1 * CELL, hi, -HALF + j1 * CELL);
+      geo.boundingBox = box.clone();
+      geo.boundingSphere = box.getBoundingSphere(new THREE.Sphere());
+      const tile = new THREE.Mesh(geo, material);
+      tile.receiveShadow = true;
+      tile.castShadow = false;
+      tile.name = 'terrain';
+      tile.matrixAutoUpdate = false; // never moves
+      mesh.add(tile);
+      tileGeos.push(geo);
     }
   }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geo.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
-  geo.setAttribute('aSplatA', new THREE.BufferAttribute(splatA, 4));
-  geo.setAttribute('aSplatB', new THREE.BufferAttribute(splatB, 1));
-  geo.setIndex(new THREE.BufferAttribute(indices, 1));
-  geo.computeBoundingSphere();
-  const material = createTerrainMaterial(layers, look);
-  const mesh = new THREE.Mesh(geo, material);
-  mesh.receiveShadow = true;
-  mesh.castShadow = false;
-  mesh.name = 'terrain';
 
   const halfData = new Uint16Array(n);
   for (let k = 0; k < n; k++) halfData[k] = THREE.DataUtils.toHalfFloat(heights[k]);
@@ -231,8 +269,11 @@ export function buildIsland(gen: LandGen, layers: LayerSet, look: TerrainLook): 
     heightAt,
     normalAt,
     sample,
+    setLite(lite) {
+      setTerrainLite(material, lite);
+    },
     dispose() {
-      geo.dispose();
+      for (const g of tileGeos) g.dispose();
       material.dispose();
       heightTexture.dispose();
       grassTexture.dispose();

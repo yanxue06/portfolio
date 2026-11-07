@@ -42,6 +42,12 @@ async function boot(): Promise<void> {
   const gpu = gpuName();
   const detected = detectLevel(gpu, navigator.hardwareConcurrency ?? 4, isMobile());
   let quality: QualitySettings = PRESETS[qualityChoice === 'auto' ? detected : qualityChoice];
+  // frame pacing: the cap's minimum gap (see frame()), and the menus that hold the last frame
+  const MIN_FRAME_MS = 9.5;
+  const uncapped = params.has('uncapped'); // perf scripts measure raw speed with vsync off
+  const STILL_MODES = new Set<Mode>(['paused', 'binder', 'map']);
+  let stillFrames = 0;
+  window.addEventListener('resize', () => (stillFrames = 0)); // a resize clears the canvas
   console.info(`[quality] gpu "${gpu}": auto would pick ${detected}; using ${quality.level} (${qualityChoice})`);
   const day = dayInfo(params.get('day'));
   const startLand = (params.get('land') ?? 'isle') as LandId;
@@ -196,6 +202,7 @@ async function boot(): Promise<void> {
   // --- graphics quality ----------------------------------------------------------------
   function applyQuality(q: QualitySettings): void {
     quality = q;
+    stillFrames = 0; // the pause menu's graphics picker should show its effect behind the menu
     view.setQuality(q);
     sun.shadow.mapSize.set(q.shadowMap, q.shadowMap);
     sun.shadow.map?.dispose();
@@ -346,6 +353,7 @@ async function boot(): Promise<void> {
     if (game.mode === mode) return;
     console.info(`[game] mode ${game.mode} -> ${mode}`);
     game.mode = mode;
+    stillFrames = 0;
     hud.setMode(mode);
     if (mode !== 'play') touch.reset(); // a thumb still on the stick when a menu opens shouldn't keep walking
     if (mode === 'binder') hud.renderBinder(game);
@@ -506,6 +514,9 @@ async function boot(): Promise<void> {
 
   function frame(now: number): void {
     requestAnimationFrame(frame);
+    // medium and low keep at least MIN_FRAME_MS between frames: a 60-100 Hz screen still gets every
+    // frame, a 120 Hz+ one every other. Half the GPU work (and heat, and battery) on fast screens.
+    if (quality.capFrames && !uncapped && now - last < MIN_FRAME_MS) return;
     const rawDt = (now - last) / 1000;
     last = now;
     frameTimes.push(rawDt);
@@ -538,6 +549,13 @@ async function boot(): Promise<void> {
     if (game.mode === 'select' && input.wasPressed('Enter')) begin();
 
     if (playing) rig.handleInput(input);
+    // Behind the pause, binder and map screens nothing moves, so the frame already on the canvas
+    // stays up instead of being drawn again every frame (along with the overlay's blur over it).
+    // A few frames after any switch, resize or graphics change, drawing stops until play resumes.
+    if (STILL_MODES.has(game.mode) && ++stillFrames > 3) {
+      input.endFrame();
+      return;
+    }
     if (simulate) {
       player.update(dt, input, rig.yaw, game.world, playing);
       spells.update(dt, game, playing);
@@ -583,7 +601,7 @@ async function boot(): Promise<void> {
 
     fx.update(dt);
     placeSun(player.pos, game.world.sky.sunDir);
-    game.world.update(dt, game.time, camera, player.pos);
+    game.world.update(dt, game.time, camera, player.pos, quality.treeShadows ? sun.shadow.getFrustum() : null);
     current.ambient.update(dt, game.time, camera.position);
 
     if (playing) {
@@ -615,6 +633,8 @@ async function boot(): Promise<void> {
   // --- debug/test handle (scripts/*.mjs) ----------------------------------------------
   const debug = {
     ready: true,
+    // raw handles for perf experiments (scripts/perf.mjs ABLATE=1 switches parts off through these)
+    three: { scene, sun, renderer: view.renderer, composer: view.composer },
     get landmarks() {
       return game.world.landmarks;
     },

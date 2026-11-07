@@ -82,6 +82,10 @@ type Variant = {
   nearList: number;
   farFrom: number;
   farTo: number;
+  /** The 3D list: its length, then how much of its front the main pass and the shadow pass draw. */
+  counts: { all: number; view: number; shadow: number };
+  /** Bounding sphere in the tree's own space (unscaled): height of the center, and radius. */
+  bound: { y: number; r: number };
 };
 
 const windUniforms = { uTreeTime: { value: 0 } };
@@ -295,6 +299,17 @@ function impostorMaterial(
 }
 
 /** Draws the first n instances and uploads only those matrices. */
+/** Swaps instance matrices i and j (16 floats each) in place. */
+function swap16(arr: Float32Array, i: number, j: number): void {
+  const a = i * 16;
+  const b = j * 16;
+  for (let k = 0; k < 16; k++) {
+    const t = arr[a + k];
+    arr[a + k] = arr[b + k];
+    arr[b + k] = t;
+  }
+}
+
 function setInstances(mesh: THREE.InstancedMesh, n: number): void {
   mesh.count = n;
   if (n === 0) return;
@@ -534,6 +549,26 @@ export class Forest {
     far.count = 0;
     this.group.add(nearBark, far);
     if (nearLeaves) this.group.add(nearLeaves);
+
+    // The 3D list holds every tree in range in every direction, because a tree behind you can
+    // still throw its shadow into view. cull() moves the trees on screen to the front of the list,
+    // then the ones the shadow map can see, so the main pass draws only the first stretch and the
+    // shadow pass the first two. three.js reads `count` at draw time, after these hooks run.
+    const counts = { all: 0, view: 0, shadow: 0 };
+    for (const m of nearLeaves ? [nearBark, nearLeaves] : [nearBark]) {
+      m.onBeforeRender = () => {
+        m.count = counts.view;
+      };
+      m.onBeforeShadow = () => {
+        m.count = counts.shadow;
+      };
+    }
+    // a sphere around the whole tree in its own space: height of its middle, and a radius that
+    // also covers a crown sitting off the trunk and the leaves swaying in the wind
+    const extent = new THREE.Box3().setFromBufferAttribute(bark.getAttribute('position') as THREE.BufferAttribute);
+    if (leafGeo) extent.union(new THREE.Box3().setFromBufferAttribute(leafGeo.getAttribute('position') as THREE.BufferAttribute));
+    const mid = extent.getCenter(new THREE.Vector3());
+    const bound = { y: mid.y, r: extent.getSize(new THREE.Vector3()).length() / 2 + Math.hypot(mid.x, mid.z) + 1 };
     return {
       bark,
       leaves: leafGeo,
@@ -555,6 +590,8 @@ export class Forest {
       nearList: 0,
       farFrom: 0,
       farTo: 0,
+      counts,
+      bound,
     };
   }
 
@@ -653,15 +690,61 @@ export class Forest {
     return { albedo, normals, framePx: new THREE.Vector2(wPx, hPx), width, height, bottom };
   }
 
-  /** Feeds the live camera to the fades every frame; rebuilds the draw lists after the camera has moved RESORT m. */
-  update(camera: THREE.Vector3, time: number): void {
+  /**
+   * Feeds the live camera position to the fades every frame, rebuilds the draw lists after it has
+   * moved RESORT m, and sorts the 3D list by what the camera (`view`, this frame's frustum) and
+   * the shadow map can see. `shadow` is the sun's shadow frustum (last frame's is close enough),
+   * or null when trees cast no shadows.
+   */
+  update(p: THREE.Vector3, time: number, view: THREE.Frustum, shadow: THREE.Frustum | null): void {
     windUniforms.uTreeTime.value = time;
-    this.view.value.copy(camera);
-    const dx = camera.x - this.lastCamera.x;
-    const dz = camera.z - this.lastCamera.z;
-    if (dx * dx + dz * dz < RESORT * RESORT) return;
-    this.lastCamera.copy(camera);
-    this.sort(camera.x, camera.z);
+    this.view.value.copy(p);
+    const dx = p.x - this.lastCamera.x;
+    const dz = p.z - this.lastCamera.z;
+    if (dx * dx + dz * dz >= RESORT * RESORT) {
+      this.lastCamera.copy(p);
+      this.sort(p.x, p.z);
+    }
+    this.cull(view, shadow);
+  }
+
+  private readonly probe = new THREE.Sphere();
+
+  /**
+   * Reorders each 3D list in place: trees on screen first, then trees only the shadow map sees,
+   * then the rest. Tested against the trees' bounding spheres, so a tree whose crown pokes into
+   * view counts as on screen. Uploads the matrices only when the order changed.
+   */
+  private cull(view: THREE.Frustum, shadow: THREE.Frustum | null): void {
+    for (const v of this.variants) {
+      const n = v.counts.all;
+      if (n === 0) continue;
+      const bark = v.nearBark.instanceMatrix.array as Float32Array;
+      const leaves = v.nearLeaves ? (v.nearLeaves.instanceMatrix.array as Float32Array) : null;
+      let moved = false;
+      let front = 0;
+      for (const frustum of shadow ? [view, shadow] : [view]) {
+        for (let i = front; i < n; i++) {
+          const o = i * 16;
+          const scale = Math.hypot(bark[o], bark[o + 1], bark[o + 2]);
+          this.probe.center.set(bark[o + 12], bark[o + 13] + v.bound.y * scale, bark[o + 14]);
+          this.probe.radius = v.bound.r * scale;
+          if (!frustum.intersectsSphere(this.probe)) continue;
+          if (i !== front) {
+            swap16(bark, i, front);
+            if (leaves) swap16(leaves, i, front);
+            moved = true;
+          }
+          front++;
+        }
+        if (frustum === view) v.counts.view = front;
+      }
+      v.counts.shadow = shadow ? front : n;
+      if (moved) {
+        setInstances(v.nearBark, n);
+        if (v.nearLeaves) setInstances(v.nearLeaves, n);
+      }
+    }
   }
 
   /**
@@ -702,6 +785,7 @@ export class Forest {
       setInstances(v.nearBark, n);
       if (v.nearLeaves) setInstances(v.nearLeaves, n);
       setInstances(v.far, f);
+      v.counts.all = v.counts.view = v.counts.shadow = n; // cull() narrows these in the same frame
       near += n;
     }
     this.nearCount = near;

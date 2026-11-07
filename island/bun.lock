@@ -18,6 +18,9 @@
       },
     },
   },
+  "patchedDependencies": {
+    "n8ao@2.0.1": "patches/n8ao@2.0.1.patch",
+  },
   "packages": {
     "@dgreenheck/ez-tree": ["@dgreenheck/ez-tree@1.1.0", "", { "peerDependencies": { "three": ">=0.167" } }, "sha512-6pvS6hD6B6h00dm0SnkgYeT4ABU5Y1Z9M44p1tXiV5C0eKrQy2sKECXshoaUv0qAOqYVL68w/PwadUxDFDiHUg=="],
 

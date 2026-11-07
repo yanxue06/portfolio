@@ -15,6 +15,7 @@ export type TerrainLook = {
 // each layer's AO channel so grass creeps into rock cracks instead of fading.
 export function createTerrainMaterial(set: LayerSet, look: TerrainLook): THREE.MeshStandardMaterial {
   const mat = new THREE.MeshStandardMaterial({ roughness: 1, metalness: 0 });
+  mat.defines = {};
   const uniforms = {
     uTAlb: { value: set.albedo },
     uTNrm: { value: set.normal },
@@ -62,15 +63,21 @@ export function createTerrainMaterial(set: LayerSet, look: TerrainLook): THREE.M
         void tPlanar(int layer, vec3 p, vec3 n, float macro, out vec4 alb, out vec3 nrmW, out float ao) {
           float s = uTScale[layer];
           vec2 uv1 = p.xz / s;
-          vec2 uv2 = mat2(0.8, -0.6, 0.6, 0.8) * p.xz / (s * 3.3) + vec2(0.37, 0.71);
           float L = float(layer);
           vec4 a1 = texture(uTAlb, vec3(uv1, L));
-          vec4 a2 = texture(uTAlb, vec3(uv2, L));
           vec4 n1 = texture(uTNrm, vec3(uv1, L));
+          #ifdef TERRAIN_LITE
+          // low preset: one sample per map, without the second tile that hides the repetition
+          alb = a1;
+          vec4 nn = n1;
+          #else
+          vec2 uv2 = mat2(0.8, -0.6, 0.6, 0.8) * p.xz / (s * 3.3) + vec2(0.37, 0.71);
+          vec4 a2 = texture(uTAlb, vec3(uv2, L));
           vec4 n2 = texture(uTNrm, vec3(uv2, L));
           float k = 0.25 + 0.4 * macro;
           alb = mix(a1, a2, k);
           vec4 nn = mix(n1, n2, k);
+          #endif
           vec3 tn = nn.xyz * 2.0 - 1.0;
           vec3 T = normalize(vec3(1.0, 0.0, 0.0) - n * n.x);
           vec3 B = cross(n, T);
@@ -84,6 +91,29 @@ export function createTerrainMaterial(set: LayerSet, look: TerrainLook): THREE.M
           float L = float(layer);
           vec3 w = pow(abs(n), vec3(4.0));
           w /= (w.x + w.y + w.z);
+          #ifdef TERRAIN_LITE
+          // low preset: only the face the slope turns toward most, 2 samples instead of 6
+          if (w.x >= w.y && w.x >= w.z) {
+            alb = texture(uTAlb, vec3(p.zy / s, L));
+            vec4 nd = texture(uTNrm, vec3(p.zy / s, L));
+            vec3 t = nd.xyz * 2.0 - 1.0;
+            nrmW = normalize(vec3(t.xy + n.zy, n.x).zyx);
+            ao = nd.w;
+          } else if (w.y >= w.z) {
+            alb = texture(uTAlb, vec3(p.xz / s, L));
+            vec4 nd = texture(uTNrm, vec3(p.xz / s, L));
+            vec3 t = nd.xyz * 2.0 - 1.0;
+            nrmW = normalize(vec3(t.xy + n.xz, n.y).xzy);
+            ao = nd.w;
+          } else {
+            alb = texture(uTAlb, vec3(p.xy / s, L));
+            vec4 nd = texture(uTNrm, vec3(p.xy / s, L));
+            vec3 t = nd.xyz * 2.0 - 1.0;
+            nrmW = normalize(vec3(t.xy + n.xy, n.z));
+            ao = nd.w;
+          }
+          return;
+          #endif
           vec4 ax = texture(uTAlb, vec3(p.zy / s, L));
           vec4 ay = texture(uTAlb, vec3(p.xz / s, L));
           vec4 az = texture(uTAlb, vec3(p.xy / s, L));
@@ -144,4 +174,17 @@ export function createTerrainMaterial(set: LayerSet, look: TerrainLook): THREE.M
   };
   mat.customProgramCacheKey = () => `terrain-tri${look.triplanar}`;
   return mat;
+}
+
+/**
+ * Lite terrain for the low preset: each layer reads its maps once instead of twice, and cliffs
+ * read one face instead of three. About half the texture reads on the surface that covers most
+ * of the screen. Recompiles the material when it changes.
+ */
+export function setTerrainLite(mat: THREE.MeshStandardMaterial, lite: boolean): void {
+  const defines = (mat.defines ??= {});
+  if ('TERRAIN_LITE' in defines === lite) return;
+  if (lite) defines.TERRAIN_LITE = '';
+  else delete defines.TERRAIN_LITE;
+  mat.needsUpdate = true;
 }

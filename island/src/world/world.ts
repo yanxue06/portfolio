@@ -122,10 +122,10 @@ export class World {
     this.updaters.push(fn);
   }
 
-  update(dt: number, time: number, camera: THREE.Camera, focus: THREE.Vector3): void {
+  update(dt: number, time: number, camera: THREE.Camera, focus: THREE.Vector3, shadow: THREE.Frustum | null = null): void {
     this.water.update(time);
     this.structures.update(dt, time);
-    this.foliage.update(time, focus, camera.position);
+    this.foliage.update(time, focus, camera, shadow);
     for (const fn of this.updaters) fn(dt, time);
   }
 
@@ -199,6 +199,7 @@ export class World {
   /** Applies a quality preset's world parts (trees, grass, flowers). */
   applyQuality(q: QualitySettings): void {
     this.foliage.setQuality(q);
+    this.island.setLite(q.terrainLite);
   }
 
   /** Camera occlusion: terrain plus colliders, except thin ones (trunks, lamps, stems) that would make it jump. */

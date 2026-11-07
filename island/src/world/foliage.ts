@@ -19,6 +19,16 @@ import type { LayerSet, Sky } from './assets';
 
 type FieldKind = 'grass' | 'flowers';
 
+/** Density steps: the presets' grass shares (1, 0.55, 0.25) are whole numbers of these. */
+const DENSITY_BUCKETS = 20;
+
+/** Interleaves the bits of two 6-bit cell coordinates: a Z-order (Morton) index, 0..4095. */
+function zOrder6(x: number, z: number): number {
+  let m = 0;
+  for (let b = 0; b < 6; b++) m |= (((x >> b) & 1) << (2 * b)) | (((z >> b) & 1) << (2 * b + 1));
+  return m;
+}
+
 function bladeGeometry(): THREE.BufferGeometry {
   const width = 0.075;
   const ys = [0, 0.32, 0.64];
@@ -63,8 +73,9 @@ function flowerGeometry(): THREE.BufferGeometry {
 
 export type Field = {
   mesh: THREE.Mesh;
-  update(time: number, center: THREE.Vector3, player: THREE.Vector3): void;
-  /** Draws this share (0..1) of the blades. Offsets are random, so any prefix is an even thinning. */
+  /** `view`: the camera's frustum this frame. Blades outside it skip their vertex work. */
+  update(time: number, center: THREE.Vector3, player: THREE.Vector3, view: THREE.Frustum): void;
+  /** Draws this share (0..1) of the blades, in steps of 1/DENSITY_BUCKETS: an even random thinning. */
   setDensity(share: number): void;
 };
 
@@ -85,8 +96,33 @@ export function createField(island: Island, kind: FieldKind, count: number, size
     params[i * 4 + 2] = rng(); // tint / phase
     params[i * 4 + 3] = rng(); // density threshold
   }
-  geo.setAttribute('aOffset', new THREE.InstancedBufferAttribute(offsets, 2));
-  geo.setAttribute('aParams', new THREE.InstancedBufferAttribute(params, 4));
+  // Draw order. Blades go into DENSITY_BUCKETS random buckets, and within a bucket along a Z-order
+  // curve over the window. Any whole number of buckets is still an even random thinning (that is
+  // setDensity), and blades next to each other in the list stand next to each other on the ground,
+  // so the GPU's vertex batches, which run a few neighbouring blades together, mostly agree when
+  // the shader drops off-screen blades early. In random order every batch had someone on screen.
+  const pick = mulberry32(seed ^ 0x5bd1e995); // its own stream: the blades themselves are unchanged
+  const keys = new Uint32Array(count);
+  const tally = new Uint32Array(DENSITY_BUCKETS * 4096 + 1);
+  for (let i = 0; i < count; i++) {
+    const bucket = Math.min(DENSITY_BUCKETS - 1, Math.floor(pick() * DENSITY_BUCKETS));
+    const cx = Math.min(63, Math.floor((offsets[i * 2] / size) * 64));
+    const cz = Math.min(63, Math.floor((offsets[i * 2 + 1] / size) * 64));
+    keys[i] = bucket * 4096 + zOrder6(cx, cz);
+    tally[keys[i] + 1]++;
+  }
+  for (let k = 1; k < tally.length; k++) tally[k] += tally[k - 1]; // counting sort: start of each key
+  const bucketEnd = new Uint32Array(DENSITY_BUCKETS);
+  for (let b = 0; b < DENSITY_BUCKETS; b++) bucketEnd[b] = tally[(b + 1) * 4096];
+  const sortedOffsets = new Float32Array(count * 2);
+  const sortedParams = new Float32Array(count * 4);
+  for (let i = 0; i < count; i++) {
+    const to = tally[keys[i]]++;
+    sortedOffsets.set(offsets.subarray(i * 2, i * 2 + 2), to * 2);
+    sortedParams.set(params.subarray(i * 4, i * 4 + 4), to * 4);
+  }
+  geo.setAttribute('aOffset', new THREE.InstancedBufferAttribute(sortedOffsets, 2));
+  geo.setAttribute('aParams', new THREE.InstancedBufferAttribute(sortedParams, 4));
   geo.instanceCount = count;
 
   const uniforms = {
@@ -98,6 +134,7 @@ export function createField(island: Island, kind: FieldKind, count: number, size
     uWorld: { value: WORLD },
     uGridN: { value: GRID },
     uPlayer: { value: new THREE.Vector3() },
+    uFrustum: { value: Array.from({ length: 6 }, () => new THREE.Vector4()) },
     uBladeHeight: { value: kind === 'grass' ? look.height : 0.6 },
     uDensity: { value: kind === 'grass' ? look.density : look.flowers },
     uBase: { value: new THREE.Color(look.base) },
@@ -131,6 +168,7 @@ export function createField(island: Island, kind: FieldKind, count: number, size
         uniform float uWorld;
         uniform float uGridN;
         uniform vec3 uPlayer;
+        uniform vec4 uFrustum[6];
         uniform float uBladeHeight;
         uniform float uDensity;
         varying float vGrassT;
@@ -141,10 +179,25 @@ export function createField(island: Island, kind: FieldKind, count: number, size
         '#include <beginnormal_vertex>',
         `vec2 gBase = uCenter - 0.5 * uSize;
         vec2 gXZ = gBase + mod(aOffset - gBase, uSize);
+        float gDist = length(gXZ - uCenter) / (0.5 * uSize);
+        // Blades that can't show stop here, before the mask, wind and lighting work: past the
+        // window's fade, or wholly outside one of the camera's planes (the probe sphere covers the
+        // tallest blade bent all the way over). Their vertices land outside clip space and vanish.
+        if (gDist > 1.0) {
+          gl_Position = vec4(0.0, 0.0, 2.0, 1.0);
+          return;
+        }
         vec2 gUv = wi_gridUv(gXZ, uWorld, uGridN);
         float gGround = texture2D(uHeight, gUv).r;
+        vec3 gProbe = vec3(gXZ.x, gGround + 0.65 * uBladeHeight, gXZ.y);
+        float gProbeR = 1.4 * uBladeHeight + 0.5;
+        for (int p = 0; p < 6; p++) {
+          if (dot(uFrustum[p].xyz, gProbe) + uFrustum[p].w < -gProbeR) {
+            gl_Position = vec4(0.0, 0.0, 2.0, 1.0);
+            return;
+          }
+        }
         float gMask = texture2D(uMask, gUv).r;
-        float gDist = length(gXZ - uCenter) / (0.5 * uSize);
         // Toward the window edge each blade shrinks away over a long stretch (a third of the window
         // radius), so a step only changes it a little. Where it ends is jittered per blade, so the
         // edge is ragged instead of a clean circle that visibly travels with you. Every blade is
@@ -209,13 +262,18 @@ export function createField(island: Island, kind: FieldKind, count: number, size
   mesh.name = kind;
   return {
     mesh,
-    update(time, center, player) {
+    update(time, center, player, view) {
+      for (let i = 0; i < 6; i++) {
+        const p = view.planes[i];
+        uniforms.uFrustum.value[i].set(p.normal.x, p.normal.y, p.normal.z, p.constant);
+      }
       uniforms.uTime.value = time;
       uniforms.uCenter.value.set(center.x, center.z);
       uniforms.uPlayer.value.copy(player);
     },
     setDensity(share) {
-      geo.instanceCount = Math.max(1, Math.round(count * Math.min(1, Math.max(0, share))));
+      const buckets = Math.round(Math.min(1, Math.max(0, share)) * DENSITY_BUCKETS);
+      geo.instanceCount = Math.max(1, buckets > 0 ? bucketEnd[buckets - 1] : 0);
     },
   };
 }
@@ -257,7 +315,8 @@ export type Foliage = {
   grass: Field | null;
   flowers: Field | null;
   counts: Record<string, number>;
-  update(time: number, focus: THREE.Vector3, camera: THREE.Vector3): void;
+  /** `shadow`: the sun's shadow frustum when trees cast shadows, else null. */
+  update(time: number, focus: THREE.Vector3, camera: THREE.Camera, shadow: THREE.Frustum | null): void;
   setQuality(q: QualitySettings): void;
   dispose(): void;
 };
@@ -363,6 +422,8 @@ export function createFoliage(
   }
 
   const counts = { trees: trees.length, rocks: rocks.length, props: props.length };
+  const view = new THREE.Frustum(); // this frame's camera frustum, shared by the forest and both fields
+  const projView = new THREE.Matrix4();
   console.info(`[foliage] ${land.id}: ${JSON.stringify(counts)} placed in ${(performance.now() - t0).toFixed(0)}ms`);
   return {
     group,
@@ -372,10 +433,12 @@ export function createFoliage(
     grass,
     flowers,
     counts,
-    update(time, focus, camera) {
-      forest.update(camera, time);
-      grass?.update(time, focus, focus);
-      flowers?.update(time, focus, focus);
+    update(time, focus, camera, shadow) {
+      camera.updateMatrixWorld(); // the rig moved it this frame; the renderer hasn't caught up yet
+      view.setFromProjectionMatrix(projView.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
+      forest.update(camera.position, time, view, shadow);
+      grass?.update(time, focus, focus, view);
+      flowers?.update(time, focus, focus, view);
     },
     setQuality(q) {
       forest.setQuality(q.treeNear, q.treeFar, q.treeShadows);

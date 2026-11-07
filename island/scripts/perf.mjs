@@ -17,7 +17,7 @@ const page = await browser.newPage({ viewport: { width: W, height: H } });
 const errors = [];
 page.on('pageerror', (e) => errors.push(String(e)));
 page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
-await page.goto(`${base}?autoplay=1&quality=high`);
+await page.goto(`${base}?autoplay=1&quality=high&uncapped`);
 await page.waitForFunction(() => window.__isle?.ready === true, null, { timeout: 300000 });
 await page.waitForTimeout(2500);
 await page.waitForFunction(() => window.__isle?.ready === true, null, { timeout: 300000 });

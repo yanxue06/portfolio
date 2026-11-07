@@ -36,14 +36,14 @@ The personal site at the repo root uses Vite's default ports (5173 dev, 4173 pre
 | `src/cards/` | The 60-card catalog, canvas-drawn card faces, the daily deal (`daily.ts`), pickups and the binder save (`cards.ts`) |
 | `src/hud/` | HUD, minimap, binder, world map, character select, loading screen, and the pause screen with the Graphics picker |
 | `src/quality.ts` | The `high`, `medium` and `low` presets, a first guess from the GPU's name, and the `Governor` |
-| `src/render.ts` | Renderer and post chain: N8AO (or a plain RenderPass when AO is off), bloom, color grade, output, SMAA |
+| `src/render.ts` | Renderer and post chain: N8AO at half resolution (or a plain RenderPass when AO is off), bloom, the output pass with the color grade folded in, SMAA |
 | `src/spells.ts` `critters.ts` `fx.ts` `sfx.ts` `camera.ts` `regions.ts` | Spell table and casting, jellyhops, particles, synthesized sound (no audio files), orbit camera, named areas |
 
 The governor samples fps in 2 s windows during play. Under 42 fps it lowers the render scale in steps of 0.1, down to 0.65. If the game is still slow after that, it drops the preset one step, but only when the player picked Auto. Above 56 fps for 6 s it raises the render scale again. It never raises the preset.
 
 ## Testing through `window.__isle`
 
-When boot finishes, `main.ts` sets `window.__isle` with `ready: true`. The scripts drive the game through it: `state()`, `teleport(x, z)`, `look`, `lookAt`, `pitch`, `travel(land)`, `cast(spell)` (refills aura and clears the cooldown), `pick(id)`, `setMode`, `setQuality`, `holdResolution(true)` (pauses the governor), `landmarks`, `house()`, `stairs()`, `islets`, `cotd()`, `scatterCards`, `critterAhead`. The character lab has its own handle, `window.__lab`.
+When boot finishes, `main.ts` sets `window.__isle` with `ready: true`. The scripts drive the game through it: `state()`, `teleport(x, z)`, `look`, `lookAt`, `pitch`, `travel(land)`, `cast(spell)` (refills aura and clears the cooldown), `pick(id)`, `setMode`, `setQuality`, `holdResolution(true)` (pauses the governor), `landmarks`, `house()`, `stairs()`, `islets`, `cotd()`, `scatterCards`, `critterAhead`, and `three` (`scene`, `sun`, `renderer`, `composer`) for perf experiments. The character lab has its own handle, `window.__lab`.
 
 | URL flag | Effect |
 |---|---|
@@ -52,6 +52,7 @@ When boot finishes, `main.ts` sets `window.__isle` with `ready: true`. The scrip
 | `?char=<id>` `?land=<id>` `?day=YYYY-MM-DD` `?name=` | Traveler, starting land, which day's deal, player name |
 | `?quality=low\|medium\|high\|auto` | Forces a preset for this visit. Otherwise: the saved pick, then a guess from the GPU |
 | `?touch` | Turns the touch controls on, for trying them on a desktop. Phones and tablets get them anyway |
+| `?uncapped` | Turns off the medium/low frame cap, so a script can measure raw speed with vsync off |
 
 | Script | What it checks | Success |
 |---|---|---|
@@ -60,7 +61,7 @@ When boot finishes, `main.ts` sets `window.__isle` with `ready: true`. The scrip
 | `lands.mjs` | Travels to all four lands and screenshots each gate, town and summit | `no console errors` |
 | `touch.mjs` | Pixel 7 in Chromium and iPhone 15 in WebKit: menus by tap, stick walk and run, camera drag, pinch, jump, double jump, spell cards, pause/map/binder buttons, and that nothing overlaps either way up | `30/30 checks passed` |
 | `shots.mjs` | Screenshots of named scenes, e.g. `node scripts/shots.mjs spawn map cotd` | look at the PNGs |
-| `perf.mjs` | fps per preset with the governor paused. `GPU=swiftshader` stands in for a weak computer | read the numbers |
+| `perf.mjs` | fps per preset with the governor paused and the frame cap off. `W=3840 H=2160` makes even a fast GPU pixel-bound, the way a laptop GPU is at 1080p. `GPU=swiftshader` renders on the CPU, too slow for its fps to mean much | read the numbers; compare two builds in alternating runs, because single runs vary by about 8% |
 | `lab-shots.mjs` | The character lab at `/tools/character-lab.html`: lineup, gait strips, expressions, foot slip, benchmark | `no console errors` |
 
 - Every script needs `bun run dev` running. All but `perf.mjs` exit 1 on a failed check or any console error.
@@ -94,11 +95,19 @@ When boot finishes, `main.ts` sets `window.__isle` with `ready: true`. The scrip
   - The JS bundle is 5.3 MB (3.4 MB gzipped). About 4 MB of it is bark and leaf textures that `@dgreenheck/ez-tree` inlines as base64.
   - Each HDR sky is 4 to 5.5 MB, and every land you travel to loads its own.
   - Returning visits mostly come from the browser cache.
-- **GitHub LFS quota.** The free plan includes 10 GiB of LFS bandwidth a month, and each Vercel build downloads the art from GitHub's LFS storage (about 63 MB today, so roughly 160 builds a month). With no payment method on the account, running out turns LFS off until the next month, and `check-lfs.mjs` fails every build until then.
+- **GitHub LFS quota.** The free plan includes 10 GiB of LFS bandwidth a month, and each Vercel build downloads the art from GitHub's LFS storage (about 63 MB today, so roughly 160 builds a month). Vercel clones the repo before the Ignored Build Step runs (a skipped build's log shows the clone first), so count every push to main, not just island builds. Whether a skipped build pulls the LFS files wasn't measured; GitHub's usage API needs the `user` scope. With no payment method on the account, running out turns LFS off until the next month, and `check-lfs.mjs` fails every build until then.
 
 ## Gotchas
 
-- **Never enable n8ao's `halfRes`.** Its half-resolution path builds a multi-target render buffer that three r187 can't bind, and one bad frame leaves the renderer stuck. `render.ts` lowers the AO cost with `setQualityMode('Performance')` instead.
+- **AO runs at half resolution thanks to `patches/n8ao@2.0.1.patch`.** Stock n8ao 2.0.1 gives its half-res buffer a `.texture` getter that returns an array; three r187 can't bind that, and one bad frame leaves the renderer stuck. The patch deletes the getter (n8ao itself reads `.textures[i]`). bun applies it on every install through `patchedDependencies` in package.json, Vercel included. Upgrading n8ao or three? Check half-res still runs before you drop the patch.
+- **Rendering cost, and the rules that keep it low.** Measured on the M5 Pro: half-res AO cut a third of the high preset's frame. These parts skip work the camera can't see:
+  - **Terrain:** 8×8 tile meshes sharing one set of vertex buffers (`terrain.ts`), so three.js frustum-culls each tile. `island.mesh` is a Group.
+  - **Near trees:** `Forest.cull()` reorders each 3D list every frame: on-screen trees first, then trees only the shadow map sees. `onBeforeRender` draws the first stretch and `onBeforeShadow` the first two, so a tree behind you still casts its shadow. Never set `nearBark.count` or `nearLeaves.count` anywhere else.
+  - **Grass and flowers:** one draw each, in an order sorted for culling (`createField`). Blades sit in 20 random density buckets, each in Z-order over the window. The vertex shader drops blades past the fade or outside `uFrustum` before any other work. `setDensity` moves in steps of 1/20.
+  - **Second cameras:** the culling uses the *main* camera. If you add another camera that draws the scene (a mirror, a portal, a photo mode), grass and near trees outside the main view will be missing from it.
+  - **Low preset:** `terrainLite` reads each terrain layer once instead of twice, and cliffs from one face instead of three.
+  - **Frame cap:** medium and low skip frames on 120 Hz and faster screens (`capFrames`, `MIN_FRAME_MS` in main.ts).
+  - **Menus:** pause, binder and map hold the last frame instead of redrawing it. Anything that should still move behind a menu has to reset `stillFrames`.
 - **Keep the hemisphere light.** MToon, the material on the VRM characters, ignores `scene.environment`, so the sky's image-based light never reaches them. The hemisphere light in `main.ts`, retuned per land in `World.applyAtmosphere`, is their only fill light. Remove it or zero it and the characters lose their fill.
 - **The sun's shadow camera is texel-snapped.** `placeSun` in `main.ts` moves it in whole shadow-map texels so shadow edges hold still as you walk. Resizing the frustum or the map is fine. Dropping the snap brings the shimmer back.
 - **Headless Chrome needs the real GPU.** Launch Playwright with `channel: 'chrome'` and `--use-angle=metal` (the scripts also pass `--ignore-gpu-blocklist`). Without them Chrome renders in software and the fps numbers mean nothing.
