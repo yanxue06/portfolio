@@ -1,4 +1,4 @@
-import { m } from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -12,6 +12,7 @@ const NAV_LINKS = [
 
 /* fixed masthead — rides the whole page, colors follow the theme morph */
 export default function Nav() {
+  const reduce = useReducedMotion()
   return (
     <nav className="fixed inset-x-0 top-0 z-40 flex items-center justify-between px-6 py-5 sm:px-10">
       <a href="#top" className="ink font-mono text-sm font-bold">
@@ -30,7 +31,7 @@ export default function Nav() {
         ))}
       </div>
       <m.span
-        initial={{ scaleX: 0 }}
+        initial={reduce ? false : { scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ delay: 0.4, duration: 1.1, ease: EASE }}
         className="hairline absolute inset-x-0 bottom-0 origin-left border-b"

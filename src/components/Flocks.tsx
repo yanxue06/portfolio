@@ -97,7 +97,7 @@ function FlockGroup({ flock, onDone }: { flock: Flock; onDone: (id: number) => v
 
 function StaticBirds() {
   return (
-    <g style={{ animation: 'birds-drift 32s ease-in-out infinite' }}>
+    <g>
       <path d="M1040 500 q7 -8 14 0 q7 -8 14 0" />
       <path d="M1112 528 q6 -7 12 0 q6 -7 12 0" opacity="0.85" />
       <path d="M1000 478 q5 -6 10 0 q5 -6 10 0" opacity="0.7" />

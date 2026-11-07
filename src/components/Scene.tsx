@@ -189,7 +189,7 @@ export default function Scene({ progress }: { progress: MotionValue<number> }) {
         <path d="M607 630 L633 636 L632 641 L606 635 Z" fill="#0a1526" />
         <path d="M630 638 L640 615 L645 617 L635 640 Z" fill="#16243e" />
         <path d="M632 636 L640 618 L643 619 L635 637 Z" fill="#f5efdf" opacity="0.9" />
-        <circle cx="638" cy="627" r="13" fill="#f5efdf" style={{ animation: 'screen-flicker 5s ease-in-out infinite' }} />
+        <circle cx="638" cy="627" r="13" fill="#f5efdf" style={reduce ? { opacity: 0.12 } : { animation: 'screen-flicker 5s ease-in-out infinite' }} />
         <circle cx="638" cy="627" r="6" fill="#f5efdf" opacity="0.22" />
         <path d="M608 575 a11 11 0 0 1 3 12" stroke="#c4a35c" strokeWidth="2" fill="none" opacity="0.5" />
         <path d="M606 598 q6 4 6 11" stroke="#c4a35c" strokeWidth="2" fill="none" opacity="0.35" />

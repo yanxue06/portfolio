@@ -218,15 +218,6 @@ body {
     transform: rotate(18deg);
   }
 }
-@keyframes birds-drift {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-18px, -6px);
-  }
-}
 @keyframes screen-flicker {
   0%,
   100% {

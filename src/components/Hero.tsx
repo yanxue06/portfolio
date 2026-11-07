@@ -154,11 +154,12 @@ function LikeButton({ reduce }: { reduce: boolean }) {
    The wrapper's pb/-mb keeps descenders inside the clip box — leading
    0.9 alone cuts the tail off the y. */
 function MaskLine({ children, delay, className }: { children: ReactNode; delay: number; className?: string }) {
+  const reduce = useReducedMotion()
   return (
     <span className={`block overflow-hidden pb-[0.12em] -mb-[0.12em] ${className ?? ''}`}>
       <m.span
         className="block"
-        initial={{ y: '112%' }}
+        initial={reduce ? false : { y: '112%' }}
         animate={{ y: 0 }}
         transition={{ delay, duration: 1, ease: EASE }}
       >
@@ -246,7 +247,7 @@ export default function Hero() {
 
         <m.div style={{ opacity: chromeOpacity }} className="mt-5 max-w-[680px]">
           <m.p
-            initial={{ y: 14, opacity: 0 }}
+            initial={reduce ? false : { y: 14, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.55, duration: 0.8, ease: EASE }}
             className="ink text-[14px] leading-relaxed opacity-90 sm:text-[15px]"
@@ -260,7 +261,7 @@ export default function Hero() {
             ))}
           </m.p>
           <m.p
-            initial={{ y: 14, opacity: 0 }}
+            initial={reduce ? false : { y: 14, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.68, duration: 0.8, ease: EASE }}
             className="muted mt-1.5 font-mono text-[12px]"
@@ -280,7 +281,7 @@ export default function Hero() {
         {/* same 24px step as tagline → heart, so the column reads as one rhythm */}
         <m.div style={{ opacity: chromeOpacity }} className="mt-6">
         <m.div
-          initial={{ y: 14, opacity: 0 }}
+          initial={reduce ? false : { y: 14, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.95, duration: 0.8, ease: EASE }}
         >
