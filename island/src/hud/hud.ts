@@ -38,6 +38,16 @@ const CONTROLS: Array<[string, string]> = [
   ['M', 'Mute'],
 ];
 
+// the same help, for thumbs
+const TOUCH_CONTROLS: Array<[string, string]> = [
+  ['Left side', 'Move · push to the rim to run'],
+  ['Right side', 'Drag to look · pinch to zoom'],
+  ['Jump', 'Tap again in the air to double jump'],
+  ['Spells', 'Tap a card to cast · hold Spark to keep firing'],
+  ['Map', 'Travel between lands'],
+  ['Hand', 'Opens your binder'],
+];
+
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, className: string, html = ''): HTMLElementTagNameMap[K] {
   const node = document.createElement(tag);
   node.className = className;
@@ -57,8 +67,8 @@ function prettyDate(key: string | null): string {
   return new Date(y, m - 1, d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-function controlsHtml(): string {
-  return CONTROLS.map(([k, v]) => `<div class="ctl"><kbd>${k}</kbd><span>${v}</span></div>`).join('');
+function controlsHtml(list = CONTROLS): string {
+  return list.map(([k, v]) => `<div class="ctl"><kbd>${k}</kbd><span>${v}</span></div>`).join('');
 }
 
 export class Hud {
@@ -72,6 +82,7 @@ export class Hud {
   onBegin: () => void = () => {};
   onQuality: (choice: QualityChoice) => void = () => {};
   private playerName = 'Traveler';
+  private touch = false;
   onMapClose: () => void = () => {};
   private readonly day: DayInfo;
   private readonly intro: HTMLDivElement;
@@ -314,6 +325,14 @@ export class Hud {
     return o;
   }
 
+  /** Phones and tablets: touch help instead of keys, and the bars move up out of the left thumb's way. */
+  setTouch(): void {
+    if (this.touch) return;
+    this.touch = true;
+    for (const panel of [this.intro, this.pause]) must(panel, '.controls').innerHTML = controlsHtml(TOUCH_CONTROLS);
+    must(this.root, '.hud-tl .day').after(must(this.root, '.hud-bl'));
+  }
+
   /** The name typed on the select screen, raw (main.ts cleans it). */
   selectName(): string {
     return must<HTMLInputElement>(this.select, '.sel-input').value;
@@ -323,7 +342,8 @@ export class Hud {
   setSelectName(name: string): void {
     const input = must<HTMLInputElement>(this.select, '.sel-input');
     input.value = name;
-    if (!name) setTimeout(() => input.focus(), 50);
+    // on a phone, focusing would throw the keyboard over the roster before anyone asked for it
+    if (!name && !this.touch) setTimeout(() => input.focus(), 50);
   }
 
   /** Shows the player's name in the corner, on the name tag and in the share text. */

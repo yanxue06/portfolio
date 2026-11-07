@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { Avatar, type AvatarPose } from './avatar';
 import type { Input } from './input';
 import type { World } from '../world/world';
-import { clamp, damp, dampAngle } from '../util/math';
+import { clamp, damp, dampAngle, smoothstep } from '../util/math';
 
 export const PLAYER_RADIUS = 0.42;
 export const PLAYER_HEIGHT = 1.75;
@@ -19,6 +19,7 @@ const MAX_GRADE = 1.35; // rise/run the player can walk up (~53 degrees)
 const SWIM_DEPTH = 1.25;
 const FLOAT_Y = -1.05;
 const WORLD_EDGE = 440;
+const STICK_RUN = 0.9; // the touch stick pushed this far (to the rim) runs
 
 /** Anything that can wear the player's body: the procedural Avatar or a loaded VRM character. */
 export type AvatarLike = {
@@ -131,6 +132,12 @@ export class Player {
       if (input.isDown('KeyD') || input.isDown('ArrowRight')) ix += 1;
       if (input.isDown('KeyA') || input.isDown('ArrowLeft')) ix -= 1;
     }
+    // the touch stick is analog: its direction steers, how far it's pushed sets the pace
+    const stick = controls ? Math.min(1, Math.hypot(input.stickX, input.stickY)) : 0;
+    if (stick > 0) {
+      ix += input.stickX;
+      iz += input.stickY;
+    }
     const fx = -Math.sin(cameraYaw);
     const fz = -Math.cos(cameraYaw);
     const rx = Math.cos(cameraYaw);
@@ -142,8 +149,9 @@ export class Player {
       mx /= mlen;
       mz /= mlen;
     }
-    const sprint = controls && (input.isDown('ShiftLeft') || input.isDown('ShiftRight'));
+    const sprint = controls && (input.isDown('ShiftLeft') || input.isDown('ShiftRight') || stick > STICK_RUN);
     let speed = (sprint ? RUN : WALK) * this.perks.speed;
+    if (stick > 0 && !sprint) speed *= 0.35 + 0.65 * smoothstep(0.1, 0.6, stick); // a light touch creeps, for lining up jumps
     if (this.swimming) speed = SWIM;
     if (this.diving) speed = 0;
     const accel = this.grounded || this.swimming ? 12 : 3.2;

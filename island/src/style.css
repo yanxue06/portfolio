@@ -1166,3 +1166,506 @@ kbd {
   font: 600 13px/1.4 var(--ui);
   color: var(--ink-faint);
 }
+
+/* ---------------------------------------------------- touch (phones and tablets)
+   Everything here hangs off html.touch, which only touch-first devices get, so a desktop with a
+   mouse never sees any of it. Thumbs live in the bottom corners: the stick bottom-left, jump and
+   the spell cards bottom-right. Everything else moves up and shrinks to stay out of their way. */
+
+.touch {
+  --sl: max(14px, env(safe-area-inset-left));
+  --sr: max(14px, env(safe-area-inset-right));
+  --st: max(10px, env(safe-area-inset-top));
+  --sb: max(14px, env(safe-area-inset-bottom));
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  overscroll-behavior: none;
+}
+.touch .overlay {
+  padding: 10px var(--sr) 10px var(--sl);
+  touch-action: pan-x pan-y; /* menus scroll, but a pinch never zooms the page */
+}
+.touch button {
+  touch-action: manipulation;
+}
+.touch .close kbd,
+.touch .binder-btn kbd,
+.touch .slot kbd {
+  display: none;
+}
+
+/* the surface the stick and the camera drags read from; it sits under every other HUD element */
+.t-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.t-stick {
+  position: absolute;
+  left: calc(var(--sl) + 18px);
+  bottom: calc(var(--sb) + 18px);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(12, 18, 32, 0.12) 30%, rgba(12, 18, 32, 0.38));
+  border: 1.5px solid rgba(255, 233, 180, 0.3);
+  opacity: 0.4;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.t-stick.held {
+  opacity: 0.95;
+  transition: none;
+}
+.t-knob {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  margin: -21px 0 0 -21px;
+  border-radius: 50%;
+  background: rgba(246, 241, 228, 0.85);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+.t-stick.run .t-knob {
+  background: var(--gold);
+  box-shadow: 0 0 16px rgba(255, 211, 107, 0.7);
+}
+
+.t-btn {
+  pointer-events: auto;
+  touch-action: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--edge);
+  background: var(--panel);
+  color: var(--ink);
+  backdrop-filter: blur(6px);
+  transition: transform 0.08s ease, background 0.12s ease;
+}
+.t-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.t-btn.down,
+.t-btn:active {
+  transform: scale(0.92);
+  background: rgba(255, 255, 255, 0.2);
+}
+.t-jump {
+  position: absolute;
+  right: var(--sr);
+  bottom: var(--sb);
+  width: 66px;
+  height: 66px;
+  border: 1.5px solid rgba(255, 233, 180, 0.4);
+  background: rgba(12, 18, 32, 0.42);
+}
+.t-jump svg {
+  width: 28px;
+  height: 28px;
+}
+.t-corner {
+  position: absolute;
+  top: var(--st);
+  right: calc(var(--sr) + 112px);
+  display: grid;
+  gap: 8px;
+}
+
+/* top left: name, bars, and today's hand shrunk to a strip of pips */
+.touch .hud-tl {
+  left: var(--sl);
+  top: var(--st);
+}
+.touch .brand {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+.touch .day {
+  margin-top: 4px;
+  font-size: 10.5px;
+}
+.touch .hud-tl .hud-bl {
+  position: static;
+  margin-top: 8px;
+  gap: 5px;
+}
+.touch .bar {
+  width: 152px;
+  height: 14px;
+  border-radius: 7px;
+}
+.touch .bar-label,
+.touch .bar-num {
+  font-size: 8.5px;
+  line-height: 14px;
+}
+.touch .bar-label {
+  left: 8px;
+}
+.touch .bar-num {
+  right: 8px;
+}
+.touch .hand {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 6px 8px 7px;
+  border-radius: 10px;
+  pointer-events: auto;
+}
+.touch .hand-head {
+  gap: 10px;
+  font-size: 8.5px;
+}
+.touch .hand-strip {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: 5px;
+  gap: 2px;
+  margin-top: 6px;
+}
+.touch .hand-strip .mini {
+  width: 5px;
+  height: 8px;
+  border-radius: 1.5px;
+  border-width: 1px;
+  font-size: 0;
+}
+.touch .hand-strip .mini.found {
+  box-shadow: 0 0 4px color-mix(in srgb, var(--c) 60%, transparent);
+}
+.touch .hand-strip .mini.cotd {
+  border-color: #fff3c4;
+  background: #8a6d24;
+  box-shadow: 0 0 5px rgba(255, 220, 120, 0.7);
+}
+
+/* top right: a smaller minimap (tap it for the world map), the buttons beside it */
+.touch .hud-tr {
+  right: var(--sr);
+  top: var(--st);
+}
+.touch .map-wrap {
+  width: 100px;
+  height: 100px;
+  border-width: 2px;
+  pointer-events: auto;
+}
+.touch .map-n {
+  top: -8px;
+  width: 16px;
+  height: 16px;
+  font-size: 9px;
+  line-height: 16px;
+}
+.touch .region-label {
+  max-width: 100px; /* long place names wrap under the minimap instead of sliding under the buttons */
+  margin-top: 6px;
+  font-size: 10.5px;
+  line-height: 1.2;
+  text-align: center;
+}
+.touch .hud-br {
+  display: none;
+}
+
+/* bottom right: the spell cards, Spark nearest the jump button where the thumb rests */
+.touch .spellbar {
+  left: auto;
+  right: calc(var(--sr) + 80px);
+  bottom: var(--sb);
+  transform: none;
+  flex-direction: row-reverse;
+  gap: 7px;
+}
+.touch .slot {
+  width: 42px;
+  gap: 0;
+  pointer-events: auto;
+  touch-action: none;
+}
+.touch .slot-card {
+  width: 42px;
+  height: 56px;
+  border-radius: 8px;
+}
+.touch .slot-card svg {
+  width: 21px;
+  height: 21px;
+}
+.touch .slot-cost {
+  right: 3px;
+  bottom: 2px;
+  font-size: 8.5px;
+}
+.touch .slot-name {
+  display: none;
+}
+.touch .slot.down .slot-card {
+  transform: scale(0.93);
+}
+
+/* words and toasts, smaller and clear of the thumbs */
+.touch .banner {
+  top: 15%;
+  width: max-content;
+  max-width: 76vw;
+}
+.touch .banner-rule {
+  width: 180px;
+  margin-bottom: 8px;
+}
+.touch .banner-title {
+  font-size: 24px;
+  letter-spacing: 0.12em;
+}
+.touch .banner-sub {
+  margin-top: 5px;
+  font-size: 12px;
+}
+.touch .notices {
+  bottom: calc(var(--sb) + 76px);
+  padding: 6px 12px;
+  font-size: 11.5px;
+}
+.touch .toasts {
+  top: calc(var(--st) + 150px);
+  right: var(--sr);
+  width: 196px;
+  gap: 6px;
+}
+.touch .toast {
+  gap: 8px;
+  padding: 5px 9px 5px 5px;
+}
+.touch .toast:nth-child(n + 3) {
+  display: none;
+}
+@media (max-height: 360px) {
+  .touch .toast:nth-child(n + 2) {
+    display: none; /* a short landscape phone only has room for the newest card */
+  }
+}
+.touch .toast img {
+  width: 28px;
+  height: 39px;
+}
+.touch .toast-kicker {
+  font-size: 8.5px;
+}
+.touch .toast-name {
+  margin-top: 3px;
+  font-size: 12.5px;
+}
+.touch .toast-rarity {
+  font-size: 9.5px;
+}
+.touch .crosshair {
+  width: 16px;
+  height: 16px;
+}
+
+.t-rotate {
+  display: none;
+}
+
+/* menus: the same panels, tightened so the important button is on the first screen */
+.touch .intro-panel,
+.touch .pause-panel {
+  padding: 18px 20px 14px;
+}
+.touch .title {
+  margin-top: 6px;
+  font-size: clamp(28px, 6vw, 46px);
+}
+.touch .tagline {
+  margin-top: 6px;
+  font-size: 14px;
+}
+.touch .pitch {
+  margin-top: 8px;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.touch .enter,
+.touch .resume {
+  margin-top: 12px;
+  padding: 11px 26px;
+  font-size: 15px;
+}
+.touch .controls {
+  margin-top: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 12px;
+}
+.touch .ctl {
+  font-size: 11.5px;
+}
+.touch .disclaimer {
+  margin-top: 12px;
+  font-size: 10px;
+}
+.touch .pause-panel h2 {
+  font-size: 26px;
+}
+.touch .gfx {
+  margin-top: 12px;
+}
+.touch .binder-panel,
+.touch .map-panel {
+  max-height: calc(100dvh - 20px);
+  padding: 14px 16px;
+  border-radius: 16px;
+}
+
+.touch .overlay.select {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.touch .select-panel {
+  width: min(410px, 54vw);
+}
+.touch .roster {
+  margin-top: 8px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+.touch .pick {
+  border-radius: 10px;
+}
+.touch .pick-name {
+  padding: 10px 3px 4px;
+  font-size: 8.5px;
+  letter-spacing: 0.06em;
+}
+.touch .select-detail {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 10px;
+  margin-top: 8px;
+}
+.touch .select-detail > * {
+  grid-column: 1 / -1;
+}
+.touch .sel-title {
+  font-size: 9.5px;
+}
+.touch .sel-name {
+  margin-top: 3px;
+  font-size: 22px;
+}
+.touch .sel-bio {
+  display: -webkit-box;
+  margin-top: 5px;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.touch .sel-perk {
+  margin-top: 7px;
+  padding: 6px 9px;
+  font-size: 12px;
+}
+.touch .sel-status {
+  min-height: 0;
+  margin-top: 4px;
+  font-size: 11px;
+}
+.touch .sel-field {
+  grid-column: 1;
+  margin-top: 6px;
+  gap: 4px;
+  font-size: 9.5px;
+}
+.touch .sel-input {
+  width: 100%;
+  padding: 8px 11px;
+  font-size: 16px; /* under 16px, iOS zooms the whole page in when the box gets focus */
+}
+.touch .select-detail .begin {
+  grid-column: 2;
+  align-self: end;
+  margin-top: 0;
+  padding: 10px 18px;
+  font-size: 14px;
+}
+.touch .select-panel .disclaimer {
+  margin-top: 8px;
+  font-size: 9.5px;
+}
+
+/* a phone held upright: still playable, just narrower, so the cards move above the thumbs */
+@media (orientation: portrait) {
+  .touch .t-corner {
+    top: calc(var(--st) + 132px);
+    right: var(--sr);
+    grid-auto-flow: column;
+  }
+  .touch .map-wrap {
+    width: 88px;
+    height: 88px;
+  }
+  .touch .region-label {
+    max-width: 88px;
+  }
+  .touch .spellbar {
+    right: 50%;
+    bottom: calc(var(--sb) + 130px); /* above the stick, which keeps the bottom corner */
+    transform: translateX(50%);
+  }
+  .touch .notices {
+    bottom: calc(var(--sb) + 200px);
+  }
+  .touch .toasts {
+    top: calc(var(--st) + 178px);
+  }
+  .touch .banner {
+    top: 27%;
+  }
+  .touch .banner-title {
+    font-size: 21px;
+  }
+  .touch .t-rotate {
+    position: absolute;
+    left: 50%;
+    top: 27%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px 8px 11px;
+    border-radius: 999px;
+    background: rgba(8, 12, 24, 0.66);
+    font: 700 12px/1.2 var(--ui);
+    white-space: nowrap;
+    transform: translateX(-50%);
+    animation: t-hint 6s ease 4s both; /* waits for the place-name banner to clear */
+  }
+  .touch .t-rotate svg {
+    width: 18px;
+    height: 18px;
+    color: var(--gold);
+  }
+  .touch .overlay.select {
+    place-items: start center;
+    background: linear-gradient(180deg, rgba(6, 9, 20, 0.9) 0%, rgba(6, 9, 20, 0.66) 40%, rgba(6, 9, 20, 0) 58%);
+  }
+  .touch .select-panel {
+    width: 100%;
+  }
+}
+@keyframes t-hint {
+  0% { opacity: 0; }
+  6%, 85% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}

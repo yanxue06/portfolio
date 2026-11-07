@@ -32,7 +32,7 @@ The personal site at the repo root uses Vite's default ports (5173 dev, 4173 pre
 | `src/world/lands/` | One generator per land (`isle`, `sunscar`, `frostveil`, `mistmoor`): height, landmarks, paths, shading. `defs.ts` is the registry |
 | `src/world/` | `world.ts` builds a land and answers physics queries. `assets.ts` loads HDR skies and texture arrays. Also terrain, ez-tree forests, grass, rocks, props, water, buildings, weather particles, colliders |
 | `src/characters/` | The six travelers. `roster.ts` (names, perks, model and portrait paths), `vrmModel.ts` (VRM load and cleanup), `retarget.ts` (Mixamo clips onto VRM bones), `poseLayers.ts`, `vrmAvatar.ts`. `lab.ts` runs `tools/character-lab.html` |
-| `src/player/` | Input, the movement controller (`player.ts`), and the primitive stand-in body (`avatar.ts`) that `?char=none` uses |
+| `src/player/` | Input, the movement controller (`player.ts`), the touch controls (`touch.ts`), and the primitive stand-in body (`avatar.ts`) that `?char=none` uses |
 | `src/cards/` | The 60-card catalog, canvas-drawn card faces, the daily deal (`daily.ts`), pickups and the binder save (`cards.ts`) |
 | `src/hud/` | HUD, minimap, binder, world map, character select, loading screen, and the pause screen with the Graphics picker |
 | `src/quality.ts` | The `high`, `medium` and `low` presets, a first guess from the GPU's name, and the `Governor` |
@@ -51,12 +51,14 @@ When boot finishes, `main.ts` sets `window.__isle` with `ready: true`. The scrip
 | `?char=none` | The stand-in body with every perk at 1. Physics baselines need it |
 | `?char=<id>` `?land=<id>` `?day=YYYY-MM-DD` `?name=` | Traveler, starting land, which day's deal, player name |
 | `?quality=low\|medium\|high\|auto` | Forces a preset for this visit. Otherwise: the saved pick, then a guess from the GPU |
+| `?touch` | Turns the touch controls on, for trying them on a desktop. Phones and tablets get them anyway |
 
 | Script | What it checks | Success |
 |---|---|---|
 | `physics.mjs` | Walk and sprint distance, jump and double-jump height, landing, a house wall blocks, outside stairs reach the roof, swimming offshore, standing on an islet, all five spells cast, Ren's +10% speed | `15/15 checks passed` |
 | `flow.mjs` | The real menus, no `?autoplay`: title, select, pick Momo, type a name, play, binder, close, pause, resume. The pick and name are saved | `no console errors` |
 | `lands.mjs` | Travels to all four lands and screenshots each gate, town and summit | `no console errors` |
+| `touch.mjs` | Pixel 7 in Chromium and iPhone 15 in WebKit: menus by tap, stick walk and run, camera drag, pinch, jump, double jump, spell cards, pause/map/binder buttons, and that nothing overlaps either way up | `30/30 checks passed` |
 | `shots.mjs` | Screenshots of named scenes, e.g. `node scripts/shots.mjs spawn map cotd` | look at the PNGs |
 | `perf.mjs` | fps per preset with the governor paused. `GPU=swiftshader` stands in for a weak computer | read the numbers |
 | `lab-shots.mjs` | The character lab at `/tools/character-lab.html`: lineup, gait strips, expressions, foot slip, benchmark | `no console errors` |
@@ -103,5 +105,6 @@ When boot finishes, `main.ts` sets `window.__isle` with `ready: true`. The scrip
 - **Block the HMR websocket while files are being edited.** Vite reloads a test page when a file it uses changes, which wrecks a run while another session edits `src/`. Call `await page.routeWebSocket(/.*/, () => {})` before `page.goto`. `lab-shots.mjs` does this.
 - **Physics tests run with `?char=none`.** The stand-in body has every perk at 1, so the distances are baselines. The last check puts on Ren on purpose to measure his perk.
 - **`public/portraits/` is checked in.** The character select shows these before any model loads, and they stay in plain git, not LFS.
+- **Touch controls only exist on touch-first devices.** `prefersTouch()` in `src/player/touch.ts` (a coarse pointer, or touch with no mouse) or the first touch on the page turns them on and adds `touch` to `<html>`. Every touch style is under `.touch`, so a desktop never sees them. They feed `Input` the way keys do: `input.press(code)` / `input.release(code)` for buttons (a tap shorter than a frame still counts), and `input.stickX/stickY` for the analog stick. Pointer lock is skipped on touch, since iOS Safari doesn't have it.
 - **Saves are versioned.** The binder lives in `localStorage` under `wildcard-isle:v1`. If its shape changes without a migration, `cards.ts` throws the save away and the player starts over, and renaming the key does the same. The other keys are `wildcard-isle:character`, `wildcard-isle:name` and `wildcard-isle:quality`.
 - **The daily deal is a pure function of the date and the catalog.** `dealFor` in `cards/daily.ts` seeds an RNG with the date and draws from `CARDS`. Editing the catalog or the draw order reshuffles every day's deal, today's included, and the save records today's finds as positions in that deal. Check a change with `?day=` before shipping it.

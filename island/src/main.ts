@@ -10,6 +10,7 @@ import { Player, type AvatarLike, type PlayerEvents } from './player/player';
 import { ROSTER, DEFAULT_CHARACTER_ID, characterById, type CharacterId } from './characters/roster';
 import { VrmAvatar } from './characters/vrmAvatar';
 import { Input } from './player/input';
+import { TouchControls, prefersTouch } from './player/touch';
 import { CameraRig } from './camera';
 import { Fx } from './fx';
 import { Sfx } from './sfx';
@@ -78,6 +79,7 @@ async function boot(): Promise<void> {
   const deal = dealFor(day);
   const spells = new Spells(scene);
   const hud = new Hud(app, day, document.createElement('canvas'));
+  const touch = new TouchControls(input, hud.root);
 
   // Player events turn movement into feedback (dust, rings, sounds, shake).
   const feet = new THREE.Vector3();
@@ -345,6 +347,7 @@ async function boot(): Promise<void> {
     console.info(`[game] mode ${game.mode} -> ${mode}`);
     game.mode = mode;
     hud.setMode(mode);
+    if (mode !== 'play') touch.reset(); // a thumb still on the stick when a menu opens shouldn't keep walking
     if (mode === 'binder') hud.renderBinder(game);
     if (mode === 'map') hud.renderWorldMap(game);
   }
@@ -443,6 +446,23 @@ async function boot(): Promise<void> {
   hud.onTravel = (id) => void travel(id);
   hud.setMode('intro');
 
+  // Touch controls: on from the start on phones and tablets, or from the first touch anywhere else
+  // (a laptop with a touchscreen). ?touch forces them on for testing on a desktop.
+  touch.onPause = () => {
+    if (game.mode !== 'play') return;
+    setMode('paused');
+    sfx.ui();
+  };
+  touch.onMap = () => openOverlay('map');
+  touch.onBinder = () => openOverlay('binder');
+  function enableTouch(): void {
+    if (touch.on) return;
+    touch.enable();
+    hud.setTouch();
+  }
+  if (params.has('touch') || prefersTouch()) enableTouch();
+  window.addEventListener('pointerdown', (e) => e.pointerType === 'touch' && enableTouch(), true);
+
   view.renderer.domElement.addEventListener('click', () => {
     if (game.mode === 'play' && !testMode && !input.locked) input.requestLock();
   });
@@ -535,11 +555,13 @@ async function boot(): Promise<void> {
       const rightX = Math.cos(player.facing); // camera's right when looking back at the character
       const rightZ = -Math.sin(player.facing);
       const h = player.avatar.height ?? 1.8; // frame short and tall characters the same way
-      const side = -0.56 * h;
+      // a phone held upright: the panel takes the top of the screen, so the character stands below it
+      const tall = touch.on && camera.aspect < 0.85;
+      const side = tall ? 0 : -0.56 * h;
       const sway = Math.sin(game.time * 0.35) * 0.05 * h;
-      const back = 1.5 * h;
-      camera.position.set(P.x + fwdX * back + rightX * (side + sway), P.y + 0.68 * h, P.z + fwdZ * back + rightZ * (side + sway));
-      camera.lookAt(P.x + rightX * side, P.y + 0.52 * h, P.z + rightZ * side);
+      const back = (tall ? 2.6 : 1.5) * h;
+      camera.position.set(P.x + fwdX * back + rightX * (side + sway), P.y + (tall ? 1.3 : 0.68) * h, P.z + fwdZ * back + rightZ * (side + sway));
+      camera.lookAt(P.x + rightX * side, P.y + (tall ? 1.2 : 0.52) * h, P.z + rightZ * side);
     } else {
       if (fx.shakeRequest > 0) {
         rig.addShake(fx.shakeRequest);
@@ -614,6 +636,11 @@ async function boot(): Promise<void> {
         calls: info.render.calls,
         triangles: info.render.triangles,
         loading,
+        yaw: rig.yaw,
+        pitch: rig.pitch,
+        zoom: rig.targetDist,
+        touch: touch.on,
+        cooldowns: { ...spells.cooldowns },
       };
     },
     enter,
