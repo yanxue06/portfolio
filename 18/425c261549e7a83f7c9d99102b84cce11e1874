@@ -1,0 +1,66 @@
+island/src/world/terrainMaterial.ts
+  s_1835feb9ad3714::t_e5021f8c740162 18,69-75,80,94-116,178-184,189
+  s_1835feb9ad3714::t_80eebf4969ef54 185-188
+  s_1835feb9ad3714::t_97b7f7a941b575 190
+island/src/world/terrain.ts
+  s_1835feb9ad3714::t_3f9adf335903bb 30-31
+  s_1835feb9ad3714::t_e5021f8c740162 5,35-36,272-274
+  s_1835feb9ad3714::t_e0a5c9881950ad 276
+  s_1835feb9ad3714::t_eed2b593ee80ee 138-146,148,150-199
+  s_1835feb9ad3714::t_3c5ce8d1836874 15-16
+island/src/world/world.ts
+  s_1835feb9ad3714::t_e5021f8c740162 202
+  s_1835feb9ad3714::t_45420bba2b7c0b 125,128
+island/src/world/trees.ts
+  s_1835feb9ad3714::t_0e333418c19f1f 694-697,699,708
+  s_1835feb9ad3714::t_274404a1eb9798 302-312
+  s_1835feb9ad3714::t_28428590e682c9 552-567
+  s_1835feb9ad3714::t_ae82180349749d 85-88
+  s_1835feb9ad3714::t_7996d1ce5b38c2 693,698,701-707,709-747
+  s_1835feb9ad3714::t_0867859650ffa9 568-571
+  s_1835feb9ad3714::t_e4d0ce1c958cad 788
+  s_1835feb9ad3714::t_4fe9feca16fa67 593-594
+island/src/main.ts
+  s_1835feb9ad3714::t_f77631ad7916ad 45-46,48-50
+  s_1835feb9ad3714::t_fab02e362519ba 47,519
+  s_1835feb9ad3714::t_45420bba2b7c0b 604
+  s_1835feb9ad3714::t_602139e48d279b 636-637
+  s_1835feb9ad3714::t_da44abf29edb77 205,356,517-518,552-558
+island/src/world/foliage.ts
+  s_1835feb9ad3714::t_45420bba2b7c0b 318-319,436
+  s_1835feb9ad3714::t_d1fac31ca35da3 22-31,76-78,99-125,137,171,182-189,192-199,265-269,275-276,437-441
+  s_1835feb9ad3714::t_0e333418c19f1f 425-426
+island/src/quality.ts
+  s_1835feb9ad3714::t_e5021f8c740162 21,25-27
+  s_1835feb9ad3714::t_2cf4a46df7063c 20
+island/src/render.ts
+  s_1835feb9ad3714::t_2437c3952cfb5f 10-18,22-39
+  s_1835feb9ad3714::t_4685610b86f55d 86-89,94
+  s_1835feb9ad3714::t_da996774036f40 114
+island/scripts/perf.mjs
+  s_1835feb9ad3714::t_fab02e362519ba 20
+island/CLAUDE.md
+  s_1835feb9ad3714::t_450cfe56f8aa7d 39,46,55,64,98,102-110
+island/bun.lock
+  s_1835feb9ad3714::t_29cf950ade9a1d 21-23
+island/package.json
+  s_1835feb9ad3714::t_1b21ade422102f 25-27
+island/patches/n8ao@2.0.1.patch
+  s_1835feb9ad3714::t_915bfc320eebf1 1-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "18425c261549e7a83f7c9d99102b84cce11e1874",
+  "prompts": {},
+  "sessions": {
+    "s_1835feb9ad3714": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "525124dc-d820-4019-8967-f2d63d6b6710",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Yan Xue <y9xue@uwaterloo.ca>"
+    }
+  }
+}
