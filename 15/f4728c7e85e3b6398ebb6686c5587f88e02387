@@ -1,0 +1,25 @@
+src/components/Flocks.tsx
+  s_1835feb9ad3714::t_3e77fe601f98db 100
+src/components/Hero.tsx
+  s_1835feb9ad3714::t_3e77fe601f98db 157,162,250,264,284
+src/components/Scene.tsx
+  s_1835feb9ad3714::t_3e77fe601f98db 192
+src/components/Nav.tsx
+  s_1835feb9ad3714::t_3e77fe601f98db 1,15,34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "15f4728c7e85e3b6398ebb6686c5587f88e02387",
+  "prompts": {},
+  "sessions": {
+    "s_1835feb9ad3714": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "525124dc-d820-4019-8967-f2d63d6b6710",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Yan Xue <y9xue@uwaterloo.ca>"
+    }
+  }
+}
