@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Character Lab</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ccircle cx=%2232%22 cy=%2224%22 r=%2214%22 fill=%22%23ff5c9e%22/%3E%3Crect x=%2216%22 y=%2240%22 width=%2232%22 height=%2220%22 rx=%228%22 fill=%22%233fb6ff%22/%3E%3C/svg%3E" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        background: #b9d7f0;
+        font: 13px/1.45 ui-sans-serif, system-ui, -apple-system, sans-serif;
+      }
+      #app {
+        position: fixed;
+        inset: 0;
+      }
+      #hud {
+        position: fixed;
+        left: 12px;
+        top: 10px;
+        max-width: calc(100vw - 48px);
+        padding: 8px 12px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.78);
+        color: #142030;
+        white-space: pre-wrap;
+        pointer-events: none;
+      }
+      #hud.error {
+        background: #2a0f16;
+        color: #ffd6dc;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="hud">Loading characters...</div>
+    <!-- Character lab: all six VRM characters side by side under the game's lights.
+         Drive it from the console or scripts/lab-shots.mjs through window.__lab. -->
+    <script type="module" src="/src/characters/lab.ts"></script>
+  </body>
+</html>

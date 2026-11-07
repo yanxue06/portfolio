@@ -1,0 +1,26 @@
+{
+  "name": "wildcard-isle",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5174 --strictPort",
+    "build": "node scripts/check-lfs.mjs && tsc --noEmit && vite build",
+    "preview": "vite preview --port 4174 --strictPort",
+    "typecheck": "tsc --noEmit",
+    "shots": "node scripts/shots.mjs"
+  },
+  "dependencies": {
+    "@dgreenheck/ez-tree": "^1.1.0",
+    "@pixiv/three-vrm": "^3.5.5",
+    "n8ao": "^2.0.1",
+    "postprocessing": "^6.39.6",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.187.0",
+    "playwright-core": "^1.65.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.6"
+  }
+}

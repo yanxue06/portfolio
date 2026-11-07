@@ -1,0 +1,16 @@
+# Git LFS for the game art under public/assets/ (CC0 models, skies, textures; see ASSETS.md).
+# Install git-lfs and run `git lfs install` BEFORE the first `git add` of public/assets/.
+# Without it these lines do nothing, git stores the files as plain blobs, and once pushed
+# they stay in the history for good. Check with `git lfs ls-files` before committing.
+# Small files outside public/assets/ (public/portraits/*.jpg) stay in plain git.
+public/assets/**/*.hdr filter=lfs diff=lfs merge=lfs -text
+public/assets/**/*.vrm filter=lfs diff=lfs merge=lfs -text
+public/assets/**/*.glb filter=lfs diff=lfs merge=lfs -text
+public/assets/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+public/assets/**/*.png filter=lfs diff=lfs merge=lfs -text
+
+# Formats the asset pipeline may switch to. Nothing uses them yet.
+public/assets/**/*.webp filter=lfs diff=lfs merge=lfs -text
+public/assets/**/*.ktx2 filter=lfs diff=lfs merge=lfs -text
+public/assets/**/*.avif filter=lfs diff=lfs merge=lfs -text
+public/assets/**/*.exr filter=lfs diff=lfs merge=lfs -text
