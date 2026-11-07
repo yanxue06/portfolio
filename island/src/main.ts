@@ -481,6 +481,7 @@ async function boot(): Promise<void> {
 
   // --- loop ---------------------------------------------------------------------
   const frameTimes: number[] = [];
+  let lastRawDt = 0;
   const plateAt = new THREE.Vector3();
 
   // The shadow camera follows the player in whole shadow-map texels, so shadow edges
@@ -518,7 +519,11 @@ async function boot(): Promise<void> {
 
     const playing = game.mode === 'play';
     const simulate = playing || game.mode === 'intro';
-    if (playing && rawDt < 0.5 && governorOn) governor.sample(rawDt); // skip hitches like a hidden tab
+    // one long frame after quick ones is a hitch (a shader compiling, a hidden tab). A weak machine's
+    // steady 1-2 fps is every frame being long, and it has to count or the governor never steps in.
+    const hitch = rawDt > 0.5 && lastRawDt < 0.25;
+    lastRawDt = rawDt;
+    if (playing && !hitch && rawDt < 3 && governorOn) governor.sample(rawDt);
 
     if (input.wasPressed('Tab') || input.wasPressed('KeyB')) {
       if (game.mode === 'binder') closeOverlay();

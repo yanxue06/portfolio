@@ -249,16 +249,26 @@ export class Spells {
     const end = start.clone();
     const probe = new THREE.Vector3();
     const range = 13 * player.perks.skipRange;
+    let reach = 0; // whole half-metre steps, so the 1.5 m minimum can't flip on float rounding between browsers
+    let lift = 0; // the path rides up over ground it would dig into, so a blink aimed a little down or uphill still goes the distance
     for (let d = 0.5; d <= range; d += 0.5) {
       probe.copy(start).addScaledVector(dir, d);
+      probe.y += lift;
+      const feet = probe.y - 0.9;
+      const floor = world.groundAt(probe.x, probe.z, feet + 0.6, 0.35);
+      if (floor > feet && floor - feet <= 0.6) {
+        lift += floor - feet;
+        probe.y += floor - feet;
+      }
       const blocked =
         world.solidAt(probe.x, probe.y, probe.z, 0.35) ||
         world.solidAt(probe.x, probe.y - 0.75, probe.z, 0.35) ||
         world.solidAt(probe.x, probe.y + 0.75, probe.z, 0.35);
       if (blocked) break;
       end.copy(probe);
+      reach = d;
     }
-    if (end.distanceTo(start) < 1.5) return false;
+    if (reach < 1.5) return false;
     const from = player.pos.clone().add(new THREE.Vector3(0, 0.9, 0));
     player.pos.set(end.x, end.y - 0.9, end.z);
     const ground = world.groundAt(player.pos.x, player.pos.z, player.pos.y, 0.42);
