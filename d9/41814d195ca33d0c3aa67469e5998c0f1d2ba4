@@ -1,0 +1,370 @@
+island/src/cards/cards.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-341
+island/ASSETS.md
+  s_1835feb9ad3714::t_103ac6dc28a56e 57
+  s_1835feb9ad3714::t_0d7347c533b425 1-2,4-8,11-15
+  s_1835feb9ad3714::t_2ed0dd013f7c55 3,9-10,16-56
+island/src/world/terrainMaterial.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-147
+island/scripts/check-lfs.mjs
+  s_1835feb9ad3714::t_83ac5a145f489b 1-39
+island/src/world/rocks.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-157
+island/src/world/lands/defs.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-464,471
+  s_1835feb9ad3714::t_17406454829348 465-470,472-478
+island/src/util/math.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-77
+island/src/player/input.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-95
+island/src/world/surfaces.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-107
+island/README.md
+  s_1835feb9ad3714::t_ca551c838f74f6 84
+  s_1835feb9ad3714::t_4c87c318ee3ccd 106-107,110,115,119,127-130
+  s_1835feb9ad3714::t_97901f5bd7d8c9 7-8,12,14-16,18-21,28
+  s_1835feb9ad3714::t_0d7347c533b425 1-6,9-11,13,17,22-27,29-83,85-105,108-109,111-114,116-118,120-126
+island/src/render.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-146
+island/vite.config.ts
+  s_1835feb9ad3714::t_ccd268fdba5dd5 5-8
+  s_1835feb9ad3714::t_0d7347c533b425 1-4,9-11
+island/src/world/ambient.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-283
+  s_1835feb9ad3714::t_54e145be9ebf5f 284-306
+island/src/world/water.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-156
+island/src/world/assets.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-249
+island/src/world/lands/mistmoor.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-125
+  s_1835feb9ad3714::t_c72fe0fa0ce152 126-129
+island/src/world/lands/types.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-51
+island/src/world/landStructures.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-340
+island/scripts/flow.mjs
+  s_1835feb9ad3714::t_2b397a471f25fe 11
+  s_1835feb9ad3714::t_0d7347c533b425 1-10,12-50
+island/src/world/terrain.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-296
+island/scripts/shots.mjs
+  s_1835feb9ad3714::t_0d7347c533b425 1-2,4-7,9-237
+  s_1835feb9ad3714::t_2b397a471f25fe 3,8
+island/src/characters/vrmAvatar.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-441
+island/src/main.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-761
+  s_1835feb9ad3714::t_be400c6023184a 762-769
+island/scripts/lands.mjs
+  s_1835feb9ad3714::t_2b397a471f25fe 18
+  s_1835feb9ad3714::t_0d7347c533b425 1-17,19-61
+island/src/quality.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-147
+island/CLAUDE.md
+  s_1835feb9ad3714::t_f50ad613647da9 100
+  s_1835feb9ad3714::t_579c8750c1458e 42
+  s_1835feb9ad3714::t_4c90a034f3c4c1 79,89-91,95
+  s_1835feb9ad3714::t_d976affcf9fef9 1-41,43-78,81-88,92-94,96-99,101-107
+  s_1835feb9ad3714::t_655a88d759d5fc 80
+island/src/regions.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-80
+island/tsconfig.json
+  s_1835feb9ad3714::t_0d7347c533b425 1-16
+island/src/world/foliage.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-391
+  s_1835feb9ad3714::t_a00c4415c2eb55 392-396
+island/src/characters/roster.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-120
+island/src/cards/catalog.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-140
+island/src/hud/icons.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-15
+island/src/characters/vrmModel.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-215
+island/src/world/structures.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-854
+island/scripts/optimize-assets.mjs
+  s_1835feb9ad3714::t_469f7fd8c7cb54 946-948,953-958,960-966
+  s_1835feb9ad3714::t_6ab30ca489cd02 1039
+  s_1835feb9ad3714::t_ffd8bbf79a80ce 138-144,146-150,152,154-155,166,170,173-191
+  s_1835feb9ad3714::t_4da4528a68e524 1-21,25,32,48-137,145,151,153,156-165,167-169,171-172,192-940,967-1018,1020-1022,1031-1038,1040-1051
+  s_1835feb9ad3714::t_d64141220f618a 26-31,33-47
+  s_1835feb9ad3714::t_45f02cc7a78435 941-945,949-952,959
+  s_1835feb9ad3714::t_5b777d914fb7ae 1019,1023-1030
+  s_1835feb9ad3714::t_eefcb05a5114f5 22-24
+island/src/world/lands/sunscar.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-144
+island/src/player/player.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-284
+island/scripts/physics.mjs
+  s_1835feb9ad3714::t_0d7347c533b425 1-5,7-160
+  s_1835feb9ad3714::t_2b397a471f25fe 6
+island/src/spells.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-424
+island/index.html
+  s_1835feb9ad3714::t_0d7347c533b425 1-20
+island/tools/character-lab.html
+  s_1835feb9ad3714::t_0d7347c533b425 1-46
+island/src/world/geo.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-114
+island/src/world/collision.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-181
+island/src/cards/daily.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-140
+island/.gitignore
+  s_1835feb9ad3714::t_0d7347c533b425 1-4,6
+  s_1835feb9ad3714::t_65746a1b4a85e5 5,7-8
+island/src/characters/retarget.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-368
+island/src/world/noise.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-101
+island/src/world/trees.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-349,358-360
+  s_1835feb9ad3714::t_ff591ede29aecc 350-357,361-755
+island/vercel.json
+  s_1835feb9ad3714::t_9417787c114e95 1-37
+island/src/style.css
+  s_1835feb9ad3714::t_0d7347c533b425 1-1168
+island/src/world/props.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-118
+  s_1835feb9ad3714::t_5f5b6021841ae6 119-147
+island/src/critters.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-329
+island/scripts/fetch-assets.mjs
+  s_1835feb9ad3714::t_0d7347c533b425 1,4-6,8,11-65,67-73,78-85,87
+  s_1835feb9ad3714::t_26c386dfed6731 2-3,7,9-10
+  s_1835feb9ad3714::t_118e1511a9670a 66,74-77,86
+island/package.json
+  s_1835feb9ad3714::t_0d7347c533b425 1-6,10-26
+  s_1835feb9ad3714::t_e137487ed68263 7
+  s_1835feb9ad3714::t_077f6ad38621d5 9
+  s_1835feb9ad3714::t_ca3d7d3295dc5f 8
+island/.gitattributes
+  s_1835feb9ad3714::t_5f6e651df4affd 1-16
+island/src/characters/lab.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-385
+island/src/world/world.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-224
+island/src/hud/hud.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-686
+island/src/cards/faces.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-281
+island/src/types/n8ao.d.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-21
+island/src/world/lands/frostveil.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-126
+  s_1835feb9ad3714::t_f632c2792c2469 127-141
+island/src/sfx.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-137
+island/src/game.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-34
+island/src/characters/poseLayers.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-312
+island/src/world/glsl.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-35
+island/scripts/lab-shots.mjs
+  s_1835feb9ad3714::t_0d7347c533b425 1-2,4-8,10-376
+  s_1835feb9ad3714::t_2b397a471f25fe 3,9
+island/scripts/perf.mjs
+  s_1835feb9ad3714::t_0d7347c533b425 1-3,5-13,15-45
+  s_1835feb9ad3714::t_2b397a471f25fe 4,14
+island/src/fx.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-380
+  s_1835feb9ad3714::t_dfa75bef27cea2 381-383
+island/src/world/lands/common.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-185
+island/src/world/lands/isle.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-168
+  s_1835feb9ad3714::t_c4b619203edad4 169-183
+island/src/camera.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-115
+island/src/player/avatar.ts
+  s_1835feb9ad3714::t_0d7347c533b425 1-311
+island/bun.lock
+  s_1835feb9ad3714::t_403c017536b576 1-196
+island/public/assets/anims/Xbot.glb
+  s_1835feb9ad3714::t_fce8309bd8004a 1-3
+island/public/assets/characters/HairSample_Male.vrm
+  s_1835feb9ad3714::t_298d62a08c1699 1-3
+island/public/assets/characters/Sakurada_Fumiriya.vrm
+  s_1835feb9ad3714::t_14eb3a4f7acbd0 1-3
+island/public/assets/characters/Sendagaya_Shino.vrm
+  s_1835feb9ad3714::t_b11005d4d10a1f 1-3
+island/public/assets/characters/Victoria_Rubin.vrm
+  s_1835feb9ad3714::t_2396916fec6212 1-3
+island/public/assets/characters/Vita.vrm
+  s_1835feb9ad3714::t_7bafdaca134a9b 1-3
+island/public/assets/characters/Vivi.vrm
+  s_1835feb9ad3714::t_cda6a027152f82 1-3
+island/public/assets/hdri/belfast_sunset_puresky_2k.hdr
+  s_1835feb9ad3714::t_54b2d670e591c6 1-3
+island/public/assets/hdri/kloofendal_38d_partly_cloudy_puresky_2k.hdr
+  s_1835feb9ad3714::t_a35bac43bc2a37 1-3
+island/public/assets/hdri/kloofendal_48d_partly_cloudy_puresky_2k.hdr
+  s_1835feb9ad3714::t_61b4c56656f931 1-3
+island/public/assets/hdri/syferfontein_18d_clear_puresky_2k.hdr
+  s_1835feb9ad3714::t_e1c7b7ab66891e 1-3
+island/public/assets/textures/aerial_grass_rock_arm_1k.jpg
+  s_1835feb9ad3714::t_ac07b6e118506e 1-3
+island/public/assets/textures/aerial_grass_rock_diff_1k.jpg
+  s_1835feb9ad3714::t_486b7c70ef68db 1-3
+island/public/assets/textures/aerial_grass_rock_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_4b527ec0273cbf 1-3
+island/public/assets/textures/aerial_rocks_02_arm_1k.jpg
+  s_1835feb9ad3714::t_f4cddc01b40d4e 1-3
+island/public/assets/textures/aerial_rocks_02_diff_1k.jpg
+  s_1835feb9ad3714::t_91f62267a8c61f 1-3
+island/public/assets/textures/aerial_rocks_02_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_02fa12a8e1f486 1-3
+island/public/assets/textures/brown_mud_02_arm_1k.jpg
+  s_1835feb9ad3714::t_52344e29e542b0 1-3
+island/public/assets/textures/brown_mud_02_diff_1k.jpg
+  s_1835feb9ad3714::t_7e288cd6bd821b 1-3
+island/public/assets/textures/brown_mud_02_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_d4d6f54cf3c5f5 1-3
+island/public/assets/textures/brown_mud_leaves_01_arm_1k.jpg
+  s_1835feb9ad3714::t_3d4da47b0d1d21 1-3
+island/public/assets/textures/brown_mud_leaves_01_diff_1k.jpg
+  s_1835feb9ad3714::t_91f864e1ff8b98 1-3
+island/public/assets/textures/brown_mud_leaves_01_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_8e3e203951a656 1-3
+island/public/assets/textures/clay_roof_tiles_arm_1k.jpg
+  s_1835feb9ad3714::t_c2218a2934de85 1-3
+island/public/assets/textures/clay_roof_tiles_diff_1k.jpg
+  s_1835feb9ad3714::t_1d119e348342e2 1-3
+island/public/assets/textures/clay_roof_tiles_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_066923d39a65e1 1-3
+island/public/assets/textures/coast_sand_01_arm_1k.jpg
+  s_1835feb9ad3714::t_e3dfd48224fe94 1-3
+island/public/assets/textures/coast_sand_01_diff_1k.jpg
+  s_1835feb9ad3714::t_7242dfafc723dc 1-3
+island/public/assets/textures/coast_sand_01_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_62b32a98fd5018 1-3
+island/public/assets/textures/cobblestone_floor_04_arm_1k.jpg
+  s_1835feb9ad3714::t_d41646bd147643 1-3
+island/public/assets/textures/cobblestone_floor_04_diff_1k.jpg
+  s_1835feb9ad3714::t_aacad12fb272cb 1-3
+island/public/assets/textures/cobblestone_floor_04_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_1aa2834adcb61a 1-3
+island/public/assets/textures/cobblestone_floor_08_arm_1k.jpg
+  s_1835feb9ad3714::t_8bfeab68b9c194 1-3
+island/public/assets/textures/cobblestone_floor_08_diff_1k.jpg
+  s_1835feb9ad3714::t_9a5b438688ed19 1-3
+island/public/assets/textures/cobblestone_floor_08_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_82c438cd8153d4 1-3
+island/public/assets/textures/cracked_red_ground_arm_1k.jpg
+  s_1835feb9ad3714::t_e170ae20cb20f8 1-3
+island/public/assets/textures/cracked_red_ground_diff_1k.jpg
+  s_1835feb9ad3714::t_af99e6e584fc04 1-3
+island/public/assets/textures/cracked_red_ground_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_be2a6bb2d4043e 1-3
+island/public/assets/textures/dark_rock_arm_1k.jpg
+  s_1835feb9ad3714::t_31c12bc94e4ada 1-3
+island/public/assets/textures/dark_rock_diff_1k.jpg
+  s_1835feb9ad3714::t_9cd5310bb5384a 1-3
+island/public/assets/textures/dark_rock_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_c969b224c347d1 1-3
+island/public/assets/textures/forest_ground_04_arm_1k.jpg
+  s_1835feb9ad3714::t_b7bb3f9716fc50 1-3
+island/public/assets/textures/forest_ground_04_diff_1k.jpg
+  s_1835feb9ad3714::t_d19c6586ac6ffd 1-3
+island/public/assets/textures/forest_ground_04_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_54029960e02a85 1-3
+island/public/assets/textures/gravel_ground_01_arm_1k.jpg
+  s_1835feb9ad3714::t_e9419775fa766d 1-3
+island/public/assets/textures/gravel_ground_01_diff_1k.jpg
+  s_1835feb9ad3714::t_b869b931a00807 1-3
+island/public/assets/textures/gravel_ground_01_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_45f18667412996 1-3
+island/public/assets/textures/mud_forest_arm_1k.jpg
+  s_1835feb9ad3714::t_b6c24390eb3612 1-3
+island/public/assets/textures/mud_forest_diff_1k.jpg
+  s_1835feb9ad3714::t_9007047492eded 1-3
+island/public/assets/textures/mud_forest_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_7a2aa577a2ea83 1-3
+island/public/assets/textures/plastered_wall_04_arm_1k.jpg
+  s_1835feb9ad3714::t_19c73ba0283232 1-3
+island/public/assets/textures/plastered_wall_04_diff_1k.jpg
+  s_1835feb9ad3714::t_ccee2eb000df7b 1-3
+island/public/assets/textures/plastered_wall_04_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_ec45fa21c76369 1-3
+island/public/assets/textures/red_sandstone_pavement_arm_1k.jpg
+  s_1835feb9ad3714::t_5b838c8e07934b 1-3
+island/public/assets/textures/red_sandstone_pavement_diff_1k.jpg
+  s_1835feb9ad3714::t_795479276b51cd 1-3
+island/public/assets/textures/red_sandstone_pavement_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_0aab892cf27686 1-3
+island/public/assets/textures/rock_pitted_mossy_arm_1k.jpg
+  s_1835feb9ad3714::t_4238c8f1dcfb08 1-3
+island/public/assets/textures/rock_pitted_mossy_diff_1k.jpg
+  s_1835feb9ad3714::t_0550190a0d0499 1-3
+island/public/assets/textures/rock_pitted_mossy_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_f8fe3d9972f215 1-3
+island/public/assets/textures/sand_01_arm_1k.jpg
+  s_1835feb9ad3714::t_cbecbd0abb1db5 1-3
+island/public/assets/textures/sand_01_diff_1k.jpg
+  s_1835feb9ad3714::t_bb13157d282700 1-3
+island/public/assets/textures/sand_01_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_eb0facbe2be6d4 1-3
+island/public/assets/textures/sandstone_cracks_arm_1k.jpg
+  s_1835feb9ad3714::t_d193c7407dc0d4 1-3
+island/public/assets/textures/sandstone_cracks_diff_1k.jpg
+  s_1835feb9ad3714::t_994f17ae9d1211 1-3
+island/public/assets/textures/sandstone_cracks_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_7a2d6ca540e493 1-3
+island/public/assets/textures/sandy_gravel_arm_1k.jpg
+  s_1835feb9ad3714::t_daef05289c918b 1-3
+island/public/assets/textures/sandy_gravel_diff_1k.jpg
+  s_1835feb9ad3714::t_de4fb345b4edbc 1-3
+island/public/assets/textures/sandy_gravel_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_b782ba6f337212 1-3
+island/public/assets/textures/snow_02_arm_1k.jpg
+  s_1835feb9ad3714::t_1c7085cf5e47be 1-3
+island/public/assets/textures/snow_02_diff_1k.jpg
+  s_1835feb9ad3714::t_aca11138fc8ead 1-3
+island/public/assets/textures/snow_02_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_5c9b79a8bd20c4 1-3
+island/public/assets/textures/stone_wall_04_arm_1k.jpg
+  s_1835feb9ad3714::t_ffa82957e8e29d 1-3
+island/public/assets/textures/stone_wall_04_diff_1k.jpg
+  s_1835feb9ad3714::t_5a1d4dcffcb838 1-3
+island/public/assets/textures/stone_wall_04_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_1b1cece7e1bbde 1-3
+island/public/assets/textures/waternormals.jpg
+  s_1835feb9ad3714::t_caa4ebc854c118 1-3
+island/public/assets/textures/white_sandstone_bricks_arm_1k.jpg
+  s_1835feb9ad3714::t_47791c8b7b8cbb 1-3
+island/public/assets/textures/white_sandstone_bricks_diff_1k.jpg
+  s_1835feb9ad3714::t_6e8f1d60021709 1-3
+island/public/assets/textures/white_sandstone_bricks_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_f8441fb04c50e5 1-3
+island/public/assets/textures/winter_leaves_arm_1k.jpg
+  s_1835feb9ad3714::t_e5c5dc9f64f9c1 1-3
+island/public/assets/textures/winter_leaves_diff_1k.jpg
+  s_1835feb9ad3714::t_a72ade43c12e63 1-3
+island/public/assets/textures/winter_leaves_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_93c034ac5eeb1d 1-3
+island/public/assets/textures/wood_planks_arm_1k.jpg
+  s_1835feb9ad3714::t_930a89d1cb2060 1-3
+island/public/assets/textures/wood_planks_diff_1k.jpg
+  s_1835feb9ad3714::t_d66a2a22a41a84 1-3
+island/public/assets/textures/wood_planks_nor_gl_1k.jpg
+  s_1835feb9ad3714::t_39c4071587c1fc 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d941814d195ca33d0c3aa67469e5998c0f1d2ba4",
+  "prompts": {},
+  "sessions": {
+    "s_1835feb9ad3714": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "525124dc-d820-4019-8967-f2d63d6b6710",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Yan Xue <y9xue@uwaterloo.ca>"
+    }
+  }
+}
