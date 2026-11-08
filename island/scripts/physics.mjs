@@ -3,7 +3,7 @@
 // Runs with ?char=none so every perk is 1; the last check wears a character and measures its perk.
 import { chromium } from 'playwright-core';
 
-const URL = process.env.URL ?? 'http://localhost:5174/?autoplay=1&char=none';
+const URL = process.env.URL ?? 'http://localhost:5174/?autoplay=1&char=none&monsters=off'; // baselines: nothing shoots the player mid-measurement
 const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--ignore-gpu-blocklist', '--use-angle=metal'] });
 const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
 const errors = [];

@@ -33,17 +33,21 @@ The personal site at the repo root uses Vite's default ports (5173 dev, 4173 pre
 | `src/world/` | `world.ts` builds a land and answers physics queries. `assets.ts` loads HDR skies and texture arrays. Also terrain, ez-tree forests, grass, rocks, props, water, buildings, weather particles, colliders |
 | `src/characters/` | The six travelers. `roster.ts` (names, perks, model and portrait paths), `vrmModel.ts` (VRM load and cleanup), `retarget.ts` (Mixamo clips onto VRM bones), `poseLayers.ts`, `vrmAvatar.ts`. `lab.ts` runs `tools/character-lab.html` |
 | `src/player/` | Input, the movement controller (`player.ts`), the touch controls (`touch.ts`), and the primitive stand-in body (`avatar.ts`) that `?char=none` uses |
-| `src/cards/` | The 60-card catalog, canvas-drawn card faces, the daily deal (`daily.ts`), pickups and the binder save (`cards.ts`) |
+| `src/cards/` | The catalog (60 dealt cards plus 4 bestiary cards), canvas-drawn card faces, the daily deal (`daily.ts`), pickups and the binder save (`cards.ts`) |
+| `src/monsters/` | The four monsters (Lanternwing, Thornmortar, Rumbleback, Snapjack). `monsters.ts` is their AI, hits and drops, with `BESTIARY` (names, HP, counts, tips); `models.ts` builds their bodies from code (per-land `TINTS`, morph targets for wings and petals); `shots.ts` is every orb and seed pod in flight plus the landing markers |
+| `src/foes.ts` | The one shape spells hit: `pos`, `lift`, `radius`, `alive`, `hit()`. Jellyhops and monsters both fill it in, and `game.foes` lists both for the current land |
 | `src/hud/` | HUD, minimap, binder, world map, character select, loading screen, and the pause screen with the Graphics picker |
 | `src/quality.ts` | The `high`, `medium` and `low` presets, a first guess from the GPU's name, and the `Governor` |
 | `src/render.ts` | Renderer and post chain: N8AO at half resolution (or a plain RenderPass when AO is off), bloom, the output pass with the color grade folded in, SMAA |
-| `src/spells.ts` `critters.ts` `fx.ts` `sfx.ts` `camera.ts` `regions.ts` | Spell table and casting, jellyhops, particles, synthesized sound (no audio files), orbit camera, named areas |
+| `src/spells.ts` `critters.ts` `fx.ts` `sfx.ts` `camera.ts` `regions.ts` | Spell table and casting (spells target `game.foes`), jellyhops, particles, synthesized sound (no audio files), orbit camera, named areas |
 
 The governor samples fps in 2 s windows during play. Under 42 fps it lowers the render scale in steps of 0.1, down to 0.65. If the game is still slow after that, it drops the preset one step, but only when the player picked Auto. Above 56 fps for 6 s it raises the render scale again. It never raises the preset.
 
 ## Testing through `window.__isle`
 
 When boot finishes, `main.ts` sets `window.__isle` with `ready: true`. The scripts drive the game through it: `state()`, `teleport(x, z)`, `look`, `lookAt`, `pitch`, `travel(land)`, `cast(spell)` (refills aura and clears the cooldown), `pick(id)`, `setMode`, `setQuality`, `holdResolution(true)` (pauses the governor), `landmarks`, `house()`, `stairs()`, `islets`, `cotd()`, `scatterCards`, `critterAhead`, and `three` (`scene`, `sun`, `renderer`, `composer`) for perf experiments. The character lab has its own handle, `window.__lab`.
+
+Monster handles: `monsters()` lists them (id, kind, state, hp, pos, home); `placeMonster(kind, x, z)` moves the first of a kind there, calm and at full health; `monsterAhead(kind, dist)`; `forceMonster(id, state)` (e.g. a Rumbleback straight to `'dazed'`); `hitMonster(id, amount, 'spark' | 'clap' | 'reflect')`; `isolateMonster(id)` benches every other monster; `benchCritters()` takes the jellyhops off the board; `heal()`; `showAvatar(false)` for clean screenshots; `nearest(tag, x, z)` finds a collider (a tree, a rock) to aim a Rumbleback at; `clear(ax, az, bx, bz)` says whether something could roll from a to b; `safe(x, z)`; `pickups()` lists the cards lying in the world; `owned(no)`; `marks()` counts the monster dots on the minimap; `previewFoe(true)` shows the monster bar at its tallest for layout checks.
 
 | URL flag | Effect |
 |---|---|
@@ -53,13 +57,15 @@ When boot finishes, `main.ts` sets `window.__isle` with `ready: true`. The scrip
 | `?quality=low\|medium\|high\|auto` | Forces a preset for this visit. Otherwise: the saved pick, then a guess from the GPU |
 | `?touch` | Turns the touch controls on, for trying them on a desktop. Phones and tablets get them anyway |
 | `?uncapped` | Turns off the medium/low frame cap, so a script can measure raw speed with vsync off |
+| `?monsters=off` | No monsters on any land. `physics.mjs` and `touch.mjs` use it so nothing shoots the player mid-measurement |
 
 | Script | What it checks | Success |
 |---|---|---|
-| `physics.mjs` | Walk and sprint distance, jump and double-jump height, landing, a house wall blocks, outside stairs reach the roof, swimming offshore, standing on an islet, all five spells cast, Ren's +10% speed | `15/15 checks passed` |
+| `physics.mjs` | Walk and sprint distance, jump and double-jump height, landing, a house wall blocks, outside stairs reach the roof, swimming offshore, standing on an islet, all five spells cast, Ren's +10% speed. Runs with `?monsters=off` | `15/15 checks passed` |
+| `monsters.mjs` | Spawn counts and safe homes, a Lanternwing shoots, Ward bounces its orbs back and bursts it, a first kill drops its bestiary card plus an uncommon or rare, Thornmortar armor (Spark shut, Spark open, Thunderclap), a pod lands where you stood, Rumbleback armor and daze damage, a Rumbleback crashes into a tree, one runs you over, a Snapjack hides from the minimap then bites, Lodestar drags one out, nothing fights at the Gate, AI cost, every land spawns | `18/18 checks passed` |
 | `flow.mjs` | The real menus, no `?autoplay`: title, select, pick Momo, type a name, play, binder, close, pause, resume. The pick and name are saved | `no console errors` |
 | `lands.mjs` | Travels to all four lands and screenshots each gate, town and summit | `no console errors` |
-| `touch.mjs` | Pixel 7 in Chromium and iPhone 15 in WebKit: menus by tap, stick walk and run, camera drag, pinch, jump, double jump, spell cards, pause/map/binder buttons, and that nothing overlaps either way up | `30/30 checks passed` |
+| `touch.mjs` | Pixel 7 in Chromium and iPhone 15 in WebKit: menus by tap, stick walk and run, camera drag, pinch, jump, double jump, spell cards, pause/map/binder buttons, and that nothing overlaps either way up (the monster bar included, at its tallest). Runs with `?monsters=off` | `30/30 checks passed` |
 | `shots.mjs` | Screenshots of named scenes, e.g. `node scripts/shots.mjs spawn map cotd` | look at the PNGs |
 | `perf.mjs` | fps per preset with the governor paused and the frame cap off. `W=3840 H=2160` makes even a fast GPU pixel-bound, the way a laptop GPU is at 1080p. `GPU=swiftshader` renders on the CPU, too slow for its fps to mean much | read the numbers; compare two builds in alternating runs, because single runs vary by about 8% |
 | `lab-shots.mjs` | The character lab at `/tools/character-lab.html`: lineup, gait strips, expressions, foot slip, benchmark | `no console errors` |
@@ -116,4 +122,13 @@ When boot finishes, `main.ts` sets `window.__isle` with `ready: true`. The scrip
 - **`public/portraits/` is checked in.** The character select shows these before any model loads, and they stay in plain git, not LFS.
 - **Touch controls only exist on touch-first devices.** `prefersTouch()` in `src/player/touch.ts` (a coarse pointer, or touch with no mouse) or the first touch on the page turns them on and adds `touch` to `<html>`. Every touch style is under `.touch`, so a desktop never sees them. They feed `Input` the way keys do: `input.press(code)` / `input.release(code)` for buttons (a tap shorter than a frame still counts), and `input.stickX/stickY` for the analog stick. Pointer lock is skipped on touch, since iOS Safari doesn't have it.
 - **Saves are versioned.** The binder lives in `localStorage` under `wildcard-isle:v1`. If its shape changes without a migration, `cards.ts` throws the save away and the player starts over, and renaming the key does the same. The other keys are `wildcard-isle:character`, `wildcard-isle:name` and `wildcard-isle:quality`.
+- **Monsters: the rules that keep them fair and cheap.**
+  - **Safe zones.** No monster spawns within 55 m of a land's Gate or within 12 m of its town, and none fights you while you stand in either (`Monsters.safeAt`). Keep both true for any new monster.
+  - **Sleep.** A monster more than `SLEEP` (115 m) from the player is hidden and skipped entirely. Only the few nearby think or draw.
+  - **Draw calls.** Each monster is two to four meshes. Wings and petals are morph targets on one mesh, not separate parts. Every shot in flight is a point in one `THREE.Points` (`shots.ts`), with trails through the shared spark pool. Measured on the M5 Pro, a four-monster fight on low at 4K cost about 0.15 ms a frame (about 20 draw calls); on high it was within noise.
+  - **Shaders compile at land load.** `buildLand` calls `renderer.compile(monsters.group, ...)` behind the loading screen, so the first monster you meet doesn't stall a frame.
+  - **Every enemy shot is fair.** Orbs lead you by half your velocity (strafing dodges them), pods show their landing circle for the whole flight, a Rumbleback draws its line before it rolls, and Bubble Ward reflects anything that touches it.
+  - **No per-frame garbage.** The HUD reads one reused `FoeInfo` object and fixed status objects; minimap markers come from a pool. Keep it that way in anything that runs every frame.
+- **Bestiary cards are never dealt.** Cards 61 to 64 have habitat `'bounty'`; `dealFor` filters them out before any draw, so the deal for every day is unchanged (600 days checked identical before and after they were added). Their `land` is `'isle'` only because the type needs one: the binder files them under a Bestiary tab by habitat, and nothing may rely on their land. New monster cards must keep habitat `'bounty'` and come after the existing numbers.
+- **Frame time is clamped at zero.** After a long blocking step in boot (shader compiles), the first frame can carry a timestamp from before the loop's `last` was taken. A negative `dt` once flung the player's facing to 40,000 radians, and the old loop-based `wrapAngle` then spun for seconds. `main.ts` clamps `rawDt` at 0, and `wrapAngle` is arithmetic now. Don't reintroduce either.
 - **The daily deal is a pure function of the date and the catalog.** `dealFor` in `cards/daily.ts` seeds an RNG with the date and draws from `CARDS`. Editing the catalog or the draw order reshuffles every day's deal, today's included, and the save records today's finds as positions in that deal. Check a change with `?day=` before shipping it.

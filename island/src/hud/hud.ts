@@ -1,4 +1,4 @@
-import { CARDS, HABITAT, RARITY, cardNo, type CardDef } from '../cards/catalog';
+import { CARDS, HABITAT, RARITY, cardNo, isBestiary, type CardDef } from '../cards/catalog';
 import { backDataUrl, faceUrl } from '../cards/faces';
 import { SPELLS, type SpellId } from '../spells';
 import { iconSvg } from './icons';
@@ -12,10 +12,19 @@ import type { LandId } from '../world/lands/types';
 const LAND_ICON: Record<LandId, string> = { isle: '🏝️', sunscar: '🏜️', frostveil: '🏔️', mistmoor: '🌾' };
 const LAND_COLOR: Record<LandId, string> = { isle: '#8fd36a', sunscar: '#f0b45a', frostveil: '#9fd8ff', mistmoor: '#c79bff' };
 
+/** A binder page: one per land, plus the bestiary (the cards monsters turn into). */
+type BinderTab = LandId | 'bestiary';
+
+function onTab(card: CardDef, tab: BinderTab): boolean {
+  if (tab === 'bestiary') return isBestiary(card);
+  return card.land === tab && !isBestiary(card);
+}
+
 function miniHtml(s: { found: boolean; cotd: boolean; card: CardDef; land: LandId }): string {
   return `<span class="mini ${s.found ? 'found' : ''} ${s.cotd ? 'cotd' : ''}" style="--c:${RARITY[s.card.rarity].color};--land:${LAND_COLOR[s.land]}" title="${LANDS.find((l) => l.id === s.land)?.name ?? s.land}">${s.found ? s.card.emoji : ''}</span>`;
 }
 import type { Game } from '../game';
+import { BESTIARY, type FoeInfo } from '../monsters/monsters';
 
 const DISCLAIMER =
   'Unofficial fan game inspired by Greed Island from <i>Hunter × Hunter</i> by Yoshihiro Togashi. ' +
@@ -108,7 +117,11 @@ export class Hud {
   private readonly worldMap: HTMLDivElement;
   private readonly loading: HTMLDivElement;
   private readonly select: HTMLDivElement;
-  private binderLand: LandId = 'isle';
+  private binderLand: BinderTab = 'isle';
+  private readonly foe: HTMLDivElement;
+  private foeShown = false;
+  private readonly foeLast = { id: -2, name: '', status: '', tone: '', tip: '', frac: -1 };
+  private foePreview: FoeInfo | null = null;
   private readonly regionLabel: HTMLDivElement;
   private bannerTimer = 0;
   private noticeTimer = 0;
@@ -142,6 +155,7 @@ export class Hud {
       <div class="banner"><div class="banner-rule"></div><div class="banner-title"></div><div class="banner-sub"></div></div>
       <div class="channel"><span>Homeward</span><div class="channel-track"><div class="channel-fill"></div></div></div>
       <div class="hurt-veil"></div>
+      <div class="foe"><div class="foe-head"><span class="foe-name"></span><span class="foe-status"></span></div><div class="foe-track"><div class="foe-fill"></div></div><div class="foe-tip"></div></div>
     `;
     container.appendChild(this.root);
 
@@ -155,6 +169,7 @@ export class Hud {
     this.channel = must(this.root, '.channel');
     this.channelFill = must(this.root, '.channel-fill');
     this.hurtVeil = must(this.root, '.hurt-veil');
+    this.foe = must(this.root, '.foe');
     this.handStrip = must(this.root, '.hand-strip');
     this.handCount = must(this.root, '.hand-count');
     this.binderCount = must(this.root, '.binder-count');
@@ -203,7 +218,7 @@ export class Hud {
         <div class="intro-kicker">Day ${this.day.number} · ${this.day.label}</div>
         <h1 class="title">Wildcard Isle</h1>
         <p class="tagline">The island deals a new hand every day.</p>
-        <p class="pitch">Sixty numbered cards are hidden across four lands. Each morning twenty-one of them are dealt to new places, one of them a glowing Card of the Day. Find them, pop jellyhops for spare cards, and use your spell cards to get anywhere.</p>
+        <p class="pitch">Sixty numbered cards are hidden across four lands. Each morning twenty-one of them are dealt to new places, one of them a glowing Card of the Day. Find them, pop jellyhops for spare cards, beat monsters for rare ones, and use your spell cards to get anywhere.</p>
         <button class="enter">Enter the Isle</button>
         <div class="controls">${controlsHtml()}</div>
         <p class="disclaimer">${DISCLAIMER}</p>
@@ -449,16 +464,22 @@ export class Hud {
     must(this.binder, '.binder-stats').innerHTML =
       `<b>${binder.uniqueCount()}</b> of ${CARDS.length} cards · today <b>${game.cards.foundToday}</b> of ${game.cards.deal.length}`;
     const tabs = must<HTMLDivElement>(this.binder, '.binder-tabs');
-    tabs.innerHTML = LANDS.map((l) => {
-      const owned = CARDS.filter((c) => c.land === l.id && binder.owned(c.no) > 0).length;
-      const total = CARDS.filter((c) => c.land === l.id).length;
-      return `<button class="btab ${l.id === this.binderLand ? 'on' : ''}" data-land="${l.id}" style="--accent:${l.accent}">${LAND_ICON[l.id]} ${l.name} <span>${owned}/${total}</span></button>`;
-    }).join('');
+    const pages: Array<{ id: BinderTab; label: string; accent: string }> = [
+      ...LANDS.map((l) => ({ id: l.id as BinderTab, label: `${LAND_ICON[l.id]} ${l.name}`, accent: l.accent })),
+      { id: 'bestiary', label: '🐾 Bestiary', accent: '#ff8a6b' },
+    ];
+    tabs.innerHTML = pages
+      .map((pg) => {
+        const owned = CARDS.filter((c) => onTab(c, pg.id) && binder.owned(c.no) > 0).length;
+        const total = CARDS.filter((c) => onTab(c, pg.id)).length;
+        return `<button class="btab ${pg.id === this.binderLand ? 'on' : ''}" data-land="${pg.id}" style="--accent:${pg.accent}">${pg.label} <span>${owned}/${total}</span></button>`;
+      })
+      .join('');
     tabs.querySelectorAll<HTMLButtonElement>('.btab').forEach((b) =>
       b.addEventListener('click', (e) => {
         e.stopPropagation();
-        this.binderLand = b.dataset.land as LandId;
-        const first = CARDS.find((c) => c.land === this.binderLand);
+        this.binderLand = b.dataset.land as BinderTab;
+        const first = CARDS.find((c) => onTab(c, this.binderLand));
         if (first) this.selectedNo = first.no;
         this.renderBinder(game);
       }),
@@ -466,7 +487,7 @@ export class Hud {
     const grid = must<HTMLDivElement>(this.binder, '.binder-grid');
     grid.innerHTML = '';
     for (const card of CARDS) {
-      if (card.land !== this.binderLand) continue;
+      if (!onTab(card, this.binderLand)) continue;
       const owned = binder.owned(card.no);
       const slot = el('button', `bslot ${owned ? 'owned' : 'missing'} r-${card.rarity}`);
       slot.innerHTML = owned
@@ -627,6 +648,45 @@ export class Hud {
     }
 
     this.drawMinimap(game);
+    this.renderFoe(game);
+  }
+
+  /** Tests: shows the foe bar at its tallest (the longest tip), to check it fits the layout. */
+  previewFoe(on: boolean): void {
+    const longest = Object.values(BESTIARY).reduce((a, b) => (b.tip.length > a.tip.length ? b : a));
+    this.foePreview = on ? { id: -1, name: longest.name, frac: 0.6, status: 'Open: hit it now', tone: 'good', tip: longest.tip } : null;
+  }
+
+  /** The bar for the monster you're fighting: name, health, what it's doing, and its trick once. */
+  private renderFoe(game: Game): void {
+    const info = this.foePreview ?? game.monsters.focusInfo(game);
+    if (!info) {
+      if (this.foeShown) this.foe.classList.remove('show');
+      this.foeShown = false;
+      return;
+    }
+    if (!this.foeShown) this.foe.classList.add('show');
+    this.foeShown = true;
+    // touch the DOM only when something changed (this runs every frame)
+    const last = this.foeLast;
+    if (info.id !== last.id || info.name !== last.name || info.status !== last.status || info.tone !== last.tone || info.tip !== last.tip) {
+      last.id = info.id;
+      last.name = info.name;
+      last.status = info.status;
+      last.tone = info.tone;
+      last.tip = info.tip;
+      must(this.foe, '.foe-name').textContent = info.name;
+      const status = must<HTMLSpanElement>(this.foe, '.foe-status');
+      status.textContent = info.status;
+      status.className = `foe-status ${info.tone}`;
+      const tip = must<HTMLDivElement>(this.foe, '.foe-tip');
+      tip.textContent = info.tip;
+      tip.classList.toggle('show', info.tip !== '');
+    }
+    if (Math.abs(info.frac - last.frac) > 0.001) {
+      last.frac = info.frac;
+      must<HTMLDivElement>(this.foe, '.foe-fill').style.transform = `scaleX(${info.frac.toFixed(3)})`;
+    }
   }
 
   private drawMinimap(game: Game): void {
@@ -665,6 +725,23 @@ export class Hud {
         ctx.fill();
         ctx.stroke();
       }
+    }
+    // monsters out in the open; a Snapjack in disguise never shows, which is how you spot one
+    ctx.fillStyle = '#ff5a4a';
+    ctx.strokeStyle = 'rgba(10,14,26,0.85)';
+    ctx.lineWidth = 1.2 * k;
+    for (const m of game.monsters.markers(game)) {
+      const x = toMap(m.x);
+      const y = toMap(m.z);
+      const r = 3.4 * k;
+      ctx.beginPath();
+      ctx.moveTo(x, y - r);
+      ctx.lineTo(x + r, y);
+      ctx.lineTo(x, y + r);
+      ctx.lineTo(x - r, y);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
     }
     const T = game.world.landmarks.gate;
     ctx.strokeStyle = '#7fe9ff';

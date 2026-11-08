@@ -7,7 +7,7 @@
 import { chromium, webkit, devices } from 'playwright-core';
 import { mkdirSync } from 'node:fs';
 
-const BASE = process.env.URL ?? 'http://localhost:5174/';
+const BASE = process.env.URL ?? 'http://localhost:5174/?monsters=off'; // no monster interferes with the stick and jump distances
 const OUT = process.env.OUT ?? './shots';
 const ENGINES = (process.env.ENGINES ?? 'chromium,webkit').split(',');
 mkdirSync(OUT, { recursive: true });
@@ -223,13 +223,14 @@ async function run(engine) {
   );
 
   // --- layout: every control on screen, none on top of another, either way up ---
+  await isle('previewFoe', true); // the monster bar at its tallest, so it gets checked too
   const sizes = [['landscape', landscape.viewport], ['portrait', portrait.viewport]];
   if (isChrome) sizes.push(['844x390', { width: 844, height: 390 }], ['390x844', { width: 390, height: 844 }]);
   for (const [name, size] of sizes) {
     await page.setViewportSize(size);
     await wait(600);
     const clash = await page.evaluate(() => {
-      const parts = ['.hud-tl', '.map-wrap', '.region-label', '.t-corner', '.spellbar', '.t-jump', '.t-stick'];
+      const parts = ['.hud-tl', '.map-wrap', '.region-label', '.t-corner', '.spellbar', '.t-jump', '.t-stick', '.foe'];
       const rects = parts.map((s) => [s, document.querySelector(s).getBoundingClientRect()]);
       const out = [];
       for (const [s, r] of rects) {

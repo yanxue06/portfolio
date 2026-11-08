@@ -453,6 +453,67 @@ kbd {
   color: var(--ink-dim);
 }
 
+/* the monster you're fighting: name, health, what it's doing, and its trick the first time */
+.foe {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  width: min(340px, 44vw);
+  padding: 8px 12px 9px;
+  border-radius: 12px;
+  background: rgba(8, 12, 24, 0.66);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.foe.show {
+  opacity: 1;
+}
+.foe-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  font: 800 13px/1 var(--display);
+  letter-spacing: 0.08em;
+  color: #ffe9c4;
+}
+.foe-status {
+  font: 700 11.5px/1 var(--ui);
+  letter-spacing: 0;
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+.foe-status.good {
+  color: #8cffc1;
+}
+.foe-status.bad {
+  color: #ffa48a;
+}
+.foe-track {
+  margin-top: 7px;
+  height: 7px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+.foe-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6a4d, #ffb36b);
+  transform-origin: left;
+  transition: transform 0.15s;
+}
+.foe-tip {
+  display: none;
+  margin-top: 7px;
+  font: 600 12px/1.35 var(--ui);
+  color: var(--ink);
+}
+.foe-tip.show {
+  display: block;
+}
+
 .channel {
   position: absolute;
   left: 50%;
@@ -1432,6 +1493,25 @@ kbd {
   margin-top: 5px;
   font-size: 12px;
 }
+.touch .foe {
+  top: var(--st);
+  width: min(230px, 34vw);
+  padding: 6px 9px 7px;
+}
+.touch .foe-head {
+  font-size: 11px;
+}
+.touch .foe-status {
+  font-size: 10px;
+}
+.touch .foe-track {
+  margin-top: 5px;
+  height: 5px;
+}
+.touch .foe-tip {
+  margin-top: 5px;
+  font-size: 10.5px;
+}
 .touch .notices {
   bottom: calc(var(--sb) + 76px);
   padding: 6px 12px;
@@ -1626,6 +1706,13 @@ kbd {
   }
   .touch .notices {
     bottom: calc(var(--sb) + 200px);
+  }
+  /* no room at the top center when upright: tuck it under the bars, left of the buttons */
+  .touch .foe {
+    left: var(--sl);
+    top: calc(var(--st) + 128px);
+    width: min(200px, 52vw);
+    transform: none;
   }
   .touch .toasts {
     top: calc(var(--st) + 178px);

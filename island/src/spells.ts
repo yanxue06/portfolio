@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { radialTexture } from './fx';
 import { clamp, damp } from './util/math';
-import type { Critter } from './critters';
+import { foeCenter, foesNear, type Foe } from './foes';
 import type { Game } from './game';
 
 // Spell cards. One table describes every spell; cast() dispatches on the id.
@@ -20,9 +20,9 @@ export type SpellDef = {
 };
 
 export const SPELLS: SpellDef[] = [
-  { id: 'spark', name: 'Spark Shot', keys: ['Digit1'], keyLabel: 'LMB', cost: 6, cooldown: 0.22, color: '#7fe9ff', blurb: 'A bolt of aura that curves toward critters.' },
+  { id: 'spark', name: 'Spark Shot', keys: ['Digit1'], keyLabel: 'LMB', cost: 6, cooldown: 0.22, color: '#7fe9ff', blurb: 'A bolt of aura that curves toward critters and monsters.' },
   { id: 'skip', name: 'Skip', keys: ['KeyQ', 'Digit2'], keyLabel: 'Q', cost: 18, cooldown: 0.9, color: '#c39bff', blurb: 'Blink 13m where you look. Refreshes your air jump.' },
-  { id: 'ward', name: 'Bubble Ward', keys: ['KeyE', 'Digit3'], keyLabel: 'E', cost: 30, cooldown: 9, color: '#8cffc1', blurb: 'Five seconds where nothing hurts and critters bounce off.' },
+  { id: 'ward', name: 'Bubble Ward', keys: ['KeyE', 'Digit3'], keyLabel: 'E', cost: 30, cooldown: 9, color: '#8cffc1', blurb: 'Five seconds where nothing hurts, critters bounce off and shots fly back.' },
   { id: 'lodestar', name: 'Lodestar', keys: ['KeyR', 'Digit4'], keyLabel: 'R', cost: 25, cooldown: 7, color: '#ffd36b', blurb: 'Pulls every card within 45m into your hands.' },
   { id: 'clap', name: 'Thunderclap', keys: ['KeyF', 'Digit5'], keyLabel: 'F', cost: 32, cooldown: 4, color: '#ff8a5c', blurb: 'Slam the ground. Cast it in the air to dive first.' },
   { id: 'homeward', name: 'Homeward', keys: ['KeyH'], keyLabel: 'H', cost: 0, cooldown: 20, color: '#9ef0ff', blurb: 'Stand still for 1.5s to return to the Threshold.' },
@@ -34,7 +34,7 @@ type Bolt = {
   pos: THREE.Vector3;
   vel: THREE.Vector3;
   age: number;
-  target: Critter | null;
+  target: Foe | null;
   core: THREE.Mesh;
   glow: THREE.Sprite;
 };
@@ -81,7 +81,7 @@ export class Spells {
   private readonly boltMat = new THREE.MeshBasicMaterial({ color: new THREE.Color('#bff6ff').multiplyScalar(4) });
   private readonly tmp = new THREE.Vector3();
   private readonly tmp2 = new THREE.Vector3();
-  private readonly near: Critter[] = [];
+  private readonly near: Foe[] = [];
   private readonly hand = new THREE.Vector3();
 
   constructor(scene: THREE.Scene) {
@@ -103,7 +103,7 @@ export class Spells {
     this.group.add(this.ward);
   }
 
-  /** Aim point under the crosshair: first terrain/critter hit along the camera ray. */
+  /** Aim point under the crosshair: first terrain or foe hit along the camera ray. */
   private aimPoint(game: Game, out: THREE.Vector3): THREE.Vector3 {
     const origin = game.camera.position;
     const f = game.rig.forward;
@@ -111,10 +111,11 @@ export class Spells {
     for (let t = start; t < 170; t += 0.8) {
       out.set(origin.x + f.x * t, origin.y + f.y * t, origin.z + f.z * t);
       if (out.y < game.world.heightAt(out.x, out.z)) return out;
-      for (const c of game.critters.list) {
+      for (const c of game.foes) {
         if (!c.alive) continue;
-        game.critters.center(c, this.tmp2);
-        if (this.tmp2.distanceToSquared(out) < 1.1) return out.copy(this.tmp2);
+        foeCenter(c, this.tmp2);
+        const r = Math.max(1.05, c.radius + 0.35);
+        if (this.tmp2.distanceToSquared(out) < r * r) return out.copy(this.tmp2);
       }
     }
     return out.set(origin.x + f.x * 170, origin.y + f.y * 170, origin.z + f.z * 170);
@@ -160,12 +161,12 @@ export class Spells {
     player.avatar.handR.getWorldPosition(this.hand);
     const dir = this.tmp2.subVectors(aim, this.hand).normalize();
     player.castPose(Math.atan2(dir.x, dir.z));
-    // Lock onto the critter closest to the aim line.
-    let target: Critter | null = null;
+    // Lock onto the foe closest to the aim line.
+    let target: Foe | null = null;
     let best = Math.cos(0.22);
-    for (const c of game.critters.list) {
+    for (const c of game.foes) {
       if (!c.alive) continue;
-      const to = game.critters.center(c, new THREE.Vector3()).sub(this.hand);
+      const to = foeCenter(c, new THREE.Vector3()).sub(this.hand);
       const d = to.length();
       if (d > 50) continue;
       const dot = to.divideScalar(d).dot(dir);
@@ -202,22 +203,18 @@ export class Spells {
       const b = this.bolts[i];
       b.age += dt;
       if (b.target && b.target.alive) {
-        const want = game.critters.center(b.target, this.tmp).sub(b.pos).normalize().multiplyScalar(54);
+        const want = foeCenter(b.target, this.tmp).sub(b.pos).normalize().multiplyScalar(54);
         b.vel.lerp(want, 1 - Math.exp(-7 * dt));
       }
       let done = false;
       for (let s = 0; s < 3 && !done; s++) {
         b.pos.addScaledVector(b.vel, dt / 3);
-        this.near.length = 0;
-        game.critters.near(b.pos, 0.35, this.near);
-        for (const c of this.near) {
-          game.critters.center(c, this.tmp);
-          if (this.tmp.distanceTo(b.pos) < c.radius + 0.3) {
-            game.critters.damage(c, game.player.perks.sparkDamage, b.pos, 6, game);
-            this.explodeBolt(b, game, true);
-            done = true;
-            break;
-          }
+        foesNear(game.foes, b.pos, 0.3, this.near);
+        if (this.near.length > 0) {
+          this.near[0].hit(game.player.perks.sparkDamage, b.pos, 6, 'spark', game);
+          this.explodeBolt(b, game, true);
+          done = true;
+          break;
         }
         if (!done && game.world.solidAt(b.pos.x, b.pos.y, b.pos.z, 0.1)) {
           this.explodeBolt(b, game, false);
@@ -309,12 +306,14 @@ export class Spells {
     const p = game.player.pos;
     const radius = 45 * game.player.perks.lodestarRadius;
     const pulled = game.cards.pullAll(p, radius);
+    const yanked = game.monsters.yank(p.clone().setY(p.y + 1), radius, game);
     game.fx.ring(p.clone().add(new THREE.Vector3(0, 0.25, 0)), '#ffd36b', 1, radius, 1.0, 2.6);
     game.fx.ring(p.clone().add(new THREE.Vector3(0, 0.35, 0)), '#fff1c2', 0.5, 20, 0.7, 2.2);
     game.fx.burst(p.clone().add(new THREE.Vector3(0, 1.2, 0)), '#ffd36b', 40, 6, 0.36, 0.9, -1.5, 3);
     game.player.castPose(game.player.facing);
     game.sfx.lodestar();
-    if (pulled === 0) game.hud.notice(`Lodestar found no cards within ${Math.round(radius)}m`);
+    if (yanked > 0) game.hud.notice(yanked > 1 ? `Lodestar dragged out ${yanked} Snapjacks!` : 'Lodestar dragged out a Snapjack!');
+    else if (pulled === 0) game.hud.notice(`Lodestar found no cards within ${Math.round(radius)}m`);
     return true;
   }
 
@@ -343,10 +342,9 @@ export class Spells {
     game.fx.flash(at.clone().setY(at.y + 0.6), '#ffcf9a', radius * 0.9, 0.3, 2.6);
     game.fx.shake(0.75);
     game.sfx.clap();
-    this.near.length = 0;
-    game.critters.near(p, radius, this.near);
-    for (const c of this.near) game.critters.damage(c, 2, p, 12, game);
-    console.info(`[spell] slam r=${radius} hit ${this.near.length} critter(s)`);
+    foesNear(game.foes, p, radius, this.near);
+    for (const c of this.near) c.hit(2, p, 12, 'clap', game);
+    console.info(`[spell] slam r=${radius} hit ${this.near.length} foe(s)`);
   }
 
   // --- Homeward ---------------------------------------------------------------------------

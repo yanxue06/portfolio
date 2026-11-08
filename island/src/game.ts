@@ -7,6 +7,8 @@ import type { Fx } from './fx';
 import type { Sfx } from './sfx';
 import type { Cards } from './cards/cards';
 import type { Critters } from './critters';
+import type { Monsters } from './monsters/monsters';
+import type { Foe } from './foes';
 import type { Spells } from './spells';
 import type { Hud } from './hud/hud';
 import type { DayInfo } from './cards/daily';
@@ -25,6 +27,9 @@ export type Game = {
   sfx: Sfx;
   cards: Cards;
   critters: Critters;
+  monsters: Monsters;
+  /** Everything spells can hit on this land: the jellyhops, then the monsters. */
+  foes: Foe[];
   spells: Spells;
   hud: Hud;
   day: DayInfo;

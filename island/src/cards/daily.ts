@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { CARDS, RARITY, type CardDef, type Habitat } from './catalog';
+import { CARDS, RARITY, isBestiary, type CardDef, type Habitat } from './catalog';
 import { hashString, mulberry32 } from '../util/math';
 import type { World } from '../world/world';
 import type { Spot } from '../world/terrain';
@@ -50,11 +50,13 @@ function weightedPick<T>(items: T[], weight: (t: T) => number, rng: () => number
 export function dealFor(day: DayInfo): DealEntry[] {
   const rng = mulberry32(hashString(`wildcard-isle:${day.key}`));
   const entries: DealEntry[] = [];
-  const special = CARDS.filter((c) => c.rarity === 'rare' || c.rarity === 'mythic');
+  // Bestiary cards are filtered out before any draw, so adding one never reshuffles a day's deal.
+  const dealt = CARDS.filter((c) => !isBestiary(c));
+  const special = dealt.filter((c) => c.rarity === 'rare' || c.rarity === 'mythic');
   const cotd = weightedPick(special, (c) => (c.rarity === 'rare' ? 1 : 0.45), rng);
   entries.push({ index: 0, card: cotd, cotd: true, land: cotd.land });
   for (const land of LAND_ORDER) {
-    const pool = CARDS.filter((c) => c.land === land && c.rarity !== 'mythic' && c.no !== cotd.no);
+    const pool = dealt.filter((c) => c.land === land && c.rarity !== 'mythic' && c.no !== cotd.no);
     const counts = new Map<number, number>();
     let added = 0;
     while (added < PER_LAND) {

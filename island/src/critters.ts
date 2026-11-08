@@ -4,6 +4,7 @@ import { backTex } from './cards/faces';
 import { clamp, damp, dampAngle, hashString, mulberry32 } from './util/math';
 import type { World } from './world/world';
 import type { Game } from './game';
+import type { Foe } from './foes';
 
 // Jellyhops: wobbly jelly critters that each swallowed a card. Pop one with a
 // spell and the card drops out. They hop around their home turf and chase you
@@ -21,7 +22,7 @@ const COUNTS: Record<Home, number> = { meadow: 11, beach: 6, forest: 7, mountain
 const MAX_HP = 3;
 const RADIUS = 0.7;
 
-export type Critter = {
+export type Critter = Foe & {
   id: number;
   home: Home;
   group: THREE.Group;
@@ -40,7 +41,6 @@ export type Critter = {
   contactCd: number;
   respawnAt: number;
   facing: number;
-  radius: number;
 };
 
 const bodyGeo = new THREE.SphereGeometry(0.66, 28, 20);
@@ -53,9 +53,10 @@ const pupilMat = new THREE.MeshBasicMaterial({ color: '#1b1b2a' });
 const shineMat = new THREE.MeshBasicMaterial({ color: new THREE.Color('#ffffff').multiplyScalar(1.6) });
 
 function dropTable(home: Home, land: string): CardDef[] {
-  if (land !== 'isle') return CARDS.filter((c) => c.land === land && (c.rarity === 'common' || c.rarity === 'uncommon'));
+  const plain = (c: CardDef) => c.habitat !== 'bounty' && (c.rarity === 'common' || c.rarity === 'uncommon');
+  if (land !== 'isle') return CARDS.filter((c) => c.land === land && plain(c));
   const habitat: Habitat = home;
-  return CARDS.filter((c) => c.land === 'isle' && c.habitat === habitat && (c.rarity === 'common' || c.rarity === 'uncommon'));
+  return CARDS.filter((c) => c.land === 'isle' && c.habitat === habitat && plain(c));
 }
 
 export class Critters {
@@ -142,7 +143,7 @@ export class Critters {
     const pos = this.findSpot(home, null);
     group.position.copy(pos);
     this.group.add(group);
-    return {
+    const c: Critter = {
       id,
       home,
       group,
@@ -162,7 +163,10 @@ export class Critters {
       respawnAt: 0,
       facing: this.rng() * Math.PI * 2,
       radius: RADIUS,
+      lift: 0.55,
+      hit: (amount, from, knock, _kind, game) => this.damage(c, amount, from, knock, game),
     };
+    return c;
   }
 
   /** Living critters whose body is within `radius` of a point. */

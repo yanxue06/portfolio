@@ -128,6 +128,59 @@ export class Sfx {
   denied(): void {
     this.tone(180, 0.12, 'square', 0.06, 150);
   }
+
+  // --- monsters. v is 0..1, quieter the farther away it happened ---
+  orbCharge(v = 1): void {
+    this.tone(300, 0.55, 'sine', 0.07 * v, 900);
+  }
+  orbFire(v = 1): void {
+    this.tone(720, 0.16, 'triangle', 0.1 * v, 260);
+    this.noise(0.1, 0.06 * v, 2400, 1.5, 900);
+  }
+  orbHit(v = 1): void {
+    this.noise(0.14, 0.16 * v, 1600, 1.2, 500);
+  }
+  lob(v = 1): void {
+    this.tone(150, 0.22, 'sine', 0.22 * v, 70);
+    this.noise(0.18, 0.12 * v, 500, 1, 200);
+  }
+  podBurst(v = 1): void {
+    this.noise(0.32, 0.3 * v, 1100, 0.8, 180);
+    this.tone(110, 0.3, 'sine', 0.22 * v, 50);
+  }
+  spores(v = 1): void {
+    this.noise(0.4, 0.22 * v, 2600, 0.7, 900);
+  }
+  armored(v = 1): void {
+    this.tone(2600, 0.09, 'sine', 0.08 * v);
+    this.tone(3900, 0.07, 'sine', 0.05 * v, 0, 0.01);
+  }
+  rumble(v = 1): void {
+    this.noise(0.9, 0.3 * v, 140, 0.9, 90);
+    this.tone(70, 0.9, 'sawtooth', 0.05 * v, 55);
+  }
+  crash(v = 1): void {
+    this.tone(80, 0.5, 'sine', 0.5 * v, 34);
+    this.noise(0.45, 0.45 * v, 700, 0.6, 120);
+    [1800, 2300, 2000].forEach((f, i) => this.tone(f, 0.12, 'triangle', 0.05 * v, f * 1.3, 0.35 + i * 0.13));
+  }
+  reveal(v = 1): void {
+    this.noise(0.18, 0.18 * v, 3200, 2, 1200);
+    this.tone(400, 0.18, 'square', 0.05 * v, 900, 0.06);
+  }
+  bite(v = 1): void {
+    this.noise(0.06, 0.25 * v, 2600, 1.4);
+    this.tone(220, 0.08, 'square', 0.08 * v, 120);
+  }
+  beat(v = 1): void {
+    this.tone(520, 0.1, 'sine', 0.22 * v, 1500);
+    this.noise(0.3, 0.2 * v, 2200, 1, 500);
+    [784, 1046, 1318].forEach((f, i) => this.tone(f, 0.28, 'triangle', 0.08 * v, 0, 0.08 + i * 0.06));
+  }
+  reflect(): void {
+    this.tone(1200, 0.16, 'sine', 0.12, 2200);
+    this.tone(1800, 0.2, 'triangle', 0.06, 2600, 0.03);
+  }
   hurt(): void {
     this.tone(160, 0.2, 'sawtooth', 0.12, 90);
   }

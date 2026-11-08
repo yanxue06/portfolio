@@ -1,7 +1,8 @@
 import type { LandId } from '../world/lands/types';
 
-// The binder: 60 numbered cards across four lands. All names, art and text are
-// original to this fan project. Habitat decides where in its land a card is dealt.
+// The binder: 60 numbered cards across four lands, plus the bestiary: one card per monster,
+// which only a beaten monster turns into (never dealt). All names, art and text are original
+// to this fan project. Habitat decides where in its land a card is dealt.
 
 export type Rarity = 'common' | 'uncommon' | 'rare' | 'mythic';
 export type Habitat =
@@ -15,7 +16,8 @@ export type Habitat =
   | 'summit'
   | 'open'
   | 'high'
-  | 'landmark';
+  | 'landmark'
+  | 'bounty';
 
 export type CardDef = {
   no: number;
@@ -101,12 +103,28 @@ const MISTMOOR_CARDS: Raw[] = [
   { no: 60, name: 'Lantern of the First Night', rarity: 'mythic', habitat: 'landmark', emoji: '🕯️', flavor: 'Lit before the island had a name.' },
 ];
 
+// Every monster roams all four lands, so these belong to none of them: the binder files them
+// under their own Bestiary tab by habitat, and the daily deal skips them (see dealFor).
+const BESTIARY_CARDS: Raw[] = [
+  { no: 61, name: 'Lanternwing', rarity: 'rare', habitat: 'bounty', emoji: '🪔', flavor: 'Burns its own wick just to keep an eye on you.' },
+  { no: 62, name: 'Thornmortar', rarity: 'rare', habitat: 'bounty', emoji: '🌵', flavor: 'Plants its seeds wherever you happen to be standing.' },
+  { no: 63, name: 'Rumbleback', rarity: 'mythic', habitat: 'bounty', emoji: '🦏', flavor: 'Has never once looked where it was going.' },
+  { no: 64, name: 'Snapjack', rarity: 'rare', habitat: 'bounty', emoji: '🎴', flavor: 'Looks like a card. Bites like a dog.' },
+];
+
 export const CARDS: CardDef[] = [
   ...ISLE_CARDS.map((c) => ({ ...c, land: 'isle' as const })),
   ...SUNSCAR_CARDS.map((c) => ({ ...c, land: 'sunscar' as const })),
   ...FROSTVEIL_CARDS.map((c) => ({ ...c, land: 'frostveil' as const })),
   ...MISTMOOR_CARDS.map((c) => ({ ...c, land: 'mistmoor' as const })),
+  // land is required by the type; bestiary cards are told apart by habitat, never by land
+  ...BESTIARY_CARDS.map((c) => ({ ...c, land: 'isle' as const })),
 ];
+
+/** Bestiary cards drop from monsters and are never dealt. */
+export function isBestiary(card: CardDef): boolean {
+  return card.habitat === 'bounty';
+}
 
 export const RARITY: Record<Rarity, { label: string; letter: string; color: string; frameA: string; frameB: string; weight: number }> = {
   common: { label: 'Common', letter: 'C', color: '#c9ced8', frameA: '#e9edf3', frameB: '#9aa3b2', weight: 3 },
@@ -127,6 +145,7 @@ export const HABITAT: Record<Habitat, { label: string; hint: string; a: string; 
   open: { label: 'Wilds', hint: 'Dealt somewhere out in the open country.', a: '#f3e6c4', b: '#9a8a62' },
   high: { label: 'Heights', hint: 'Dealt up high: cliff tops, ledges and peaks.', a: '#e8f0ff', b: '#6c7fa8' },
   landmark: { label: 'Landmark', hint: "Dealt at one of the land's landmarks.", a: '#fff0cf', b: '#b4853f' },
+  bounty: { label: 'Bestiary', hint: 'Never dealt. Beat this monster and it can turn into its own card; the first one always does.', a: '#ffd9c7', b: '#8c2f45' },
 };
 
 export function cardNo(no: number): string {

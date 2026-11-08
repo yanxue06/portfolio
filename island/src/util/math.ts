@@ -21,10 +21,10 @@ export function damp(current: number, target: number, rate: number, dt: number):
   return lerp(current, target, 1 - Math.exp(-rate * dt));
 }
 
+/** Into [-PI, PI]. Arithmetic, not a loop: a huge angle must never stall a frame. */
 export function wrapAngle(a: number): number {
-  while (a > Math.PI) a -= TAU;
-  while (a < -Math.PI) a += TAU;
-  return a;
+  if (a >= -Math.PI && a <= Math.PI) return a;
+  return a - TAU * Math.floor((a + Math.PI) / TAU);
 }
 
 export function dampAngle(current: number, target: number, rate: number, dt: number): number {

@@ -1,6 +1,6 @@
 # Wildcard Isle
 
-A browser game where four lands deal a new hand of cards every day. You pick one of six travelers and cross between the lands through the Gates. Each day you look for 21 cards, pop jellyhops for spares, and use spell cards to get around. Progress lives in a 60-slot binder.
+A browser game where four lands deal a new hand of cards every day. You pick one of six travelers and cross between the lands through the Gates. Each day you look for 21 cards, pop jellyhops for spares, beat monsters for rare ones, and use spell cards to get around. Progress lives in a 64-slot binder: 60 cards dealt across the lands, plus a bestiary of four that only monsters turn into.
 
 > **Fan game disclaimer.** Wildcard Isle is an unofficial, non-commercial fan project inspired by Greed Island from *Hunter × Hunter* by Yoshihiro Togashi. It is not affiliated with or endorsed by the creator, Shueisha, VIZ Media or the anime studios. It borrows the *idea*: a game-world island, a numbered card binder, one-shot spell cards and an aura meter. It borrows none of the material. Every name, character, card, location and piece of art here is original or openly licensed (see [ASSETS.md](ASSETS.md)).
 
@@ -62,15 +62,28 @@ The models are CC0 VRoid samples. The names, bios and perks are original. Your p
 | Shift | Sprint |
 | Space | Jump, press again in the air to double jump |
 | Mouse / wheel | Orbit camera / zoom |
-| LMB or 1 | **Spark Shot**: aura bolt that curves toward critters |
+| LMB or 1 | **Spark Shot**: aura bolt that curves toward critters and monsters |
 | Q | **Skip**: blink 13 m where you look; refreshes your air jump |
-| E | **Bubble Ward**: 5 s shield, critters bounce off |
+| E | **Bubble Ward**: 5 s shield, critters bounce off, shots fly back at whoever fired them |
 | R | **Lodestar**: pulls every card within 45 m to you |
 | F | **Thunderclap**: ground slam; cast mid-air to dive first |
 | H | **Homeward**: stand still 1.5 s to return to this land's Gate |
 | T | World map and travel |
 | Tab / B | Binder |
 | M | Mute |
+
+## Monsters
+
+Four kinds roam every land, colored to match it. Each is tougher than a jellyhop and has a trick to beating it:
+
+| Monster | What it does | The trick |
+| --- | --- | --- |
+| Lanternwing | A paper lantern with moth wings. Circles you and fires orbs in threes | Keep moving, or put up Bubble Ward: its shots fly back and burst it |
+| Thornmortar | A rooted seed-pod plant. Lobs pods that land on a marked circle where you stood, and puffs spores if you get close | Spark only hurts it while its petals are open; Thunderclap cracks it any time |
+| Rumbleback | An armored boulder of a beast. Shows its line on the ground, then curls up and rolls at you | Step aside so it crashes into a tree or a rock: it lands on its back, dazed, and takes 2.5x damage |
+| Snapjack | Floats and spins like a card, until you get close and it bites | Real cards show a face and a dot on the minimap; it shows neither. Lodestar drags it out, stunned |
+
+A beaten monster always drops an uncommon or rare card from the land, and sometimes turns into its own bestiary card (the first one of each kind always does). Nothing attacks inside a Gate plaza or a town. Monsters more than 115 m away are hidden and don't think, and every shot in the air is drawn in a single draw call, so a fight costs about 0.15 ms a frame on the low preset at 4K.
 
 ## How a day works
 
@@ -87,6 +100,8 @@ src/
   fx.ts sfx.ts         particles and a WebAudio synth (no audio files)
   spells.ts            spell table + cast dispatch (reads the character's perks)
   critters.ts          jellyhops: hop AI, contact damage, card drops
+  foes.ts              what spells can hit: jellyhops and monsters share one shape
+  monsters/            the four monsters: AI (monsters.ts), bodies built in code (models.ts), shots (shots.ts)
   regions.ts           named areas per land for the location banner
   characters/          roster, VRM loading, Mixamo clips retargeted to VRM bones, pose layers
   world/
@@ -102,13 +117,14 @@ src/
     landStructures.ts  Dustwell, Hearthhold, Lanternfen and their landmarks
     water.ts ambient.ts collision.ts
   player/              input, controller (coyote time, jump buffer, double jump, swim), stand-in body
-  cards/               catalog (60 cards), card faces, daily deal, pickups + binder save
+  cards/               catalog (60 cards + 4 bestiary), card faces, daily deal, pickups + binder save
   hud/                 HUD, minimap, binder, world map, character select, loading screen, graphics menu
 tools/character-lab.html   standalone page for tuning character animation (dev server only)
 scripts/
   fetch-assets.mjs     downloads the CC0 art into public/assets/
   check-lfs.mjs        fails the build if public/ holds Git LFS pointer files instead of art
   physics.mjs          movement checks (speeds, jumps, walls, stairs, swim, spells, a perk)
+  monsters.mjs         each monster attacks, each trick works, drops, safe zones, every land spawns
   flow.mjs             title -> character select -> play -> binder -> pause -> resume
   lands.mjs            travels to every land and screenshots the gate, town and a high view
   shots.mjs            headless Chrome screenshots of named scenes
@@ -120,6 +136,7 @@ The test scripts drive the game through `window.__isle`. Start `bun run dev` fir
 
 ```bash
 node scripts/physics.mjs
+node scripts/monsters.mjs
 node scripts/flow.mjs
 OUT=./shots node scripts/lands.mjs
 OUT=./shots node scripts/shots.mjs spawn map cotd

@@ -251,6 +251,11 @@ export class Cards {
     return n;
   }
 
+  /** Tests: every card lying in the world right now. */
+  debugList(): Array<{ no: number; rarity: CardDef['rarity']; x: number; z: number; dealt: boolean }> {
+    return this.pickups.filter((p) => p.state === 'idle').map((p) => ({ no: p.card.no, rarity: p.card.rarity, x: p.base.x, z: p.base.z, dealt: p.dealIndex >= 0 }));
+  }
+
   /** Uncollected deal cards, for the minimap and HUD. */
   remaining(): Array<{ x: number; z: number; rarity: CardDef['rarity']; cotd: boolean }> {
     const out: Array<{ x: number; z: number; rarity: CardDef['rarity']; cotd: boolean }> = [];

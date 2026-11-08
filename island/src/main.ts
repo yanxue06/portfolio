@@ -19,6 +19,8 @@ import { CARDS } from './cards/catalog';
 import { dayInfo, dealFor, placeDeal, type DealSpawn } from './cards/daily';
 import { loadCardFonts } from './cards/faces';
 import { Critters } from './critters';
+import { Monsters, type MonsterKind } from './monsters/monsters';
+import type { HitKind } from './foes';
 import { Spells, type SpellId } from './spells';
 import { Hud } from './hud/hud';
 import { regionAt, type Region } from './regions';
@@ -51,6 +53,7 @@ async function boot(): Promise<void> {
   console.info(`[quality] gpu "${gpu}": auto would pick ${detected}; using ${quality.level} (${qualityChoice})`);
   const day = dayInfo(params.get('day'));
   const startLand = (params.get('land') ?? 'isle') as LandId;
+  const monstersOn = params.get('monsters') !== 'off'; // physics and touch baselines run without them
   if (!LANDS.some((l) => l.id === startLand)) throw new Error(`[boot] unknown ?land=${startLand}`);
 
   const app = document.getElementById('app');
@@ -169,7 +172,7 @@ async function boot(): Promise<void> {
   }
 
   // --- lands ------------------------------------------------------------------------
-  type LandState = { world: World; cards: Cards; critters: Critters; ambient: Ambient; here: DealSpawn[] };
+  type LandState = { world: World; cards: Cards; critters: Critters; monsters: Monsters; ambient: Ambient; here: DealSpawn[] };
   let current: LandState | null = null;
   let loading = false;
 
@@ -183,19 +186,27 @@ async function boot(): Promise<void> {
     const here = placeDeal(deal, day, world);
     const cards = new Cards(scene, deal, here, day);
     const critters = new Critters(scene, world, day.key);
+    const monsters = new Monsters(scene, world, day.key, monstersOn, fx.sparks.uniforms.uScale);
+    // compile their shaders now (behind the loading screen) rather than on the frame one first walks into view
+    view.renderer.compile(monsters.group, camera, scene);
     const ambient = new Ambient(land.ambient, world);
     ambient.setViewport(view.renderer.domElement.height, camera.fov);
     ambient.setDensity(AMBIENT_SHARE[quality.level]);
     fx.dustColor = DUST_COLOR[id];
     scene.add(ambient.points);
     console.info(`[land] ${land.name} built in ${(performance.now() - t).toFixed(0)}ms`);
-    return { world, cards, critters, ambient, here };
+    return { world, cards, critters, monsters, ambient, here };
+  }
+
+  function foesOf(s: LandState) {
+    return [...s.critters.list, ...s.monsters.list];
   }
 
   function disposeLand(s: LandState): void {
     s.world.dispose();
     s.cards.dispose();
     s.critters.dispose();
+    s.monsters.dispose();
     s.ambient.dispose();
   }
 
@@ -293,6 +304,8 @@ async function boot(): Promise<void> {
     sfx,
     cards: current.cards,
     critters: current.critters,
+    monsters: current.monsters,
+    foes: foesOf(current),
     spells,
     hud,
     day,
@@ -308,6 +321,7 @@ async function boot(): Promise<void> {
     p.aura = p.maxAura;
     p.spawnAt(L.gate.x, L.gate.z + 6, game.world);
     rig.snap(p.pos);
+    game.monsters.calm();
     hud.notice('You were dealt out. Back to the Gate.');
     console.info('[player] died and respawned');
   };
@@ -331,6 +345,8 @@ async function boot(): Promise<void> {
     game.world = current.world;
     game.cards = current.cards;
     game.critters = current.critters;
+    game.monsters = current.monsters;
+    game.foes = foesOf(current);
     region = regionAt(game.world, player.pos, false);
     regionCandidate = region.id;
     view.render(); // compile the new land's shaders behind the loading screen
@@ -517,9 +533,11 @@ async function boot(): Promise<void> {
     // medium and low keep at least MIN_FRAME_MS between frames: a 60-100 Hz screen still gets every
     // frame, a 120 Hz+ one every other. Half the GPU work (and heat, and battery) on fast screens.
     if (quality.capFrames && !uncapped && now - last < MIN_FRAME_MS) return;
-    const rawDt = (now - last) / 1000;
+    // never negative: after a long blocking step in boot (shader compiles), the first frame can carry
+    // a timestamp from before `last` was taken, and a negative dt flings every damped value off
+    const rawDt = Math.max(0, (now - last) / 1000);
     last = now;
-    frameTimes.push(rawDt);
+    if (rawDt > 0) frameTimes.push(rawDt);
     if (frameTimes.length > 120) frameTimes.shift();
     const dt = Math.min(rawDt, 1 / 20);
     game.time += dt;
@@ -560,6 +578,7 @@ async function boot(): Promise<void> {
       player.update(dt, input, rig.yaw, game.world, playing);
       spells.update(dt, game, playing);
       game.critters.update(dt, game);
+      game.monsters.update(dt, game);
       game.cards.update(dt, game);
     } else if (game.mode === 'select') {
       player.update(dt, input, rig.yaw, game.world, false); // idle animation only
@@ -657,6 +676,11 @@ async function boot(): Promise<void> {
         today: `${game.cards.foundToday}/${game.cards.deal.length}`,
         binder: `${game.cards.binder.uniqueCount()}/${CARDS.length}`,
         crittersAlive: game.critters.list.filter((c) => c.alive).length,
+        monstersAlive: game.monsters.list.filter((m) => m.alive).length,
+        monstersBeaten: game.monsters.beaten,
+        shots: game.monsters.shots.count,
+        monsterMs: Number(game.monsters.ms.toFixed(3)),
+        ward: player.wardActive,
         fps: Math.round(1 / avg),
         calls: info.render.calls,
         triangles: info.render.triangles,
@@ -750,6 +774,92 @@ async function boot(): Promise<void> {
       c.chasing = false;
       c.hopTimer = 99;
       return c.id;
+    },
+    monsters() {
+      return game.monsters.debugList();
+    },
+    /** Puts the first monster of a kind at (x, z), calm, as if it lived there. Returns its id. */
+    placeMonster(kind: MonsterKind, x: number, z: number) {
+      return game.monsters.place(kind, x, z);
+    },
+    /** Same, `dist` meters along the camera's view (a sideways `side` offset is optional). */
+    monsterAhead(kind: MonsterKind, dist: number, side = 0) {
+      const fx = -Math.sin(rig.yaw);
+      const fz = -Math.cos(rig.yaw);
+      return game.monsters.place(kind, player.pos.x + fx * dist - fz * side, player.pos.z + fz * dist + fx * side);
+    },
+    forceMonster(id: number, state: Parameters<Monsters['force']>[1]) {
+      game.monsters.force(id, state);
+    },
+    hitMonster(id: number, amount: number, how: HitKind = 'spark') {
+      const m = game.monsters.list.find((k) => k.id === id);
+      if (!m) throw new Error(`[debug] no monster ${id}`);
+      m.hit(amount, player.pos.clone().setY(player.pos.y + 1), 4, how, game);
+      return { alive: m.alive, hp: m.hp, state: m.state };
+    },
+    cards() {
+      return game.cards.remaining().length;
+    },
+    /** The nearest collider with a tag (tree, rock, house...) to (x, z): tests aim a Rumbleback at one. */
+    nearest(tag: string, x: number, z: number) {
+      let best: { x: number; z: number; r: number; d: number } | null = null;
+      for (const c of game.world.colliders.all) {
+        if (c.tag !== tag) continue;
+        const d = Math.hypot(c.x - x, c.z - z);
+        if (!best || d < best.d) best = { x: c.x, z: c.z, r: c.r, d };
+      }
+      if (!best) throw new Error(`[debug] no ${tag} collider on this land`);
+      return best;
+    },
+    safe(x: number, z: number) {
+      return game.monsters.safeAt(x, z);
+    },
+    ground(x: number, z: number) {
+      return game.world.heightAt(x, z);
+    },
+    /** Could something roll from a to b at knee height? (the same checks a Rumbleback makes) */
+    clear(ax: number, az: number, bx: number, bz: number) {
+      const n = Math.ceil(Math.hypot(bx - ax, bz - az) / 0.3);
+      let prev = game.world.heightAt(ax, az);
+      for (let i = 1; i <= n; i++) {
+        const x = ax + ((bx - ax) * i) / n;
+        const z = az + ((bz - az) * i) / n;
+        const h = game.world.heightAt(x, z);
+        if (h < 0.3 || h - prev > 0.3 || game.world.solidAt(x, h + 0.9, z, 0.35)) return false;
+        prev = h;
+      }
+      return true;
+    },
+    isolateMonster(id: number) {
+      game.monsters.isolate([id]);
+    },
+    /** Takes every jellyhop off the board, so a test's damage numbers are the monsters' alone. */
+    benchCritters() {
+      for (const c of game.critters.list) {
+        c.alive = false;
+        c.group.visible = false;
+        c.respawnAt = Infinity;
+      }
+    },
+    pickups() {
+      return game.cards.debugList();
+    },
+    owned(no: number) {
+      return game.cards.binder.owned(no);
+    },
+    marks() {
+      return game.monsters.markers(game).length;
+    },
+    previewFoe(on: boolean) {
+      hud.previewFoe(on);
+    },
+    heal() {
+      player.hp = player.maxHp;
+      player.aura = player.maxAura;
+    },
+    /** Hides the player's body, for screenshots of whatever is in front of it. */
+    showAvatar(on: boolean) {
+      player.avatar.root.visible = on;
     },
     scatterCards(n: number, radius: number) {
       for (let i = 0; i < n; i++) {
