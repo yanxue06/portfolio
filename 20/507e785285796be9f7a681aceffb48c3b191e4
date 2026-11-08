@@ -1,0 +1,40 @@
+island/scripts/sounds.mjs
+  s_1835feb9ad3714::t_3f56c417d76917 1-74
+island/CLAUDE.md
+  s_1835feb9ad3714::t_a7c00dcb6722af 68-69,134-138
+island/src/main.ts
+  s_1835feb9ad3714::t_b07369e929a39c 657
+island/src/spells.ts
+  s_1835feb9ad3714::t_214c4a3fbe0039 220-226
+island/scripts/playtest.mjs
+  s_1835feb9ad3714::t_3f56c417d76917 1-160
+island/scripts/monsters.mjs
+  s_1835feb9ad3714::t_f1f437105b98a8 106,118,121
+island/src/monsters/shots.ts
+  s_1835feb9ad3714::t_f1f437105b98a8 201
+island/README.md
+  s_1835feb9ad3714::t_a7c00dcb6722af 128-129
+island/src/monsters/monsters.ts
+  s_1835feb9ad3714::t_f1f437105b98a8 55-58,708,730
+  s_1835feb9ad3714::t_214c4a3fbe0039 350,874,948-949,1195-1198
+  s_1835feb9ad3714::t_b8546735c31306 924-928
+  s_1835feb9ad3714::t_60fd7d3c37434c 434-435
+island/src/sfx.ts
+  s_1835feb9ad3714::t_fd7a0998ec19c0 133,135,160-161,169-170
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "20507e785285796be9f7a681aceffb48c3b191e4",
+  "prompts": {},
+  "sessions": {
+    "s_1835feb9ad3714": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "525124dc-d820-4019-8967-f2d63d6b6710",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Yan Xue <y9xue@uwaterloo.ca>"
+    }
+  }
+}
