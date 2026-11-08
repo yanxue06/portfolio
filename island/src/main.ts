@@ -654,6 +654,7 @@ async function boot(): Promise<void> {
     ready: true,
     // raw handles for perf experiments (scripts/perf.mjs ABLATE=1 switches parts off through these)
     three: { scene, sun, renderer: view.renderer, composer: view.composer },
+    sfx, // scripts render each sound offline to check its level
     get landmarks() {
       return game.world.landmarks;
     },

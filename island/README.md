@@ -125,6 +125,8 @@ scripts/
   check-lfs.mjs        fails the build if public/ holds Git LFS pointer files instead of art
   physics.mjs          movement checks (speeds, jumps, walls, stairs, swim, spells, a perk)
   monsters.mjs         each monster attacks, each trick works, drops, safe zones, every land spawns
+  playtest.mjs         a bot plays every monster fight, standing still and playing the trick
+  sounds.mjs           renders every sound offline and checks its level; writes the monster sounds to a WAV
   flow.mjs             title -> character select -> play -> binder -> pause -> resume
   lands.mjs            travels to every land and screenshots the gate, town and a high view
   shots.mjs            headless Chrome screenshots of named scenes

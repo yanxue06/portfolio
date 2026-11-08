@@ -103,7 +103,7 @@ await wait(150);
 r = await isle('hitMonster', id, 1, 'spark');
 const openHp = r.hp;
 r = await isle('hitMonster', id, 2, 'clap');
-check('a shut Thornmortar shrugs off Spark, an open one or a Thunderclap hurts it', shutHp === 6 && openHp === 5 && r.hp === 3, `shut ${shutHp}/6, open ${openHp}, after clap ${r.hp}`);
+check('a shut Thornmortar shrugs off Spark, an open one or a Thunderclap hurts it', shutHp === 14 && openHp === 13 && r.hp === 11, `shut ${shutHp}/14, open ${openHp}, after clap ${r.hp}`);
 
 id = await stage('thornmortar', 12, 3);
 const podUp = await until(async () => (await state()).shots > 0, 7000);
@@ -115,10 +115,10 @@ check('its seed pod lands where you stood', podUp !== null && landed !== null, `
 id = await stage('rumbleback', 44, 0);
 await wait(400);
 r = await isle('hitMonster', id, 1, 'spark');
-const armored = 24 - r.hp;
+const armored = 30 - r.hp;
 await isle('forceMonster', id, 'dazed');
 r = await isle('hitMonster', id, 1, 'spark');
-const dazed = 24 - armored - r.hp;
+const dazed = 30 - armored - r.hp;
 check('a Rumbleback takes a quarter from Spark, two and a half times while dazed', Math.abs(armored - 0.25) < 1e-6 && Math.abs(dazed - 2.5) < 1e-6, `armored -${armored}, dazed -${dazed}`);
 
 // a tree between it and you: it charges straight into the trunk

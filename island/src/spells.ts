@@ -217,7 +217,13 @@ export class Spells {
           break;
         }
         if (!done && game.world.solidAt(b.pos.x, b.pos.y, b.pos.z, 0.1)) {
-          this.explodeBolt(b, game, false);
+          // a homing bolt that clips the ground right beside its target still counts: small
+          // things low on a slope are otherwise nearly impossible to hit
+          const t = b.target;
+          if (t && t.alive && foeCenter(t, this.tmp).distanceTo(b.pos) < t.radius + 0.9) {
+            t.hit(game.player.perks.sparkDamage, b.pos, 6, 'spark', game);
+            this.explodeBolt(b, game, true);
+          } else this.explodeBolt(b, game, false);
           done = true;
         }
       }

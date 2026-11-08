@@ -198,7 +198,7 @@ export class Shots {
       if (owner) s.vel.copy(foeCenter(owner, this.tmp).sub(s.pos).normalize().multiplyScalar(26));
       else s.vel.multiplyScalar(-1.3);
       s.life = 2.5;
-      s.damage = 4; // enough to burst a Lanternwing in one
+      s.damage = 5; // two of a volley sent home burst a Lanternwing
     } else {
       // knocked back the way it came: a short lob onto whoever planted it
       const to = owner ? owner.pos : this.tmp.copy(s.pos).addScaledVector(s.vel, -0.6).setY(game.world.heightAt(s.pos.x, s.pos.z));

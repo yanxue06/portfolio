@@ -52,10 +52,10 @@ export type MonsterDef = {
 };
 
 export const BESTIARY: Record<MonsterKind, MonsterDef> = {
-  lanternwing: { kind: 'lanternwing', name: 'Lanternwing', card: 61, hp: 4, count: 4, respawn: 80, rare: 0.35, tip: 'Shoots in threes. Keep moving, or bounce its shots back with Bubble Ward.' },
-  thornmortar: { kind: 'thornmortar', name: 'Thornmortar', card: 62, hp: 6, count: 3, respawn: 80, rare: 0.35, tip: "Lobs seeds where you stand. It's only soft while open, but Thunderclap cracks it any time." },
-  rumbleback: { kind: 'rumbleback', name: 'Rumbleback', card: 63, hp: 24, count: 2, respawn: 110, rare: 1, tip: 'Rolls at you. Step aside so it crashes into a tree or a rock, then hit its belly.' },
-  snapjack: { kind: 'snapjack', name: 'Snapjack', card: 64, hp: 5, count: 3, respawn: 90, rare: 0.6, tip: 'Hides as a card. Real cards show a face and a dot on your map. Lodestar drags it out.' },
+  lanternwing: { kind: 'lanternwing', name: 'Lanternwing', card: 61, hp: 10, count: 4, respawn: 80, rare: 0.35, tip: 'Shoots in threes. Keep moving, or bounce its shots back with Bubble Ward.' },
+  thornmortar: { kind: 'thornmortar', name: 'Thornmortar', card: 62, hp: 14, count: 3, respawn: 80, rare: 0.35, tip: "Lobs seeds where you stand. It's only soft while open, but Thunderclap cracks it any time." },
+  rumbleback: { kind: 'rumbleback', name: 'Rumbleback', card: 63, hp: 30, count: 2, respawn: 110, rare: 1, tip: 'Rolls at you. Step aside so it crashes into a tree or a rock, then hit its belly.' },
+  snapjack: { kind: 'snapjack', name: 'Snapjack', card: 64, hp: 10, count: 3, respawn: 90, rare: 0.6, tip: 'Hides as a card. Real cards show a face and a dot on your map. Lodestar drags it out.' },
 };
 
 const KINDS: MonsterKind[] = ['lanternwing', 'thornmortar', 'rumbleback', 'snapjack'];
@@ -347,6 +347,7 @@ export class Monsters {
     } else {
       m.pos.copy(spot);
       m.lift = 1.3;
+      m.radius = 0.62;
       m.fold = 0;
       m.gape = 0;
       m.grounded = true;
@@ -430,7 +431,8 @@ export class Monsters {
       m.vel.x += (dx / len) * knock * 0.6;
       m.vel.z += (dz / len) * knock * 0.6;
       m.vel.y += 1.5;
-    } else if (m.kind === 'snapjack' && m.state !== 'yanked' && m.state !== 'stunned') {
+    } else if (m.kind === 'snapjack' && m.state !== 'yanked' && m.state !== 'stunned' && knock >= 10) {
+      // only a big blow (a Thunderclap) bowls it over; Spark fire can't hold it off forever
       m.vel.set((dx / len) * knock * 0.5, 3.5, (dz / len) * knock * 0.5);
       m.grounded = false;
     }
@@ -703,7 +705,7 @@ export class Monsters {
       }
     } else if (m.state === 'windup') {
       // tracks you until just before it lets go
-      if (m.t < 0.7) m.facing = dampAngle(m.facing, this.yawTo(m, player.pos.x, player.pos.z), 9, dt);
+      if (m.t < 0.6) m.facing = dampAngle(m.facing, this.yawTo(m, player.pos.x, player.pos.z), 9, dt);
       if (Math.floor(m.t / 0.24) !== Math.floor((m.t - dt) / 0.24)) {
         game.fx.dustPuff(this.tmp2.set(m.pos.x + Math.sin(m.facing) * 0.9, m.pos.y, m.pos.z + Math.cos(m.facing) * 0.9), 5, 2.2, 0.55);
       }
@@ -725,7 +727,7 @@ export class Monsters {
         let diff = want - now;
         while (diff > Math.PI) diff -= Math.PI * 2;
         while (diff < -Math.PI) diff += Math.PI * 2;
-        const turn = clamp(diff, -0.35 * dt, 0.35 * dt);
+        const turn = clamp(diff, -0.22 * dt, 0.22 * dt);
         m.dir.set(Math.sin(now + turn), 0, Math.cos(now + turn));
         m.facing = now + turn;
       }
@@ -869,6 +871,7 @@ export class Monsters {
         m.t = 0;
         m.hp = m.def.hp;
         m.lift = 1.3;
+        m.radius = 0.62;
         m.vel.set(0, 0, 0);
         m.pos.copy(m.anchor);
       }
@@ -918,8 +921,11 @@ export class Monsters {
       const ground = world.groundAt(m.pos.x, m.pos.z, m.pos.y, 0.45);
       if (m.pos.y <= ground) {
         m.pos.y = ground;
-        m.vel.set(0, 0, 0);
-        m.grounded = true;
+        // still rising means the slope came up to meet it: ride up the hill instead of stopping dead
+        if (m.vel.y <= 0) {
+          m.vel.set(0, 0, 0);
+          m.grounded = true;
+        }
       }
       if (ground < -0.3) {
         // into the water: paddle back toward home
@@ -939,7 +945,8 @@ export class Monsters {
     m.state = 'chase';
     m.t = 0;
     m.lostT = 0;
-    m.lift = 0.45;
+    m.lift = 0.6;
+    m.radius = 0.78;
     m.pos.set(m.anchor.x, m.anchor.y + 0.85, m.anchor.z);
     m.grounded = false;
     m.engaged = true;
@@ -1185,7 +1192,10 @@ export class Monsters {
     if (!m) throw new Error(`[monsters] no monster ${id}`);
     m.state = state;
     m.t = 0;
-    if (m.kind === 'snapjack' && state !== 'disguised' && state !== 'tremble') m.lift = 0.45;
+    if (m.kind === 'snapjack' && state !== 'disguised' && state !== 'tremble') {
+      m.lift = 0.6;
+      m.radius = 0.78;
+    }
   }
 
   /** Moves the first monster of a kind to (x, z) as if it lived there, fresh and calm. */

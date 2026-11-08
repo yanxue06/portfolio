@@ -130,8 +130,9 @@ export class Sfx {
   }
 
   // --- monsters. v is 0..1, quieter the farther away it happened ---
+  // the three warnings (charge, rumble, reveal) sit a few dB above the rest: they're cues to react to
   orbCharge(v = 1): void {
-    this.tone(300, 0.55, 'sine', 0.07 * v, 900);
+    this.tone(300, 0.55, 'sine', 0.12 * v, 900);
   }
   orbFire(v = 1): void {
     this.tone(720, 0.16, 'triangle', 0.1 * v, 260);
@@ -156,8 +157,8 @@ export class Sfx {
     this.tone(3900, 0.07, 'sine', 0.05 * v, 0, 0.01);
   }
   rumble(v = 1): void {
-    this.noise(0.9, 0.3 * v, 140, 0.9, 90);
-    this.tone(70, 0.9, 'sawtooth', 0.05 * v, 55);
+    this.noise(0.9, 0.55 * v, 140, 0.9, 90);
+    this.tone(70, 0.9, 'sawtooth', 0.09 * v, 55);
   }
   crash(v = 1): void {
     this.tone(80, 0.5, 'sine', 0.5 * v, 34);
@@ -165,8 +166,8 @@ export class Sfx {
     [1800, 2300, 2000].forEach((f, i) => this.tone(f, 0.12, 'triangle', 0.05 * v, f * 1.3, 0.35 + i * 0.13));
   }
   reveal(v = 1): void {
-    this.noise(0.18, 0.18 * v, 3200, 2, 1200);
-    this.tone(400, 0.18, 'square', 0.05 * v, 900, 0.06);
+    this.noise(0.18, 0.28 * v, 3200, 2, 1200);
+    this.tone(400, 0.18, 'square', 0.08 * v, 900, 0.06);
   }
   bite(v = 1): void {
     this.noise(0.06, 0.25 * v, 2600, 1.4);
