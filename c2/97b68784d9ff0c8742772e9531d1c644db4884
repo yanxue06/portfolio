@@ -1,0 +1,25 @@
+index.html
+  s_ee6af956668e83::t_c8ac7cb655e25d 16,22
+public/logos/vercel.svg
+  s_ee6af956668e83::t_3d8835a64248ff 1
+src/components/About.tsx
+  s_ee6af956668e83::t_e589acdf895327 7,10-21,25-26
+src/components/Work.tsx
+  s_ee6af956668e83::t_c9f67c2eb54eee 63,75
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c297b68784d9ff0c8742772e9531d1c644db4884",
+  "prompts": {},
+  "sessions": {
+    "s_ee6af956668e83": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7388b42c-9b42-4277-89fc-dfd4e10e3bd9",
+        "model": "unknown"
+      },
+      "human_author": "Yan Xue <y9xue@uwaterloo.ca>"
+    }
+  }
+}
