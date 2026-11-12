@@ -1,10 +1,4 @@
-import {
-  m,
-  useMotionValue,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-} from 'framer-motion'
+import { m, useReducedMotion, useScroll, useSpring } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Fragment, lazy, Suspense, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import Nav from './Nav'
@@ -15,41 +9,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 const ROLES = ['computer engineering @ uwaterloo', 'core platform @ live time', 'incoming @ vercel (v0)']
 
-/* The "say hello" pill leans toward the cursor. */
-export function Magnetic({ children }: { children: ReactNode }) {
-  const reduce = useReducedMotion()
-  const ref = useRef<HTMLDivElement>(null)
-  const mx = useMotionValue(0)
-  const my = useMotionValue(0)
-  const x = useSpring(mx, { stiffness: 220, damping: 18 })
-  const y = useSpring(my, { stiffness: 220, damping: 18 })
-
-  if (reduce) return <>{children}</>
-
-  return (
-    <m.div
-      ref={ref}
-      style={{ x, y }}
-      className="w-fit"
-      onMouseMove={(e) => {
-        const r = ref.current?.getBoundingClientRect()
-        if (!r) return
-        /* pull scales with element size — uncapped, the giant footer type
-           travels ~110px and crosses the viewport clip edge */
-        mx.set(Math.max(-24, Math.min(24, (e.clientX - r.left - r.width / 2) * 0.3)))
-        my.set(Math.max(-16, Math.min(16, (e.clientY - r.top - r.height / 2) * 0.4)))
-      }}
-      onMouseLeave={() => {
-        mx.set(0)
-        my.set(0)
-      }}
-    >
-      {children}
-    </m.div>
-  )
-}
-
-/* the water heart ships in the same lazy chunk as the mesh sun */
+/* the water heart is the only shader left on the page — its own lazy chunk */
 const Water = lazy(() =>
   import('@paper-design/shaders-react').then((mod) => ({ default: mod.Water })),
 )
@@ -229,19 +189,15 @@ export default function Hero() {
         </Rise>
 
         <Rise delay={0.76} className="mt-7 flex items-center gap-6">
-          <Magnetic>
-            <a
-              href="mailto:yan.xue@uwaterloo.ca"
-              className="group flex w-fit items-center gap-2 rounded-full bg-navy py-1.5 pl-5 pr-1.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3"
-            >
-              say hello
-              <span
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-cream transition-transform duration-300 group-hover:scale-110"
-              >
-                <ArrowRight className="h-4 w-4 text-navy transition-colors duration-200 group-hover:text-gold" />
-              </span>
-            </a>
-          </Magnetic>
+          <a
+            href="mailto:yan.xue@uwaterloo.ca"
+            className="group flex w-fit items-center gap-2 rounded-full bg-navy py-1.5 pl-5 pr-1.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3"
+          >
+            say hello
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-cream transition-transform duration-300 group-hover:scale-110">
+              <ArrowRight className="h-4 w-4 text-navy transition-colors duration-200 group-hover:text-gold" />
+            </span>
+          </a>
           <LikeButton reduce={!!reduce} />
         </Rise>
       </div>
