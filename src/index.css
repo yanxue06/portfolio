@@ -53,15 +53,6 @@ body {
 .hairline {
   border-color: color-mix(in srgb, var(--ink) 15%, transparent);
 }
-/* stroke-only display text — the oversized project indices. warms toward
-   gold while the simplex fill pours into the glyphs on row hover */
-.idx-stroke {
-  stroke: color-mix(in srgb, var(--ink) 28%, transparent);
-  transition: stroke 0.45s ease;
-}
-.group:hover .idx-stroke {
-  stroke: color-mix(in srgb, #c4a35c 60%, transparent);
-}
 
 /* reduced motion: no scroll morph — sections become static color blocks */
 .static-blocks {
@@ -232,23 +223,6 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .glint {
-    animation: none;
-  }
-}
-
-/* the asterisk-sun idles at one turn per minute; scroll adds on top */
-.sun-spin {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: sun-spin 60s linear infinite;
-}
-@keyframes sun-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .sun-spin {
     animation: none;
   }
 }

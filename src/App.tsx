@@ -11,9 +11,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import Hero from './components/Hero'
 import About from './components/About'
 import Work from './components/Work'
-import FlowBand from './components/FlowBand'
 import Footer from './components/Footer'
-import Terrain from './components/Terrain'
 
 const CREAM = '#f2ecde'
 const NAVY = '#0f1e3a'
@@ -84,12 +82,10 @@ export default function App() {
       className={`min-h-screen ${reduce ? 'static-blocks' : ''}`}
       style={reduce ? undefined : ({ backgroundColor: bg, '--ink': ink, '--muted': muted } as unknown as MotionStyle)}
     >
-      <Terrain />
       <Hero />
       <div className="relative z-10">
         <About />
         <Work />
-        <FlowBand />
         <Footer />
       </div>
     </m.main>

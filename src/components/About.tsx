@@ -75,19 +75,7 @@ export default function About() {
           {BODY_TEXT}
         </m.p>
 
-        <div className="relative mt-24">
-          {/* a little night life while you read — same fireflies as the camp */}
-          <span className="firefly firefly-a pointer-events-none" style={{ right: '12%', top: '16%' }} aria-hidden />
-          <span
-            className="firefly firefly-b pointer-events-none"
-            style={{ right: '5%', top: '58%', animationDelay: '2.2s' }}
-            aria-hidden
-          />
-          <span
-            className="firefly firefly-c pointer-events-none"
-            style={{ left: '48%', top: '80%', animationDelay: '4.1s' }}
-            aria-hidden
-          />
+        <div className="mt-24">
           <Kicker>where i've been</Kicker>
           <div className="hairline mt-8 border-t">
             {EXPERIENCE.map((row) => (

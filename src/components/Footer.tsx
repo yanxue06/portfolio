@@ -1,6 +1,5 @@
 import { m, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion'
 import { useRef } from 'react'
-import { Magnetic } from './Hero'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -9,12 +8,6 @@ const LINKS = [
   { label: 'linkedin', href: 'https://linkedin.com/in/yanxue-ce' },
   { label: 'email', href: 'mailto:yan.xue@uwaterloo.ca' },
 ]
-
-const SINE_D = (() => {
-  let d = 'M 0 20'
-  for (let x = 20; x <= 1200; x += 20) d += ` L ${x} ${(20 + Math.sin(x / 90) * 12).toFixed(1)}`
-  return d
-})()
 
 /* the campsite from the old sunset site — pines, tent, ember — as the
    page's closing scene. the smoke curl is drawn by the footer's scroll. */
@@ -79,7 +72,6 @@ export default function Footer() {
     offset: ['start 0.85', 'start 0.15'],
   })
   const underline = useTransform(footProgress, [0.15, 1], [0, 1])
-  const wave = useTransform(footProgress, [0.45, 1], [0, 1])
   const smoke = useTransform(footProgress, [0.2, 1], [0.15, 1])
 
   return (
@@ -105,46 +97,26 @@ export default function Footer() {
             variants={{ hidden: { opacity: 0, y: 48 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 1, ease: EASE }}
           >
-            <Magnetic>
-              <a
-                href="mailto:yan.xue@uwaterloo.ca"
-                className="ink group relative inline-block text-[clamp(56px,11vw,180px)] font-extrabold leading-[0.95] tracking-[-0.04em]"
-              >
-                say hello.
-                <m.span
-                  style={{ scaleX: reduce ? 1 : underline }}
-                  className="absolute -bottom-2 left-0 h-[5px] w-full origin-left bg-gold"
-                  aria-hidden
-                />
-              </a>
-            </Magnetic>
+            <a
+              href="mailto:yan.xue@uwaterloo.ca"
+              className="ink group relative inline-block text-[clamp(56px,11vw,180px)] font-extrabold leading-[0.95] tracking-[-0.04em]"
+            >
+              say hello.
+              <m.span
+                style={{ scaleX: reduce ? 1 : underline }}
+                className="absolute -bottom-2 left-0 h-[5px] w-full origin-left bg-gold"
+                aria-hidden
+              />
+            </a>
           </m.span>
         </m.span>
-
-        {/* a gold sine draws in under the sign-off */}
-        <div className="pointer-events-none mt-14 overflow-hidden" aria-hidden>
-          <svg viewBox="0 0 1200 40" preserveAspectRatio="none" className="h-7 w-full">
-            {reduce ? (
-              <path d={SINE_D} fill="none" stroke="#c4a35c" strokeOpacity="0.5" strokeWidth="1.5" />
-            ) : (
-              <m.path
-                d={SINE_D}
-                fill="none"
-                stroke="#c4a35c"
-                strokeOpacity="0.5"
-                strokeWidth="1.5"
-                style={{ pathLength: wave }}
-              />
-            )}
-          </svg>
-        </div>
 
         <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ delay: 0.15, duration: 0.7, ease: EASE }}
-          className="hairline mt-6 flex flex-wrap items-center justify-between gap-6 border-t pt-6"
+          className="hairline mt-16 flex flex-wrap items-center justify-between gap-6 border-t pt-6"
         >
           <div className="flex gap-6">
             {LINKS.map((link) => (
