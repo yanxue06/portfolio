@@ -1,14 +1,15 @@
 import { m, useReducedMotion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
-/* Flocks of birds crossing the evening sky toward the sun at (900, 600) in
-   CliffScene coordinates, shrinking and fading as they reach it. A spawner
+/* Flocks of birds crossing the evening sky toward the sun (SUN, in Scene's
+   viewBox coordinates), shrinking and fading as they reach it. A spawner
    keeps them coming forever on a randomized timer; every flock rolls its own
-   size, altitude, pace, and V-formation so no two crossings repeat. Rendered
-   inside CliffScene's cloud layer so flocks ride the same parallax as the air.
-   Reduced motion gets the old static trio instead. */
+   size, altitude, pace, and V-formation so no two crossings repeat. Drawn
+   between the sun and the far range in Scene. Reduced motion gets the old
+   static trio instead. */
 
-const SUN = { x: 900, y: 600 }
+/* Scene draws the sun here too, so the birds always fly into it */
+export const SUN = { x: 860, y: 540 }
 
 /* two wings pivoting at the body — rotation flap, never collapses the glyph */
 const WING_L = 'M0 0 Q-6 -3.5 -11.5 -1.5'
@@ -42,11 +43,12 @@ function makeFlock(): Flock {
   const size = Math.round(rand(3, 5))
   const birds: Bird[] = []
   for (let i = 0; i < size; i++) {
-    // loose V: a leader, then alternating sides trailing behind with jitter
+    // loose V: a leader, then alternating sides trailing behind with jitter.
+    // they fly right to left, so "behind" is +x
     const rank = Math.ceil(i / 2)
     const side = i === 0 ? 0 : i % 2 === 1 ? -1 : 1
     birds.push({
-      dx: -rank * rand(17, 25) + rand(-4, 4),
+      dx: rank * rand(17, 25) + rand(-4, 4),
       dy: side * rank * rand(10, 15) + rand(-3, 3),
       scale: rand(0.7, 1.05),
       opacity: rand(0.6, 1),
@@ -57,8 +59,8 @@ function makeFlock(): Flock {
   return {
     id: flockId++,
     birds,
-    startY: rand(280, 520),
-    midY: rand(320, 560),
+    startY: rand(250, 420),
+    midY: rand(290, 470),
     scale: rand(0.7, 1.2),
     duration: rand(13, 22),
   }
@@ -67,9 +69,9 @@ function makeFlock(): Flock {
 function FlockGroup({ flock, onDone }: { flock: Flock; onDone: (id: number) => void }) {
   return (
     <m.g
-      initial={{ x: -100, y: flock.startY, scale: flock.scale, opacity: 0 }}
+      initial={{ x: 1560, y: flock.startY, scale: flock.scale, opacity: 0 }}
       animate={{
-        x: [-100, 360, 690, SUN.x - 15],
+        x: [1560, 1300, 1060, SUN.x + 15],
         y: [flock.startY, flock.midY, (flock.midY + SUN.y) / 2, SUN.y - 20],
         scale: [flock.scale, flock.scale * 0.85, flock.scale * 0.55, flock.scale * 0.2],
         opacity: [0, 1, 1, 0],
@@ -98,9 +100,9 @@ function FlockGroup({ flock, onDone }: { flock: Flock; onDone: (id: number) => v
 function StaticBirds() {
   return (
     <g>
-      <path d="M1040 500 q7 -8 14 0 q7 -8 14 0" />
-      <path d="M1112 528 q6 -7 12 0 q6 -7 12 0" opacity="0.85" />
-      <path d="M1000 478 q5 -6 10 0 q5 -6 10 0" opacity="0.7" />
+      <path d="M940 446 q7 -8 14 0 q7 -8 14 0" />
+      <path d="M1004 470 q6 -7 12 0 q6 -7 12 0" opacity="0.85" />
+      <path d="M902 426 q5 -6 10 0 q5 -6 10 0" opacity="0.7" />
     </g>
   )
 }
