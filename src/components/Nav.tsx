@@ -10,11 +10,13 @@ const NAV_LINKS = [
   { label: 'email', href: 'mailto:yan.xue@uwaterloo.ca' },
 ]
 
-/* fixed masthead — rides the whole page, colors follow the theme morph */
+/* masthead — sits at the top of the hero and scrolls away with it. fixed,
+   it slid over the hero's text, and its colors had nothing to follow: the
+   hero is cream while the page under it is already navy */
 export default function Nav() {
   const reduce = useReducedMotion()
   return (
-    <nav className="fixed inset-x-0 top-0 z-40 flex items-center justify-between px-6 py-5 sm:px-10">
+    <nav className="absolute inset-x-0 top-0 z-40 flex items-center justify-between px-6 py-5 sm:px-10">
       <a href="#top" className="ink font-mono text-sm font-bold">
         yan<span className="text-gold">*</span>
       </a>

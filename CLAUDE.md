@@ -49,6 +49,7 @@ npm works too. Plain `bun run dev` does not serve `/api`; the counter quietly sh
 - **Use `m.*`, never `motion.*`.** The app runs inside `<LazyMotion features={domAnimation} strict>`. A `motion.div` throws at runtime in dev; production builds strip that check. This keeps framer-motion's full renderer out of the first chunk.
 - **Keep shaders lazy.** `@paper-design/shaders-react` (`MeshGradient`, `Water`, `SimplexNoise`) is only ever loaded with `lazy(() => import(...))` behind `Suspense`. Never import it at the top of a file.
 - **Color through the theme variables.** `App.tsx` animates `--ink` and `--muted` (and the background) as you scroll. Components use the `ink`, `muted` and `hairline` classes or `var(--ink)`, not hard-coded navy or cream.
+- **The hero is the one exception.** It paints its own cream and pins `--ink`/`--muted`, because the page under it is already navy: its land ends in navy and runs straight into `#about`. The nav lives inside the hero (not fixed) for the same reason.
 - **Section ids are load-bearing.** `App.tsx` measures `#about`, `#work` and `#footer` to place the color crossfades. Renaming or removing one breaks the morph.
 - **Respect reduced motion.** Every animated component checks `useReducedMotion()`. The fallback is the `.static-blocks` class in `index.css`. Keep both working.
 

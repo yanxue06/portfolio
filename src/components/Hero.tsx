@@ -4,27 +4,16 @@ import {
   useReducedMotion,
   useScroll,
   useSpring,
-  useTransform,
 } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { lazy, Suspense, useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import { Fragment, lazy, Suspense, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import Nav from './Nav'
 import Scene from './Scene'
 import { addLike, counts, peekLikes, rememberLikes } from '../lib/hits'
 
-/* the mesh ships in its own chunk, off the critical path — until it lands,
-   the circle is a flat gradient in the same palette */
-const MeshGradient = lazy(() =>
-  import('@paper-design/shaders-react').then((mod) => ({ default: mod.MeshGradient })),
-)
-
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-const ROLES = [
-  'computer engineering @ uwaterloo',
-  'swe intern @ photon (google, vercel + sequoia backed)',
-  'prev @ bitgo',
-]
-const TAGLINE = 'i build infra and dev tools, mostly in rust and typescript.'
+const ROLES = ['computer engineering @ uwaterloo', 'core platform @ live time', 'incoming @ vercel (v0)']
 
 /* The "say hello" pill leans toward the cursor. */
 export function Magnetic({ children }: { children: ReactNode }) {
@@ -117,13 +106,14 @@ function LikeButton({ reduce }: { reduce: boolean }) {
             fallback={
               <span
                 className="block h-full w-full"
-                style={{ background: 'radial-gradient(circle at 35% 30%, #bfe3f7 0%, #58a8db 55%, #2f7cb4 100%)' }}
+                style={{ background: 'radial-gradient(circle at 35% 30%, #a9b9d4 0%, #3e5884 55%, #1d3156 100%)' }}
               />
             }
           >
+            {/* a drop of the hero's sea */}
             <Water
-              colorBack="#3f97cf"
-              colorHighlight="#f2fbff"
+              colorBack="#3e5884"
+              colorHighlight="#f2ecde"
               highlights={0.35}
               layering={0.6}
               edges={0.5}
@@ -169,148 +159,91 @@ function MaskLine({ children, delay, className }: { children: ReactNode; delay: 
   )
 }
 
+/* one line of the hero after the name: rises in on load */
+function Rise({ children, delay, className }: { children: ReactNode; delay: number; className?: string }) {
+  const reduce = useReducedMotion()
+  return (
+    <m.div
+      initial={reduce ? false : { y: 14, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay, duration: 0.8, ease: EASE }}
+      className={className}
+    >
+      {children}
+    </m.div>
+  )
+}
+
 export default function Hero() {
   const reduce = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
 
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-  const driftX = useSpring(useTransform(mouseX, [-0.5, 0.5], [16, -16]), { stiffness: 50, damping: 16 })
-  const driftY = useSpring(useTransform(mouseY, [-0.5, 0.5], [12, -12]), { stiffness: 50, damping: 16 })
-
-  /* darcy-style pin: the section is 2 viewports tall, the inner block sticks
-     for the first one while the marquee + about scroll over it. Everything
-     hands off in sequence — hint, pill, meta, nav, asterisk — and the name
-     fades out fully before the incoming content reaches it, so it never
-     reads as cut. */
-  const { scrollYProgress: heroProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end'],
-  })
-  const scrollHintOpacity = useTransform(heroProgress, [0, 0.06], [1, 0])
-  const chromeOpacity = useTransform(heroProgress, [0.15, 0.32], [1, 0])
-  const nameOpacity = useTransform(heroProgress, [0.3, 0.55], [1, reduce ? 1 : 0])
-  const nameScale = useTransform(heroProgress, [0, 0.55], [1, reduce ? 1 : 0.96])
-  const sceneOpacity = useTransform(heroProgress, [0.45, 0.75], [1, reduce ? 1 : 0])
-  const meshY = useTransform(heroProgress, [0.05, 0.3, 0.5], [0, reduce ? 0 : 110, reduce ? 0 : 290])
-  const meshX = useTransform(heroProgress, [0.05, 0.5], [0, reduce ? 0 : 85])
-
-  const handleMouse = (e: MouseEvent<HTMLElement>) => {
-    mouseX.set(e.clientX / window.innerWidth - 0.5)
-    mouseY.set(e.clientY / window.innerHeight - 0.5)
-  }
+  /* 0 at the top of the page, 1 once the hero has scrolled fully away —
+     the sun sets on it */
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] })
 
   return (
+    /* the hero paints its own cream sky and pins its own ink, so the page
+       can turn navy underneath while the scene is still on screen. the land
+       is navy at the bottom edge and runs straight into the about section */
     <section
       id="top"
       ref={sectionRef}
-      onMouseMove={reduce ? undefined : handleMouse}
-      className={reduce ? 'relative h-screen' : 'relative h-[170vh] sm:h-[200vh]'}
+      className="relative flex h-svh min-h-[620px] flex-col overflow-hidden bg-cream"
+      style={{ '--ink': '#0f1e3a', '--muted': '#5e6b85' } as CSSProperties}
     >
-      <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
-      {/* the cliff scene fills the hero behind the type, drifting gently
-          against the cursor; it fades away during the pin handoff */}
-      <m.div
-        className="pointer-events-none absolute -inset-5"
-        style={{ x: driftX, y: driftY, opacity: sceneOpacity }}
-        aria-hidden
-      >
-        <m.div
-          style={{ x: meshX, y: meshY }}
-          className="absolute left-[62%] top-[34%] h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full opacity-90"
-        >
-          <Suspense
-            fallback={
-              <div
-                className="h-full w-full"
-                style={{ background: 'radial-gradient(circle at 38% 35%, #f5edd8 0%, #e6d5a6 48%, #c4a35c 100%)' }}
-              />
-            }
-          >
-            <MeshGradient
-              colors={['#f5edd8', '#e6d5a6', '#c4a35c', '#efe3c0']}
-              speed={reduce ? 0 : 0.7}
-              style={{ width: '100%', height: '100%' }}
-            />
-          </Suspense>
-        </m.div>
-        <Scene progress={heroProgress} />
-      </m.div>
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <Scene progress={scrollYProgress} />
+      </div>
+      <Nav />
 
-      <div className="relative z-10 flex flex-1 flex-col justify-start px-6 pb-16 pt-[16vh] sm:px-10">
-        <m.h1
-          style={{ opacity: nameOpacity, scale: nameScale }}
-          className="ink origin-left select-none text-[clamp(58px,9.5vw,150px)] font-extrabold leading-[0.9] tracking-[-0.04em]"
-        >
+      {/* sizes follow the shorter of width and height, so a wide, short
+          laptop window keeps the whole column above the cliff */}
+      <div className="relative z-10 px-6 pt-[clamp(88px,14vh,150px)] sm:px-10">
+        <h1 className="ink select-none text-[clamp(56px,min(9.5vw,17vh),150px)] font-extrabold leading-[0.9] tracking-[-0.04em]">
           <MaskLine delay={0.1}>yan xue</MaskLine>
-        </m.h1>
+        </h1>
 
-        <m.div style={{ opacity: chromeOpacity }} className="mt-5 max-w-[680px]">
-          <m.p
-            initial={reduce ? false : { y: 14, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.55, duration: 0.8, ease: EASE }}
-            className="ink text-[14px] leading-relaxed opacity-90 sm:text-[15px]"
-          >
-            {/* each role is one unbreakable chunk — lines only split at the dots */}
+        <Rise delay={0.5} className="mt-5 sm:mt-6">
+          <p className="ink text-[clamp(24px,min(2.9vw,4.7vh),42px)] font-semibold leading-[1.08] tracking-[-0.025em]">
+            building tools that give
+            <br />
+            <span className="italic">time back to people.</span>
+          </p>
+        </Rise>
+
+        <Rise delay={0.62} className="mt-4 sm:mt-5">
+          <p className="muted max-w-[680px] text-[14px] leading-relaxed sm:text-[15px]">
+            {/* one role per line on a phone; from sm up they share a line and
+                only ever break at a dot — the space after each chunk is the
+                break point, the chunk itself never splits */}
             {ROLES.map((role, i) => (
-              <span key={role} className="whitespace-nowrap">
-                {role}
-                {i < ROLES.length - 1 && <span className="mx-1.5">·</span>}
-              </span>
+              <Fragment key={role}>
+                <span className="block whitespace-nowrap sm:inline">
+                  {role}
+                  {i < ROLES.length - 1 && <span className="mx-1.5 hidden sm:inline">·</span>}
+                </span>{' '}
+              </Fragment>
             ))}
-          </m.p>
-          <m.p
-            initial={reduce ? false : { y: 14, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.68, duration: 0.8, ease: EASE }}
-            className="muted mt-1.5 font-mono text-[12px]"
-          >
-            {TAGLINE}
-          </m.p>
-          <m.div
-            initial={reduce ? false : { y: 14, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.82, duration: 0.8, ease: EASE }}
-            className="mt-6"
-          >
-            <LikeButton reduce={!!reduce} />
-          </m.div>
-        </m.div>
+          </p>
+        </Rise>
 
-        {/* same 24px step as tagline → heart, so the column reads as one rhythm */}
-        <m.div style={{ opacity: chromeOpacity }} className="mt-6">
-        <m.div
-          initial={reduce ? false : { y: 14, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.95, duration: 0.8, ease: EASE }}
-        >
+        <Rise delay={0.76} className="mt-7 flex items-center gap-6">
           <Magnetic>
             <a
               href="mailto:yan.xue@uwaterloo.ca"
-              data-cursor-capture
               className="group flex w-fit items-center gap-2 rounded-full bg-navy py-1.5 pl-5 pr-1.5 text-sm font-medium text-cream transition-all duration-300 hover:gap-3"
             >
               say hello
               <span
-                data-capture-point
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-cream transition-transform duration-300 group-hover:scale-110"
               >
                 <ArrowRight className="h-4 w-4 text-navy transition-colors duration-200 group-hover:text-gold" />
               </span>
             </a>
           </Magnetic>
-        </m.div>
-        </m.div>
-      </div>
-
-      <m.p
-        style={{ opacity: scrollHintOpacity }}
-        className="muted absolute bottom-5 left-6 z-10 font-mono text-[11px] sm:left-10"
-        aria-hidden
-      >
-        (scroll)
-      </m.p>
+          <LikeButton reduce={!!reduce} />
+        </Rise>
       </div>
     </section>
   )
