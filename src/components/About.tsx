@@ -1,29 +1,22 @@
-import { m, useReducedMotion, useScroll } from 'framer-motion'
+import { m, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion'
 import { useRef, type ReactNode } from 'react'
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const BODY_TEXT =
-  "right now i'm on core platform at live time in san francisco, building event creation and payments, and the router that ships orders for 40+ brands. this winter i'm joining vercel to work on v0. before that i built ai infrastructure at photon: webhook delivery, buildspace, everything ci/cd. i also love frisbee, guitar, and chess."
+  "right now i'm at photon in san francisco, building ai infrastructure — webhook delivery, buildspace, everything ci/cd. in my free time i love building at the intersection of agents and tooling. i also love frisbee, guitar, and chess."
+
+/* the statement, split for the word-by-word scroll reveal — italics start
+   where the sentence turns personal */
+const STATEMENT = "i'm yan. i like building tools that help people.".split(' ')
+const ITALIC_FROM = 5
 
 const EXPERIENCE: Array<{ place: string; logo: string; seal?: boolean; what: string; when: string }> = [
   {
-    place: 'vercel',
-    logo: '/logos/vercel.svg',
-    what: 'incoming swe intern, v0 team',
-    when: 'jan — apr 2027',
-  },
-  {
-    place: 'live time',
-    logo: '/logos/livetime.png',
-    what: 'core platform — event creation + payments at 110+ campuses, waterfall shipping router for 40+ brands',
-    when: 'aug 2026 — now',
-  },
-  {
     place: 'photon',
     logo: '/logos/photon.png',
-    what: 'webhook delivery to 100k+ devs, buildspace ci/cd, ai release pipelines',
-    when: 'jan — aug 2026',
+    what: 'webhook delivery to 10K+ devs, buildspace ci/cd, ai release pipelines',
+    when: 'dec 2025 — now',
   },
   {
     place: 'bitgo',
@@ -71,23 +64,86 @@ function RowRule() {
   )
 }
 
+function Word({
+  children,
+  progress,
+  range,
+  italic,
+}: {
+  children: string
+  progress: MotionValue<number>
+  range: [number, number]
+  italic: boolean
+}) {
+  const opacity = useTransform(progress, range, [0.14, 1])
+  return (
+    <m.span style={{ opacity }} className={`inline-block ${italic ? 'font-semibold italic' : ''}`}>
+      {children}&nbsp;
+    </m.span>
+  )
+}
+
+/* words ink in one by one as the reader moves through the section */
+function Statement() {
+  const reduce = useReducedMotion()
+  const ref = useRef<HTMLHeadingElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.92', 'start 0.3'] })
+
+  return (
+    <h2
+      ref={ref}
+      className="ink relative mt-6 max-w-[1080px] text-[clamp(40px,6.6vw,88px)] font-bold leading-[1.02] tracking-[-0.03em]"
+    >
+      {STATEMENT.map((word, i) =>
+        reduce ? (
+          <span key={i} className={`inline-block ${i >= ITALIC_FROM ? 'font-semibold italic' : ''}`}>
+            {word}&nbsp;
+          </span>
+        ) : (
+          <Word
+            key={i}
+            progress={scrollYProgress}
+            range={[i / STATEMENT.length, (i + 1) / STATEMENT.length]}
+            italic={i >= ITALIC_FROM}
+          >
+            {word}
+          </Word>
+        ),
+      )}
+    </h2>
+  )
+}
+
 export default function About() {
   const reduce = useReducedMotion()
   return (
     <section id="about" className="px-6 pb-28 pt-32 sm:px-10">
       <div className="mx-auto max-w-[1200px]">
         <Kicker>about me</Kicker>
+        <Statement />
         <m.p
-          initial={reduce ? false : { opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ delay: 0.1, duration: 0.8, ease: EASE }}
-          className="ink mt-8 max-w-[860px] text-[clamp(20px,2.1vw,28px)] font-medium leading-[1.45] tracking-[-0.01em]"
+          className="muted mt-8 max-w-[560px] text-[15.5px] leading-[1.8]"
         >
           {BODY_TEXT}
         </m.p>
 
-        <div className="mt-24">
+        <div className="relative mt-24">
+          {/* a little night life while you read — same fireflies as the camp */}
+          <span className="firefly firefly-a pointer-events-none" style={{ right: '12%', top: '16%' }} aria-hidden />
+          <span
+            className="firefly firefly-b pointer-events-none"
+            style={{ right: '5%', top: '58%', animationDelay: '2.2s' }}
+            aria-hidden
+          />
+          <span
+            className="firefly firefly-c pointer-events-none"
+            style={{ left: '48%', top: '80%', animationDelay: '4.1s' }}
+            aria-hidden
+          />
           <Kicker>where i've been</Kicker>
           <div className="hairline mt-8 border-t">
             {EXPERIENCE.map((row) => (
