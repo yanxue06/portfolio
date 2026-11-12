@@ -60,7 +60,7 @@ const PROJECTS: Project[] = [
     description: (
       <>
         natural-language search over git history. bge embeddings in rust, <Hi>&lt;100ms</Hi> across 10K+
-        commits, <Hi>960+ users</Hi>, fully offline at 3KB per commit.
+        commits, <Hi>1,200+ users</Hi>, fully offline at 3KB per commit.
       </>
     ),
     stack: 'rust · bge embeddings · vector search',
@@ -72,7 +72,7 @@ const PROJECTS: Project[] = [
     description: (
       <>
         your obsidian vault as a knowledge graph any ai can query. <Hi>25 graph-aware tools</Hi> — backlinks,
-        traversal, dataview — <Hi>300+ downloads</Hi> on npm.
+        traversal, dataview — <Hi>1,000+ downloads</Hi> on npm.
       </>
     ),
     stack: 'typescript · mcp · npm',

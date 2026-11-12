@@ -4,14 +4,26 @@ import { useRef, type ReactNode } from 'react'
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const BODY_TEXT =
-  "right now i'm at photon in san francisco, building ai infrastructure — webhook delivery, buildspace, everything ci/cd. in my free time i love building at the intersection of agents and tooling. i also love frisbee, guitar, and chess."
+  "right now i'm on core platform at live time in san francisco, building event creation and payments, and the router that ships orders for 40+ brands. this winter i'm joining vercel to work on v0. before that i built ai infrastructure at photon: webhook delivery, buildspace, everything ci/cd. i also love frisbee, guitar, and chess."
 
 const EXPERIENCE: Array<{ place: string; logo: string; seal?: boolean; what: string; when: string }> = [
   {
+    place: 'vercel',
+    logo: '/logos/vercel.svg',
+    what: 'incoming swe intern, v0 team',
+    when: 'jan — apr 2027',
+  },
+  {
+    place: 'live time',
+    logo: '/logos/livetime.png',
+    what: 'core platform — event creation + payments at 110+ campuses, waterfall shipping router for 40+ brands',
+    when: 'aug 2026 — now',
+  },
+  {
     place: 'photon',
     logo: '/logos/photon.png',
-    what: 'webhook delivery to 10K+ devs, buildspace ci/cd, ai release pipelines',
-    when: 'dec 2025 — now',
+    what: 'webhook delivery to 100k+ devs, buildspace ci/cd, ai release pipelines',
+    when: 'jan — aug 2026',
   },
   {
     place: 'bitgo',
