@@ -53,6 +53,27 @@ body {
 .hairline {
   border-color: color-mix(in srgb, var(--ink) 15%, transparent);
 }
+/* stroke-only display text — the oversized project indices. warms toward
+   gold while the simplex fill pours into the glyphs on row hover */
+.idx-stroke {
+  stroke: color-mix(in srgb, var(--ink) 28%, transparent);
+  transition: stroke 0.45s ease;
+}
+.group:hover .idx-stroke {
+  stroke: color-mix(in srgb, #c4a35c 60%, transparent);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
 
 /* reduced motion: no scroll morph — sections become static color blocks */
 .static-blocks {
@@ -66,6 +87,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
   html {
     scroll-behavior: auto;
   }
@@ -207,22 +231,27 @@ body {
   }
 }
 
-/* the sea's cream glints breathe, each on its own delay */
-.glint {
-  opacity: 0.3;
-  animation: glint 5s ease-in-out infinite;
+/* the asterisk-sun idles at one turn per minute; scroll adds on top */
+.sun-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sun-spin 60s linear infinite;
 }
-@keyframes glint {
-  0%,
-  100% {
-    opacity: 0.12;
-  }
-  50% {
-    opacity: 0.5;
+@keyframes sun-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .glint {
+  .sun-spin {
     animation: none;
+  }
+}
+
+/* the aura is the cursor — hide the native one, except where the aura
+   doesn't render (touch, reduced motion) */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  * {
+    cursor: none !important;
   }
 }

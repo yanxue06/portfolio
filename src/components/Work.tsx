@@ -1,5 +1,5 @@
-import { m, useReducedMotion, useScroll } from 'framer-motion'
-import { useRef, type ReactNode } from 'react'
+import { AnimatePresence, m, useReducedMotion, useScroll } from 'framer-motion'
+import { lazy, Suspense, useRef, useState, type ReactNode } from 'react'
 import { Kicker } from './About'
 import {
   BuildSpaceBanner,
@@ -9,6 +9,12 @@ import {
   MarillacPlaceBanner,
   ObsidianBanner,
 } from './banners'
+
+/* the gold noise fill ships in its own chunk — hover shows a flat gold
+   gradient until it lands */
+const SimplexNoise = lazy(() =>
+  import('@paper-design/shaders-react').then((mod) => ({ default: mod.SimplexNoise })),
+)
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -41,6 +47,70 @@ function ScrubRule() {
   )
 }
 
+/* The oversized index — outline at rest; while its row is hovered the
+   glyphs fill with slow simplex noise in the site's golds. SVG text twins
+   (one drawn, one as clipPath) share inherited font metrics, so the shader
+   div clips exactly to the digits. Only the lit row mounts a canvas. */
+function IndexNumber({ index, lit }: { index: number; lit: boolean }) {
+  const reduce = useReducedMotion()
+  const label = String(index + 1).padStart(2, '0')
+  const clipId = `work-idx-clip-${index}`
+  return (
+    <span className="relative block h-[1em] w-[1.34em] font-extrabold" style={{ fontSize: 'clamp(64px,9vw,150px)' }}>
+      <svg className="absolute inset-0 h-full w-full overflow-visible" aria-hidden>
+        <defs>
+          <clipPath id={clipId}>
+            <text x="100%" y="50%" textAnchor="end" dominantBaseline="central">
+              {label}
+            </text>
+          </clipPath>
+        </defs>
+        <text
+          x="100%"
+          y="50%"
+          textAnchor="end"
+          dominantBaseline="central"
+          className="idx-stroke"
+          fill="none"
+          strokeWidth="1.5"
+        >
+          {label}
+        </text>
+      </svg>
+      <AnimatePresence>
+        {lit && (
+          <m.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
+            className="absolute inset-0 block"
+            style={{ clipPath: `url(#${clipId})` }}
+          >
+            <Suspense
+              fallback={
+                <span
+                  className="block h-full w-full"
+                  style={{ background: 'linear-gradient(135deg, #f5edd8, #e6d5a6 45%, #c4a35c)' }}
+                />
+              }
+            >
+              <SimplexNoise
+                colors={['#f5edd8', '#e6d5a6', '#c4a35c', '#b3924a']}
+                stepsPerColor={2}
+                softness={0.8}
+                speed={reduce ? 0 : 0.6}
+                scale={0.35}
+                style={{ width: '100%', height: '100%' }}
+              />
+            </Suspense>
+          </m.span>
+        )}
+      </AnimatePresence>
+    </span>
+  )
+}
+
 const PROJECTS: Project[] = [
   {
     title: 'buildspace',
@@ -60,7 +130,7 @@ const PROJECTS: Project[] = [
     description: (
       <>
         natural-language search over git history. bge embeddings in rust, <Hi>&lt;100ms</Hi> across 10K+
-        commits, <Hi>1,200+ users</Hi>, fully offline at 3KB per commit.
+        commits, <Hi>960+ users</Hi>, fully offline at 3KB per commit.
       </>
     ),
     stack: 'rust · bge embeddings · vector search',
@@ -72,7 +142,7 @@ const PROJECTS: Project[] = [
     description: (
       <>
         your obsidian vault as a knowledge graph any ai can query. <Hi>25 graph-aware tools</Hi> — backlinks,
-        traversal, dataview — <Hi>1,000+ downloads</Hi> on npm.
+        traversal, dataview — <Hi>300+ downloads</Hi> on npm.
       </>
     ),
     stack: 'typescript · mcp · npm',
@@ -118,12 +188,14 @@ const PROJECTS: Project[] = [
 
 export default function Work() {
   const reduce = useReducedMotion()
+  /* one index at most is ever hot, so at most one shader canvas is alive */
+  const [hot, setHot] = useState<number | null>(null)
   return (
     <section id="work" className="relative overflow-hidden px-6 pb-24 pt-32 sm:px-10">
       <div className="relative mx-auto max-w-[1200px]">
         <Kicker>selected work</Kicker>
         <div className="hairline mt-8 border-t">
-          {PROJECTS.map((project) => (
+          {PROJECTS.map((project, i) => (
             <m.a
               key={project.title}
               href={project.href}
@@ -132,9 +204,21 @@ export default function Work() {
               initial={reduce ? false : 'hidden'}
               whileInView="show"
               viewport={{ once: true, margin: '-60px' }}
+              onMouseEnter={() => setHot(i)}
+              onMouseLeave={() => setHot(null)}
+              onFocus={() => setHot(i)}
+              onBlur={() => setHot(null)}
               className="group relative block py-8 md:py-10"
             >
               <ScrubRule />
+              <m.span
+                variants={{ hidden: { opacity: 0, x: 32, y: '-50%' }, show: { opacity: 1, x: 0, y: '-50%' } }}
+                transition={{ delay: 0.2, duration: 0.8, ease: EASE }}
+                className="pointer-events-none absolute right-0 top-1/2 hidden select-none lg:block"
+                aria-hidden
+              >
+                <IndexNumber index={i} lit={hot === i} />
+              </m.span>
 
               <div className="md:grid md:grid-cols-[300px_1fr] md:items-start md:gap-8">
                 {/* banner wipes open left to right */}

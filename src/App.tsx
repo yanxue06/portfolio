@@ -9,27 +9,30 @@ import {
 } from 'framer-motion'
 import { useCallback, useEffect, useRef } from 'react'
 import Hero from './components/Hero'
+import Marquee from './components/Marquee'
 import About from './components/About'
 import Work from './components/Work'
+import FlowBand from './components/FlowBand'
 import Footer from './components/Footer'
+import GlowCursor from './components/GlowCursor'
+import Terrain from './components/Terrain'
+import Nav from './components/Nav'
 
 const CREAM = '#f2ecde'
 const NAVY = '#0f1e3a'
 
-/* about navy → work cream → footer navy. the hero paints its own cream sky
-   and its land ends in navy, so the page is navy from the top: about starts
-   where the sea ends, with no cream→navy fade (its midpoint is mud) under it */
-const BG = [NAVY, NAVY, NAVY, NAVY, CREAM, CREAM, NAVY]
-const INK = [CREAM, CREAM, CREAM, CREAM, NAVY, NAVY, CREAM]
-const MUT = ['#8a93a9', '#8a93a9', '#8a93a9', '#8a93a9', '#5e6b85', '#5e6b85', '#8a93a9']
+/* hero cream → about navy → work cream → footer navy */
+const BG = [CREAM, CREAM, NAVY, NAVY, CREAM, CREAM, NAVY]
+const INK = [NAVY, NAVY, CREAM, CREAM, NAVY, NAVY, CREAM]
+const MUT = ['#5e6b85', '#5e6b85', '#8a93a9', '#8a93a9', '#5e6b85', '#5e6b85', '#8a93a9']
 
 export default function App() {
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll()
   const stopsRef = useRef<number[]>([0, 0.2, 0.25, 0.5, 0.55, 0.8, 0.85])
-  const bg = useMotionValue(NAVY)
-  const ink = useMotionValue(CREAM)
-  const muted = useMotionValue('#8a93a9')
+  const bg = useMotionValue(CREAM)
+  const ink = useMotionValue(NAVY)
+  const muted = useMotionValue('#5e6b85')
 
   const apply = useCallback(
     (v: number) => {
@@ -82,12 +85,21 @@ export default function App() {
       className={`min-h-screen ${reduce ? 'static-blocks' : ''}`}
       style={reduce ? undefined : ({ backgroundColor: bg, '--ink': ink, '--muted': muted } as unknown as MotionStyle)}
     >
+      <Terrain />
+      <Nav />
       <Hero />
-      <div className="relative z-10">
+      {/* pulls the rest of the page up over the hero's pinned second viewport
+          so the marquee + about physically scroll across the ghosted name */}
+      {/* smaller pull-up than the hero's extra viewport: the first ~40vh of
+          scroll play the scene animation alone before content arrives */}
+      <div className={reduce ? 'relative z-10' : 'relative z-10 -mt-[45vh] sm:-mt-[60vh]'}>
+        <Marquee />
         <About />
         <Work />
+        <FlowBand />
         <Footer />
       </div>
+      <GlowCursor />
     </m.main>
   )
 }
