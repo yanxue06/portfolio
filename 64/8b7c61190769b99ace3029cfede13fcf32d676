@@ -1,0 +1,35 @@
+src/components/Scene.tsx
+  s_ee6af956668e83::t_09fd43d3778199 1-26,28-93,97-99,105,109-111,113-116,118-125,128,130-134,136,138-145,148-153,161
+  s_ee6af956668e83::t_854ce9e71447a9 154-160,162-166,173,175-177,185-193,195,200-201
+src/components/Flocks.tsx
+  s_ee6af956668e83::t_250cf040cf95ce 7-9
+  s_ee6af956668e83::t_ca95078de7a65d 4-5,11-12,46-47,51,62-63,72,74,103-105
+CLAUDE.md
+  s_ee6af956668e83::t_124b8bc42b234a 52
+src/App.tsx
+  s_ee6af956668e83::t_117c20172bea90 21-26,32-34,89
+src/components/About.tsx
+  s_ee6af956668e83::t_a00a85d8dcce2a 1,69,73
+src/components/Hero.tsx
+  s_ee6af956668e83::t_13aef0a098a4e9 9-10,16,109,113,115-116,162-176,181-183,186-188,192-193,195-198,200-203,205-219,221-226,228-229,231,245-246
+src/components/Nav.tsx
+  s_ee6af956668e83::t_0f246704be42fb 13-15,19
+src/index.css
+  s_ee6af956668e83::t_71f1b3195171c8 219-238
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "648b7c61190769b99ace3029cfede13fcf32d676",
+  "prompts": {},
+  "sessions": {
+    "s_ee6af956668e83": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7388b42c-9b42-4277-89fc-dfd4e10e3bd9",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Yan Xue <y9xue@uwaterloo.ca>"
+    }
+  }
+}
